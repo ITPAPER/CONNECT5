@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.table th {
+	text-align: center;
+}
+
+#title {
+	background-color: #FFE1E6;
+	color: black;
+}
+
+#profile_img {
+	margin: auto;
+}
+
+#btn {
+	padding-left: 340px;
+}
