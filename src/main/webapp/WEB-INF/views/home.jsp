@@ -139,24 +139,24 @@
 				</ul>
 
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}_coach/meetingTip_GD.do">미팅성공전략 TIP</a></li>
-					<li><a href="${pageContext.request.contextPath}_coach/loveColumn_GD.do">LOVE 컬럼</a></li>
-					<li><a href="${pageContext.request.contextPath}_coach/DatingCourse_YB.do">데이트 코스</a></li>
-					<li><a href="${pageContext.request.contextPath}_coach/review_SE.do">연-결 만남 후기</a></li>
-					<li><a href="${pageContext.request.contextPath}_coach/QnA_SE.do">연결 Q &amp; A</a></li>
+					<li><a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do">미팅성공전략 TIP</a></li>
+					<li><a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do">LOVE 컬럼</a></li>
+					<li><a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do">데이트 코스</a></li>
+					<li><a href="${pageContext.request.contextPath}/_coach/review_SE.do">연-결 만남 후기</a></li>
+					<li><a href="${pageContext.request.contextPath}/_coach/QnA_SE.do">연결 Q &amp; A</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}_test/propensity1_HG.do">연애성향 테스트</a></li>
-					<li><a href="${pageContext.request.contextPath}_test/idealtype_HG.do">이상형 찾기</a></li>
-					<li><a href="${pageContext.request.contextPath}_test/lovescore1_HG.do">나의 연애 매력</a></li>
+					<li><a href="${pageContext.request.contextPath}/_test/propensity1_HG.do">연애성향 테스트</a></li>
+					<li><a href="${pageContext.request.contextPath}/_test/idealtype_HG.do">이상형 찾기</a></li>
+					<li><a href="${pageContext.request.contextPath}/_test/lovescore1_HG.do">나의 연애 매력</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}_mypage/myInfo_GD.do">My 현황</a></li>
-					<li><a href="${pageContext.request.contextPath}_mypage/search_SE.do">인연 찾기</a></li>
-					<li><a href="${pageContext.request.contextPath}_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
-					<li><a href="${pageContext.request.contextPath}_mypage/Ex-MatchingRecord_YB.do">매칭 기록 보기</a></li>
-					<li><a href="${pageContext.request.contextPath}_mypage/personal_information1_HG.do">개인정보 수정</a></li>
-					<li><a href="${pageContext.request.contextPath}_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do">My 현황</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/search_SE.do">인연 찾기</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do">매칭 기록 보기</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do">개인정보 수정</a></li>
+					<li><a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
