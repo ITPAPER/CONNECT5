@@ -1,4 +1,4 @@
-package study.spring.springhelper.helper;
+package study.spring.simplespring.helper;
 
 import lombok.Data;
 

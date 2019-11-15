@@ -27,7 +27,7 @@
 	</beans:bean>
 
  <!-- 컨트롤러가 배치될 패키지 정의하기 -->
-    <context:component-scan base-package="study.spring.springhelper.controllers" />
+    <context:component-scan base-package="study.spring.simplespring.controllers" />
 	<context:component-scan
 		base-package="study.spring.simplespring" />
 	<!-- 인터셉터 등록 -->
