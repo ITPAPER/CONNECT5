@@ -117,46 +117,90 @@
 		<div id="top_menu_m2">
 			<div class="wp_snbonly">
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.do">사이트 소개</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/Greetings_YB.do">연-결 인사말</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/manager_HG.do">커플 매니저</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/story_SE.do">연결 성혼 Story</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/notice_SE.do">공지사항</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/partner_HG.do">연-결 파트너</a></li>
-					<li><a href="${pageContext.request.contextPath}/_info/map_GD.do">오시는 길</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.do">사이트
+							소개</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/Greetings_YB.do">연-결
+							인사말</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/manager_HG.do">커플
+							매니저</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/story_SE.do">연결
+							성혼 Story</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/notice_SE.do">공지사항</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/partner_HG.do">연-결
+							파트너</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_info/map_GD.do">오시는
+							길</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
 					<li><a
 						href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do">서비스
 							이용절차</a></li>
-					<li><a href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do">회원가입 안내</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do">회원가입
+							안내</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/_service/MemberLevel_YH.do">회원등급
 							안내</a></li>
-					<li><a href="${pageContext.request.contextPath}/_service/specialservice_YH.do">스페셜 서비스</a></li>
-					<li><a href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do">회원현황</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_service/specialservice_YH.do">스페셜
+							서비스</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do">회원현황</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do">미팅성공전략 TIP</a></li>
-					<li><a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do">LOVE 컬럼</a></li>
-					<li><a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do">데이트 코스</a></li>
-					<li><a href="${pageContext.request.contextPath}/_coach/review_SE.do">연-결 만남 후기</a></li>
-					<li><a href="${pageContext.request.contextPath}/_coach/QnA_SE.do">연결 Q &amp; A</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do">미팅성공전략
+							TIP</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do">LOVE
+							컬럼</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do">데이트
+							코스</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_coach/review_SE.do">연-결
+							만남 후기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_coach/QnA_SE.do">연결
+							Q &amp; A</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}/_test/propensity1_HG.do">연애성향 테스트</a></li>
-					<li><a href="${pageContext.request.contextPath}/_test/idealtype_HG.do">이상형 찾기</a></li>
-					<li><a href="${pageContext.request.contextPath}/_test/lovescore1_HG.do">나의 연애 매력</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_test/propensity1_HG.do">연애성향
+							테스트</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_test/idealtype_HG.do">이상형
+							찾기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_test/lovescore1_HG.do">나의
+							연애 매력</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do">My 현황</a></li>
-					<li><a href="${pageContext.request.contextPath}/_mypage/search_SE.do">인연 찾기</a></li>
-					<li><a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
-					<li><a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do">매칭 기록 보기</a></li>
-					<li><a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do">개인정보 수정</a></li>
-					<li><a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do">My
+							현황</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/search_SE.do">인연
+							찾기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do">매칭
+							기록 보기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do">개인정보
+							수정</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
@@ -170,13 +214,16 @@
 					href="${pageContext.request.contextPath}/assets/_payment/mustInput_SE.jsp"><img
 						src="${pageContext.request.contextPath}/assets/img/결제하기1.png"
 						width="95px" height=""></a></li>
-				<li><a href="_coach/QnA_SE.jsp"><img
+				<li><a
+					href="${pageContext.request.contextPath}/_coach/QnA_SE.do"><img
 						src="${pageContext.request.contextPath}/assets/img/문의하기1.png"
 						width="95px" height=""></a></li>
-				<li><a href="_mypage/1_1questionEmpty_YH.jsp"><img
+				<li><a
+					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"><img
 						src="${pageContext.request.contextPath}/assets/img/1_1문의1.png"
 						width="95px" height=""></a></li>
-				<li><a href="_info/map_GD.jsp"><img
+				<li><a
+					href="${pageContext.request.contextPath}/_info/map_GD.do"><img
 						src="${pageContext.request.contextPath}/assets/img/오시는길1.png"
 						width="95px" height=""></a></li>
 				<li><a href="#"><img
@@ -213,7 +260,8 @@
 							data-aos-duration="600">
 							<h1>특별한 만남</h1>
 							<p>연-결 과 함께 하세요.</p>
-							<a href="_service/MemberStatus_YB.jsp"><img
+							<a
+								href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do"><img
 								src="${pageContext.request.contextPath}/assets/img/image경로.png"
 								style="width: 90px; height: 60px;"></a>
 
@@ -226,7 +274,7 @@
 							alt="슬라이더(2)">
 						<div class="carousel-caption">
 
-							<a href="_info/story_SE.jsp"><img
+							<a href="${pageContext.request.contextPath}/_info/story_SE.do"><img
 								src="${pageContext.request.contextPath}/assets/img/image경로.png"
 								style="width: 90px; height: 60px;"></a>
 
@@ -240,7 +288,7 @@
 						<div class="carousel-caption">
 							<h1>당신을 위한 품격있는 만남 연-결</h1>
 
-							<a href="_coach/review_SE.jsp"><img
+							<a href="${pageContext.request.contextPath}/_coach/review_SE.do"><img
 								src="${pageContext.request.contextPath}/assets/img/image경로.png"
 								style="width: 90px; height: 60px;"></a>
 						</div>
@@ -273,7 +321,7 @@
 			<div class="col-md-3 text-center" id="information_box1">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/assets/_info/IntroWebsite_YB.jsp"><img
+						href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.jsp"><img
 							src="${pageContext.request.contextPath}/assets/img/
 					Introduce2
 					.jpg"
@@ -283,7 +331,7 @@
 			<div class="col-md-3 text-center" id="information_box2">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/assets/_service/MembershipRegisGuide_YB.jsp"><img
+						href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do"><img
 							src="${pageContext.request.contextPath}/assets/img/join2.jpg"
 							width="265px" height="265px"></a></li>
 				</ul>
@@ -291,7 +339,7 @@
 			<div class="col-md-3 text-center" id="information_box3">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/assets/_service/specialservice_YH.jsp"><img
+						href="${pageContext.request.contextPath}/_service/specialservice_YH.do"><img
 							src="${pageContext.request.contextPath}/assets/img/specialservice.jpg"
 							width="265px" height="265"></a></li>
 				</ul>
@@ -299,7 +347,7 @@
 			<div class="col-md-3 text-center" id="information_box4">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/assets/_service/ServiceProcedures_YB.jsp"><img
+						href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do"><img
 							src="${pageContext.request.contextPath}/assets/img/연결서비스안내1.jpg"
 							width="265" height="265px"></a></li>
 				</ul>
@@ -320,7 +368,7 @@
 				<div class="col-md-4 text-center event2_box_1">
 					<ul>
 						<li><a
-							href="${pageContext.request.contextPath}/assets/_info/noticeRead1_SE.jsp"><img
+							href="${pageContext.request.contextPath}/_info/noticeRead1_SE.do"><img
 								src="${pageContext.request.contextPath}/assets/img/이벤트3.jpg"
 								width="300px" height="300px"></a></li>
 					</ul>
@@ -332,7 +380,7 @@
 				<div class="col-md-4 text-center event2_box_1">
 					<ul>
 						<li><a
-							href="${pageContext.request.contextPath}/assets/_info/noticeRead2_SE.jsp"><img
+							href="${pageContext.request.contextPath}/_info/noticeRead2_SE.do"><img
 								src="${pageContext.request.contextPath}/assets/img/이벤트4.jpg"
 								width="300px" height="300px"></a></li>
 					</ul>
@@ -343,7 +391,7 @@
 				<div class="col-md-4 text-center event2_box_1">
 					<ul>
 						<li><a
-							href="${pageContext.request.contextPath}/assets/_test/idealtype_HG.jsp"><img
+							href="${pageContext.request.contextPath}/_test/idealtype_HG.do"><img
 								src="${pageContext.request.contextPath}/assets/img/이상형찾기1.jpg"
 								width="300px" height="300px"></a></li>
 					</ul>
@@ -368,7 +416,7 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 박경동<br> 010-1234-5678
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel.do"
+							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -384,7 +432,7 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 남희권<br> 010-4220-4220
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel.do"
+							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -400,7 +448,7 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 배세은<br> 010-3210-3210
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel.do"
+							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -416,7 +464,7 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 정유빈<br> 010-5678-5678
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel.do"
+							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -432,7 +480,7 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 최유한<br> 010-1234-7890
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel.do"
+							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -467,7 +515,7 @@
 				<button
 					style="float: right; width: 65px; margin-right: 15px; margin-top: 30px;"
 					type="button"
-					onclick="location='${pageContext.request.contextPath}/assets/_info/notice_SE.jsp'"
+					onclick="location='${pageContext.request.contextPath}/_info/notice_SE.do'"
 					class="btn btn-default btn-xs col-md-2" id="plus_icon">
 					<span class="glyphicon glyphicon-plus"></span> 더 보기
 				</button>
@@ -484,14 +532,14 @@
 							<tr>
 
 								<td
-									onclick="location='${pageContext.request.contextPath}/assets/_info/noticeRead1_SE.jsp'"
+									onclick="location='${pageContext.request.contextPath}/_info/noticeRead1_SE.do'"
 									style="cursor: pointer;">'창립 10주년 기념' 적극적인 서비스로 높은 성혼율 달성</td>
 								<td id="date">2019.10.22</td>
 							</tr>
 							<tr>
 
 								<td
-									onclick="location='${pageContext.request.contextPath}/assets/_info/noticeRead2_SE.jsp'"
+									onclick="location='${pageContext.request.contextPath}/_info/noticeRead2_SE.do'"
 									style="cursor: pointer;">신원인증 강화와 적극적인 서비스 제공으로 고객만족 실현</td>
 								<td id="date">2019.10.15</td>
 							</tr>
@@ -532,7 +580,7 @@
 				data-aos-duration="600">
 				<h3 class="col-md-5">연-결 성혼 Story</h3>
 				<button type="button"
-					onclick="location='${pageContext.request.contextPath}/assets/_info/story_SE.jsp'"
+					onclick="location='${pageContext.request.contextPath}/_info/story_SE.do'"
 					class="btn btn-default btn-xs col-md-1"
 					style="width: 65px; margin-left: 12px; margin-top: 30px;">
 					<span class="glyphicon glyphicon-plus"></span> 더 보기
@@ -550,14 +598,14 @@
 							<tr>
 
 								<td
-									onclick="location='${pageContext.request.contextPath}/assets/_info/storyRead1_SE.jsp'"
+									onclick="location='${pageContext.request.contextPath}/_info/storyRead1_SE.do'"
 									style="cursor: pointer;">오랜 기다림 끝에, 드디어 찾았어요!</td>
 								<td id="date">2019.10.23</td>
 							</tr>
 							<tr>
 
 								<td
-									onclick="location='${pageContext.request.contextPath}/assets/_info/storyRead2_SE.jsp'"
+									onclick="location='${pageContext.request.contextPath}/_info/storyRead2_SE.do'"
 									style="cursor: pointer;">조금 더 이해하면, 이렇게 사랑을 꽃 피울 수 있어요.</td>
 								<td id="date">2019.10.17</td>
 							</tr>
@@ -586,23 +634,23 @@
 		<div class="col-md-12 footer">
 			<ul>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_info/IntroWebsite_YB.jsp">회사소개</a>
+					href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.do">회사소개</a>
 					<div class="vi"></div></li>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_service/MembershipRegisGuide_YB.jsp">가입안내</a>
+					href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do">가입안내</a>
 					<div class="vi"></div></li>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_service/ServiceProcedures_YB.jsp">서비스이용절차</a>
+					href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do">서비스이용절차</a>
 					<div class="vi"></div></li>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_info/map_GD.jsp">오시는길</a>
+					href="${pageContext.request.contextPath}/_info/map_GD.do">오시는길</a>
 					<div class="vi"></div></li>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_info/partner_HG.jsp">연-결
+					href="${pageContext.request.contextPath}/_info/partner_HG.do">연-결
 						제휴 파트너</a>
 					<div class="vi"></div></li>
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_service/MemberStatus_YB.jsp">회원현황</a></li>
+					href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do">회원현황</a></li>
 			</ul>
 		</div>
 

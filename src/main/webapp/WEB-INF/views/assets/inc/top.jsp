@@ -146,19 +146,19 @@
 			<ul id="sidebar_menu">
 
 				<li><a
-					href="${pageContext.request.contextPath}../_payment/mustInput_SE.jsp"><img
+					href="${pageContext.request.contextPath}/./_payment/mustInput_SE.do"><img
 						src="${pageContext.request.contextPath}/assets/img/결제하기1.png"
 						width="95px" height=""></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}../_coach/QnA_SE.jsp"><img
+					href="${pageContext.request.contextPath}/./_coach/QnA_SE.do"><img
 						src="${pageContext.request.contextPath}/assets/img/문의하기1.png"
 						width="95px" height=""></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}../_mypage/1_1questionEmpty_YH.jsp"><img
+					href="${pageContext.request.contextPath}/./_mypage/1_1questionEmpty_YH.do"><img
 						src="${pageContext.request.contextPath}/assets/img/1_1문의1.png"
 						width="95px" height=""></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}../_info/map_GD.jsp"><img
+					href="${pageContext.request.contextPath}/./_info/map_GD.do"><img
 						src="${pageContext.request.contextPath}/assets/img/오시는길1.png"
 						width="95px" height=""></a></li>
 				<li><a href="#"><img
