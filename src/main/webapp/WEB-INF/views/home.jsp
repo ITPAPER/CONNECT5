@@ -117,46 +117,46 @@
 		<div id="top_menu_m2">
 			<div class="wp_snbonly">
 				<ul class="lnb2_ul">
-					<li><a href="_info/IntroWebsite_YB.jsp">사이트 소개</a></li>
-					<li><a href="_info/Greetings_YB.jsp">연-결 인사말</a></li>
-					<li><a href="_info/manager_HG.jsp">커플 매니저</a></li>
-					<li><a href="_info/story_SE.jsp">연결 성혼 Story</a></li>
-					<li><a href="_info/notice_SE.jsp">공지사항</a></li>
-					<li><a href="_info/partner_HG.jsp">연-결 파트너</a></li>
-					<li><a href="_info/map_GD.jsp">오시는 길</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/IntroWebsite_YB.do">사이트 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/Greetings_YB.do">연-결 인사말</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/manager_HG.do">커플 매니저</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/story_SE.do">연결 성혼 Story</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/notice_SE.do">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/partner_HG.do">연-결 파트너</a></li>
+					<li><a href="${pageContext.request.contextPath}_info/map_GD.do">오시는 길</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
 					<li><a
 						href="${pageContext.request.contextPath}_service/ServiceProcedures_YB.do">서비스
 							이용절차</a></li>
-					<li><a href="_service/MembershipRegisGuide_YB.jsp">회원가입 안내</a></li>
+					<li><a href="${pageContext.request.contextPath}_service/MembershipRegisGuide_YB.do">회원가입 안내</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/_service/MemberLevel.do">회원등급
 							안내</a></li>
-					<li><a href="_service/specialservice_YH.jsp">스페셜 서비스</a></li>
-					<li><a href="_service/MemberStatus_YB.jsp">회원현황</a></li>
+					<li><a href="${pageContext.request.contextPath}_service/specialservice_YH.do">스페셜 서비스</a></li>
+					<li><a href="${pageContext.request.contextPath}_service/MemberStatus_YB.do">회원현황</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
-					<li><a href="_coach/meetingTip_GD.jsp">미팅성공전략 TIP</a></li>
-					<li><a href="_coach/loveColumn_GD.jsp">LOVE 컬럼</a></li>
-					<li><a href="_coach/DatingCourse_YB.jsp">데이트 코스</a></li>
-					<li><a href="_coach/review_SE.jsp">연-결 만남 후기</a></li>
-					<li><a href="_coach/QnA_SE.jsp">연결 Q &amp; A</a></li>
+					<li><a href="${pageContext.request.contextPath}_coach/meetingTip_GD.do">미팅성공전략 TIP</a></li>
+					<li><a href="${pageContext.request.contextPath}_coach/loveColumn_GD.do">LOVE 컬럼</a></li>
+					<li><a href="${pageContext.request.contextPath}_coach/DatingCourse_YB.do">데이트 코스</a></li>
+					<li><a href="${pageContext.request.contextPath}_coach/review_SE.do">연-결 만남 후기</a></li>
+					<li><a href="${pageContext.request.contextPath}_coach/QnA_SE.do">연결 Q &amp; A</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="_test/propensity1_HG.jsp">연애성향 테스트</a></li>
-					<li><a href="_test/idealtype_HG.jsp">이상형 찾기</a></li>
-					<li><a href="_test/lovescore1_HG.jsp">나의 연애 매력</a></li>
+					<li><a href="${pageContext.request.contextPath}_test/propensity1_HG.do">연애성향 테스트</a></li>
+					<li><a href="${pageContext.request.contextPath}_test/idealtype_HG.do">이상형 찾기</a></li>
+					<li><a href="${pageContext.request.contextPath}_test/lovescore1_HG.do">나의 연애 매력</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="_mypage/myInfo_GD.jsp">My 현황</a></li>
-					<li><a href="_mypage/search_SE.jsp">인연 찾기</a></li>
-					<li><a href="_mypage/1_1questionEmpty_YH.jsp">1:1문의</a></li>
-					<li><a href="_mypage/Ex-MatchingRecord_YB.jsp">매칭 기록 보기</a></li>
-					<li><a href="_mypage/personal_information1_HG.jsp">개인정보 수정</a></li>
-					<li><a href="_mypage/withdrawal1_HG.jsp">회원탈퇴</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/myInfo_GD.do">My 현황</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/search_SE.do">인연 찾기</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/Ex-MatchingRecord_YB.do">매칭 기록 보기</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/personal_information1_HG.do">개인정보 수정</a></li>
+					<li><a href="${pageContext.request.contextPath}_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
