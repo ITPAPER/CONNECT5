@@ -8,24 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import study.spring.simplespring.helper.RegexHelper;
-import study.spring.simplespring.helper.WebHelper;
 
 @Controller
 public class QnAController {
-	@Autowired
-	WebHelper webHelper;
-
-	@Autowired
-	RegexHelper regexHelper;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
 	
-	@RequestMapping(value = "/QnA/list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/QnA/QnARead1_SE.do", method = RequestMethod.GET)
     public ModelAndView list(Model model) {
-        String viewPath = "QnA/list";
-        return new ModelAndView(viewPath);
+        return new ModelAndView("QnA/QnARead1_SE");
     }
     
 }
