@@ -117,25 +117,25 @@
 		<div id="top_menu_m2">
 			<div class="wp_snbonly">
 				<ul class="lnb2_ul">
-					<li><a href="${pageContext.request.contextPath}_info/IntroWebsite_YB.do">사이트 소개</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/Greetings_YB.do">연-결 인사말</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/manager_HG.do">커플 매니저</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/story_SE.do">연결 성혼 Story</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/notice_SE.do">공지사항</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/partner_HG.do">연-결 파트너</a></li>
-					<li><a href="${pageContext.request.contextPath}_info/map_GD.do">오시는 길</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.do">사이트 소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/Greetings_YB.do">연-결 인사말</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/manager_HG.do">커플 매니저</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/story_SE.do">연결 성혼 Story</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/notice_SE.do">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/partner_HG.do">연-결 파트너</a></li>
+					<li><a href="${pageContext.request.contextPath}/_info/map_GD.do">오시는 길</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
 					<li><a
-						href="${pageContext.request.contextPath}_service/ServiceProcedures_YB.do">서비스
+						href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do">서비스
 							이용절차</a></li>
-					<li><a href="${pageContext.request.contextPath}_service/MembershipRegisGuide_YB.do">회원가입 안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do">회원가입 안내</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/_service/MemberLevel.do">회원등급
+						href="${pageContext.request.contextPath}/_service/MemberLevel_YH.do">회원등급
 							안내</a></li>
-					<li><a href="${pageContext.request.contextPath}_service/specialservice_YH.do">스페셜 서비스</a></li>
-					<li><a href="${pageContext.request.contextPath}_service/MemberStatus_YB.do">회원현황</a></li>
+					<li><a href="${pageContext.request.contextPath}/_service/specialservice_YH.do">스페셜 서비스</a></li>
+					<li><a href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do">회원현황</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
