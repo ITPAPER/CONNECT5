@@ -5,35 +5,8 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-
-<style>
-.table1 {
-	border-radius: 20px;
-	border-style: outset;
-	text-align: center;
-}
-
-.table2 {
-	border-style: outset;
-	background-color: #f73478;
-	color: white;
-	text-align: center;
-	height: 45px;
-}
-
-.table3 {
-	border-style: outset;
-	text-align: center;
-	width: 350px;
-	height: 200px;
-}
-
-.table3>img {
-	width: 350px;
-	height: 200px;
-	float: left;
-}
-</style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/YH/Member.css">
 
 <script>
 	
