@@ -16,12 +16,14 @@
 	href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap"
 	rel="stylesheet">
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="../img/footerMain.PNG" />
-<link rel="apple-touch-icon-precomposed" href="../img/footerMain.PNG" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/./img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed"
+	href="${pageContext.request.contextPath}/./img/footerMain.PNG" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="../assets/css/bootstrap.min.css" />
+	href="${pageContext.request.contextPath}/./assets/css/bootstrap.min.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
 <!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->

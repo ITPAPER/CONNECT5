@@ -10,22 +10,31 @@
 <body>
 	<div class="col-md-12 footer">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/./_info/IntroWebsite_YB.do">회사소개</a>
+			<li><a
+				href="${pageContext.request.contextPath}/./_info/IntroWebsite_YB.do">회사소개</a>
 				<div class="vi"></div></li>
-			<li><a href="${pageContext.request.contextPath}/./_service/MembershipRegisGuide_YB.do">가입안내</a>
+			<li><a
+				href="${pageContext.request.contextPath}/./_service/MembershipRegisGuide_YB.do">가입안내</a>
 				<div class="vi"></div></li>
-			<li><a href="${pageContext.request.contextPath}/./_service/ServiceProcedures_YB.do">서비스이용절차</a>
+			<li><a
+				href="${pageContext.request.contextPath}/./_service/ServiceProcedures_YB.do">서비스이용절차</a>
 				<div class="vi"></div></li>
-			<li><a href="${pageContext.request.contextPath}/./_info/map_GD.do">오시는길</a>
+			<li><a
+				href="${pageContext.request.contextPath}/./_info/map_GD.do">오시는길</a>
 				<div class="vi"></div></li>
-			<li><a href="${pageContext.request.contextPath}/./_info/partner_HG.do">연-결 제휴 파트너</a>
+			<li><a
+				href="${pageContext.request.contextPath}/./_info/partner_HG.do">연-결
+					제휴 파트너</a>
 				<div class="vi"></div></li>
-			<li><a href="${pageContext.request.contextPath}/./_service/MemberStatus_YB.do">회원현황</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/./_service/MemberStatus_YB.do">회원현황</a></li>
 		</ul>
 	</div>
 	<div class="col-md-12 footer_information">
 		<div class="col-md-offset-2 footer_information_image">
-			<img src="${pageContext.request.contextPath}/./assets/img/footerMain.PNG" width="150" height="150">
+			<img
+				src="${pageContext.request.contextPath}/./assets/img/footerMain.PNG"
+				width="150" height="150">
 		</div>
 		<br>서울특별시 서초구 서초대로77길 54 서초더블유타워 13층 <br>무료상담전화: 1588-1588 <span
 			class="vii"></span> FAX : 02-1234-1234 <span class="vii"></span>

@@ -211,7 +211,7 @@
 			<ul id="sidebar_menu">
 
 				<li><a
-					href="${pageContext.request.contextPath}/assets/_payment/mustInput_SE.jsp"><img
+					href="${pageContext.request.contextPath}/_payment/mustInput_SE.do"><img
 						src="${pageContext.request.contextPath}/assets/img/결제하기1.png"
 						width="95px" height=""></a></li>
 				<li><a
@@ -416,7 +416,8 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 박경동<br> 010-1234-5678
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
+							</p> <a
+							href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -432,7 +433,8 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 남희권<br> 010-4220-4220
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
+							</p> <a
+							href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -448,7 +450,8 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 배세은<br> 010-3210-3210
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
+							</p> <a
+							href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -464,7 +467,8 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 정유빈<br> 010-5678-5678
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
+							</p> <a
+							href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
@@ -480,7 +484,8 @@
 							width="200px" height="200px">
 							<p class="manager_box_font">
 								연-결 매니저 : 최유한<br> 010-1234-7890
-							</p> <a href="${pageContext.request.contextPath}/_index/counsel_YH.do"
+							</p> <a
+							href="${pageContext.request.contextPath}/_index/counsel_YH.do"
 							onClick="window.open(this.href, '_blank', 'width=600, height=720,scrollbars=yes'); return false;"
 							style="color: white;"><button type="button" class="label">
 									상담신청하기</button></a></li>
