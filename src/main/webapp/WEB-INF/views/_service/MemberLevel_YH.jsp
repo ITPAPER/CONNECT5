@@ -52,7 +52,7 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="../img/main1000.jpg" alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/main1000.jpg" alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -86,7 +86,7 @@
 				<th class="table2">비고</th>
 			</tr>
 			<tr>
-				<td class="table3"><img src="../img/브론즈1.jpg" alt="브론즈"><br>
+				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/브론즈1.jpg" alt="브론즈"><br>
 					<strong><span class="blink"
 						style="text-align: center; color: #800000">브론즈</span><br /></strong></td>
 				<td width="150" height="200" class="table1"><span
@@ -100,7 +100,7 @@
 
 			</tr>
 			<tr>
-				<td class="table3"><img src="../img/실버1.jpg" alt="실버"><br>
+				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/실버1.jpg" alt="실버"><br>
 					<strong><span style="text-align: center; color: #c0c0c0"><span
 							class="blink">실버</span><br></span></strong></td>
 				<td width="150" height="200" class="table1"><div
@@ -110,7 +110,7 @@
 						매칭 연-결 횟수 : 5회 <br> + <br> 호텔 식사권 3회
 					</div></td>
 			<tr>
-				<td class="table3"><img src="../img/골드1.jpg" alt="골드"><br>
+				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/골드1.jpg" alt="골드"><br>
 					<strong><span style="text-align: center; color: #D7DF01"><span
 							class="blink">골드</span><br></span></strong><br></td>
 				<td width="150" height="200" class="table1" class="table1"><span
@@ -122,7 +122,7 @@
 
 			</tr>
 			<tr>
-				<td class="table3"><img src="../img/VIP1.jpg" alt="VIP"><br>
+				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/VIP1.jpg" alt="VIP"><br>
 					<strong><span style="text-align: center; color: #f00"><span
 							class="blink">VIP</span><br></span></strong></td>
 				<td width="150" height="200" class="table1"><span

@@ -16,7 +16,8 @@
 
 				<!-- 메인 로고 -->
 				<h1 class="logo">
-					<a href="../index.jsp"><img src="../img/Mainlogo11.PNG"
+					<a href="../index.jsp"><img
+						src="${pageContext.request.contextPath}/assets/img/Mainlogo11.PNG"
 						alt="연-결"></a>
 				</h1>
 				<!-- 메인로고 끝 -->
@@ -50,45 +51,90 @@
 		<div id="top_menu_m2">
 			<div class="wp_snbonly">
 				<ul class="lnb2_ul">
-					<li><a href="../_info/IntroWebsite_YB.jsp">사이트 소개</a></li>
-					<li><a href="../_info/Greetings_YB.jsp">연-결 인사말</a></li>
-					<li><a href="../_info/manager_HG.jsp">커플 매니저</a></li>
-					<li><a href="../_info/story_SE.jsp">연결 성혼 Story</a></li>
-					<li><a href="../_info/notice_SE.jsp">공지사항</a></li>
-					<li><a href="../_info/partner_HG.jsp">연-결 파트너</a></li>
-					<li><a href="../_info/map_GD.jsp">오시는 길</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/IntroWebsite_YB.do">사이트
+							소개</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/Greetings_YB.do">연-결
+							인사말</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/manager_HG.do">커플
+							매니저</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/story_SE.do">연결
+							성혼 Story</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/notice_SE.do">공지사항</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/partner_HG.do">연-결
+							파트너</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_info/map_GD.do">오시는
+							길</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
-					<li><a href="../_service/ServiceProcedures_YB.jsp">서비스
+					<li><a
+						href="${pageContext.request.contextPath}../_service/ServiceProcedures_YB.do">서비스
 							이용절차</a></li>
-					<li><a href="../_service/MembershipRegisGuide_YB.jsp">회원가입
+					<li><a
+						href="${pageContext.request.contextPath}../_service/MembershipRegisGuide_YB.do">회원가입
 							안내</a></li>
-					<li><a href="../_service/MemberLevel_YH.jsp">회원등급 안내</a></li>
-					<li><a href="../_service/specialservice_YH.jsp">스페셜 서비스</a></li>
-					<li><a href="../_service/MemberStatus_YB.jsp">회원현황</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_service/MemberLevel.do">회원등급
+							안내</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_service/specialservice_YH.do">스페셜
+							서비스</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_service/MemberStatus_YB.do">회원현황</a></li>
 				</ul>
 
 				<ul class="lnb2_ul">
-					<li><a href="../_coach/meetingTip_GD.jsp">미팅성공전략 TIP</a></li>
-					<li><a href="../_coach/loveColumn_GD.jsp">LOVE 컬럼</a></li>
-					<li><a href="../_coach/DatingCourse_YB.jsp">데이트 코스</a></li>
-					<li><a href="../_coach/review_SE.jsp">연-결 만남 후기</a></li>
-					<li><a href="../_coach/QnA_SE.jsp">연결 Q &amp; A</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_coach/meetingTip_GD.do">미팅성공전략
+							TIP</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_coach/loveColumn_GD.do">LOVE
+							컬럼</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_coach/DatingCourse_YB.do">데이트
+							코스</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_coach/review_SE.do">연-결
+							만남 후기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_coach/QnA_SE.do">연결
+							Q &amp; A</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="../_test/propensity1_HG.jsp">연애성향 테스트</a></li>
-					<li><a href="../_test/idealtype_HG.jsp">이상형 찾기</a></li>
-					<li><a href="../_test/lovescore1_HG.jsp">나의 연애 매력</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_test/propensity1_HG.do">연애성향
+							테스트</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_test/idealtype_HG.do">이상형
+							찾기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_test/lovescore1_HG.do">나의
+							연애 매력</a></li>
 				</ul>
 				<ul class="lnb2_ul">
-					<li><a href="../_mypage/myInfo_normal_GD.jsp">My 현황</a></li>
-					<li><a href="../_mypage/search_SE.jsp">인연 찾기</a></li>
-					<li><a href="../_mypage/1_1questionEmpty_YH.jsp">1:1문의</a></li>
-					<li><a href="../_mypage/Ex-MatchingRecord_YB.jsp">매칭 기록 보기</a></li>
-					<li><a href="../_mypage/personal_information1_HG.jsp">개인정보
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/myInfo_GD.do">My
+							현황</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/search_SE.do">인연
+							찾기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/1_1questionEmpty_YH.do">1:1문의</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/Ex-MatchingRecord_YB.do">매칭
+							기록 보기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/personal_information1_HG.do">개인정보
 							수정</a></li>
-					<li><a href="../_mypage/withdrawal1_HG.jsp">회원탈퇴</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}../_mypage/withdrawal1_HG.do">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
@@ -99,16 +145,25 @@
 		<div class="sidebar">
 			<ul id="sidebar_menu">
 
-				<li><a href="../_payment/mustInput_SE.jsp"><img
-						src="../img/결제하기1.png" width="95px" height=""></a></li>
-				<li><a href="../_coach/QnA_SE.jsp"><img src="../img/문의하기1.png"
+				<li><a
+					href="${pageContext.request.contextPath}../_payment/mustInput_SE.jsp"><img
+						src="${pageContext.request.contextPath}/assets/img/결제하기1.png"
 						width="95px" height=""></a></li>
-				<li><a href="../_mypage/1_1questionEmpty_YH.jsp"><img
-						src="../img/1_1문의1.png" width="95px" height=""></a></li>
-				<li><a href="../_info/map_GD.jsp"><img src="../img/오시는길1.png"
+				<li><a
+					href="${pageContext.request.contextPath}../_coach/QnA_SE.jsp"><img
+						src="${pageContext.request.contextPath}/assets/img/문의하기1.png"
 						width="95px" height=""></a></li>
-				<li><a href="#"><img src="../img/전화번호.png" width="95px"
-						height=""></a></li>
+				<li><a
+					href="${pageContext.request.contextPath}../_mypage/1_1questionEmpty_YH.jsp"><img
+						src="${pageContext.request.contextPath}/assets/img/1_1문의1.png"
+						width="95px" height=""></a></li>
+				<li><a
+					href="${pageContext.request.contextPath}../_info/map_GD.jsp"><img
+						src="${pageContext.request.contextPath}/assets/img/오시는길1.png"
+						width="95px" height=""></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/assets/img/전화번호.png"
+						width="95px" height=""></a></li>
 			</ul>
 		</div>
 		<!-- 사이드바 메뉴 끝 -->

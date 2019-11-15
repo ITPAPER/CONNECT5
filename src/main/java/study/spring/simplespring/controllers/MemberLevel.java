@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MemberLevel {
 
-	@RequestMapping(value = "/_service/MemberLevel.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_service/MemberLevel_YH.do", method = RequestMethod.GET)
 	public String view(Model model) {
 
-		return "_service/MemberLevel";
+		return "_service/MemberLevel_YH";
 
 	}
 
