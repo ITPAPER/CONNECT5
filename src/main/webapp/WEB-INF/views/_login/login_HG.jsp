@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:include page="../assets/inc/css.jsp" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/HG/Login/login.css">
+
+<meta charset="utf-8" />
+<title>연-결</title>
+</head>
+<body>
+	<jsp:include page="../assets/inc/top.jsp" />
+
+
+
+	<!-- 변경사항  -->
+
+
+	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
+	<div class="boximg">
+		<img src="${pageContext.request.contextPath}/assets/img/loginimg1.PNG"
+			alt="연-결" class="img-responsive" />
+	</div>
+	<!-- 상단 이미지 끝 -->
+
+	<!-- 가운데 영역 -->
+	<div class="center">
+		<div class="col-md-2">
+			<!-- 패널 타이틀1 -->
+			<div class="left_sidebar">
+				<h3 class="title">회원가입</h3>
+				<!-- 사이드바 메뉴목록1 -->
+				<div class="list-group">
+					<a href="${pageContext.request.contextPath}/_join/join1_HG.do"
+						class="list-group-item ">회원가입</a> <a
+						href="${pageContext.request.contextPath}/_login/login_HG.do"
+						class="list-group-item btncolor">로그인</a> <a
+						href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
+						class="list-group-item">ID/PW 찾기</a>
+				</div>
+			</div>
+		</div>
+
+
+		<h3 class="col-md-10">로그인</h3>
+		<div class="col-md-10 text1">
+			<h5>ID/PW를 입력해주세요.</h5>
+		</div>
+		<div class="col-md-9 content">
+			<hr />
+			<div class="login4">
+				<p>Login</p>
+			</div>
+			<form
+				action="${pageContext.request.contextPath}/_login/loginaction_HG.do"
+				method="post" id="myform">
+
+				<fieldset>
+					<div class="user_name">
+						<label for="user_id">아이디　　　</label>
+							<input type="text" id="user_id" name="user_id" size="20" />
+								</div>
+								<div class="user_pw">
+								<label for="user_pw">비밀번호　　</label>
+								<input type="password" id="user_pw" name="user_pw" size="20"  />
+							</div>
+
+					<div class="buttom">
+						<br>
+						<button class="btn btn-default" style="height: 30px; width: 80px;">로그인</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<jsp:include page="../assets/inc/footer.jsp" />
+</body>
+</html>

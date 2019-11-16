@@ -1,0 +1,78 @@
+@charset "EUC-KR";
+
+.text10 {
+	text-align: center;
+	font-size: 25px;
+}
+
+.boxtext1 {
+	margin: auto;
+	font-size: 20px;
+	height: 150px;
+	font-weight: 600;
+	border: 3px solid #ddd;
+	background-color: #ffe1e6;
+}
+
+#qa {
+	padding: 0 30px;
+	width: 565px;
+	height: 147px;
+}
+
+.text2 {
+	padding: 10px 20px;
+}
+
+.text3 {
+	padding: 10px 30px;
+}
+
+.buttom {
+	text-align: center;
+}
+
+.all {
+	position: relative;
+	width: 100%;
+	left: 20px;
+	top: 30px;
+}
+
+.all img {
+	width: 850px;
+	height: 850px;
+}
+
+.media {
+	position: absolute;
+	font-size: 25px;
+	text-align: center;
+	left: 160px;
+	top: 100px;
+	height: 250px;
+}
+
+.media1 {
+	position: absolute;
+	font-size: 18px;
+	text-align: center;
+	left: 145px;
+	top: 190px;
+	height: 250px;
+	width: 580px;
+}
+
+.media2 {
+	position: absolute;
+	font-size: 18px;
+	text-align: center;
+	left: 145px;
+	top: 450px;
+	height: 250px;
+	width: 580px;
+}
+
+.box2 {
+	display: inline-block;
+}
