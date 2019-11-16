@@ -11,16 +11,17 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnA.css">
-	
+
+
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
 	
-	<!-- 상단 이미지 -->
+	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/QnA.jpg" alt="연-결"
+		<img src="${pageContext.request.contextPath}/assets/img/review1.jpg" alt="연-결"
 			class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
@@ -34,19 +35,19 @@
 				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a> <a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
 					class="list-group-item">LOVE 컬럼</a> <a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
 					class="list-group-item">데이트 코스</a> <a href="${pageContext.request.contextPath}/_coach/review_SE.do"
-					class="list-group-item">연-결 만남 후기</a> <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
-					class="list-group-item btncolor">연-결 Q &amp; A</a>
+					class="list-group-item btncolor">연-결 만남 후기</a> <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
+					class="list-group-item">연-결 Q &amp; A</a>
 			</div>
 		</div>
 	</div>
 
 
-	<h3 class="col-md-10">연-결 Q &amp; A</h3>
+	<h3 class="col-md-10">연-결 만남 후기</h3>
 	<div class="col-md-10 text1">
-		<h5>연-결 회원님들의 공유 게시판입니다.</h5>
+		<h5>연-결 회원님들의 만남 후기 이야기를 들어보세요.</h5>
 	</div>
 
-	<form method="get" action="${pageContext.request.contextPath}/_coach/QnA_SE.do">
+	<form method="get" action="${pageContext.request.contextPath}/_coach/review_SE.do">
 	<div class="search">
 		<select name="keyField" style="margin-top:7px; height:22px;">
 			<option value="0">---선택---</option>
@@ -72,12 +73,12 @@
 				<tbody>
 					<tr>
 						<td id="num">10</td>
-						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_coach/QnARead1_SE.do">배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></td>
+						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_coach/reviewRead1_SE.do">배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></td>
 						<td id="date">2019.10.23</td>
 					</tr>
 					<tr>
 						<td id="num">9</td>
-						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_coach/QnARead2_SE.do">헤어진 지 1년, 도저히 못 잊겠는데?</a></td>
+						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_coach/reviewRead2_SE.do">헤어진 지 1년, 도저히 못 잊겠는데?</a></td>
 						<td id="date">2019.10.18</td>
 					</tr>
 					<tr>
@@ -137,7 +138,7 @@
 		</ul>
 
 
-		<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnAWrite_SE.do'">글쓰기</button>
+		<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_coach/reviewWrite_SE.do'">글쓰기</button>
 
 	</div>
 

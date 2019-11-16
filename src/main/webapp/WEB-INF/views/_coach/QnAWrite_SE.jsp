@@ -10,7 +10,27 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead1.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnAWrite.css">
+	
+<script>
+	function add() {
+		if (confirm("게시물을 등록하시겠습니까?") == true) {
+			alert("등록이 완료되었습니다.");
+		} else {
+			return;
+		}
+		location.href = "${pageContext.request.contextPath}/_coach/QnARead2_SE.do";
+	}
+
+	function cancel() {
+		if (confirm("정말 취소하시겠습니까?") == true) {
+			alert("취소되었습니다.");
+		} else {
+			return;
+		}
+		location.href = "${pageContext.request.contextPath}/_coach/QnA_SE.do";
+	}
+</script>
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -52,25 +72,24 @@
 				<thead>
 					<tr>
 						<th id="num">제목</th>
-						<th>배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</th>
-						<th id="date">2019.10.23</th>
+						<th><input type="text"
+							placeholder="제목을 입력하세요." id="textarea" /></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"></td>
+						<td id="context" colspan="3" align="center"><textarea
+								placeholder="내용을 입력하세요." class="form-control" id="contentarea" /></textarea></td>
 					</tr>
-					<tr>
-						<th>이전글</th>
-						<th colspan="2" align="center"><a
-							href="${pageContext.request.contextPath}/_coach/QnARead2_SE.do">헤어진 지 1년, 도저히 못 잊겠는데?</a></th>
-					</tr>
+
 				</tbody>
 			</table>
 		</div>
 
-		<button class="btn btn-default pull-right"
-			onclick="location.href = '${pageContext.request.contextPath}/_coach/QnA_SE.do'">목록</button>
+		<div class="pull-right">
+			<button class="btn btn-default" onclick="add()">글쓰기</button>
+			<button class="btn btn-default" onclick="cancel()">취소</button>
+		</div>
 
 	</div>
 

@@ -10,13 +10,22 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead1.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead2.css">
+
+<script>
+	
+</script>
 
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
+
+
+
+	<!-- 변경사항  -->
+
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
@@ -51,9 +60,9 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th id="num">제목</th>
-						<th>배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</th>
-						<th id="date">2019.10.23</th>
+						<th class="text-center" id="num">제목</th>
+						<th class="text-center">헤어진 지 1년, 도저히 못 잊겠는데?</th>
+						<th class="text-center" id="date">2019.10.18</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,9 +70,14 @@
 						<td id="context" colspan="3" align="center"></td>
 					</tr>
 					<tr>
+						<th>다음글</th>
+						<th colspan="2" align="center"><a
+							href="${pageContext.request.contextPath}/_coach/QnARead1_SE.do">배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></th>
+					</tr>
+					<tr>
 						<th>이전글</th>
 						<th colspan="2" align="center"><a
-							href="${pageContext.request.contextPath}/_coach/QnARead2_SE.do">헤어진 지 1년, 도저히 못 잊겠는데?</a></th>
+							href="#">신중한 그녀, 나 혼자 앞서간 건가?</a></th>
 					</tr>
 				</tbody>
 			</table>
@@ -73,6 +87,9 @@
 			onclick="location.href = '${pageContext.request.contextPath}/_coach/QnA_SE.do'">목록</button>
 
 	</div>
+
+
+	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>
