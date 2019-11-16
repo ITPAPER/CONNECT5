@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.table tr, th {
+	text-align: center;
+}
+
+.table-responsive #name {
+	width: 200px;
+}
+
+.table-responsive #birthdate {
+	width: 200px;
+}
+
+.table-responsive #height {
+	width: 100px;
+}
+
+.table-responsive #academicBackground {
+	width: 200px;
+}
+
+.table-responsive #job {
+	width: 150px;
+}
+
+.search {
+	width: 320px;
+	float: right;
+	padding-bottom: 10px;
+}
+
+.pagination {
+	margin: auto;
+	padding-left: 337px;
+}
+
+/* 한줄 긋기*/
+hr {
+	text-align: center;
+}
+
+#s_btn {
+	width:55px;
+}
+
+.btn {
+	float: right;
+}
+
+
