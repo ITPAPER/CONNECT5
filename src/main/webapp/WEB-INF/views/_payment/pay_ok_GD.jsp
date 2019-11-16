@@ -53,7 +53,7 @@ function move(){
 
 
 		<div class="col-md-9 content">
-			<img src="../img/wait.PNG">
+			<img src="${pageContext.request.contextPath}/assets/img/wait.PNG">
 			<div class="aaaa" >
 
 				<br> <br>

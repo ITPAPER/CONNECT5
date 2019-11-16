@@ -77,7 +77,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW32UIKoxVxO7MYMmf-arhD2Np3F_-IrM"></script>
          <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
          <!-- gmap 플러그인 참조 -->
-         <script src="../plugins/gmaps/gmaps.min.js"></script>
+         <script src="${pageContext.request.contextPath}/assets/plugins/gmaps/gmaps.min.js"></script>
          <script type="text/javascript">
 
            $(function(){
@@ -100,11 +100,11 @@
                  lat: lat_value,    // 마커가 표시될 위도
                  lng: lng_value,    // 마커가 표시될 경도
                 icon: {          // 사용자 정의 아이콘
-                   url: "../img/map_icon.png",
+                   url: "${pageContext.request.contextPath}/assets/img/map_icon.png",
                    scaledSize: new google.maps.Size(50, 50)
                 },
                 infoWindow: {    // 클릭시 표시될 말풍선 <-- HTML 코딩 가능함.
-                   content: '<img src="../img/map_img.jpg" width="250" /><h4>성혼을 위한 바로 그곳 연-결</h4><p>평안 남도 평양시 대포동 591-1  </p><a href="#">상세보기</a>'
+                   content: '<img src="${pageContext.request.contextPath}/assets/img/map_img.jpg" width="250" /><h4>성혼을 위한 바로 그곳 연-결</h4><p>평안 남도 평양시 대포동 591-1  </p><a href="#">상세보기</a>'
                 }
              });
 

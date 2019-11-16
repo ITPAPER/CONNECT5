@@ -36,10 +36,15 @@
 				<h3 class="title">연-결 코치</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="meetingTip_GD.jsp" class="list-group-item btncolor">미팅성공전략TIP</a> <a href="loveColumn_GD.jsp"
-					class="list-group-item">LOVE 컬럼</a> <a href="DatingCourse_YB.jsp"
-					class="list-group-item">데이트 코스</a> <a href="review_SE.jsp"
-					class="list-group-item">연-결 만남 후기</a> <a href="QnA_SE.jsp"
+					<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do"
+					class="list-group-item btncolor">미팅성공전략TIP</a> <a
+					href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
+					class="list-group-item">LOVE 컬럼</a> <a
+					href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
+					class="list-group-item">데이트 코스</a> <a
+					href="${pageContext.request.contextPath}/_coach/review_SE.do"
+					class="list-group-item">연-결 만남 후기</a> <a
+					href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
 					class="list-group-item">연-결 Q &amp; A</a>
 			</div>
 		</div>
@@ -68,7 +73,7 @@
 					<td><div class="table">
 							<a href="${pageContext.request.contextPath}/_coach/readTip_GD.do"> <img src="${pageContext.request.contextPath}/assets/img/tip_thumb_1.jpg" width="250"
 								height="150"></a></td>
-					<td width="500" height="200"><a href="readTip_GD.jsp"><h4>소개팅 옷에
+					<td width="500" height="200"><a href="${pageContext.request.contextPath}/_coach/readTip_GD.do"><h4>소개팅 옷에
 								따라 성공률이 달라진다!</h4></a>
 						<p class="sub_text">소개팅 옷 어떻게 입으면 좋을까요?놓칠 수 있는 사소한 팁 알고
 							가세요첫번째는 자신에게 맞는 옷을 입으세요괜히 너무 꾸밀 생각에 과한옷이나 튀는 옷을 입는다면..입은 나도 어색하지만

@@ -72,7 +72,7 @@
 	<div style="clear:both;"></div>	
 		<hr />
 		<h4>현재 매칭 상대</h4>
-		<div class="state_matching">현재 진행중인 매칭이 없습니다.<p class="look_match"><a href="search_SE.jsp" id="lf_partner">내 연-결 찾기</a></p></div>
+		<div class="state_matching">현재 진행중인 매칭이 없습니다.<p class="look_match"><a href="${pageContext.request.contextPath}/search_SE.do" id="lf_partner">내 연-결 찾기</a></p></div>
 		<h4>데이트 신청</h4>
 		<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
 		<h4>나의 매니저</h4>
@@ -91,8 +91,7 @@
 
 </table>
 
-	<a href="myInfo_OtherStatus_GD.jsp">매칭요청</a>
-		<a href="myInfo_MatchingForm_GD.jsp">매칭완료</a>
+	
 </div>
 
 

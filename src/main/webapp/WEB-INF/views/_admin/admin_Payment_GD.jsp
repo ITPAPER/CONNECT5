@@ -50,13 +50,11 @@
 
 
 <script type="text/javascript">
-  
-  	
-         function levelcfm(){
-            if (confirm("등급을 변경 하시겠습니까?") == true) {
-         alert("등급이 변경 되었습니다.");
-      } 
-         }
+	function levelcfm() {
+		if (confirm("등급을 변경 하시겠습니까?") == true) {
+			alert("등급이 변경 되었습니다.");
+		}
+	}
 </script>
 
 </head>
@@ -76,11 +74,12 @@
 
 
 		<div class="col-md-2 sidebar1">
-			<a href="admin_main_SE.jsp" class="list-group-item">대시보드</a> <a href="admin_userManager1_HG.jsp"
-				class="list-group-item">회원관리</a> <a href="admin_userManagement_YH.jsp"
-				class="list-group-item">게시판 관리</a> <a href="admin_userApply_YH.jsp"
-				class="list-group-item">신청현황</a> <a href="admin_Question_SE.jsp" class="list-group-item">문의현황</a>
-			<a href="admin_Payment_GD.jsp" class="list-group-item active">결제관리</a>
+			<a href="admin_main_SE.jsp" class="list-group-item">대시보드</a> <a
+				href="admin_userManager1_HG.jsp" class="list-group-item">회원관리</a> <a
+				href="admin_userManagement_YH.jsp" class="list-group-item">게시판
+				관리</a> <a href="admin_userApply_YH.jsp" class="list-group-item">신청현황</a>
+			<a href="admin_Question_SE.jsp" class="list-group-item">문의현황</a> <a
+				href="admin_Payment_GD.jsp" class="list-group-item active">결제관리</a>
 
 		</div>
 
@@ -138,10 +137,9 @@
 				</select> <input type="submit" id="datesearch_Btn" value="검색" /></li>
 
 			</ul>
-			
+
 		</div>
-		<br />
-		<br />
+		<br /> <br />
 		<div class="col-md-10 text_box">
 			<table class="table table-striped table-bordered table-hover">
 				<tr class="text-center">
@@ -170,7 +168,7 @@
 							<option value="bronze">골드</option>
 							<option value="bronze">VIP</option>
 					</select></td>
-					
+
 					<td><select>
 							<option value="bronze">박경동</option>
 							<option value="bronze">최유한</option>
@@ -226,7 +224,7 @@
 							<option value="bronze">정유빈</option>
 							<option value="bronze">남희권</option>
 					</select></td>
-					
+
 					<td><button type="button" class="label label-warning"
 							onclick="levelcfm()">확인</button></td>
 				</tr>
@@ -272,8 +270,10 @@
 
 
 	<!-- Javascript -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>

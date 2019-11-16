@@ -27,21 +27,26 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결"
-			class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
 	<div class="col-md-2">
 		<!-- 패널 타이틀1 -->
 		<div class="left sidebar1">
-				<h3 class="title">연-결 코치</h3>
+			<h3 class="title">연-결 코치</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a> <a href="loveColumn_GD.jsp"
-					class="list-group-item btncolor">LOVE 컬럼</a> <a href="DatingCourse_YB.jsp"
-					class="list-group-item">데이트 코스</a> <a href="review_SE.jsp"
-					class="list-group-item">연-결 만남 후기</a> <a href="QnA_SE.jsp"
+				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do"
+					class="list-group-item">미팅성공전략TIP</a> <a
+					href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
+					class="list-group-item btncolor">LOVE 컬럼</a> <a
+					href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
+					class="list-group-item">데이트 코스</a> <a
+					href="${pageContext.request.contextPath}/_coach/review_SE.do"
+					class="list-group-item">연-결 만남 후기</a> <a
+					href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
 					class="list-group-item">연-결 Q &amp; A</a>
 			</div>
 		</div>
@@ -63,8 +68,8 @@
 
 		<!-- 내용 작성  -->
 
-<hr />
-<div class="table-responsive">
+		<hr />
+		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -86,23 +91,19 @@
 
 		<div class="pull-right">
 			<button class="btn btn-default">
-				<a href="loveColumn_GD.jsp">목록</a>
+				<a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do">목록</a>
 			</button>
 
 		</div>
-			
 
 
-			
-				
+
+
+
 	</div>
 	<script type="text/javascript">
-
-	
-			
-	
 		
-    </script>
+	</script>
 
 
 
@@ -114,6 +115,6 @@
 
 	<!-- 변경 사항 -->
 
-<jsp:include page="../assets/inc/footer.jsp" />
+	<jsp:include page="../assets/inc/footer.jsp" />
 </body>
 </html>
