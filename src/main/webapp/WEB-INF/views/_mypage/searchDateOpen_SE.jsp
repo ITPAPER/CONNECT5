@@ -24,8 +24,8 @@
 	</div>
 	
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../plugins/datepicker/datepicker.min.js"></script>
-    <script src="../plugins/datepicker/i18n/datepicker.ko-KR.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/plugins/datepicker/datepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/plugins/datepicker/i18n/datepicker.ko-KR.js"></script>
     <script>
         $(function() {
             $("#datepicker").datepicker({
