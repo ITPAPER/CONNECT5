@@ -55,12 +55,12 @@
       		
       		<!-- 사이드바 메뉴목록1 -->
       		<div class="list-group">
-	            <a href="${pageContext.request.contextPath}/./_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
-				<a href="${pageContext.request.contextPath}/./_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
-				<a href="${pageContext.request.contextPath}/./_mypage/1_1questionEmpty_YH.do" class="list-group-item">1:1 문의</a>
-				<a href="${pageContext.request.contextPath}/./_mypage/Ex-MatchingRecord_YB.do" class="list-group-item btncolor">매칭 기록 보기</a> 
-				<a href="${pageContext.request.contextPath}/./_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
-				<a href="${pageContext.request.contextPath}/./_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
+	            <a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item">1:1 문의</a>
+				<a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item btncolor">매칭 기록 보기</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
             </div> 
         </div>
       </div>

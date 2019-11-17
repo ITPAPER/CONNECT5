@@ -41,7 +41,7 @@
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead&Write.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead&Write_YB.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -79,22 +79,22 @@
 		</div>
 
 		<div class="col-md-2 sidebar1">
-			<a href="${pageContext.request.contextPath}/./_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_MngBoard_WeddingStory_YB.do" class="list-group-item active">게시판 관리</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_Question_SE.do" class="list-group-item">문의현황</a>
-			<a href="${pageContext.request.contextPath}/./_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do" class="list-group-item active">게시판 관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do" class="list-group-item">문의현황</a>
+			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
 		</div>
 
 		<div class="col-md-10 middle">
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-			<button onclick="location='${pageContext.request.contextPath}/./_admin/admin_userManagement_YH.do'" class="btn">공지사항</button>
-			<button onclick="location='${pageContext.request.contextPath}/./_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn btn-info">연-결 성혼스토리</button>
-			<button onclick="location='${pageContext.request.contextPath}/./_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
-			<button onclick="location='${pageContext.request.contextPath}/./_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'" class="btn">공지사항</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn btn-info">연-결 성혼스토리</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
 		</div>
 
 
