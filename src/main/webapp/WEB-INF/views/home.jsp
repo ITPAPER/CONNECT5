@@ -90,9 +90,9 @@
 			<div class="col-md-4">
 				<ul id="user">
 					<li><a
-						href="${pageContext.request.contextPath}/_login/login_HG.jsp">LOGIN</a></li>
+						href="${pageContext.request.contextPath}/_login/login_HG.do">LOGIN</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/_join/join1_HG.jsp">SIGN
+						href="${pageContext.request.contextPath}/_join/join1_HG.do">SIGN
 							UP</a></li>
 				</ul>
 			</div>
@@ -150,7 +150,7 @@
 						href="${pageContext.request.contextPath}/_service/MemberLevel_YH.do">회원등급
 							안내</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/_service/specialservice_YH.do">스페셜
+						href="${pageContext.request.contextPath}/_service/SpecialService_YH.do">스페셜
 							서비스</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do">회원현황</a></li>

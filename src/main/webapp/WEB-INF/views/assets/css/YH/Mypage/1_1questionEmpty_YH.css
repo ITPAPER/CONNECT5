@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.btn {
+	float: right;
+}
+
+#question1 {
+	text-align: center;
+	height: 300px;
+	padding-top: 130px;
+	font-size: 2em;
+	user-select: none;
+}

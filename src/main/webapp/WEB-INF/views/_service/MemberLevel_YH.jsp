@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Member.css">
+	href="${pageContext.request.contextPath}/assets/css/YH/Service/Member.css">
 
 <script>
 	
@@ -25,7 +25,8 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/main1000.jpg" alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/main1000.jpg"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -35,11 +36,17 @@
 			<h3 class="title">서비스 안내</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="ServiceProcedures_YB.jsp" class="list-group-item">서비스
-					이용절차</a> <a href="MembershipRegisGuide_YB.jsp" class="list-group-item">회원가입안내</a>
-				<a href="MemberLevel_YH.jsp" class="list-group-item btncolor">회원등급안내</a>
-				<a href="specialservice_YH.jsp" class="list-group-item">연-결 스페셜
-					서비스</a> <a href="MemberStatus_YB.jsp" class="list-group-item">회원 현황</a>
+				<a
+					href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do"
+					class="list-group-item">서비스 이용절차</a> <a
+					href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do"
+					class="list-group-item">회원가입안내</a> <a
+					href="${pageContext.request.contextPath}/_service/MemberLevel_YH.do"
+					class="list-group-item btncolor">회원등급안내</a> <a
+					href="${pageContext.request.contextPath}/_service/SpecialService_YH.do"
+					class="list-group-item">연-결 스페셜 서비스</a> <a
+					href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do"
+					class="list-group-item">회원 현황</a>
 			</div>
 		</div>
 	</div>
@@ -59,8 +66,9 @@
 				<th class="table2">비고</th>
 			</tr>
 			<tr>
-				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/브론즈1.jpg" alt="브론즈"><br>
-					<strong><span class="blink"
+				<td class="table3"><img
+					src="${pageContext.request.contextPath}/assets/img/브론즈1.jpg"
+					alt="브론즈"><br> <strong><span class="blink"
 						style="text-align: center; color: #800000">브론즈</span><br /></strong></td>
 				<td width="150" height="200" class="table1"><span
 					style="text-align: center;">브론즈 회원 : 299 만원</span></td>
@@ -68,13 +76,15 @@
 					style="text-align: center;">매칭 연-결 횟수 : 3회</span></td>
 				<td width="150" height="200" class="table1" rowspan="4"><span
 					style="text-align: center;"></span> <a
-					href="../_payment/mustInput_SE.jsp" type="button"
-					class="btn btn-warning"> 결제하기 </a></td>
+					href="${pageContext.request.contextPath}/./_payment/mustInput_SE.do"
+					type="button" class="btn btn-warning"> 결제하기 </a></td>
 
 			</tr>
 			<tr>
-				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/실버1.jpg" alt="실버"><br>
-					<strong><span style="text-align: center; color: #c0c0c0"><span
+				<td class="table3"><img
+					src="${pageContext.request.contextPath}/assets/img/실버1.jpg"
+					alt="실버"><br> <strong><span
+						style="text-align: center; color: #c0c0c0"><span
 							class="blink">실버</span><br></span></strong></td>
 				<td width="150" height="200" class="table1"><div
 						style="text-align: center;">실버 회원 : 499 만원</div></td>
@@ -83,8 +93,10 @@
 						매칭 연-결 횟수 : 5회 <br> + <br> 호텔 식사권 3회
 					</div></td>
 			<tr>
-				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/골드1.jpg" alt="골드"><br>
-					<strong><span style="text-align: center; color: #D7DF01"><span
+				<td class="table3"><img
+					src="${pageContext.request.contextPath}/assets/img/골드1.jpg"
+					alt="골드"><br> <strong><span
+						style="text-align: center; color: #D7DF01"><span
 							class="blink">골드</span><br></span></strong><br></td>
 				<td width="150" height="200" class="table1" class="table1"><span
 					style="text-align: center;">골드 회원 : 699 만원</span></td>
@@ -95,9 +107,10 @@
 
 			</tr>
 			<tr>
-				<td class="table3"><img src="${pageContext.request.contextPath}/assets/img/VIP1.jpg" alt="VIP"><br>
-					<strong><span style="text-align: center; color: #f00"><span
-							class="blink">VIP</span><br></span></strong></td>
+				<td class="table3"><img
+					src="${pageContext.request.contextPath}/assets/img/VIP1.jpg"
+					alt="VIP"><br> <strong><span
+						style="text-align: center; color: #f00"><span class="blink">VIP</span><br></span></strong></td>
 				<td width="150" height="200" class="table1"><span
 					style="text-align: center;">VIP 회원 : 999 만원</span></td>
 				<td width="150" height="200" class="table1"><span
