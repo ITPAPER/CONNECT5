@@ -102,7 +102,7 @@
 				<tbody>
 					<tr>
 						<td class="box13" rowspan="4">프로필사진</td>
-						<td class="box14" rowspan="4"><img src="../img/people.PNG"
+						<td class="box14" rowspan="4"><img src="${pageContext.request.contextPath}/assets/img/people.PNG"
 							style="width: 140px;"></td>
 
 						<td class="box15">성별</td>
