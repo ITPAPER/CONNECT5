@@ -13,7 +13,7 @@
 
 function move(){
 	 
-	document.location.href="${pageContext.request.contextPath}/index.do";
+	document.location.href="${pageContext.request.contextPath}/home.do";
  }
 	
 </script>

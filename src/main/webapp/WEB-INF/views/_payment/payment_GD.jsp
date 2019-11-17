@@ -97,7 +97,7 @@ $("document").ready(function(){
     } else {
        return;
     }
-    location.href="pay_ok_GD.jsp";
+    location.href="${pageContext.request.contextPath}/_payment/pay_ok_GD.do";
  }
   	
   	if($("input[name=pay]:checked").val() == "card"){	
