@@ -4,12 +4,6 @@
 <!doctype html>
 <html>
 <head>
-<jsp:include page="../assets/inc/css.jsp" />
-
-<!-- 시각적 확인을 위한 CSS 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStory.css">
-
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -18,7 +12,8 @@
 <title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_MngBoard_WeddingStory</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
 
@@ -45,9 +40,10 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
+
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Admin/Admin_MngBoard_WeddingStory.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStory.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -61,15 +57,13 @@
 			alert("삭제가 취소되었습니다.");
 			return;
 		}
-		location.href = "${pageContext.request.contextPath}/./_admin/admin_MngBoard_WeddingStory_YB.do";
+		location.href = "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
 	}
 </script>
 
 </head>
 
 <body>
-	<jsp:include page="../assets/inc/top.jsp" />
-
 
 	<div class="container">
 		<div class="top">
@@ -82,22 +76,22 @@
 		</div>
 
 		<div class="col-md-2 sidebar1">
-			<a href="${pageContext.request.contextPath}/./_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_userManagement_YH.do" class="list-group-item active">게시판 관리</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
-			<a href="${pageContext.request.contextPath}/./_admin/admin_Question_SE.do" class="list-group-item">문의현황</a>
-			<a href="${pageContext.request.contextPath}/./_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do" class="list-group-item active">게시판 관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do" class="list-group-item">문의현황</a>
+			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
 		</div>
 
 		<div class="col-md-10 middle">
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-			<button onclick="location='${pageContext.request.contextPath}/assets/_admin/admin_userManagement_YH.do'" class="btn">공지사항</button>
-			<button onclick="location='${pageContext.request.contextPath}/assets/_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn btn-info">연-결 성혼스토리</button>
-			<button onclick="location='${pageContext.request.contextPath}/assets/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
-			<button onclick="location='${pageContext.request.contextPath}/assets/_admin/admin_userEx_GD.do'" class="do">연-결 만남 후기</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'" class="btn">공지사항</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn btn-info">연-결 성혼스토리</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="do">연-결 만남 후기</button>
 		</div>
 
 		<div class="col-md-4 searching_box">
@@ -229,14 +223,14 @@
 			</ul>
 
 			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/assets/_admin/admin_MngBoard_WeddingStoryWrite_YB.do'">글쓰기</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryWrite_YB.do'">글쓰기</button>
 		</div>
 	</div>
 
 
 	<!-- Javascript -->
-	<script src="${pageContext.request.contextPath}/./assets/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/./assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>
