@@ -8,24 +8,10 @@
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Service/ServiceProcedures.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Service/ServiceProcedures_YB.css">
 
 <title>서비스 안내_서비스 이용 절차(ServiceProcedures)</title>
 
-<!-- 스크립트 추가 작성란 --> 
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript"></script>
-
-
-<!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
-
-<!-- bootstrap -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-
-<!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css"/>
 
 
 </head>

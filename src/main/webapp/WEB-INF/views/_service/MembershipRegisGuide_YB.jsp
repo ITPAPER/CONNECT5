@@ -8,7 +8,7 @@
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Service/MembershipRegisGuide.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Service/MembershipRegisGuide_YB.css">
 
 
 <meta charset="utf-8" />
