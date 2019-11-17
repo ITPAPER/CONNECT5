@@ -35,11 +35,11 @@
 			<h3 class="title">서비스 안내</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-            	<a href="${pageContext.request.contextPath}/./_service/ServiceProcedures_YB.do" class="list-group-item">서비스 이용절차</a>
-                <a href="${pageContext.request.contextPath}/./_service/MembershipRegisGuide_YB.do" class="list-group-item btncolor">회원가입안내</a>
-                <a href="${pageContext.request.contextPath}/./_service/MemberLevel_YH.do" class="list-group-item">회원등급안내</a>
-                <a href="${pageContext.request.contextPath}/./_service/specialservice_YH.do" class="list-group-item">연-결 스페셜 서비스</a>
-                <a href="${pageContext.request.contextPath}/./_service/MemberStatus_YB.do" class="list-group-item">회원 현황</a>
+            	<a href="${pageContext.request.contextPath}/_service/ServiceProcedures_YB.do" class="list-group-item">서비스 이용절차</a>
+                <a href="${pageContext.request.contextPath}/_service/MembershipRegisGuide_YB.do" class="list-group-item btncolor">회원가입안내</a>
+                <a href="${pageContext.request.contextPath}/_service/MemberLevel_YH.do" class="list-group-item">회원등급안내</a>
+                <a href="${pageContext.request.contextPath}/_service/SpecialService_YH.do" class="list-group-item">연-결 스페셜 서비스</a>
+                <a href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do" class="list-group-item">회원 현황</a>
             </div> 
 		</div>
 	</div>
