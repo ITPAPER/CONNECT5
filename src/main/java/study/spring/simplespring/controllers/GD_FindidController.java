@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class GD_FindidController {
 	
-	@RequestMapping(value = "/_findAccount/FindId_GD.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_findAccount/FindId_GD.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String findid(Model model) {
 		
 		
@@ -17,7 +17,7 @@ public class GD_FindidController {
 
 	}
 	
-	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String findpw(Model model) {
 		
 		
@@ -27,7 +27,7 @@ public class GD_FindidController {
 
 	}
 	
-	@RequestMapping(value = "/_findAccount/CheckId_GD.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_findAccount/CheckId_GD.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String checkid(Model model) {
 		
 		
@@ -37,7 +37,7 @@ public class GD_FindidController {
 
 	}
 	
-	@RequestMapping(value = "/_findAccount/CheckPw_GD.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_findAccount/CheckPw_GD.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String checkpw(Model model) {
 		
 		
