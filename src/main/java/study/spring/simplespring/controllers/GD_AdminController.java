@@ -53,7 +53,7 @@ public class GD_AdminController {
 		
 		
 
-		return "_admin/admin_userEx_GD";
+		return "_admin/admin_userExRead_GD";
 
 	}
 	@RequestMapping(value = "/_admin/admin_userExWrite_GD.do", method = RequestMethod.GET)
