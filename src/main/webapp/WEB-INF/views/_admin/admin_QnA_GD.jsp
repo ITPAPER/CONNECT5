@@ -94,13 +94,18 @@
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-			<button onclick="location='admin_userManagement_YH.jsp'" class="btn">공지사항</button>
-			<button onclick="location='admin_MngBoard_WeddingStory_YB.jsp'"
+				<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'"
+				class="btn">공지사항</button>
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'"
 				class="btn">연-결 성혼스토리</button>
-			<button onclick="location='admin_QnA_GD.jsp'" class="btn  btn-info">연-결
-				Q &amp; A</button>
-			<button onclick="location='admin_userEx_GD.jsp'" class="btn">연-결
-				만남 후기</button>
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'"
+				class="btn btn-info">연-결 Q &amp; A</button>
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'"
+				class="btn">연-결 만남 후기</button>
 		</div>
 
 		<div class="col-md-4 searching_box">
