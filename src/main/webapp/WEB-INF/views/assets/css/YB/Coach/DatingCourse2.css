@@ -94,7 +94,7 @@ table.board_view td.pntitle {
 
 /** 컨텐츠 박스 > 이미지 */
 .photo > img {
-		width: 100%;
+		width: 415px;
 }
 
 /** 회전 */
@@ -113,8 +113,7 @@ table.board_view td.pntitle {
 }
 			
 @font-face {
-		font-family:
-		src:url();
-		src:../ /, url() format()
+		font-family: Binggrae.ttf;
+		src:url('/./assets/fonts/Binggrae.ttf')
 }
 

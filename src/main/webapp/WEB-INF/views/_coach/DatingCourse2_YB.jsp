@@ -6,7 +6,6 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
-
 <title>연-결 코치_데이트 코스(Coach_DatingCourse2)</title>
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
@@ -19,15 +18,6 @@
 	
 </script>
 
-<!-- 모바일 웹 페이지 설정 -->
-		<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
-		<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
-
-		<!-- bootstrap -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-
-		<!-- 나눔고딕 웹 폰트 적용 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css"/>
 
 </head>
 <body>
@@ -49,11 +39,11 @@
       		
       		<!-- 사이드바 메뉴목록1 -->
       		<div class="list-group">
-	            <a href="${pageContext.request.contextPath}/./_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a>
-	            <a href="${pageContext.request.contextPath}/./_coach/loveColumn_GD.do" class="list-group-item">LOVE 컬럼</a>
-	            <a href="${pageContext.request.contextPath}/./_coach/DatingCourse_YB.do" class="list-group-item btncolor">데이트 코스</a>
-	            <a href="${pageContext.request.contextPath}/./_coach/review_SE.do" class="list-group-item">연-결 만남 후기</a>
-	            <a href="${pageContext.request.contextPath}/./_coach/QnA_SE.do" class="list-group-item">연-결 Q & A</a>
+	            <a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a>
+	            <a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do" class="list-group-item">LOVE 컬럼</a>
+	            <a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do" class="list-group-item btncolor">데이트 코스</a>
+	            <a href="${pageContext.request.contextPath}/_coach/review_SE.do" class="list-group-item">연-결 만남 후기</a>
+	            <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do" class="list-group-item">연-결 Q & A</a>
             </div> 
         </div>
       </div>
@@ -74,7 +64,7 @@
 				<tbody>
 					<tr>
 						<td class="subject1" width="20%"><font size="2" face="빙그레체" color="#5B5C8F">제목</font></td>
-						<td class="subject2" ><font size="2" face="빙그레체" color="#5B5C8F">[서울] 북촌 한옥마을</font></th>
+						<td class="subject2" ><font size="2" face="빙그레체" color="#5B5C8F">[서울] 북촌 한옥마을</font></td>
 					</tr>
 					<tr>
 						<td class="subject1" width="20%"><font size="2" face="빙그레체" color="#5B5C8F">주소</font></td>
@@ -113,6 +103,7 @@
 						<img src="${pageContext.request.contextPath}/assets/img/북촌03.jpg">
 						<font size="2" face="빙그레체" color="#5B5C8F">
 						<p><br />북촌 한옥마을3</p></font>
+					</div>
 					</div>		
 					
 					</td>
@@ -135,15 +126,6 @@
 						이외에도 경복궁과 마주하고 있는 삼청동길 주변에는 많은 갤러리가 늘어서 있고, 
 						화동길과 더불어 각종 먹거리 자원과 특색있는 카페가 자리잡고 있어 이색적인 데이트를 즐길 수 있습니다.
 						</font>
-						</td>
-					</tr>
-					<tr>
-						<td class="pntitle">
-							<font size="2" face="빙그레체">이전글</font></td>
-						<td colspan="2" class="subject2">
-							<a href="#"><font size="2" face="빙그레체" color="#5B5C8F">
-							[서울] 남산 N 타워
-							</font></a>
 						</td>
 					</tr>
 					</tbody>
