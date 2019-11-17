@@ -7,8 +7,26 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Service/MemberStatus_YB.css">
+<style>
+
+	
+.box {
+	width:800px;
+	align: center;
+}
+		
+.box img {
+	width: 700px;
+	height: auto;
+}
+
+.btn-graph {
+	color:#9932CC;
+	text: bold;
+}
+
+
+</style>
 
 
 <meta charset="utf-8" />

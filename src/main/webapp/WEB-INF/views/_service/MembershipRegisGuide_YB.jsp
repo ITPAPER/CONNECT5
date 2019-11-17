@@ -6,10 +6,103 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
-<!-- 시각적 확인을 위한 CSS 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Service/MembershipRegisGuide_YB.css">
 
+
+
+<!-- 시각적 확인을 위한 CSS 적용 -->
+
+<style>
+
+/* 공통 초기화 작업
+ -------------------------------------------- */
+ * {
+ 	margin: 0;
+ 	padding: 0;
+}
+
+ html, body {
+ 	width: 100%;
+ 	height: 100%;
+}
+
+ ul, ol {
+ 	life-style: none;
+}
+
+/* 목록정의 각 항목 사이의 구분선
+ -------------------------------------------- */
+#gallery li {
+ 	border-bottom: 1px dotted #ccc;
+}
+
+#gallery li:last-child {
+	border-bottom: 0;
+}
+
+/* 링크 영역 크기 확장 및 글자 처리
+ -------------------------------------------- */
+#gallery li a {
+	display: block;
+	width: auto;
+	padding: 5px;
+	color: #222;
+	text-decoration: none;
+
+/** 텍스트를 감싸는 블록의 부모 요소에게 position 부여 */
+	position: relative;
+}
+
+/* 이미지가 들어 있는 <span> 및 이미지 크기 처리
+ -------------------------------------------- */
+#gallery li a {
+ 	width: 80px;
+ 	height: 120px;
+ 	display: block;
+ }
+
+#gallery img {
+ 	width: 95px;
+ 	height: 95px;
+ 	display: block;
+ }
+
+/* 텍스트를 감싸는 블록
+ -------------------------------------------- */
+#gallery .text {
+ 	display:block;
+ 	width: auto;
+ 	position: absolute;
+ 	left: 130px;
+ 	top: 27px;
+ }
+
+/* 텍스트 블록 안의 제목과 내용 공통
+ -------------------------------------------- */
+#gallery .text span {
+ 	display: block;
+ 	white-space: nowrap;
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+}
+
+/* 제목 + 내용
+ -------------------------------------------- */
+#gallery .text .title {
+	font-weight: bold;
+}
+
+#gallery .text .desc {
+	font-size: 0.8em;
+	line-height: 150%;
+}
+
+
+
+</style>
+
+	
+	
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <meta charset="utf-8" />
 <title>서비스 안내_회원가입안내(MembershipRegisGuide)</title>

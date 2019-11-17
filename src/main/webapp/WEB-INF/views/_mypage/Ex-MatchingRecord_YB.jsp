@@ -20,15 +20,6 @@
 	
 </script>
 
-<!-- 모바일 웹 페이지 설정 -->
-		<link rel="shortcut icon" href="assets/ico/favicon.ico" />
-		<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
-
-		<!-- bootstrap -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-
-		<!-- 나눔고딕 웹 폰트 적용 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css"/>
 
 </head>
 <body>
