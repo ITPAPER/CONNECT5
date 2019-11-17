@@ -339,7 +339,7 @@
 			<div class="col-md-3 text-center" id="information_box3">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/_service/specialservice_YH.do"><img
+						href="${pageContext.request.contextPath}/_service/SpecialService_YH.do"><img
 							src="${pageContext.request.contextPath}/assets/img/specialservice.jpg"
 							width="265px" height="265"></a></li>
 				</ul>
