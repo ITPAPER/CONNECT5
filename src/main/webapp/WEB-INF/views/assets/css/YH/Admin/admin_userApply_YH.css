@@ -20,12 +20,16 @@ ul, ol {
 
 /* 전체 박스 크기*/
 .container {
-	height: 1200px;
+	height: 800px;
 }
 
 /* 로그인 박스 위치 */
 .top_login {
 	padding-top: 70px;
+}
+
+.top_login>#connect {
+	float: right;
 }
 
 /* 왼쪽 사이드 바 */
@@ -34,40 +38,17 @@ ul, ol {
 	height: 500px;
 }
 
-/* 로그인 버튼 위치 */
-.top_login>#connect {
-	float: right;
-}
-
 /* 게시판 관리 글씨 위치 */
 .middle {
 	height: 50px;
 }
 
-/* 공지사항 / 연-결 성혼스토리 / 연결 Q&A / 연-결 만남 후기 박스 크기 */
-.middle_box {
-	height: 200px;
-	border-style: solid;
-	margin-top: 30px;
-}
-
-/* 공지사항 / 연-결 성혼스토리 / 연결 Q&A / 연-결 만남 후기 버튼 위치 및 색상 */
-.middle_box>.btn {
-	margin-top: 70px;
-	width: 130px;
-	margin-left: 80px;
-}
-
 /* 검색 박스 */
 .searching_box {
 	float: right;
-	width: 400px;
+	width: 335px;
 	height: 50px;
 	margin-top: 20px;
-}
-
-.searching_box>#key {
-	float: right;
 }
 
 /* 게시판 크기 */
@@ -80,15 +61,27 @@ ul, ol {
 }
 
 .text-center>#num {
-	width: 50px;
-}
-
-.text-center>#date {
 	width: 100px;
 }
 
-.text-center>#views {
-	width: 70px;
+.text-center>#name {
+	width: 100px;
+}
+
+.text-center>#special {
+	width: 300px;
+}
+
+.text-center>#date_num {
+	width: 120px;
+}
+
+.text-center>#date {
+	width: 120px;
+}
+
+.text-center>#delete {
+	width: 75px;
 }
 
 .text_box>.btn {
