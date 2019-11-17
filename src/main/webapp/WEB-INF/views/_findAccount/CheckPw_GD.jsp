@@ -23,7 +23,7 @@
 
 <!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets//img/question1.png" alt="연-결"
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결"
 			class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->

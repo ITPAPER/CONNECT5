@@ -73,7 +73,8 @@
 <hr />
 		<!-- 내용 작성  -->
 
-		<form action="${pageContext.request.contextPath}/_findAccount/CheckPw_GD.do" method="post" id="verify" name="verify">
+		<form action="${pageContext.request.contextPath}/_findAccount/CheckPw_GD.do"
+			method="post" id="verify" name="verify">
 			<fieldset>
 			<div class="user_name">
 						<label for="user_name" style="width:100px">이름</label>
@@ -158,7 +159,7 @@
 
 								$("#get_Num").attr("disabled", true);
 								 $("#user_name").attr("disabled", true);
-								 $("#user_id").attr("disabled", true);
+								 
 								 $("#user_email").attr("disabled", true);
 
 							});
