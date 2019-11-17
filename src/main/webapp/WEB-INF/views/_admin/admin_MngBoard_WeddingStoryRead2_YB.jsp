@@ -41,7 +41,7 @@
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead&Write_YB.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead_YB.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 

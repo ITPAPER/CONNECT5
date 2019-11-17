@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_Board_WeddingStoryWrite</title>
 
@@ -39,19 +39,16 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryWrite_YB.css">
-
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 
 <script type="text/javascript">
 	function add() {
 		if (confirm("게시글을 등록하시겠습니까?") == true) {
 			alert("게시글 등록이 완료되었습니다.")
 		}
-		location.href = "${pageContext.request.contextPath}/_admin/_admin/admin_MngBoard_WeddingStory_YB.do";
+		location.href = "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
 	}
 	
 	function cancel() {
