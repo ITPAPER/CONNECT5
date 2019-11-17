@@ -36,13 +36,13 @@
 			<h3 class="title">연-결 소개</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-	            <a href="IntroWebsite_YB.jsp" class="list-group-item">사이트 소개</a>
-	            <a href="Greetings_YB.jsp" class="list-group-item">연-결 인사말</a>
-	            <a href="manager_HG.jsp" class="list-group-item">커플 매니저</a>
-	            <a href="story_SE.jsp" class="list-group-item">연-결 성혼스토리</a>
-	            <a href="notice_SE.jsp" class="list-group-item">공지사항</a>
-	            <a href="partner_HG.jsp" class="list-group-item">연-결 파트너</a>
-	            <a href="map_GD.jsp" class="list-group-item btncolor">오시는 길</a>
+	            <a href="${pageContext.request.contextPath}/./_info/IntroWebsite_YB.do" class="list-group-item">사이트 소개</a>
+                              <a href="${pageContext.request.contextPath}/./_info/Greetings_YB.do" class="list-group-item">연-결 인사말</a>
+                              <a href="${pageContext.request.contextPath}/./_info/manager_HG.do" class="list-group-item">커플 매니저</a>
+                              <a href="${pageContext.request.contextPath}/./_info/story_SE.do" class="list-group-item">연-결 성혼스토리</a>
+                              <a href="${pageContext.request.contextPath}/./_info/notice_SE.do" class="list-group-item">공지사항</a>
+                              <a href="${pageContext.request.contextPath}/./_info/partner_HG.do" class="list-group-item">연-결 파트너</a>
+                              <a href="${pageContext.request.contextPath}/./_info/map_GD.do" class="list-group-item btncolor">오시는 길</a>
 			</div>
 		</div>
 	</div>
