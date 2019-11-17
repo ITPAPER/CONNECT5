@@ -45,7 +45,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStory_YB.css">
 
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
 <script type="text/javascript">
@@ -91,7 +90,7 @@
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'" class="btn">공지사항</button>
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn btn-info">연-결 성혼스토리</button>
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
-			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="do">연-결 만남 후기</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
 		</div>
 
 		<div class="col-md-4 searching_box">

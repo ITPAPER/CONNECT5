@@ -154,13 +154,13 @@
 						<tr>
 							<td>다음글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead1_YB.jsp'"
+								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead1_YB.do'"
 								style="cursor: pointer;">오랜 기다림 끝에, 드디어 찾았어요!</th>
 						</tr>
 						<tr>
 							<td>이전글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead3_YB.jsp'"
+								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead3_YB.do'"
 								style="cursor: pointer;">사랑한다면 상대방의 말에 먼저 귀 기울여주세요.</th>
 						</tr>
 

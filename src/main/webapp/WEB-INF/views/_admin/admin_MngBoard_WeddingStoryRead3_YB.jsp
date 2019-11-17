@@ -165,7 +165,7 @@
 						<tr>
 							<td>다음글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead2_YB.jsp'"
+								onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead2_YB.do'"
 								style="cursor: pointer;">조금 더 이해하면, 이렇게 사랑을 꽃 피울 수 있어요.</th>
 						</tr>
 						<tr>
@@ -177,7 +177,7 @@
 				</table>
 			</div>
 			<button class="btn btn-default"
-				onclick="location='admin_MngBoard_WeddingStory_YB.jsp'">목록</button><br /><br /><br /><br /><br />
+				onclick="location='admin_MngBoard_WeddingStory_YB.do'">목록</button><br /><br /><br /><br /><br />
 		</div>
 	</div>
 
