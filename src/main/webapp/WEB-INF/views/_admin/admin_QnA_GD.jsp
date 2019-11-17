@@ -75,12 +75,18 @@
 
 
 		<div class="col-md-2 sidebar1">
-		<a href="../_admin/admin_main_SE.jsp" class="list-group-item">대시보드</a> 
-			<a href="../_admin/admin_userManager1_HG.jsp" class="list-group-item">회원관리</a> 
-			<a href="../_admin/admin_MngBoard_WeddingStory_YB.jsp" class="list-group-item active">게시판 관리</a> 
-			<a href="../_admin/admin_userApply_YH.jsp" class="list-group-item">신청현황</a> 
-			<a href="../_admin/admin_Question_SE.jsp" class="list-group-item">문의현황</a>
-			<a href="../_admin/admin_Payment_GD.jsp" class="list-group-item">결제관리</a>
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
+				class="list-group-item">대시보드</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
+				class="list-group-item">회원관리</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do"
+				class="list-group-item active">게시판 관리</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do"
+				class="list-group-item">신청현황</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do"
+				class="list-group-item">문의현황</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do"
+				class="list-group-item">결제관리</a>
 
 		</div>
 
@@ -89,9 +95,12 @@
 		</div>
 		<div class="col-md-10 middle_box">
 			<button onclick="location='admin_userManagement_YH.jsp'" class="btn">공지사항</button>
-			<button onclick="location='admin_MngBoard_WeddingStory_YB.jsp'" class="btn">연-결 성혼스토리</button>
-			<button onclick="location='admin_QnA_GD.jsp'" class="btn  btn-info">연-결 Q &amp; A</button>
-			<button onclick="location='admin_userEx_GD.jsp'" class="btn">연-결 만남 후기</button>
+			<button onclick="location='admin_MngBoard_WeddingStory_YB.jsp'"
+				class="btn">연-결 성혼스토리</button>
+			<button onclick="location='admin_QnA_GD.jsp'" class="btn  btn-info">연-결
+				Q &amp; A</button>
+			<button onclick="location='admin_userEx_GD.jsp'" class="btn">연-결
+				만남 후기</button>
 		</div>
 
 		<div class="col-md-4 searching_box">
@@ -100,8 +109,8 @@
 						<option value="0">---선택---</option>
 						<option value="title">제목</option>
 						<option value="id">이름</option>
-				</select> <input type="text" name="KeyWord" />
-					<input type="submit" id="s_btn" value="검색" />
+				</select> <input type="text" name="KeyWord" /> <input type="submit"
+					id="s_btn" value="검색" />
 			</ul>
 
 		</div>

@@ -80,7 +80,7 @@
 					<br />
 					<br />
 					<button type="button" ><a href="${pageContext.request.contextPath}/_login/login_HG.jsp">로그인</a></button>
-					<button type="button" ><a href="${pageContext.request.contextPath}/FindPw_GD.jsp">비밀번호찾기</a></button>
+					<button type="button" ><a href="${pageContext.request.contextPath}/_findAccount/FindPw_GD.jsp">비밀번호찾기</a></button>
 
 
 		</div>

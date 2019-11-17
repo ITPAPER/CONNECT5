@@ -74,13 +74,18 @@
 
 
 		<div class="col-md-2 sidebar1">
-			<a href="admin_main_SE.jsp" class="list-group-item">대시보드</a> <a
-				href="admin_userManager1_HG.jsp" class="list-group-item">회원관리</a> <a
-				href="admin_userManagement_YH.jsp" class="list-group-item">게시판
-				관리</a> <a href="admin_userApply_YH.jsp" class="list-group-item">신청현황</a>
-			<a href="admin_Question_SE.jsp" class="list-group-item">문의현황</a> <a
-				href="admin_Payment_GD.jsp" class="list-group-item active">결제관리</a>
-
+		<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
+				class="list-group-item">대시보드</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
+				class="list-group-item">회원관리</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do"
+				class="list-group-item">게시판 관리</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do"
+				class="list-group-item">신청현황</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do"
+				class="list-group-item">문의현황</a> <a
+				href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do"
+				class="list-group-item active">결제관리</a>
 		</div>
 
 		<div class="col-md-10 middle">
