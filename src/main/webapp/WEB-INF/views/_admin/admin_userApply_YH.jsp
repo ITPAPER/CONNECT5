@@ -51,7 +51,7 @@
 		} else {
 			return;
 		}
-		location.href = "${pageContext.request.contextPath}/admin_userApply_YH.do";
+		location.href = "${pageContext.request.contextPath}/_admin/admin_userApply_YH.do";
 	}
 </script>
 

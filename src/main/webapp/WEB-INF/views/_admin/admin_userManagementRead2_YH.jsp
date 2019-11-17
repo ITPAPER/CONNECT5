@@ -87,7 +87,7 @@
 		</div>
 		<div class="col-md-10 middle_box">
 			<button
-				onclick="location='${pageContext.request.contextPath}/admin/admin_userManagement_YH.do'"
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'"
 				class="btn btn-info">공지사항</button>
 			<button
 				onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'"
@@ -134,7 +134,7 @@
 						<tr>
 							<td>다음글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='${pageContext.request.contextPath}/assets/admin_userManagementRead_YH.do'"
+								onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementRead_YH.do'"
 								style="cursor: pointer;">연-결, 가을 낭만 담아 '연극 보러 갈까요?' 이벤트 진행</th>
 						</tr>
 						<tr>
