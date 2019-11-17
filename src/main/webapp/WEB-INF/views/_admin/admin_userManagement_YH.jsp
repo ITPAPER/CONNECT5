@@ -66,7 +66,8 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs">Logout</button>
+					<button type="submit" class="btn btn-xs"
+						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -206,7 +207,9 @@
 				</tr>
 				<tr class="text-center">
 					<td id="num">2</td>
-					<td>연-결 연애정보 대표 박경동, "신뢰를 바탕으로 적극적인 서비스 제공에 힘써"</td>
+					<td>연-결 연애정보 대표 박경동, "
+						신뢰를 바탕으로 적극적인 서비스 제공에힘써"
+						</td>
 					<td>담당자</td>
 					<td id="views">21,453</td>
 					<td id="date">2019-01-02</td>
@@ -236,15 +239,15 @@
 
 			<button class="btn btn-default"
 				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementWrite_YH.do'">글쓰기</button>
+		
+			</div>
 		</div>
-	</div>
 
 
-	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-
+		<!-- Javascript -->
+		<script
+			src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

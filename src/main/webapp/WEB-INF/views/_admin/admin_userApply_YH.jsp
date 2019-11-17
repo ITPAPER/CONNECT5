@@ -65,7 +65,8 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs">Logout</button>
+					<button type="submit" class="btn btn-xs"
+						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
 		</div>

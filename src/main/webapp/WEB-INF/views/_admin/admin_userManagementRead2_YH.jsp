@@ -58,7 +58,8 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs">Logout</button>
+					<button type="submit" class="btn btn-xs"
+						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -85,14 +86,18 @@
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-			<button onclick="location='${pageContext.request.contextPath}/admin/admin_userManagement_YH.do'"
+			<button
+				onclick="location='${pageContext.request.contextPath}/admin/admin_userManagement_YH.do'"
 				class="btn btn-info">공지사항</button>
-			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'"
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'"
 				class="btn">연-결 성혼스토리</button>
-			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결
-				Q &amp; A</button>
-			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결
-				만남 후기</button>
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'"
+				class="btn">연-결 Q &amp; A</button>
+			<button
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'"
+				class="btn">연-결 만남 후기</button>
 		</div>
 
 
@@ -149,8 +154,10 @@
 
 
 	<!-- Javascript -->
-	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>
