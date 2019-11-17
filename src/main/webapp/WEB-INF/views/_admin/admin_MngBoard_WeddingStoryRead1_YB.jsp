@@ -13,7 +13,8 @@
 <title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_MngBoard_WeddingStoryRead1</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
 
@@ -39,12 +40,17 @@
       <link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
-
+   
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead&Write_YB.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+<script type="text/javascript">
+	
+</script>
 
 </head>
 <body>
@@ -57,12 +63,12 @@
 						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
-			</div>
+		</div>
 
 		<div class="col-md-2 sidebar1">
 			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
 			<a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
-			<a href="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do" class="list-group-item active">게시판 관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do" class="list-group-item active">게시판 관리</a> 
 			<a href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
 			<a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do" class="list-group-item">문의현황</a>
 			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
@@ -173,6 +179,7 @@
 	<!-- Javascript -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

@@ -128,7 +128,7 @@
 				</tr>
 				<tr class="text-center">
 					<td id="num">9</td>
-					<td onclick="location='../${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead2_YB.do'"
+					<td onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryRead2_YB.do'"
 						style="cursor: pointer;">조금 더 이해하면, 이렇게 사랑을 꽃 피울 수 있어요.</td>
 					<td>담당자</td>
 					<td id="views">1,053</td>

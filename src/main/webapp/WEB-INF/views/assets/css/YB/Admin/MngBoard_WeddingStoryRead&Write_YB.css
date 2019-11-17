@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 * {
 	margin: 0;
 	padding: 0;
@@ -36,10 +35,8 @@ ul, ol {
 }
 
 /* 로그인 버튼 위치 */
-.top_login>.btn {
+.top_login>#connect {
 	float: right;
-	margin-left: 30px;
-	display: inline;
 }
 
 /* 게시판 관리 글씨 위치 */
@@ -58,7 +55,7 @@ ul, ol {
 .middle_box>.btn {
 	margin-top: 70px;
 	width: 130px;
-	margin-left: 10%;
+	margin-left: 80px;
 }
 
 /* 게시판 크기 */
@@ -106,4 +103,7 @@ ul, ol {
 	text-align: center;
 }
 
-
+.btn btn-xs {
+	
+	align: right;
+}
