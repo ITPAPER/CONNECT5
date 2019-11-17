@@ -133,7 +133,7 @@
 				</tr>
 				<tr class="text-center">
 					<td id="num">10</td>
-					<td onclick="location='admin_QnARead_GD.jsp'"
+					<td onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'"
 						style="cursor: pointer;">연-결, 가을 낭만 담아 '연극 보러 갈까요?' 이벤트 진행</td>
 					<td>담당자</td>
 					<td id="views">1,543</td>
@@ -143,7 +143,7 @@
 				</tr>
 				<tr class="text-center">
 					<td id="num">9</td>
-					<td onclick="location='admin_QnARead_GD.jsp'"
+					<td onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'"
 						style="cursor: pointer;">연-결 '창립 10주년 기념' 적극적인 서비스로 높은 성혼율 달성</td>
 					<td>담당자</td>
 					<td id="views">21,553</td>
@@ -236,7 +236,7 @@
 			</ul>
 
 			<button class="btn btn-default"
-				onclick="location='admin_QnAWrite_GD.jsp'">글쓰기</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnAWrite_GD.do'">글쓰기</button>
 		</div>
 	</div>
 

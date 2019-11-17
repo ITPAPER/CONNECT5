@@ -127,7 +127,7 @@
 
 			<div class="pull-right">
 				<button class="btn btn-default" onclick="add()">글쓰기</button>
-				<button class="btn btn-default" onclick="location='admin_QnARead_GD.jsp'">취소</button>
+				<button class="btn btn-default" onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'">취소</button>
 			</div>
 
 		</div>

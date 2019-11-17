@@ -135,7 +135,7 @@
 						<tr>
 							<td>이전글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='admin_userExRead_GD.jsp'"
+								onclick="location='${pageContext.request.contextPath}/_admin/admin_userExRead_GD.do'"
 								style="cursor: pointer;">연-결 로맨틱 미팅파티 'REMARRY SERCRET
 								PARTY'진행</th>
 						</tr>
@@ -144,7 +144,7 @@
 				</table>
 			</div>
 			<button class="btn btn-default"
-				onclick="location='admin_userEx_GD.jsp'">목록</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'">목록</button>
 		</div>
 	</div>
 

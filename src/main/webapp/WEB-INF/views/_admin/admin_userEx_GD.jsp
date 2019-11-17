@@ -134,7 +134,7 @@
 				</tr>
 				<tr class="text-center">
 					<td id="num">10</td>
-					<td onclick="location='admin_userEx_GD.jsp'"
+					<td onclick="location='${pageContext.request.contextPath}/_admin/admin_userExRead_GD.do'"
 						style="cursor: pointer;">연-결, 가을 낭만 담아 '연극 보러 갈까요?' 이벤트 진행</td>
 					<td>담당자</td>
 					<td id="views">1,543</td>
@@ -237,7 +237,7 @@
 			</ul>
 
 			<button class="btn btn-default"
-				onclick="location='admin_userExWrite_GD.jsp'">글쓰기</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userExWrite_GD.do'">글쓰기</button>
 		</div>
 	</div>
 
