@@ -321,7 +321,7 @@
 			<div class="col-md-3 text-center" id="information_box1">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.jsp"><img
+						href="${pageContext.request.contextPath}/_info/IntroWebsite_YB.do"><img
 							src="${pageContext.request.contextPath}/assets/img/
 					Introduce2
 					.jpg"

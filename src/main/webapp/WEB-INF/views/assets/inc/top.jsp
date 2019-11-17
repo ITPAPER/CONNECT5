@@ -16,7 +16,7 @@
 
 				<!-- 메인 로고 -->
 				<h1 class="logo">
-					<a href="${pageContext.request.contextPath}/CONNECT5/home.do"><img
+					<a href="${pageContext.request.contextPath}/home.do"><img
 						src="${pageContext.request.contextPath}/assets/img/Mainlogo11.PNG"
 						alt="연-결"></a>
 				</h1>
