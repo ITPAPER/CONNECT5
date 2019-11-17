@@ -55,7 +55,7 @@
 		} else {
 			return;
 		}
-		location.href = "";
+		location.href = "${pageContext.request.contextPath}/_admin/userEx_GD.do";
 	}
 </script>
 
@@ -68,7 +68,8 @@
 		<div class="top">
 			<div class="col-md-12 top_login">
 				<p id="connect">
-					admin 님 접속중<button type="submit" class="btn btn-xs"
+					admin 님 접속중
+					<button type="submit" class="btn btn-xs"
 						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
