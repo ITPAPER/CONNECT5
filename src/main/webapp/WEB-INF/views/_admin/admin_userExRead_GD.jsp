@@ -117,7 +117,7 @@
 					<tbody>
 						<tr>
 							<td id="context" colspan="3" align="center"><img
-								src="../img/admin_Read.bmp"><br>
+								src="${pageContext.request.contextPath}/assets/img/admin_Read.bmp"><br>
 								<p id="text_read">10월 문화의 계절 가을을 맞아 낭만을 가득 담은 이벤트 ‘연극 보러
 									갈까요?’를 진행한다고 18일 밝혔다. 싱글 미혼남녀들을 위해 ‘바른 만남, 바른 결혼’이라는 모토로 결혼정보
 									서비스를 제공하는 결혼정보업체 바로연이 이번에는 가을의 낭만이 충만한 공연을 마련해 10월 한 달간 방문 상담을
