@@ -6,12 +6,13 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />>
 
 <title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_Board_WeddingStoryWrite</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
 <link rel="apple-touch-icon-precomposed"
 	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
 
@@ -22,7 +23,6 @@
 <!-- 나눔고딕 웹 폰트 적용 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
-
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
 <!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
@@ -41,7 +41,7 @@
 
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead&Write_YB.css">
+	href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryWrite_YB.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -119,8 +119,9 @@
 			</div>
 
 			<div class="pull-right">
-				<button class="btn btn-default" onclick="add()">게시글 등록</button>
-				<button class="btn btn-default" onclick="cancel()">게시글 등록 취소</button>
+				<button class="btn btn-default" onclick="add()">글쓰기</button>
+				<button class="btn btn-default"
+					onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'">취소</button>
 			</div>
 
 		</div>
@@ -131,6 +132,7 @@
 	<!-- Javascript -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
