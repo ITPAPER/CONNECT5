@@ -60,7 +60,7 @@ $(document).ready(function() {
 						class="list-group-item">1:1 문의</a> <a
 						href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
 						class="list-group-item">매칭 기록 보기 </a><a
-						href="${pageContext.request.contextPath}/_mypagepersonal_information1_HG.do"
+						href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
 						class="list-group-item ">개인정보수정</a> <a
 						href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
 						class="list-group-item btncolor">회원탈퇴</a>

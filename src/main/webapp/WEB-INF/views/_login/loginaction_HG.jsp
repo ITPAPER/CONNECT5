@@ -9,11 +9,11 @@ String pwd = request.getParameter("user_pw");
 
 if(id.equals("admin") && pwd.equals("admin")){
    session.setAttribute("id", id);
-   response.sendRedirect("/simplespring/_admin/admin_main_SE.do");
+   response.sendRedirect("/CONNECT5/_admin/admin_main_SE.do");
 } else if(id.equals("") || pwd.equals("")){
    
 } else {
-	response.sendRedirect("/simplespring");
+   response.sendRedirect("/CONNET5");
 }
 
 %>
