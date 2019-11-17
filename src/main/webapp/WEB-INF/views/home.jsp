@@ -673,16 +673,14 @@
 				class="vii"></span> 남희권 <br> <br>
 			COPYRIGHT&copy;CONNECT_5.co.kr
 		</div>
-
-
 	</div>
 	<!-- Javascript -->
 
 	<!-- 플러그인 참조 스크립트 -->
 	<script
-		src="${pageContext.request.contextPath}/assets/assets/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/assets/assets/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/plugins/animate/jquery.animatecss.min.js"></script>
 	<script
@@ -774,7 +772,6 @@
 					hide_menu2();
 				});
 	</script>
-
 
 	<!-- INFORMATION 플러그인 스크립트 -->
 	<script

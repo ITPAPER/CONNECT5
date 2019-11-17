@@ -13,7 +13,7 @@ if(id.equals("admin") && pwd.equals("admin")){
 } else if(id.equals("") || pwd.equals("")){
    
 } else {
-   response.sendRedirect("/CONNET5");
+	response.sendRedirect("/CONNECT5");
 }
 
 %>
