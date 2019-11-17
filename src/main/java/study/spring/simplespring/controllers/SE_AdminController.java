@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SE_AdminController {
-	@RequestMapping(value = "/_admin/main_SE.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_admin/admin_main_SE.do", method = RequestMethod.GET)
 	public String main(Model model) {
 
-		return "_admin/main_SE";
+		return "_admin/admin_main_SE";
 	}
 	
 	@RequestMapping(value = "/_admin/admin_Question_SE.do", method = RequestMethod.GET)
