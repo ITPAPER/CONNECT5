@@ -62,7 +62,7 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
