@@ -43,8 +43,11 @@
 			<h3 class="title">회원가입</h3>
 				<!-- 사이드바 메뉴목록1 -->
 				<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_join/join1_HG.jsp" class="list-group-item">회원가입</a> <a href="${pageContext.request.contextPath}/_login/login_HG.jsp"
-						class="list-group-item">로그인</a> <a href="${pageContext.request.contextPath}/FindId_GD.jsp"
+				<a href="${pageContext.request.contextPath}/_join/join1_HG.do"
+						class="list-group-item ">회원가입</a> <a
+						href="${pageContext.request.contextPath}/_login/login_HG.do"
+						class="list-group-item">로그인</a> <a
+						href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
 						class="list-group-item btncolor">ID/PW 찾기</a>
 			</div>
 		</div>
@@ -79,8 +82,8 @@
 		<div id="btn">
 					<br />
 					<br />
-					<button type="button" ><a href="${pageContext.request.contextPath}/_login/login_HG.jsp">로그인</a></button>
-					<button type="button" ><a href="${pageContext.request.contextPath}/_findAccount/FindPw_GD.jsp">비밀번호찾기</a></button>
+					<button type="button" ><a href="${pageContext.request.contextPath}/_login/login_HG.do">로그인</a></button>
+					<button type="button" ><a href="${pageContext.request.contextPath}/_findAccount/FindPw_GD.do">비밀번호찾기</a></button>
 
 
 		</div>

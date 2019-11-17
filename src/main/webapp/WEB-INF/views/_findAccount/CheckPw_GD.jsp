@@ -40,8 +40,11 @@
 				<h3 class="title">회원가입</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-			<a href="${pageContext.request.contextPath}/_join/join1_HG.jsp" class="list-group-item">회원가입</a> <a href="${pageContext.request.contextPath}/_login/login_HG.jsp"
-						class="list-group-item">로그인</a> <a href="${pageContext.request.contextPath}/FindId_GD.jsp"
+				<a href="${pageContext.request.contextPath}/_join/join1_HG.do"
+						class="list-group-item ">회원가입</a> <a
+						href="${pageContext.request.contextPath}/_login/login_HG.do"
+						class="list-group-item">로그인</a> <a
+						href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
 						class="list-group-item btncolor">ID/PW 찾기</a>
 			</div>
 		</div>
@@ -102,7 +105,7 @@
 	function move(){
 		 
 		alert("정상적으로 변경되었습니다.");
-		document.location.href="../_login/login_HG.jsp";
+		document.location.href="${pageContext.request.contextPath}/_login/login_HG.do";
 	 }
 
 		

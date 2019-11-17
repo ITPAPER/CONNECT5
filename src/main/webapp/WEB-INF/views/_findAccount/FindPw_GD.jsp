@@ -16,7 +16,7 @@
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="../plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
 
 
 <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>Hello JSP</title>
-<link rel="stylesheet" href="../plugins/sweetalert/sweetalert2.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/sweetalert/sweetalert2.min.css" />
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
@@ -32,7 +32,7 @@
 
 <!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets//img/question1.png" alt="연-결"
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결"
 			class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
@@ -47,8 +47,11 @@
 			<h3 class="title">회원가입</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_join/join1_HG.jsp" class="list-group-item">회원가입</a> <a href="${pageContext.request.contextPath}/_login/login_HG.jsp"
-						class="list-group-item">로그인</a> <a href="${pageContext.request.contextPath}/FindId_GD.jsp"
+					<a href="${pageContext.request.contextPath}/_join/join1_HG.do"
+						class="list-group-item ">회원가입</a> <a
+						href="${pageContext.request.contextPath}/_login/login_HG.do"
+						class="list-group-item">로그인</a> <a
+						href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
 						class="list-group-item btncolor">ID/PW 찾기</a>
 			</div>
 		</div>
@@ -70,7 +73,7 @@
 <hr />
 		<!-- 내용 작성  -->
 
-		<form action="check_pw_GD.jsp" method="post" id="verify" name="verify">
+		<form action="${pageContext.request.contextPath}/_findAccount/CheckPw_GD.do" method="post" id="verify" name="verify">
 			<fieldset>
 			<div class="user_name">
 						<label for="user_name" style="width:100px">이름</label>
@@ -92,7 +95,7 @@
 				<div id="verify_ok"></div>
 				<br />
 				<div id="changeForm">
-					<a href="${pageContext.request.contextPath}/FindId_GD.jsp" id="changeForm">아이디 찾기</a>
+					<a href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do" id="changeForm">아이디 찾기</a>
 				</div>
 			</fieldset>
 		</form>
@@ -100,7 +103,7 @@
 		<!-- 메인 내용 끝 -->
 	</div>
 
-	<script src="regex.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/plugins/regex/regex.js"></script>
 	<script type="text/javascript">
 		$(function() {
 
@@ -175,7 +178,7 @@
 			}
 	
 			
-			document.location.href = 'check_pw_GD.jsp';
+			document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckPw_GD.do';
 		});
 
 		function count() {
@@ -204,7 +207,7 @@
 							 $("#user_name").attr("disabled", true);
 							$("#verify_ok")
 									.html(
-											" <button type='button'><a href='${pageContext.request.contextPath}/FindPw_GD.jsp'>  재요청  </a></button>");
+											" <button type='button'><a href='${pageContext.request.contextPath}/_findAccount/FindPw_GD.do'>  재요청  </a></button>");
 
 						}
 						$('.count').html(minutes + ':' + seconds);
