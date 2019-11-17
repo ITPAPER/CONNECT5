@@ -50,7 +50,7 @@
 	function add() {
 		if (confirm("게시물 등록이 완료되었습니다.") == true) {
 		}
-		location.href = "admin_userManagement_YH.jsp";
+		location.href = "${pageContext.request.contextPath}/_admin/admin_QnA_GD.do";
 	}
 </script>
 

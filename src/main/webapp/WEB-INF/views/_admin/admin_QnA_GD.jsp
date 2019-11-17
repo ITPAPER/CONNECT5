@@ -54,7 +54,7 @@
 		} else {
 			return;
 		}
-		location.href = "";
+		location.href = "${pageContext.request.contextPath}/_admin/admin_QnA_GD.do";
 	}
 </script>
 
