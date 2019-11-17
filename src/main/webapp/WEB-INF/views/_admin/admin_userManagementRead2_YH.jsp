@@ -71,7 +71,7 @@
 				class="list-group-item">대시보드</a> <a
 				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
 				class="list-group-item">회원관리</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do"
+				href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do"
 				class="list-group-item active">게시판 관리</a> <a
 				href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do"
 				class="list-group-item">신청현황</a> <a
