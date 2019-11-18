@@ -92,7 +92,18 @@ $(document).ready(function() {
 							<option value="180">181cm이상</option>
 					</select></th>
 				</tr>
-
+				<tr>
+					<th id="title">학력</th>
+					<th><select id="edu">
+							<option value="">--------선택--------</option>
+							<option value="1">중졸</option>
+							<option value="2">고졸</option>
+							<option value="3">대졸</option>
+							<option value="4">석사이상</option>
+					</select></th>
+					<th id="title">직업</th>
+					<th><input type="text" style="width: 135px;"/></th>
+				</tr>
 				<tr>
 					<th id="title">혈액형</th>
 					<th><select id="blood">
