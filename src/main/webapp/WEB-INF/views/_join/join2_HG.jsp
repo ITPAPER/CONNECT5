@@ -44,17 +44,17 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                    document.getElementById("StateAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    document.getElementById("StateAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById('PostCode').value = data.zonecode;
+                document.getElementById("BasicAddress").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("DetailAddress").focus();
             }
         }).open();
     }
@@ -79,34 +79,30 @@
       $(document).ready(function() {
 		   $("#btn1").click(function(){
 		      
-		      if($("#id").val() == ""){
+		      if($("#UserId").val() == ""){
 		         alert("아이디를 입력해주세요");
-		      }else if($("#pw").val() == ""){
+		      }else if($("#UserPw").val() == ""){
 		         alert("비밀번호를 입력해주세요");
-		      }else if($("#pw1").val() == ""){
+		      }else if($("#UserPw1").val() == ""){
 			         alert("비밀번호를 한번 더 입력해주세요");
-		      } else if($("#name").val() == ""){
+		      } else if($("#UserName").val() == ""){
 		         alert("이름을 입력해주세요");
-		      } else if($("#birthdate").val() == ""){
+		      } else if($("#BirthDate").val() == ""){
 		           alert("년도를 선택해주세요");
-		      } else if($("#birthdate1").val() == ""){
+		      } else if($("#BirthDate1").val() == ""){
 		           alert("월을 선택해주세요");
-		      } else if($("#birthdate2").val() == ""){
+		      } else if($("#BirthDate2").val() == ""){
 		           alert("일을 선택해주세요");
-		        } else if($("#gender").val() == ""){
+		        } else if($("#Gender").val() == ""){
 		           alert("성별을 선택해주세요");
-		        } else if($("#marry").val() == ""){
+		        } else if($("#IsMarried").val() == ""){
 		           alert("결혼여부를 선택해주세요");
-		        }   else if($("#phone").val() == ""){
+		        }   else if($("#Mobile").val() == ""){
 			           alert("휴대폰번호를 입력해주세요");
-		        } else if($("#email").val() == "") {
+		        } else if($("#Email").val() == "") {
 		        	alert("이메일을 입력해주세요");
-		        } else if($("#sample6_address").val() == "") {
+		        } else if($("#BasicAddress").val() == "") {
 		        	alert("주소를 입력해주세요");
-		        } else if($("#job").val() == "") {
-		        	alert("직업을 입력해주세요");
-		        } else if($("#academic").val() == "") {
-		        	alert("최종학력을 입력해주세요");
 		        } else if(confirm("완료하시겠습니까?") == true){
 		        	location.href="${pageContext.request.contextPath}/_join/join3_HG.do";
 		      } else {
@@ -169,7 +165,7 @@
                <tr>
                         <td class="box11" >아이디</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="text" id="id"/>&nbsp;&nbsp;&nbsp;
+                            type="text" id="UserId"/>&nbsp;&nbsp;&nbsp;
                             <button class="btn btn-default" onclick="ok()"
                                 style="height: 30px; width: 80px;">중복확인</button></td>
                     </tr>
@@ -177,22 +173,22 @@
                     <tr>
                         <td class="box11" >비밀번호</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" id="pw"/></td>
+                            type="password" id="UserPw"/></td>
                     </tr>
 
                     <tr>
                         <td class="box11" >비밀번호 확인</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" id="pw1"/></td>
+                            type="password" id="UserPw1"/></td>
                     </tr>
 
                     <tr>
                         <td class="box11" >이름</td>
-                        <td class="box12"><input class="text4" type="text" id="name"></td>
+                        <td class="box12"><input class="text4" type="text" id="UserName"></td>
 
                         <td class="box13" >생년월일</td>
                         <td class="box14"><select name="year"
-                            style="width: 59px; height: 23px;" id="birthdate">
+                            style="width: 59px; height: 23px;" id="BirthDate">
                                 <option value="">년도</option>
                                 <option value="1995">1995</option>
                                 <option value="1994">1994</option>
@@ -215,7 +211,7 @@
                                 <option value="1977">1977</option>
                                 <option value="1976">1976</option>
                                 <option value="1975">1975</option>
-                        </select> <select name="birthmm" style="width: 59px; height: 23px;" id="birthdate1">
+                        </select> <select name="birthmm" style="width: 59px; height: 23px;" id="BirthDate1">
                                 <option value="">월</option>
                                 <option value="01">1</option>
                                 <option value="02">2</option>
@@ -229,7 +225,7 @@
                                 <option value="10">10</option>
                                 <option value="11">11</option>
                                 <option value="12">12</option>
-                        </select> <select name="daymm" style="width: 59px; height: 23px;" id="birthdate2">
+                        </select> <select name="daymm" style="width: 59px; height: 23px;" id="BirthDate2">
                                 <option value="">일</option>
                                 <option value="01">1</option>
                                 <option value="02">2</option>
@@ -268,51 +264,43 @@
                     <tr>
                         <td class="box11">성별</td>
                         <td class="box12"><input class="text4" type="radio"
-                            name="gender" id="gender" checked  /> 남자 &nbsp;&nbsp;<input type="radio"
+                            name="gender" id="Gender" checked  /> 남자 &nbsp;&nbsp;<input type="radio"
                             name="gender" /> 여자</td>
 
                         <td class="box13">결혼여부</td>
                         <td class="box14"><input class="text4" type="radio"
-                            name="marry" id="marry" checked /> 초혼&nbsp;&nbsp; <input type="radio"
+                            name="marry" id="IsMarried" checked /> 초혼&nbsp;&nbsp; <input type="radio"
                             name="marry" /> 재혼</td>
                     </tr>
 
                     <tr>
                         <td class="box11">휴대폰번호</td>
-                        <td class="box12"><input class="text4" type="text" id="phone" /></td>
+                        <td class="box12"><input class="text4" type="text" id="Mobile" /></td>
 
                         <td class="box13">전화번호</td>
-                        <td class="box14"><input class="text4" type="text" id="tel" /></td>
+                        <td class="box14"><input class="text4" type="text" id="TEL" /></td>
                     </tr>
 
                     <tr>
                         <td class="box11">이메일</td>
                         <td class="box12" colspan="3"><input class="text4"
-                            type="text" /> @ <input class="text4" type="text" id="email"/></td>
+                            type="text" /> @ <input class="text4" type="text" id="Email"/></td>
                     </tr>
 
                <tr>
                   <td class="box11" rowspan="3">주소</td>
                   <td class="box12" colspan="3"><input type="text"
-                     id="sample6_postcode" placeholder="우편번호"> <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
+                     id="PostCode" placeholder="우편번호"> <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
                </tr>
                <tr>
-                  <td class="box12" colspan="2"><input type="text" id="sample6_address" placeholder="주소" size="50"></td>
-                  <td class="box12"><input type="text" id="sample6_extraAddress" placeholder="동/읍/리"></td>
+                  <td class="box12" colspan="2"><input type="text" id="BasicAddress" placeholder="주소" size="50"></td>
+                  <td class="box12"><input type="text" id="StateAddress" placeholder="동/읍/리"></td>
                </tr>
                <tr>
-                  <td class="box12"><input type="text" id="sample6_detailAddress" placeholder="상세주소" size="50"></td>
+                  <td class="box12"><input type="text" id="DetailAddress" placeholder="상세주소" size="50"></td>
          
 
                </tr>
-
-                <tr>
-                        <td class="box11">직업</td>
-                        <td class="box12"><input class="text4" type="text" id="job"/></td>
-
-                        <td class="box13">학력</td>
-                        <td class="box14"><input class="text4" type="text" id="academic"/></td>
-                    </tr>
 
                     <tr>
                         <td class="box11">가입경로</td>
