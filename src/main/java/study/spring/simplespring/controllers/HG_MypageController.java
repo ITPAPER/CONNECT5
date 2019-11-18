@@ -6,7 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class HG_Personal_informationController {
+public class HG_MypageController {
+
+	@RequestMapping(value = "/_mypage/withdrawal1_HG.do", method = RequestMethod.GET)
+	public String withdrawal1(Model model) {
+		
+		
+
+		return "_mypage/withdrawal1_HG";
+
+	}
+	
+	@RequestMapping(value = "/_mypage/withdrawal2_HG.do", method = RequestMethod.GET)
+	public String withdrawal2(Model model) {
+		
+		
+
+		return "_mypage/withdrawal2_HG";
+
+	}
 	
 	@RequestMapping(value = "/_mypage/personal_information1_HG.do", method = RequestMethod.GET)
 	public String personal_information1(Model model) {
@@ -25,5 +43,4 @@ public class HG_Personal_informationController {
 		return "_mypage/personal_information2_HG";
 
 	}
-
 }

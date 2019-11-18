@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HG_ManagerController {
 
 	@RequestMapping(value = "/_info/manager_HG.do", method = RequestMethod.GET)
-	public String Map(Model model) {
+	public String manager(Model model) {
 		
 		
 

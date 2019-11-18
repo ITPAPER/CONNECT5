@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HG_PartnerController {
 
 	@RequestMapping(value = "/_info/partner_HG.do", method = RequestMethod.GET)
-	public String Map(Model model) {
+	public String partner(Model model) {
 		
 		
 
