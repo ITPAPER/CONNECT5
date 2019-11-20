@@ -318,10 +318,7 @@ public class WebHelper {
       return this.getInt(fieldName, 0);
    }
 
-   
-	public boolean getBoolean(String fieldName) {
-		return this.getBoolean(fieldName);
-	} 
+	
    /**
     * 배열 형태의 파라미터를 리턴한다. 값이 없을 경우 null을 리턴한다.
     *

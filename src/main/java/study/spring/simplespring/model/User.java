@@ -15,9 +15,9 @@ public class User {
 	
 	private String BirthDate;
 	
-	private Boolean Gender;
+	private int Gender;
 	
-	private Boolean IsMarried;
+	private int IsMarried;
 	
 	private String Mobile;
 	

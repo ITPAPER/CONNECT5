@@ -51,8 +51,8 @@ public class HG_JoinController {
 		String UserPw = webHelper.getString("UserPw");
 		String UserName = webHelper.getString("UserName");
 		String BirthDate = webHelper.getString("BirthDate");
-		boolean Gender = webHelper.getBoolean("Gender");
-		boolean IsMarried = webHelper.getBoolean("IsMarried");
+		int Gender = webHelper.getInt("Gender");
+		int IsMarried = webHelper.getInt("IsMarried");
 		String Mobile = webHelper.getString("Mobile");
 		String TEL = webHelper.getString("TEL");
 		String Email = webHelper.getString("Email");

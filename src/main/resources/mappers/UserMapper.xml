@@ -21,23 +21,22 @@
 		<result property="BasicAddress" column="BasicAddress" />
 		<result property="StateAddress" column="StateAddress" />
 		<result property="DetailAddress" column="DetailAddress" />
-		<result property="Join_Date" column="Join_Date" />
+
 	</resultMap>
 
 	<!-- insert -->
 	<insert id="insertItem"
 		parameterType="study.spring.simplespring.model.User"
 		useGeneratedKeys="true" keyProperty="MemberId">
-		INSERT INFO User (
+		INSERT INTO User (
 		MemberId,
 		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
-		Email, PostCode, BasicAddress, StateAddress, DetailAddress, Join_Date
+		Email, PostCode, BasicAddress, StateAddress, DetailAddress
 		) VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
 		#{BirthDate}, #{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
 		#{Email},
-		#{PostCode}, #{BasicAddress}, #{StateAddress}, #{DetailAddress},
-		#{Join_Date}
+		#{PostCode}, #{BasicAddress}, #{StateAddress}, #{DetailAddress}
 		)
 	</insert>
 </mapper>
