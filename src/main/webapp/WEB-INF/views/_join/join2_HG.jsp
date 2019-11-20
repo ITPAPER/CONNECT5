@@ -155,7 +155,7 @@
    <h4 class="col-md-10">기본 가입정보 입력</h4>
    <div class="col-md-9 content">
 
-<form method="post" action="${pageContext.request.contextPath}/_join/join2ok_HG.do">
+<form method="post" action="${pageContext.request.contextPath}/_join/join2_HG.do">
       <div class="box10">
          <table>
             <tbody>
@@ -177,7 +177,7 @@
                     <tr>
                         <td class="box11" >비밀번호 확인</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" name="UserPw"  id="UserPw1"/></td>
+                            type="password" name=""  id=""/></td>
                     </tr>
 
                     <tr>
@@ -211,7 +211,7 @@
                     <tr>
                         <td class="box11">이메일</td>
                         <td class="box12" colspan="3">
-                        <input class="text4" type="text" name="email" id="Email" style="width:200px"/></td>
+                        <input class="text4" type="text" name="Email" id="Email" style="width:200px"/></td>
                     </tr>
 
                <tr>
