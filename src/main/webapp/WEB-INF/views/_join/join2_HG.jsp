@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Join/join2.css">
 
@@ -89,10 +90,6 @@
 		         alert("이름을 입력해주세요");
 		      } else if($("#BirthDate").val() == ""){
 		           alert("년도를 선택해주세요");
-		      } else if($("#BirthDate1").val() == ""){
-		           alert("월을 선택해주세요");
-		      } else if($("#BirthDate2").val() == ""){
-		           alert("일을 선택해주세요");
 		        } else if($("#Gender").val() == ""){
 		           alert("성별을 선택해주세요");
 		        } else if($("#IsMarried").val() == ""){
@@ -112,6 +109,7 @@
 		   });
 
 		});
+    
    </script>
 
 
@@ -157,15 +155,15 @@
    <h4 class="col-md-10">기본 가입정보 입력</h4>
    <div class="col-md-9 content">
 
+<form method="post" action="${pageContext.request.contextPath}/_join/join2ok_HG.do">
       <div class="box10">
-
          <table>
             <tbody>
 
                <tr>
                         <td class="box11" >아이디</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="text" id="UserId"/>&nbsp;&nbsp;&nbsp;
+                            type="text" name="UserId" id="UserId"/>&nbsp;&nbsp;&nbsp;
                             <button class="btn btn-default" onclick="ok()"
                                 style="height: 30px; width: 80px;">중복확인</button></td>
                     </tr>
@@ -173,131 +171,60 @@
                     <tr>
                         <td class="box11" >비밀번호</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" id="UserPw"/></td>
+                            type="password" name="UserPw" id="UserPw"/></td>
                     </tr>
 
                     <tr>
                         <td class="box11" >비밀번호 확인</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" id="UserPw1"/></td>
+                            type="password" name="UserPw"  id="UserPw1"/></td>
                     </tr>
 
                     <tr>
                         <td class="box11" >이름</td>
-                        <td class="box12"><input class="text4" type="text" id="UserName"></td>
+                        <td class="box12"><input class="text4" type="text" name="UserName" id="UserName"></td>
 
                         <td class="box13" >생년월일</td>
-                        <td class="box14"><select name="year"
-                            style="width: 59px; height: 23px;" id="BirthDate">
-                                <option value="">년도</option>
-                                <option value="1995">1995</option>
-                                <option value="1994">1994</option>
-                                <option value="1993">1993</option>
-                                <option value="1992">1992</option>
-                                <option value="1991">1991</option>
-                                <option value="1990">1990</option>
-                                <option value="1989">1989</option>
-                                <option value="1988">1988</option>
-                                <option value="1987">1987</option>
-                                <option value="1986">1986</option>
-                                <option value="1985">1985</option>
-                                <option value="1984">1984</option>
-                                <option value="1983">1983</option>
-                                <option value="1982">1982</option>
-                                <option value="1981">1981</option>
-                                <option value="1980">1980</option>
-                                <option value="1979">1979</option>
-                                <option value="1978">1978</option>
-                                <option value="1977">1977</option>
-                                <option value="1976">1976</option>
-                                <option value="1975">1975</option>
-                        </select> <select name="birthmm" style="width: 59px; height: 23px;" id="BirthDate1">
-                                <option value="">월</option>
-                                <option value="01">1</option>
-                                <option value="02">2</option>
-                                <option value="03">3</option>
-                                <option value="04">4</option>
-                                <option value="05">5</option>
-                                <option value="06">6</option>
-                                <option value="07">7</option>
-                                <option value="08">8</option>
-                                <option value="09">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                        </select> <select name="daymm" style="width: 59px; height: 23px;" id="BirthDate2">
-                                <option value="">일</option>
-                                <option value="01">1</option>
-                                <option value="02">2</option>
-                                <option value="03">3</option>
-                                <option value="04">4</option>
-                                <option value="05">5</option>
-                                <option value="06">6</option>
-                                <option value="07">7</option>
-                                <option value="08">8</option>
-                                <option value="09">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
-                                <option value="31">31</option>
-                        </select></td>
+                        <td class="box14"><input class="text4" type="text" name="BirthDate" placeholder="주민번호 앞 7자리" id="BirthDate"></td>
                     </tr>
 
                     <tr>
                         <td class="box11">성별</td>
                         <td class="box12"><input class="text4" type="radio"
-                            name="gender" id="Gender" checked  /> 남자 &nbsp;&nbsp;<input type="radio"
-                            name="gender" /> 여자</td>
+                            name="Gender" id="Gender" checked  /> 남자 &nbsp;&nbsp;<input type="radio"
+                            name="Gender" /> 여자</td>
 
                         <td class="box13">결혼여부</td>
                         <td class="box14"><input class="text4" type="radio"
-                            name="marry" id="IsMarried" checked /> 초혼&nbsp;&nbsp; <input type="radio"
-                            name="marry" /> 재혼</td>
+                            name="IsMarried" id="IsMarried" checked /> 초혼&nbsp;&nbsp; <input type="radio"
+                            name="IsMarried" /> 재혼</td>
                     </tr>
 
                     <tr>
                         <td class="box11">휴대폰번호</td>
-                        <td class="box12"><input class="text4" type="text" id="Mobile" /></td>
+                        <td class="box12"><input class="text4" type="text" name="Mobile" id="Mobile" /></td>
 
                         <td class="box13">전화번호</td>
-                        <td class="box14"><input class="text4" type="text" id="TEL" /></td>
+                        <td class="box14"><input class="text4" type="text" name="TEL" id="TEL" /></td>
                     </tr>
 
                     <tr>
                         <td class="box11">이메일</td>
-                        <td class="box12" colspan="3"><input class="text4"
-                            type="text" /> @ <input class="text4" type="text" id="Email"/></td>
+                        <td class="box12" colspan="3">
+                        <input class="text4" type="text" name="email" id="Email" style="width:200px"/></td>
                     </tr>
 
                <tr>
                   <td class="box11" rowspan="3">주소</td>
-                  <td class="box12" colspan="3"><input type="text"
+                  <td class="box12" colspan="3"><input type="text" name="PostCode"
                      id="PostCode" placeholder="우편번호"> <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
                </tr>
                <tr>
-                  <td class="box12" colspan="2"><input type="text" id="BasicAddress" placeholder="주소" size="50"></td>
-                  <td class="box12"><input type="text" id="StateAddress" placeholder="동/읍/리"></td>
+                  <td class="box12" colspan="2"><input type="text" name="BasicAddress" id="BasicAddress" placeholder="주소" size="50"></td>
+                  <td class="box12"><input type="text" name="StateAddress" id="StateAddress" placeholder="동/읍/리"></td>
                </tr>
                <tr>
-                  <td class="box12"><input type="text" id="DetailAddress" placeholder="상세주소" size="50"></td>
+                  <td class="box12"><input type="text" name="DetailAddress" id="DetailAddress" placeholder="상세주소" size="50"></td>
          
 
                </tr>
@@ -327,7 +254,7 @@
             style="height: 30px; width: 80px;">완료</button>
       </div>
 
-
+</form>
    </div>
 
 
@@ -335,6 +262,7 @@
    <!-- 변경 사항 -->
 
    <jsp:include page="../assets/inc/footer.jsp" />
+
 </body>
 
 </html>

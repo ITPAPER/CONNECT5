@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+
+	<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+	<resultMap id="userMap"
+		type="study.spring.simplespring.model.User">
+		<result property="MemberId" column="MemberId" />
+		<result property="UserId" column="UserId" />
+		<result property="UserPw" column="UserPw" />
+		<result property="UserName" column="UserName" />
+		<result property="BirthDate" column="BirthDate" />
+		<result property="Gender" column="Gender" />
+		<result property="IsMarried" column="IsMarried" />
+		<result property="Mobile" column="Mobile" />
+		<result property="TEL" column="TEL" />
+		<result property="Email" column="Email" />
+		<result property="PostCode" column="PostCode" />
+		<result property="BasicAddress" column="BasicAddress" />
+		<result property="StateAddress" column="StateAddress" />
+		<result property="DetailAddress" column="DetailAddress" />
+		<result property="Join_Date" column="Join_Date" />
+	</resultMap>
+
+	<!-- insert -->
+	<insert id="insertItem"
+		parameterType="study.spring.simplespring.model.User"
+		useGeneratedKeys="true" keyProperty="MemberId">
+		INSERT INFO User (
+		MemberId,
+		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
+		Email, PostCode, BasicAddress, StateAddress, DetailAddress, Join_Date
+		) VALUES (
+		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
+		#{BirthDate}, #{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
+		#{Email},
+		#{PostCode}, #{BasicAddress}, #{StateAddress}, #{DetailAddress},
+		#{Join_Date}
+		)
+	</insert>
+</mapper>

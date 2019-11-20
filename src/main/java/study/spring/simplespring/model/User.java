@@ -1,5 +1,39 @@
 package study.spring.simplespring.model;
 
-public class User {
+import lombok.Data;
 
-}
+@Data
+public class User {
+	
+	private int MemberId;
+	
+	private String UserId;
+	
+	private String UserPw;
+	
+	private String UserName;
+	
+	private String BirthDate;
+	
+	private Boolean Gender;
+	
+	private Boolean IsMarried;
+	
+	private String Mobile;
+	
+	private String TEL;
+	
+	private String Email;
+	
+	private String PostCode;
+	
+	private String BasicAddress;
+	
+	private String StateAddress;
+	
+	private String DetailAddress;
+	
+	private String Join_Date;
+
+	}
+
