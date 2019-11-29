@@ -58,14 +58,12 @@
 					<thead>
 						<tr>
 							<th class="text-center" id="num">타입</th>
-							<th class="title1">우좌(input-우뇌,output-좌뇌)타입</th>
+							<th class="title1" name="ResultTitle"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td id="context" colspan="3" align="left">감각적으로 이해하고 이를
-								논리적으로 표현하는 인간형인 당신.<br /> 감각적인 이해를 논리적으로 표현하기에 괴짜형으로 보일 수 있는 드문
-								타입이다. 하지만 그 특별함이 장점이 되어 진급이나 출세에 강하다.
+							<td id="context" colspan="3" align="left" name="ResultContent">
 							</td>
 						</tr>
 

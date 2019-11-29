@@ -46,7 +46,7 @@ public class HG_JoinController {
 	}
 	
 	@RequestMapping(value = "/_join/join2_HG.do", method = RequestMethod.POST)
-	public ModelAndView join2ok_HG(Model model) {
+	public ModelAndView addok_HG(Model model) {
 		String UserId = webHelper.getString("UserId");
 		String UserPw = webHelper.getString("UserPw");
 		String UserName = webHelper.getString("UserName");
@@ -61,6 +61,11 @@ public class HG_JoinController {
 		String StateAddress = webHelper.getString("StateAddress");
 		String DetailAddress = webHelper.getString("DetailAddress");
 		String Join_Date = webHelper.getString("Join_Date");
+		
+		
+		
+		
+		
 		
 		User input = new User();
 		input.setUserId(UserId);
@@ -83,8 +88,8 @@ public class HG_JoinController {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		String redirectUrl = contextPath + "/_join/view.do?memberId=" + input.getMemberId();
-		return webHelper.redirect(redirectUrl, "저장되었습니다.");
+		String redirectUrl = contextPath + "/_join/join3_HG.do?memberId=" + input.getMemberId();
+		return webHelper.redirect(redirectUrl,"회원가입이 완료되었습니다.");
 	}
 	
 

@@ -73,16 +73,16 @@
 				<div class="box2">
 					<div class="text2">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="검지 손가락이 더 길다" checked><br/>검지 손가락이 더 길다
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ1"
+								value="0" checked><br/>검지 손가락이 더 길다
 						<p>
 					</div>
 				</div>
 				<div class="box2">
 					<div class="text3">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="약지 손가락이 더 길다" checked><br/>약지 손가락이 더 길다
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ1"
+								value="1" checked><br/>약지 손가락이 더 길다
 						<p>
 					</div>
 				</div>

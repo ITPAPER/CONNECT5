@@ -73,16 +73,16 @@
 				<div class="box2">
 					<div class="text2">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="왼쪽 팔" checked><br/>왼쪽 팔
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ2"
+								value="0" checked><br/>왼쪽 팔
 						<p>
 					</div>
 				</div>
 				<div class="box2">
 					<div class="text3">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="오른쪽 팔" checked><br/>오른쪽 팔
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ2"
+								value="1" checked><br/>오른쪽 팔
 						<p>
 					</div>
 				</div>

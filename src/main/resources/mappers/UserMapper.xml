@@ -21,6 +21,7 @@
 		<result property="BasicAddress" column="BasicAddress" />
 		<result property="StateAddress" column="StateAddress" />
 		<result property="DetailAddress" column="DetailAddress" />
+		<result property="isadmin" column="isadmin" />
 
 	</resultMap>
 
@@ -34,9 +35,22 @@
 		Email, PostCode, BasicAddress, StateAddress, DetailAddress
 		) VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
-		#{BirthDate}, #{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
+		#{BirthDate},
+		#{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
 		#{Email},
-		#{PostCode}, #{BasicAddress}, #{StateAddress}, #{DetailAddress}
+		#{PostCode},
+		#{BasicAddress}, #{StateAddress}, #{DetailAddress}
 		)
 	</insert>
+
+	<select id="selectLoginInfo"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+
+		SELECT
+		* FROM User
+		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
+
+	</select>
+
 </mapper>

@@ -80,35 +80,94 @@
       $(document).ready(function() {
 		   $("#btn1").click(function(){
 		      
-		      if($("#UserId").val() == ""){
-		         alert("아이디를 입력해주세요");
-		      }else if($("#UserPw").val() == ""){
-		         alert("비밀번호를 입력해주세요");
-		      }else if($("#UserPw1").val() == ""){
-			         alert("비밀번호를 한번 더 입력해주세요");
-		      } else if($("#UserName").val() == ""){
-		         alert("이름을 입력해주세요");
-		      } else if($("#BirthDate").val() == ""){
-		           alert("년도를 선택해주세요");
-		        } else if($("#Gender").val() == ""){
-		           alert("성별을 선택해주세요");
-		        } else if($("#IsMarried").val() == ""){
-		           alert("결혼여부를 선택해주세요");
-		        }   else if($("#Mobile").val() == ""){
-			           alert("휴대폰번호를 입력해주세요");
-		        } else if($("#Email").val() == "") {
-		        	alert("이메일을 입력해주세요");
-		        } else if($("#BasicAddress").val() == "") {
-		        	alert("주소를 입력해주세요");
-		        } else if(confirm("완료하시겠습니까?") == true){
-		        	location.href="${pageContext.request.contextPath}/_join/join3_HG.do";
-		      } else {
-		         return;
-		      }
+		     var UserId = $("#UserId").val();
+		     var UserPw = $("#UserPw").val();
+		     var UserPw1 = $("#UserPw1").val();
+		     var UserName = $("#UserName").val();
+		     var BirthDate = $("#BirthDate").val();
+		     var Gender = $("#Gender").val();
+		     var IsMarried = $("#IsMarried").val();
+		     var Mobile = $("#Mobile").val();
+		     var Email = $("#Email").val();
+		     var PostCode = $("#PostCode").val();
+		     var DetailAddress = $("#DetailAddress").val();
 		      
+		     if(UserId.length == 0) {
+		    	 alert("아이디를 입력해주세요.");
+		    	 $("#UserId").focus();
+		    	 return false;
+		     }
+		     
+		    	 
+		     if(UserPw.length == 0) {
+		    	 alert("비밀번호를 입력해주세요.");
+		    	 $("#UserPw").focus();
+		    	 return false;
+		     }
+		     
+		     if(UserPw != UserPw1) {
+		    	 alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
+		    	 $("#UserPw1").focus();
+		    	 return false;
+		     }
+		     
+		     if(UserName.length == 0) {
+		    	 alert("이름을 입력해주세요.");
+		    	 $("#UserName").focus();
+		    	 return false;
+		     }
+		     
+		     if(BirthDate.length == 0) {
+		    	 alert("생년월일을 입력해주세요.");
+		    	 $("#BirthDate").focus();
+		    	 return false;
+		     }
+		     
+		     if($(':radio[name="Gender"]:checked').length < 1){
+		         alert('성별을 선택해주세요');                        
+		         Gender.focus();
+		         event.preventDefault();
+		     }
+		     
+		     
+		     if($(':radio[name="IsMarried"]:checked').length < 1){
+		         alert('결혼여부를 선택해주세요');                        
+		         IsMarried.focus();
+		         event.preventDefault();
+		     }
+		     
+		     if(Mobile.length == 0) {
+		    	 alert("핸드폰번호를 입력해주세요.");
+		    	 $("#Mobile").focus();
+		    	 return false;
+		     }
+		     
+		     if(Email.length == 0) {
+		    	 alert("이메일을 입력해주세요.");
+		    	 $("#Email").focus();
+		    	 return false;
+		     }
+		     
+		     if(PostCode.length == 0) {
+		    	 alert("우편번호 찾기를 눌러주세요.");
+		    	 $("#PostCode").focus();
+		    	 return false;
+		     }
+		     
+		     if(DetailAddress.length == 0) {
+		    	 alert("상세주소를 입력해주세요.");
+		    	 $("#DetailAddress").focus();
+		    	 return false;
+		     }
+		     
+		     if(confirm("회원가입을 하시겠습니까?")) {
+		    	 alert("회원가입을 축하합니다.");
+		    	 return true;
+		     }
 		   });
 
 		});
+     
     
    </script>
 
@@ -171,13 +230,13 @@
                     <tr>
                         <td class="box11" >비밀번호</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" name="UserPw" id="UserPw"/></td>
+                            type="password" name="UserPw" id="UserPw" min="5" max="13"/></td>
                     </tr>
 
                     <tr>
                         <td class="box11" >비밀번호 확인</td>
                         <td class="box12" colspan="3" ><input class="text4"
-                            type="password" name=""  id=""/></td>
+                            type="password" name="UserPw"  id="UserPw1" min="5" max="13"/></td>
                     </tr>
 
                     <tr>
@@ -191,13 +250,13 @@
                     <tr>
                         <td class="box11">성별</td>
                         <td class="box12"><input class="text4" type="radio"
-                            name="Gender" id="Gender" checked  /> 남자 &nbsp;&nbsp;<input type="radio"
-                            name="Gender" /> 여자</td>
+                            name="Gender" id="Gender"  value="0" /> 남자 &nbsp;&nbsp;<input type="radio"
+                            name="Gender" value="1" /> 여자</td>
 
                         <td class="box13">결혼여부</td>
                         <td class="box14"><input class="text4" type="radio"
-                            name="IsMarried" id="IsMarried" checked /> 초혼&nbsp;&nbsp; <input type="radio"
-                            name="IsMarried" /> 재혼</td>
+                            name="IsMarried" id="IsMarried"  value="0" /> 초혼&nbsp;&nbsp; <input type="radio"
+                            name="IsMarried" value="1"/> 재혼</td>
                     </tr>
 
                     <tr>

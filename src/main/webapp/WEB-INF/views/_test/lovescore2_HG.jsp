@@ -65,8 +65,8 @@
 				<div class="box2">
 					<div class="text2">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="그렇다" checked><br />그렇다
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ4"
+								value="0" checked><br />그렇다
 						<p>
 					</div>
 				</div>
@@ -75,8 +75,8 @@
 				<div class="box2">
 					<div class="text2">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="아니다" checked><br />아니다
+							<input type="radio" style="width: 25px; height: 25px;" name="TestQ4"
+								value="1" ><br />아니다
 						<p>
 					</div>
 				</div>
@@ -90,8 +90,8 @@
 				<div class="box2">
 					<div class="text3">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a2"
-								value="그렇다" checked><br />그렇다
+							<input type="radio" style="width: 25px; height: 25px;" name="a1"
+								value="0" checked><br />그렇다
 						<p>
 					</div>
 				</div>
@@ -99,8 +99,8 @@
 				<div class="box2">
 					<div class="text3">
 						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a2"
-								value="아니다" checked><br />아니다
+							<input type="radio" style="width: 25px; height: 25px;" name="a1"
+								value="1" ><br />아니다
 						<p>
 					</div>
 				</div>
