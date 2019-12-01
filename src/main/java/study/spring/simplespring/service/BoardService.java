@@ -6,8 +6,14 @@ import study.spring.simplespring.model.Board;
 
 public interface BoardService {
 	public Board getBoardItem(Board input) throws Exception;
+	
+	public List<Board> getBoardListStory(Board input) throws Exception;
+	
+	public List<Board> getBoardListNotice(Board input) throws Exception;
 
-	public List<Board> getBoardList(Board input) throws Exception;
+	public List<Board> getBoardListQnA(Board input) throws Exception;
+	
+	public List<Board> getBoardListReview(Board input) throws Exception;
 
 	public int getBoardCount(Board input) throws Exception;
 

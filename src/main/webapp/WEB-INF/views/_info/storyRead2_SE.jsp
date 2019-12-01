@@ -7,7 +7,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Info/noticeRead.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Info/noticeRead1.css">
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -51,13 +51,13 @@
 				<thead>
 					<tr>
 						<th id="num">제목</th>
-						<th>조금 더 이해하면, 이렇게 사랑을 꽃 피울 수 있어요.</th>
-						<th id="date">2019.10.17</th>
+						<th>${output.title}</th>
+						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"></td>
+						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
 						<th>다음글</th>

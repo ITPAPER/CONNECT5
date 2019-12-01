@@ -65,7 +65,8 @@
 	<div class="col-md-10 text1">
 		<h5>연-결 회원님들의 공유 게시판입니다.</h5>
 	</div>
-
+	
+	<form method="post" action="${pageContext.request.contextPath}/_coach/QnAWrite_ok_SE.do">
 	<div class="col-md-10 content">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -92,6 +93,7 @@
 		</div>
 
 	</div>
+	</form>
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

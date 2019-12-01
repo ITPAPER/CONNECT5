@@ -9,8 +9,9 @@ public class Board {
 	private String Content;
 	private String CreationDate;
 	private String ContentImg;
-	private String Category;
+	private int Category;
 	private int MemberId;
+	private String UserId;
 
 	/** LIMIT 절에서 사용할 조회 시작 위치 */
 	private static int offset;

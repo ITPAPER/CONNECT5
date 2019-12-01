@@ -52,7 +52,7 @@
 				<thead>
 					<tr>
 						<th id="num">제목</th>
-						<th>배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</th>
+						<th>${output.title}</th>
 						<th id="date">2019.10.23</th>
 					</tr>
 				</thead>

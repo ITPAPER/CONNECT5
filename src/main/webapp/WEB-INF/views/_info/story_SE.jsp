@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 <head>
@@ -65,74 +68,108 @@
 					<tr>
 						<th id="num">번호</th>
 						<th>제목</th>
+						<th id="date">작성자</th>
 						<th id="date">등록일</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td id="num">10</td>
-						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_info/storyRead1_SE.do">오랜 기다림 끝에, 드디어 찾았어요!</a></td>
-						<td id="date">2019.10.23</td>
-					</tr>
-					<tr>
-						<td id="num">9</td>
-						<td style="cursor: pointer;"><a href="${pageContext.request.contextPath}/_info/storyRead2_SE.do">조금 더 이해하면, 이렇게 사랑을 꽃 피울 수 있어요.</a></td>
-						<td id="date">2019.10.17</td>
-					</tr>
-					<tr>
-						<td id="num">8</td>
-						<td>사랑한다면 상대방의 말에 먼저 귀 기울여주세요.</td>
-						<td id="date">2019.10.13</td>
-					</tr>
-					<tr>
-						<td id="num">7</td>
-						<td>인연은 눈으로 찾는게 아니라 마음으로 알아가는 거랍니다.</td>
-						<td id="date">2019.10.12</td>
-					</tr>
-					<tr>
-						<td id="num">6</td>
-						<td>송구커플, 11월 결혼 하다!</td>
-						<td id="date">2019.10.09</td>
-					</tr>
-					<tr>
-						<td id="num">5</td>
-						<td>이제는 "너와 나"가 아닌 "우리"라는 글자를 써내려갑니다.</td>
-						<td id="date">2019.09.24</td>
-					</tr>
-					<tr>
-						<td id="num">4</td>
-						<td>인정받는 결혼을 하고 싶었습니다.</td>
-						<td id="date">2019.08.06</td>
-					</tr>
-					<tr>
-						<td id="num">3</td>
-						<td>사랑 앞에 자존심은 없는 것 같아요.</td>
-						<td id="date">2019.06.22</td>
-					</tr>
-					<tr>
-						<td id="num">2</td>
-						<td>연-결에서 운명을 만나다!</td>
-						<td id="date">2019.05.14</td>
-					</tr>
-					<tr>
-						<td id="num">1</td>
-						<td>늦은 연애...늦은 결혼!</td>
-						<td id="date">2019.05.04</td>
-					</tr>
+				<tbody>	
+					<c:choose>
+                <%-- 조회결과가 없는 경우 --%>
+                <c:when test="${output == null || fn:length(output) == 0}">
+                    <tr>
+                        <td colspan="4" align="center">조회결과가 없습니다.</td>
+                    </tr>
+                </c:when>
+                <%-- 조회결과가 있는  경우 --%>
+                <c:otherwise>
+                    <%-- 조회 결과에 따른 반복 처리 --%>
+                    <c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}"/>
+                    <c:forEach var="item" items="${output}" varStatus="status">         
+                        <c:set var="title" value="${item.title}" />
+                        <c:set var="userId" value="${item.userId}" />
+                        <c:set var="creationDate" value="${item.creationDate}" />                  
+                       
+                        
+                        <%-- 검색어가 있다면? --%>
+                        <c:if test="${keyword != ''}">
+                            <%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+                            <c:set var="mark" value="<mark>${keyword}</mark>" />
+                            <%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+                            <c:set var="title" value="${fn:replace(title, keyword, mark)}" />
+                           
+                        </c:if>
+                        
+                        <%-- 상세페이지로 이동하기 위한 URL --%>
+                        <c:url value="/_info/storyRead2_SE.do" var="viewUrl">
+                            <c:param name="boardId" value="${item.boardId}" />
+                        </c:url>
+                        
+                        <tr>
+                        	<td>${num}</td>
+                            <td><a href="${viewUrl}">${title}</a></td>
+                            <td>${item.userId}</td>
+                            <td>${item.creationDate}</td>
+                        </tr>
+                        <c:set var="num" value="${num-1}" ></c:set>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
 				</tbody>
 			</table>
 		</div>
-
-		<ul class="pagination pagination-sm">
-			<li class="disabled"><a href="#">&laquo;</a></li>
-			<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
-
+		<!-- 페이지 번호 구현 -->
+    <%-- 이전 그룹에 대한 링크 --%>
+    <c:choose>
+        <%-- 이전 그룹으로 이동 가능하다면? --%>
+        <c:when test="${pageData.prevPage > 0}">
+            <%-- 이동할 URL 생성 --%>
+            <c:url value="/_info/story_SE.do" var="prevPageUrl">
+                <c:param name="page" value="${pageData.prevPage}" />
+                <c:param name="keyword" value="${keyword}" />
+            </c:url>
+            <a href="${prevPageUrl}">[이전]</a>
+        </c:when>
+        <c:otherwise>
+            [이전]
+        </c:otherwise>
+    </c:choose>
+    
+    <%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
+    <c:forEach var="i" begin="${pageData.startPage}" end="${pageData.endPage}" varStatus="status">
+        <%-- 이동할 URL 생성 --%>
+        <c:url value="/_info/story_SE.do" var="pageUrl">
+            <c:param name="page" value="${i}" />
+            <c:param name="keyword" value="${keyword}" />
+        </c:url>
+        
+        <%-- 페이지 번호 출력 --%>
+        <c:choose>
+            <%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+            <c:when test="${pageData.nowPage == i}">
+                <strong>[${i}]</strong>
+            </c:when>
+            <%-- 나머지 페이지의 경우 링크 적용함 --%>
+            <c:otherwise>
+                <a href="${pageUrl}">[${i}]</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    
+    <%-- 다음 그룹에 대한 링크 --%>
+    <c:choose>
+        <%-- 다음 그룹으로 이동 가능하다면? --%>
+        <c:when test="${pageData.nextPage > 0}">
+            <%-- 이동할 URL 생성 --%>
+            <c:url value="/_info/story_SE.do" var="nextPageUrl">
+                <c:param name="page" value="${pageData.nextPage}" />
+                <c:param name="keyword" value="${keyword}" />
+            </c:url>
+            <a href="${nextPageUrl}">[다음]</a>
+        </c:when>
+        <c:otherwise>
+            [다음]
+        </c:otherwise>
+    </c:choose>
 	</div>
 <jsp:include page="../assets/inc/footer.jsp" />
 </body>

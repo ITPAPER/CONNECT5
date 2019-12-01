@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead2.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead.css">
 
 
 <meta charset="utf-8" />
@@ -49,14 +52,14 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" id="num">제목</th>
-						<th class="text-center">헤어진 지 1년, 도저히 못 잊겠는데?</th>
-						<th class="text-center" id="date">2019.10.18</th>
+						<th id="num">제목</th>
+						<th>${output.title}</th>
+						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"></td>
+						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
 						<th>다음글</th>

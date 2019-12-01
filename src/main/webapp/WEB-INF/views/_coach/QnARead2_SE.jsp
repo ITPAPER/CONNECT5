@@ -10,7 +10,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead2.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead.css">
 
 <script>
 	
@@ -21,11 +21,6 @@
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
-
-
-
-	<!-- 변경사항  -->
-
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
@@ -60,14 +55,14 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" id="num">제목</th>
-						<th class="text-center">헤어진 지 1년, 도저히 못 잊겠는데?</th>
-						<th class="text-center" id="date">2019.10.18</th>
+						<th id="num">제목</th>
+						<th>${output.title}</th>
+						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"></td>
+						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
 						<th>다음글</th>

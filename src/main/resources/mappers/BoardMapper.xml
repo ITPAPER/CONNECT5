@@ -1,0 +1,160 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	<resultMap id="boardMap"
+		type="study.spring.simplespring.model.Board">
+		<result property="BoardId" column="BoardId" />
+		<result property="Title" column="Title" />
+		<result property="Content" column="Content" />
+		<result property="CreationDate" column="CreationDate" />
+		<result property="ContentImg" column="ContentImg" />
+		<result property="Category" column="Category" />
+		<result property="MemberId" column="MemberId" />
+		<result property="UserId" column="UserId" />
+	</resultMap>
+
+	<select id="selectItem"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content, DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate, 
+		ContentImg, Category, b.MemberId, u.UserId
+		FROM Board b
+		INNER JOIN User u ON b.MemberId = u.MemberId
+		WHERE BoardId=#{BoardId}
+	</select>
+	
+	 <!-- 다중행 조회를 위한 기능 정의 -->
+	 <select id="selectListStory"
+        parameterType="study.spring.simplespring.model.Board"
+        resultMap="boardMap">
+        SELECT BoardId, Title, Content, 
+        DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate, 
+        ContentImg, Category, b.MemberId, u.UserId
+		FROM Board b
+		INNER JOIN User u ON b.MemberId = u.MemberId
+		WHERE Category=1
+        
+        <where>
+            <if test="Title != null and Title != ''">
+                Title LIKE concat('%', #{Title}, '%')
+            </if>
+        </where>
+        
+        ORDER BY BoardId DESC
+        
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    <select id="selectListNotice"
+        parameterType="study.spring.simplespring.model.Board"
+        resultMap="boardMap">
+        SELECT BoardId, Title, Content, 
+        DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate, 
+        ContentImg, Category, b.MemberId, u.UserId
+		FROM Board b
+		INNER JOIN User u ON b.MemberId = u.MemberId
+		WHERE Category=2
+        
+        <where>
+            <if test="Title != null and Title != ''">
+                Title LIKE concat('%', #{Title}, '%')
+            </if>
+        </where>
+        
+        ORDER BY BoardId DESC
+        
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+     <select id="selectListReview"
+        parameterType="study.spring.simplespring.model.Board"
+        resultMap="boardMap">
+        SELECT BoardId, Title, Content, 
+        DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate, 
+        ContentImg, Category, b.MemberId, u.UserId
+		FROM Board b
+		INNER JOIN User u ON b.MemberId = u.MemberId
+		WHERE Category=3
+        
+        <where>
+            <if test="Title != null and Title != ''">
+                Title LIKE concat('%', #{Title}, '%')
+            </if>
+        </where>
+        
+        ORDER BY BoardId DESC
+        
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+     <select id="selectListQnA"
+        parameterType="study.spring.simplespring.model.Board"
+        resultMap="boardMap">
+        SELECT BoardId, Title, Content, 
+        DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate, 
+        ContentImg, Category, b.MemberId, u.UserId
+		FROM Board b
+		INNER JOIN User u ON b.MemberId = u.MemberId
+		WHERE Category=4
+        
+        <where>
+            <if test="Title != null and Title != ''">
+                Title LIKE concat('%', #{Title}, '%')
+            </if>
+        </where>
+        
+        ORDER BY BoardId DESC
+        
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+    <select id="selectCountAll"
+        parameterType="study.spring.simplespring.model.Board" resultType="int">
+        SELECT COUNT(*)
+        FROM Board b
+        INNER JOIN User u ON b.MemberId=u.MemberId
+        
+        <where>
+            <if test="Title != null and Title != ''">
+                Title LIKE concat('%', #{Title}, '%')
+            </if>
+        </where>
+    </select>
+    
+
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem"
+        parameterType="study.spring.simplespring.model.Board"
+        useGeneratedKeys="true" keyProperty="BoardId">
+        INSERT INTO Board (
+            Title, Content, CreationDate, ContentImg, Category, MemberId
+        ) VALUES (
+            #{Title}, #{Content}, #{CreationDate}, #{ContentImg}, #{Category}, #{MemberId}
+        )
+    </insert>
+
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem"
+        parameterType="study.spring.simplespring.model.Board">
+        DELETE FROM Board WHERE BoardId=#{BoardId}
+    </delete>
+
+    <!-- 데이터 갱신을 위한 기능 정의 -->
+    <update id="updateItem"
+        parameterType="study.spring.simplespring.model.Board">
+        UPDATE Board SET
+            Title=#{Title}, Content=#{Content}, CreationDate=#{CreationDate},
+            ContentImg=#{ContentImg}, Category=#{Category}, MemberId=#{MemberId}
+        WHERE BoardId=#{BoardId}
+    </update>
+</mapper>
