@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<!doctype html>
-<html>
-<head>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -92,6 +89,13 @@ ul, ol {
 #user>li {
 	display: inline;
 	margin-left: 10px;
+}
+
+.logoutbutton {
+	background-color: #F73478;
+	width: 50px;
+	height: 20px;
+	color: white;
 }
 
 /* 상단 이미지 */

@@ -71,21 +71,23 @@
 	<div class="col-md-10 text1">
 		<h5>1:1 문의 상담</h5>
 	</div>
-	<div class="col-md-10 content">
+		<div class="col-md-10 content">
 
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" id="num">제목</th>
-						<th class="text-center"><input type="text"
-							placeholder="제목을 입력하세요." id="textarea" /></th>
+						<th class="text-center" id="Title">제목</th>
+						<th class="text-center">
+							<input type="text" placeholder="제목을 입력하세요." id="Title" name="Title" />
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"><textarea
-								placeholder="내용을 입력하세요." class="form-control" id="contentarea" /></textarea></td>
+						<td id="Content" colspan="3" align="center">
+							<textarea placeholder="내용을 입력하세요." class="form-control" id="Content" name="Content" /></textarea>
+						</td>
 					</tr>
 
 				</tbody>
@@ -93,8 +95,11 @@
 		</div>
 
 		<div class="pull-right">
-			<button class="btn btn-default" onclick="add()">글쓰기</button>
-			<button class="btn btn-default" onclick="cancel()">취소</button>
+			<a
+				href="${pageContext.request.contextPath}/_mypage/1_1questionadd_Ok.do">
+				<button type="submit" class="btn btn-default">글쓰기</button>
+			</a>
+			<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
 		</div>
 
 	</div>

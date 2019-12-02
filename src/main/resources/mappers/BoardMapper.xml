@@ -11,6 +11,7 @@
 		<result property="Category" column="Category" />
 		<result property="MemberId" column="MemberId" />
 		<result property="UserId" column="UserId" />
+		<result property="UserName" column="UserName" />
 	</resultMap>
 
 	<select id="selectItem"
@@ -157,4 +158,12 @@
             ContentImg=#{ContentImg}, Category=#{Category}, MemberId=#{MemberId}
         WHERE BoardId=#{BoardId}
     </update>
+    
+    <select id="selectList"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT b.*, u.UserName 
+		FROM connect5.board b
+		inner JOIN connect5.User u ON (b.MemberId = u.MemberId) WHERE b.MemberId = #{MemberId};
+	</select>
 </mapper>

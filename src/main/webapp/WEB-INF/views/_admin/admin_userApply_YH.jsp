@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,7 +55,13 @@
 		} else {
 			return;
 		}
-		location.href = "${pageContext.request.contextPath}/_admin/admin_userApply_YH.do";
+		location.href = "";
+	}
+	
+	var searchName = function() {
+		var userName = $("#s_btn").val();
+		
+		window.location="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do?keyword=" + userName;
 	}
 </script>
 
@@ -93,139 +103,62 @@
 		</div>
 
 		<div class="col-md-4 searching_box">
+			<form action="${pageContext.request.contextPath }/_admain/admin_userApply_YH.do"></form>
 			<ul id="key">
-				<li><select name="keyField">
-						<option value="0">---선택---</option>
-						<option value="title">서비스</option>
-						<option value="id">이름</option>
-				</select> <input type="text" name="KeyWord" /> <input type="submit"
-					id="s_btn" value="검색" />
+				<li>
+					<input type="search" name="keyword" id="s_btn" value="${keyword}">
+					<button type="submit" onclick="searchName()">검색</button>
+				</li>
 			</ul>
 		</div>
 
 		<div class="col-md-10 text_box">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr class="text-center">
+							<td id="num">번호</td>
+							<td id="name">이름</td>
+							<td id="num">신청날짜</td>
+							<td id="date">매칭 신청일</td>
+							<td id="username">신청취소</td>
+							<td id="delete">신청취소</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:choose>
+							<%-- 조회결과가 없는 경우 --%>
+							<c:when test="${output == null || fn:length(output) == 0}">
+								<tr>
+									<td colspan="9" align="center">조회결과가 없습니다.</td>
+								</tr>
+							</c:when>
+							<%-- 조회결과가 있는  경우 --%>
+							<c:otherwise>
+								<%-- 조회 결과에 따른 반복 처리 --%>
+								<c:forEach items="${output}" var="item" varStatus="status">
 
-					<tr class="text-center">
-						<td id="num">번호</td>
-						<td id="special">스페셜서비스 유무</td>
-						<td id="name">이름</td>
-						<td id="date">신청날짜</td>
-						<td id="date_num">매칭 신청일</td>
-						<td id="delete">신청취소</td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">10</td>
-						<td id="special">유</td>
-						<td id="name">전소민</td>
-						<td id="date">2019.10.14</td>
-						<td id="date_num">2019-10-25</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">9</td>
-						<td id="special">무</td>
-						<td id="name">전지현</td>
-						<td id="date">2019.10.11</td>
-						<td id="date_num">2019-10-14</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">8</td>
-						<td id="special">유</td>
-						<td id="name">오연서</td>
-						<td id="date">2019.10.18</td>
-						<td id="date_num">2019-10-21</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">7</td>
-						<td id="special">유</td>
-						<td id="name">남주현</td>
-						<td id="date">2019.10.09</td>
-						<td id="date_num">2019-10-19</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">6</td>
-						<td id="special">무</td>
-						<td id="name">배수지</td>
-						<td id="date">2019.10.18</td>
-						<td id="date_num">2019-10-25</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">5</td>
-						<td id="special">유</td>
-						<td id="name">배세은</td>
-						<td id="date">2019.10.07</td>
-						<td id="date_num">2019-10-25</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">4</td>
-						<td id="special">무</td>
-						<td id="name">박경동</td>
-						<td id="date">2019.10.14</td>
-						<td id="date_num">2019-10-20</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">3</td>
-						<td id="special">유</td>
-						<td id="name">정유빈</td>
-						<td id="date">2019.10.10</td>
-						<td id="date_num">2019-10-14</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">2</td>
-						<td id="special">무</td>
-						<td id="name">최유한</td>
-						<td id="date">2019.10.01</td>
-						<td id="date_num">2019-10-23</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-					<tr class="text-center">
-						<td id="num">1</td>
-						<td id="special">유</td>
-						<td id="name">남희권</td>
-						<td id="date">2019.10.12</td>
-						<td id="date_num">2019-10-21</td>
-						<td><button type="button" class="label label-warning"
-								onclick="deldet_post()">삭제</button></td>
-					</tr>
-
+									<tr>
+										<td align="center"><c:out value="${item.ReqMatchId}"/></td>
+										<td align="center">${item.UserName}</td>
+										<td align="center">${item.Select_Date}</td>
+										<td align="center">${item.Choose_Date}</td>
+										<td align="center"></td>
+										<td align="center"><button type="button"
+												class="label label-warning" onclick="deldet_post()">삭제</button></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</tbody>
 				</table>
 			</div>
-			<ul class="pagination pagination-sm">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-
 		</div>
 	</div>
 
 
 	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

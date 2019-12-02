@@ -22,7 +22,23 @@
 		<result property="StateAddress" column="StateAddress" />
 		<result property="DetailAddress" column="DetailAddress" />
 		<result property="isadmin" column="isadmin" />
-
+		<result property="Member_Lv" column="Member_Lv" />
+		<result property="Job" column="Job" />
+		<result property="Edu_Lv" column="Edu_Lv" />
+		<result property="User_Img" column="User_Img" />
+		<result property="Height" column="Height" />
+		<result property="BldType" column="BldType" />
+		<result property="Date_Loc" column="Date_Loc" />
+		<result property="Style" column="Style" />
+		<result property="Personality" column="Personality" />
+		<result property="Sal_Annual" column="Sal_Annual" />
+		<result property="Date_Count" column="Date_Count" />
+		<result property="Date_Rest" column="Date_Rest" />
+		<result property="isSpUser" column="isSpUser" />
+		<result property="ReqMatchId" column="ReqMatchId" />
+		<result property="Select_Date" column="Select_Date" />
+		<result property="MemberId" column="MemberId" />
+		<result property="Choose_Date" column="Choose_Date" />
 	</resultMap>
 
 	<!-- insert -->

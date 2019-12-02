@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -57,15 +60,47 @@
 
 		<div class="col-md-10 content">
 			<hr>
-			<div class="question">
-				<p id="question1">
-					<span>문의 내역이 없습니다.</span>
-				</p>
+			<div class="table-responsive">
+				<c:choose>
+					<%-- 조회결과가 없는 경우 --%>
+					<c:when test="${output2 == null || fn:length(output2) == 0}">
+						<tr>
+							<td colspan="9" align="center" id="question1">문의 내역이 없습니다.</td>
+						</tr>
+					</c:when>
+					<%-- 조회결과가 있는  경우 --%>
+					<c:otherwise>
+						<table>
+							<tr>
+								<th align="center" class="num">번호</th>
+								<th align="center">제목</th>
+								<th align="center" class="name">이름</th>
+								<th align="center" class="date">등록일</th>
+								<th align="center" class="reply_ok">답변여부</th>
+							</tr>
+						</table>
+
+
+						<%-- 조회 결과에 따른 반복 처리 --%>
+						<c:forEach var="item" items="${output2}" varStatus="status">
+							<c:out value="${status.count}" />
+						</c:forEach>
+						<c:forEach var="item" items="${output2}" varStatus="status">
+							<tr>
+								<th align="center">${item.getTitle()}</th>
+								<th align="center">${item.getContent()}</th>
+								<th align="center">${item.getUserName()}</th>
+								<th align="center">${item.getCreationDate()}</th>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<hr>
-
-			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_mypage/1_1questionWrite_YH.do'">문의하기</button>
+			<a
+				href="${pageContext.request.contextPath}/_mypage/1_1questionadd.do">
+				<button class="btn btn-default">문의하기</button>
+			</a>
 
 		</div>
 	</div>

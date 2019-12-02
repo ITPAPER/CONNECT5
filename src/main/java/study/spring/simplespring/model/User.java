@@ -36,4 +36,32 @@ public class User {
    private String Join_Date;
    
    private int isadmin;
+   
+   private int Member_Lv;
+	
+	private String Job;
+	
+	private String Edu_Lv;
+	
+	private String User_Img;
+	
+	private int Height;
+	
+	private String BldType;
+	
+	private int Date_Loc;
+	
+	private int Style;
+	
+	private int Personality;
+	
+	private int Sal_Annual;
+	
+	private int Date_Count;
+	
+	private int Date_Rest;
+	
+	private int isSpUser;
+   
+   
    }

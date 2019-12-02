@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -28,7 +31,7 @@
 
 <!-- Main CSS 링크 -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/Index1.css">
+	href="${pageContext.request.contextPath}/./assets/css/Index1.css">
 
 
 <!-- 나눔고딕 웹 폰트 적용 -->
@@ -88,13 +91,24 @@
 
 			<!-- 로그인 -->
 			<div class="col-md-4">
+
+
 				<ul id="user">
-					<li><a
-						href="${pageContext.request.contextPath}/_login/login_HG.do">LOGIN</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/_join/join1_HG.do">SIGN
-							UP</a></li>
+					<c:choose>
+						<c:when test="${loginInfo == null }">
+							<li><a href="${pageContext.request.contextPath}/_login/login_HG.do">LOGIN</a></li>
+							<li><a href="${pageContext.request.contextPath}/_join/join1_HG.do">SIGN
+									UP</a></li>
+						</c:when>
+						<c:when test="${loginInfo != null }">
+							<li style="font-family: 'Do Hyeon', sans-serif"> 
+								안녕하세요.${output}님 <a href="${pageContext.request.contextPath}/_login/loginOut.do"><button class="logoutbutton">로그아웃</button> </a>
+							</li>
+						</c:when>
+					</c:choose>
 				</ul>
+
+
 			</div>
 			<!-- 로그인 끝 -->
 		</div>

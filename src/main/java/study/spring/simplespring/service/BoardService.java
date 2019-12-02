@@ -22,4 +22,6 @@ public interface BoardService {
 	public int editBoard(Board input) throws Exception;
 
 	public int deleteBoard(Board input) throws Exception;
+	
+	public List<Board> getBoardList(Board input) throws Exception;
 }
