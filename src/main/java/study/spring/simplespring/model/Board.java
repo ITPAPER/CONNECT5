@@ -12,6 +12,7 @@ public class Board {
 	private int Category;
 	private int MemberId;
 	private String UserId;
+	private String UserName;
 
 	/** LIMIT 절에서 사용할 조회 시작 위치 */
 	private static int offset;
