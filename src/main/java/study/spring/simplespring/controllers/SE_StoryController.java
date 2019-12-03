@@ -14,6 +14,7 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.service.UserService;
 
@@ -33,6 +34,13 @@ public class SE_StoryController {
 	
 	@RequestMapping(value = "/_info/story_SE.do", method = RequestMethod.GET)
 	public ModelAndView view(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		
 		/** 1) 필요한 변수값 생성 */
         String keyword = webHelper.getString("keyword", "");    // 검색어
@@ -76,14 +84,15 @@ public class SE_StoryController {
         return new ModelAndView("_info/story_SE");
 	}
 	
-	@RequestMapping(value = "/_info/storyRead1_SE.do", method = RequestMethod.GET)
-	public String read1(Model model) {
-
-		return "_info/storyRead1_SE";
-	}
-	
-	@RequestMapping(value = "/_info/storyRead2_SE.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_info/storyRead_SE.do", method = RequestMethod.GET)
 	public ModelAndView read2(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		
 		 /** 1) 필요한 변수값 생성 */
 	       // 조회할 대상에 대한 PK값
@@ -111,6 +120,6 @@ public class SE_StoryController {
 	       
 	       /** 3) View 처리 */
 	       model.addAttribute("output", output);
-	       return new ModelAndView("_info/storyRead2_SE");
+	       return new ModelAndView("_info/storyRead_SE");
 	}
 }

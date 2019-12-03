@@ -100,7 +100,7 @@
                         </c:if>
                         
                         <%-- 상세페이지로 이동하기 위한 URL --%>
-                        <c:url value="/_info/storyRead2_SE.do" var="viewUrl">
+                        <c:url value="/_info/storyRead_SE.do" var="viewUrl">
                             <c:param name="boardId" value="${item.boardId}" />
                         </c:url>
                         

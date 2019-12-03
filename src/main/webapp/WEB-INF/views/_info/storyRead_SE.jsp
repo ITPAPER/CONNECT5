@@ -61,7 +61,7 @@
 					</tr>
 					<tr>
 						<th>다음글</th>
-						<th colspan="2" align="center"><a href="${pageContext.request.contextPath}/_info/storyRead1_SE.do">오랜 기다림 끝에, 드디어 찾았어요!</a></th>
+						<th colspan="2" align="center"><a href="${pageContext.request.contextPath}/_info/storyRead_SE.do">오랜 기다림 끝에, 드디어 찾았어요!</a></th>
 					</tr>
 					<tr>
 						<th>이전글</th>
