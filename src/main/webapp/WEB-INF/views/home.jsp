@@ -102,7 +102,7 @@
 						</c:when>
 						<c:when test="${loginInfo != null }">
 							<li style="font-family: 'Do Hyeon', sans-serif"> 
-								안녕하세요.${output}님 <a href="${pageContext.request.contextPath}/_login/loginOut.do"><button class="logoutbutton">로그아웃</button> </a>
+								안녕하세요.${login}님 <a href="${pageContext.request.contextPath}/_login/loginOut.do"><button class="logoutbutton">로그아웃</button> </a>
 							</li>
 						</c:when>
 					</c:choose>
