@@ -32,9 +32,9 @@ public class HomeController {
 
       if (loginInfo != null) {
 
-         String output = loginInfo.getUserName();
+         String login = loginInfo.getUserName();
 
-         model.addAttribute("output", output);
+         model.addAttribute("login", login);
       }
 
       return new ModelAndView("home");
