@@ -9,7 +9,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionEmpty_YH.css">
+	href="${pageContext.request.contextPath}/./assets/css/YH/Mypage/1_1questionEmpty_YH.css">
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -79,21 +79,23 @@
 								<th align="center" class="date">등록일</th>
 								<th align="center" class="reply_ok">답변여부</th>
 							</tr>
+
+
+
+							<%-- 조회 결과에 따른 반복 처리 --%>
+							<c:forEach var="item" items="${output2}" varStatus="status">
+								<c:out value="${status.count}" />
+							</c:forEach>
+							<c:forEach var="item" items="${output2}" varStatus="status">
+								<tr>
+									<th align="center">${item.getTitle()}</th>
+									<th align="center">${item.getContent()}</th>
+									<th align="center">${item.getUserName()}</th>
+									<th align="center">${item.getCreationDate()}</th>
+								</tr>
+
+							</c:forEach>
 						</table>
-
-
-						<%-- 조회 결과에 따른 반복 처리 --%>
-						<c:forEach var="item" items="${output2}" varStatus="status">
-							<c:out value="${status.count}" />
-						</c:forEach>
-						<c:forEach var="item" items="${output2}" varStatus="status">
-							<tr>
-								<th align="center">${item.getTitle()}</th>
-								<th align="center">${item.getContent()}</th>
-								<th align="center">${item.getUserName()}</th>
-								<th align="center">${item.getCreationDate()}</th>
-							</tr>
-						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</div>

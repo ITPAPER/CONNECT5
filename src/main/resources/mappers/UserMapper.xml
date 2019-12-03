@@ -35,10 +35,6 @@
 		<result property="Date_Count" column="Date_Count" />
 		<result property="Date_Rest" column="Date_Rest" />
 		<result property="isSpUser" column="isSpUser" />
-		<result property="ReqMatchId" column="ReqMatchId" />
-		<result property="Select_Date" column="Select_Date" />
-		<result property="MemberId" column="MemberId" />
-		<result property="Choose_Date" column="Choose_Date" />
 	</resultMap>
 
 	<!-- insert -->
