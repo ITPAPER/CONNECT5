@@ -101,27 +101,33 @@ public class SE_QnAController {
 	
 	@RequestMapping(value = "/_coach/QnAWrite_ok_SE.do", method = RequestMethod.POST)
     public ModelAndView add_ok(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = loginInfo.getMemberId();
+		String UserId = loginInfo.getUserId();
+		
         /** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
         String Title = webHelper.getString("Title");
         String Content = webHelper.getString("Content");
         String CreationDate = webHelper.getString("CreationDate");
         String ContentImg = webHelper.getString("ContentImg");
         int Category = webHelper.getInt("Category");
-        String UserId = webHelper.getString("UserId");
        
         /** 2) 데이터 저장하기 */
         // 저장할 값들을 Beans에 담는다.
         Board input = new Board();
+        input.setMemberId(MemberId);
         input.setTitle(Title);
         input.setContent(Content);
         input.setCreationDate(CreationDate);
         input.setContentImg(ContentImg);
         input.setCategory(Category);
+        input.setUserId(UserId);
 
         try {
             // 데이터 저장
             // --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
-            boardService.addBoard(input);
+            boardService.addBoardQnA(input);
         } catch (Exception e) {
             return webHelper.redirect(null, e.getLocalizedMessage());
         }
@@ -137,7 +143,7 @@ public class SE_QnAController {
 		
 		 /** 1) 필요한 변수값 생성 */
         // 조회할 대상에 대한 PK값
-        int boardId = webHelper.getInt("boardId");
+        int boardId = webHelper.getInt("BoardId");
 
         // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
         if (boardId == 0) {
@@ -170,7 +176,7 @@ public class SE_QnAController {
 		
 		 /** 1) 필요한 변수값 생성 */
        // 조회할 대상에 대한 PK값
-       int boardId = webHelper.getInt("boardId");
+       int boardId = webHelper.getInt("BoardId");
 
        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
        if (boardId == 0) {

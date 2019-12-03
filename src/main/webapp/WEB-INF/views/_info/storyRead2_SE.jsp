@@ -7,7 +7,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Info/noticeRead1.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Info/noticeRead.css">
 
 <meta charset="utf-8" />
 <title>연-결</title>

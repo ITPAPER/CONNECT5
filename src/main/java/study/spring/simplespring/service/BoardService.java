@@ -16,8 +16,12 @@ public interface BoardService {
 	public List<Board> getBoardListReview(Board input) throws Exception;
 
 	public int getBoardCount(Board input) throws Exception;
-
+	
 	public int addBoard(Board input) throws Exception;
+
+	public int addBoardReview(Board input) throws Exception;
+	
+	public int addBoardQnA(Board input) throws Exception;
 
 	public int editBoard(Board input) throws Exception;
 

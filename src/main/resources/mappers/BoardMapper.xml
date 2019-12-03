@@ -140,8 +140,30 @@
         INSERT INTO Board (
             Title, Content, CreationDate, ContentImg, Category, MemberId
         ) VALUES (
-            #{Title}, #{Content}, #{CreationDate}, #{ContentImg}, #{Category}, #{MemberId}
+            #{Title}, #{Content}, now(), #{ContentImg}, 3, #{MemberId}
         )
+    </insert>
+    
+    <insert id="insertItemReview"
+        parameterType="study.spring.simplespring.model.Board"
+        useGeneratedKeys="true" keyProperty="BoardId">
+        INSERT INTO Board (
+            Title, Content, CreationDate, ContentImg, Category, MemberId
+        ) VALUES (
+            #{Title}, #{Content}, now(), #{ContentImg}, 3, #{MemberId}
+        )
+    </insert>
+    
+    <insert id="insertItemQnA"
+        parameterType="study.spring.simplespring.model.Board"
+        useGeneratedKeys="true" keyProperty="BoardId">
+        INSERT INTO Board (
+            Title, Content, CreationDate, ContentImg, Category, MemberId
+        ) VALUES (
+            #{Title}, #{Content}, now(), #{ContentImg}, 4, #{MemberId}
+        ) 
+        
+        
     </insert>
 
     <!-- 데이터 삭제를 위한 기능 정의 -->

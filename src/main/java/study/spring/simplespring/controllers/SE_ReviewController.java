@@ -14,6 +14,7 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.service.UserService;
 
@@ -77,9 +78,63 @@ public class SE_ReviewController {
 	}
 	
 	@RequestMapping(value = "/_coach/reviewWrite_SE.do", method = RequestMethod.GET)
-	public String write(Model model) {
+	public ModelAndView add(Model model) {
+		
+		/** 목록 조회하기 */
+        // 조회결과를 저장할 객체 선언
+        List<User> output = null;
 
-		return "_coach/reviewWrite_SE";
+        try {
+            // 데이터 조회 
+            output = userService.getUserList(null);
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+
+        // View에 추가
+        model.addAttribute("output", output);
+
+        return new ModelAndView("_coach/reviewWrite_SE");
+
+	}
+	
+	@RequestMapping(value = "/_coach/reviewWrite_ok_SE.do", method = RequestMethod.POST)
+    public ModelAndView add_ok(Model model) {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = loginInfo.getMemberId();
+		String UserId = loginInfo.getUserId();
+		
+        /** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
+        String Title = webHelper.getString("Title");
+        String Content = webHelper.getString("Content");
+        String CreationDate = webHelper.getString("CreationDate");
+        String ContentImg = webHelper.getString("ContentImg");
+        int Category = webHelper.getInt("Category");
+       
+        /** 2) 데이터 저장하기 */
+        // 저장할 값들을 Beans에 담는다.
+        Board input = new Board();
+        input.setMemberId(MemberId);
+        input.setTitle(Title);
+        input.setContent(Content);
+        input.setCreationDate(CreationDate);
+        input.setContentImg(ContentImg);
+        input.setCategory(Category);
+        input.setUserId(UserId);
+
+        try {
+            // 데이터 저장
+            // --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+            boardService.addBoardReview(input);
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+
+        /** 3) 결과를 확인하기 위한 페이지 이동 */
+        // 저장 결과를 확인하기 위해서 데이터 저장시 생성된 PK값을 상세 페이지로 전달해야 한다.
+        String redirectUrl = contextPath + "/_coach/reviewRead2_SE.do?BoardId=" + input.getBoardId();
+        return webHelper.redirect(redirectUrl, "저장되었습니다.");
+		
 	}
 	
 	@RequestMapping(value = "/_coach/reviewRead1_SE.do", method = RequestMethod.GET)
@@ -93,7 +148,7 @@ public class SE_ReviewController {
 		
 		 /** 1) 필요한 변수값 생성 */
 	       // 조회할 대상에 대한 PK값
-	       int boardId = webHelper.getInt("boardId");
+	       int boardId = webHelper.getInt("BoardId");
 
 	       // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
 	       if (boardId == 0) {

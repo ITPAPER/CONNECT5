@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:if test="${loginInfo == null}">
+	<script>
+		alert("로그인 후에 이용해주세요.");
+		location.href="${pageContext.request.contextPath}/_login/login_HG.do";
+	</script>
+</c:if>
 <!doctype html>
 <html>
 <head>
@@ -62,7 +71,8 @@
 	<div class="col-md-10 text1">
 		<h5>연-결 회원님들의 만남 후기 이야기를 들어보세요.</h5>
 	</div>
-
+	
+	<form method="post" action="${pageContext.request.contextPath}/_coach/reviewWrite_ok_SE.do">
 	<div class="col-md-10 content">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -70,13 +80,13 @@
 					<tr>
 						<th id="num">제목</th>
 						<th><input type="text"
-							placeholder="제목을 입력하세요." id="textarea" /></th>
+							placeholder="제목을 입력하세요." id="textarea" name="Title" /></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td id="context" colspan="3" align="center"><textarea
-								placeholder="내용을 입력하세요." class="form-control" id="contentarea" /></textarea></td>
+								placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content" /></textarea></td>
 					</tr>
 
 				</tbody>
@@ -89,6 +99,7 @@
 		</div>
 
 	</div>
+	</form>
 	
 <jsp:include page="../assets/inc/footer.jsp" />
 </body>
