@@ -66,7 +66,7 @@ public class HG_LoginController {
       
       String logininfo = loginInfo.getUserName();
       
-      model.addAttribute("output",logininfo);
+      model.addAttribute("login",logininfo);
       String viewPath = "home";
       return new ModelAndView(viewPath);
 
