@@ -62,7 +62,22 @@ public class HG_JoinController {
 		String DetailAddress = webHelper.getString("DetailAddress");
 		String Join_Date = webHelper.getString("Join_Date");
 		
-		
+		if (UserId == null)						{ return webHelper.redirect(null, "아이디를 입력하세요."); }
+		if (!regexHelper.isEngNum(UserId))		{ return webHelper.redirect(null, "아이디는 영어와 숫자로만 입력하세요."); }
+		if (UserPw == null)						{ return webHelper.redirect(null, "비밀번호를 입력하세요."); }
+		if (!regexHelper.isEngNum(UserPw))		{ return webHelper.redirect(null, "비밀번호는 영어와 숫자로만 입력하세요."); }
+		if (UserName == null)					{ return webHelper.redirect(null, "이름을 입력하세요."); }
+		if (!regexHelper.isKor(UserName))		{ return webHelper.redirect(null, "이름은 한글만 가능합니다."); }
+		if (BirthDate == null)					{ return webHelper.redirect(null, "생년월일을 입력하세요."); }
+		if (Gender == 0)						{ return webHelper.redirect(null, "성별을 선택해주세요."); }
+		if (IsMarried == 0)						{ return webHelper.redirect(null, "결혼여부를 선택해주세요."); }
+		if (Mobile == null)						{ return webHelper.redirect(null, "핸드폰번호를 입력하세요."); }
+		if (!regexHelper.isCellPhone(Mobile))	{ return webHelper.redirect(null, "핸드폰번호는 숫자로만 입력하세요."); }
+		if (!regexHelper.isTel(TEL))			{ return webHelper.redirect(null, "전화번호는 숫자로만 입력하세요."); }
+		if (Email == null)						{ return webHelper.redirect(null, "이메일을 입력해주세요."); }
+		if (!regexHelper.isEmail(Email))		{ return webHelper.redirect(null, "이메일 형식에 맞춰주세요."); }
+		if (PostCode == null)					{ return webHelper.redirect(null, "우편번호 찾기를 눌러주세요"); }
+		if (DetailAddress == null)				{ return webHelper.redirect(null, "상세주소를 입력해주세요."); }
 		
 		
 		

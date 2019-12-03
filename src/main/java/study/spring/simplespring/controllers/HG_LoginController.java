@@ -1,5 +1,7 @@
 package study.spring.simplespring.controllers;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +40,9 @@ public class HG_LoginController {
    public ModelAndView loginaction(Model model, HttpServletRequest request, HttpServletResponse response) {
 
       String UserId = webHelper.getString("UserId");
+      
+      //LocalDate selectDate = LocalDate.now();
+      
       String UserPw = webHelper.getString("UserPw");
 
       User input = new User();
@@ -59,9 +64,18 @@ public class HG_LoginController {
          return new ModelAndView("_admin/admin_main_SE");
       }
       
-
+      String logininfo = loginInfo.getUserName();
+      
+      model.addAttribute("output",logininfo);
       String viewPath = "home";
       return new ModelAndView(viewPath);
 
+   }
+   @RequestMapping(value = "/_login/loginOut.do", method = { RequestMethod.GET, RequestMethod.POST })
+   public ModelAndView logout(Model model, HttpServletRequest request, HttpServletResponse response) {
+      
+      webHelper.removeAllSession();
+      
+      return webHelper.redirect(request.getContextPath() + "/", "연-결을 이용해 주셔서 감사합니다. 안녕하가세요.");
    }
 }
