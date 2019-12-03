@@ -29,12 +29,12 @@ public class YH_SpecialService {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		if (loginInfo != null) {
+	      if (loginInfo != null) {
 
-			String output = loginInfo.getUserName();
+	         String login = loginInfo.getUserName();
 
-			model.addAttribute("output", output);
-		}
+	         model.addAttribute("login", login);
+	      }
 
 		return "_service/SpecialService_YH";
 
@@ -45,12 +45,12 @@ public class YH_SpecialService {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		if (loginInfo != null) {
+	      if (loginInfo != null) {
 
-			String output = loginInfo.getUserName();
+	         String login = loginInfo.getUserName();
 
-			model.addAttribute("output", output);
-		}
+	         model.addAttribute("login", login);
+	      }
 		return "_service/MemberLevel_YH";
 
 	}

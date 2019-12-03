@@ -44,12 +44,12 @@ public class YH_1_1questionEmpty {
 	public ModelAndView view(Model model, HttpServletRequest request, HttpServletResponse response) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		if (loginInfo != null) {
+	      if (loginInfo != null) {
 
-			String output = loginInfo.getUserName();
+	         String login = loginInfo.getUserName();
 
-			model.addAttribute("output", output);
-		}
+	         model.addAttribute("login", login);
+	      }
 		
 		String UserName = loginInfo.getUserName();
 		int MemberId = loginInfo.getMemberId();
@@ -85,12 +85,12 @@ public class YH_1_1questionEmpty {
 	public ModelAndView add(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		if (loginInfo != null) {
+	      if (loginInfo != null) {
 
-			String output = loginInfo.getUserName();
+	         String login = loginInfo.getUserName();
 
-			model.addAttribute("output", output);
-		}
+	         model.addAttribute("login", login);
+	      }
 		
 		int MemberId = loginInfo.getMemberId();
 		String Title = webHelper.getString("Title");
