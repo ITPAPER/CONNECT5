@@ -87,6 +87,12 @@ public class SE_ReviewController {
 	@RequestMapping(value = "/_coach/reviewWrite_SE.do", method = RequestMethod.GET)
 	public ModelAndView add(Model model) {
 		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+		
 		/** 목록 조회하기 */
         // 조회결과를 저장할 객체 선언
         List<User> output = null;

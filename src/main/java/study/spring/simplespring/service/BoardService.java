@@ -28,4 +28,5 @@ public interface BoardService {
 	public int deleteBoard(Board input) throws Exception;
 	
 	public List<Board> getBoardList(Board input) throws Exception;
+	
 }

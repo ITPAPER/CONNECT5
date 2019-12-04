@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -11,10 +11,6 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead.css">
-
-<script>
-	
-</script>
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -24,8 +20,8 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/QnA.jpg" alt="연-결"
-			class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/QnA.jpg"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -35,10 +31,15 @@
 			<h3 class="title">연-결 코치</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a> <a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
-					class="list-group-item">LOVE 컬럼</a> <a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
-					class="list-group-item">데이트 코스</a> <a href="${pageContext.request.contextPath}/_coach/review_SE.do"
-					class="list-group-item">연-결 만남 후기</a> <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
+				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do"
+					class="list-group-item">미팅성공전략TIP</a> <a
+					href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
+					class="list-group-item">LOVE 컬럼</a> <a
+					href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
+					class="list-group-item">데이트 코스</a> <a
+					href="${pageContext.request.contextPath}/_coach/review_SE.do"
+					class="list-group-item">연-결 만남 후기</a> <a
+					href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
 					class="list-group-item btncolor">연-결 Q &amp; A</a>
 			</div>
 		</div>
@@ -67,24 +68,48 @@
 					<tr>
 						<th>다음글</th>
 						<th colspan="2" align="center"><a
-							href="${pageContext.request.contextPath}/_coach/QnARead_SE.do">배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></th>
+							href="${pageContext.request.contextPath}/_coach/QnARead_SE.do">배경
+								좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></th>
 					</tr>
 					<tr>
 						<th>이전글</th>
-						<th colspan="2" align="center"><a
-							href="#">신중한 그녀, 나 혼자 앞서간 건가?</a></th>
+						<th colspan="2" align="center"><a href="#">신중한 그녀, 나 혼자
+								앞서간 건가?</a></th>
 					</tr>
-				</tbody>
+				</tbody>			
 			</table>
+			
+			<div class="form-group">
+				<label for="Re_Content" class="control-label">댓글</label>
+				<input type="text" id="Re_Content" name="Re_Content" class="form-control" placeholder = "댓글을 입력하세요" value="${reply.Re_Content}" >
+			</div>
+			<br />
+			<div>
+				<ul>
+					<li class="media">
+					<div class="media-body">
+						<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
+						<div class="clearfix">
+							<!-- 제목에 float: left 적용 - pull-left -->
+							<h4 class="media-heading pull-left">주영아 <small>2013-11-20 13:12:32</small></h4>
+							<!-- 제목에 float: right 적용 - pull-right -->
+							<div class="pull-right">
+								<a href="#" title="수정"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="#" title="삭제"><i class="glyphicon glyphicon-remove"></i></a>
+							</div>
+						</div>
+						<p>Twitter Bootstrap 정말 좋은 것 같습니다. 이 전에는 힘들게 하던 작업들이 너무 간결해 졌어요.</p>
+					</div>
+				</li>
+				</ul>
+			</div>
 		</div>
+
 
 		<button class="btn btn-default pull-right"
 			onclick="location.href = '${pageContext.request.contextPath}/_coach/QnA_SE.do'">목록</button>
 
 	</div>
-
-
-	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

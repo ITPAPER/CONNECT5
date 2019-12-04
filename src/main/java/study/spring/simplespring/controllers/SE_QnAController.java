@@ -88,6 +88,12 @@ public class SE_QnAController {
 	@RequestMapping(value = "/_coach/QnAWrite_SE.do", method = RequestMethod.GET)
 	public ModelAndView add(Model model) {
 		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+		
 		/** 목록 조회하기 */
         // 조회결과를 저장할 객체 선언
         List<User> output = null;
@@ -146,7 +152,7 @@ public class SE_QnAController {
     }
 	
 	@RequestMapping(value = "/_coach/QnARead_SE.do", method = RequestMethod.GET)
-	public ModelAndView read2(Model model) {
+	public ModelAndView view(Model model) {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
@@ -181,6 +187,7 @@ public class SE_QnAController {
        
        /** 3) View 처리 */
        model.addAttribute("output", output);
+       
        return new ModelAndView("_coach/QnARead_SE");
 
 	}

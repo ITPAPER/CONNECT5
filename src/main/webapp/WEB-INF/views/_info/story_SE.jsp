@@ -83,8 +83,9 @@
                 <%-- 조회결과가 있는  경우 --%>
                 <c:otherwise>
                     <%-- 조회 결과에 따른 반복 처리 --%>
-                    <c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}"/>
-                    <c:forEach var="item" items="${output}" varStatus="status">         
+                 
+                    <c:forEach var="item" items="${output}" varStatus="status">   
+                    	<c:set var="seq" value="${item.seq}" />      
                         <c:set var="title" value="${item.title}" />
                         <c:set var="userId" value="${item.userId}" />
                         <c:set var="creationDate" value="${item.creationDate}" />                  
@@ -105,12 +106,12 @@
                         </c:url>
                         
                         <tr>
-                        	<td>${num}</td>
+                        	<td>${item.seq}</td>
                             <td><a href="${viewUrl}">${title}</a></td>
                             <td>${item.userId}</td>
                             <td>${item.creationDate}</td>
                         </tr>
-                        <c:set var="num" value="${num-1}" ></c:set>
+                       
                     </c:forEach>
                 </c:otherwise>
             </c:choose>

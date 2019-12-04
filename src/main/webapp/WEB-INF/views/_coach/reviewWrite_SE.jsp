@@ -16,7 +16,9 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnAWrite.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnAWrite1.css">
+	
+<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 	
 <script>
 	function add() {
@@ -75,22 +77,20 @@
 	<form method="post" action="${pageContext.request.contextPath}/_coach/reviewWrite_ok_SE.do">
 	<div class="col-md-10 content">
 		<div class="table-responsive">
+			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
-				<thead>
+				<tbody>
 					<tr>
 						<th id="num">제목</th>
 						<th><input type="text"
 							placeholder="제목을 입력하세요." id="textarea" name="Title" /></th>
 					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td id="context" colspan="3" align="center"><textarea
-								placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content" /></textarea></td>
-					</tr>
-
-				</tbody>
+				</tbody>					
 			</table>
+			<textarea placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content"></textarea>
+		</div>
+
+		<br />
 		</div>
 
 		<div class="pull-right">
@@ -100,7 +100,8 @@
 
 	</div>
 	</form>
+	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 	
-<jsp:include page="../assets/inc/footer.jsp" />
+	<jsp:include page="../assets/inc/footer.jsp" />
 </body>
 </html>

@@ -17,11 +17,6 @@
 	padding-bottom: 10px;
 }
 
-.pagination {
-	margin: auto;
-	padding-left: 337px;
-}
-
 hr {
 	text-align: center;
 }
@@ -30,7 +25,10 @@ hr {
 	width:55px;
 }
 
-
 .btn {
 	float: right;
+}
+
+#pagenum {
+	margin: auto;
 }
