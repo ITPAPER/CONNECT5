@@ -1,0 +1,36 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ManagerMapper">
+	<resultMap id="ManagerMap" type="study.spring.simplespring.model.Manager">
+		<result property="managerid"	column="managerid" />
+		<result property="name"		column="servicetype" />
+		<result property="m_tel"	column="pmttype" />
+		<result property="m_email"	column="servicebank" />
+		<result property="m_content"		column="payername" />
+		<result property="m_position"	column="card" />
+		<result property="memberid"		column="pmtplan" />
+		
+
+	</resultMap>
+	
+	<select id="selectItem"
+		parameterType="study.spring.simplespring.model.Manager"
+		resultMap="ManagerMap">
+		SELECT *
+		from Manager
+		
+	</select>
+	
+    <select id="selectList"
+        parameterType="study.spring.simplespring.model.Manager"
+        resultMap="ManagerMap">
+        SELECT * from manager
+        
+    </select>
+    
+
+	
+	
+	
+
+</mapper>

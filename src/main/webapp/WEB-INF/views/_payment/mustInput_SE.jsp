@@ -31,6 +31,9 @@ $(document).ready(function() {
 	  	} else if($("input[id=income]:checked").val() == ""){
 	  		alert("연봉을 선택해주세요");
 	  		return false;
+	  	} else if($("input:checkbox[name='ok']").is(":checked") == false) {
+	  		alert("동의사항을 확인해주세요.");
+	  		return false;
 	  	} else if(confirm("결제페이지로 이동하시겠습니까?") == true){
 			location.href="${pageContext.request.contextPath}/_payment/payment_GD.do";
 		} else {
@@ -75,15 +78,19 @@ $(document).ready(function() {
 	<div class="col-md-10 text1">
 		<h5>추가 정보를 입력해주세요.</h5>
 	</div>
-
+ 
+ <form method="post" action="${pageContext.request.contextPath}/_payment/mustInputok.do" >
 	<div class="col-md-9 content">
+	
 		<table class="table table-bordered">
-			<tbody>
+		
 				<tr>
-					<th id="title">프로필사진</th>
-					<th><input type="file" id="profile_img"></th>
+			
+								<th id="title">프로필사진</th>
+					<th><input type="file" name ="profile_img" id="profile_img"></th>
+				
 					<th id="title">키</th>
-					<th><select id="height">
+					<th><select name ="height" id="height">
 							<option value="">--------선택--------</option>
 							<option value="140">150cm이하</option>
 							<option value="150">151~160cm</option>
@@ -92,9 +99,10 @@ $(document).ready(function() {
 							<option value="180">181cm이상</option>
 					</select></th>
 				</tr>
+				
 				<tr>
 					<th id="title">학력</th>
-					<th><select id="edu">
+					<th><select id="edu" name ="edu">
 							<option value="">--------선택--------</option>
 							<option value="1">중졸</option>
 							<option value="2">고졸</option>
@@ -102,11 +110,11 @@ $(document).ready(function() {
 							<option value="4">석사이상</option>
 					</select></th>
 					<th id="title">직업</th>
-					<th><input type="text" style="width: 135px;"/></th>
+					<th><input type="text" name ="job" style="width: 135px;"/></th>
 				</tr>
 				<tr>
 					<th id="title">혈액형</th>
-					<th><select id="blood">
+					<th><select id="blood" name ="blood">
 							<option value="">--------선택--------</option>
 							<option value="A">A형</option>
 							<option value="B">B형</option>
@@ -114,7 +122,7 @@ $(document).ready(function() {
 							<option value="O">O형</option>
 					</select></th>
 					<th id="title">데이트선호장소</th>
-					<th><select id="place">
+					<th><select id="place" name ="place">
 							<option value="">--------선택--------</option>
 							<option value="1">서울</option>
 							<option value="2">경기도</option>
@@ -127,7 +135,7 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th id="title">선호스타일</th>
-					<th><select id="style">
+					<th><select id="style" name="style">
 							<option value="">--------선택--------</option>
 							<option value="cute">귀여움</option>
 							<option value="man">남성스러움</option>
@@ -136,7 +144,7 @@ $(document).ready(function() {
 							<option value="chubby">통통</option>
 					</select></th>
 					<th id="title">선호성격</th>
-					<th><select id="personality">
+					<th><select id="personality" name ="personality">
 							<option value="">--------선택--------</option>
 							<option value="extrovert">외향적</option>
 							<option value="introvert">내향적</option>
@@ -147,24 +155,27 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th id="title">연봉</th>
-					<th colspan="3"><input type="radio" id="income"/>
+					<th colspan="3"><input type="radio" id="income" name ="income" />
 						3000 이하&nbsp;&nbsp;&nbsp; <input type="radio" name="income" checked />
 						5000 이하&nbsp;&nbsp;&nbsp; <input type="radio" name="income"/>
 						7000 이하&nbsp;&nbsp;&nbsp; <input type="radio" name="income" />
 						1억 이상</th>
 				</tr>
 
-			</tbody>
+	
 		</table>
-
-		<div id="btn">
-			<button class="btn btn-default" id="btn1">결제페이지로
-				이동</button>
-		</div>
+		<div id="agree"><input type="checkbox" name="ok" value="ok"> 하위 등급과 매칭이 진행될 수 있습니다. 동의하시겠습니까?</div>
+		
 
 	</div>
 
 
+	<div id="btn">
+			
+			<button class="btn btn-default" id="btn1">결제페이지로
+				이동</button>
+		</div>
+		</form>
 	<!-- 변경 사항 -->
 
 <jsp:include page="../assets/inc/footer.jsp" />

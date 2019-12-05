@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 <head>
@@ -68,31 +69,158 @@
 
 
 		<p id="level">
-			나의 연-결 등급 <img
-				src="${pageContext.request.contextPath}/assets/img/vip.PNG"
-				id="level_icon"> <span
+			나의 연-결 등급 
+			<c:if test="${memberlv == 0}">
+			<img src="${pageContext.request.contextPath}/assets/img/normal.png" id="level_icon">
+			</c:if>
+			<c:if test="${memberlv == 1}">
+			<img src="${pageContext.request.contextPath}/assets/img/bronze.PNG" id="level_icon">
+			</c:if>
+			<c:if test="${memberlv == 2 }">
+			<img src="${pageContext.request.contextPath}/assets/img/silver.PNG" id="level_icon">
+			</c:if>
+			<c:if test="${memberlv == 3 }">
+			<img src="${pageContext.request.contextPath}/assets/img/gold.PNG" id="level_icon">
+			</c:if>
+			<c:if test="${memberlv == 4 }">
+			<img src="${pageContext.request.contextPath}/assets/img/vip.PNG" id="level_icon">
+			</c:if>
+				 <span
 				style="font-weight: bold; color: #F73478; font-size: 35px;"
-				id="level_text"> V.I.P </span> <span
+				id="level_text">
+				
+				
+				<c:if test="${memberlv == 0}">
+				　Normal
+				</c:if>
+				<c:if test="${memberlv == 1}">
+				　Bronze
+				</c:if>
+				<c:if test="${memberlv == 2}">
+				　Silver
+				</c:if>
+				<c:if test="${memberlv == 3}">
+				　Gold
+				</c:if>
+				<c:if test="${memberlv == 4}">
+				　V.I.P
+				</c:if></span> <span
 				style="font-weight: bold; font-size: 1.3em; margin-left: 40px;"
-				id="name">박경동 </span> <span> 님의 잔여 매칭 횟수 </span> <span
-				style="font-weight: bold; font-size: 1.3em;" id="count">5</span> <span>
-				회 </span>
+				id="name">${username} </span> <span> 님의 잔여 매칭 횟수 </span> <span
+				style="font-weight: bold; font-size: 1.3em;" id="count">
+				<c:if test="${date_rest == 1}">3
+				</c:if>
+				<c:if test="${date_rest == 2}">5
+				</c:if>
+				<c:if test="${date_rest == 3}">7
+				</c:if>
+				<c:if test="${date_rest == 4}">Free
+				</c:if>
+			</span> <span> 회 </span>
 
 		</p>
 
 		<div style="clear: both;"></div>
 
 		<hr />
-		<h4>현재 매칭 상대</h4>
-		<div class="state_matching">
-			현재 진행중인 매칭이 없습니다.
-			<p class="look_match">
-				<a href="${pageContext.request.contextPath}/_mypage/search_SE.do"
-					id="lf_partner">내 연-결 찾기</a>
-			</p>
-		</div>
-		<h4>데이트 신청</h4>
-		<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
+
+		<c:if test="${memberlv == 0 }">
+			<h4>현재 매칭 상대</h4>
+			<div class="state_matching">
+				정회원 등록 시 이용 가능합니다.
+				<p class="look_match">
+					<a
+						href="${pageContext.request.contextPath}/_payment/mustInput_SE.do"
+						id="lf_partner"> 결제페이지 이동 </a>
+				</p>
+			</div>
+			<h4>데이트 신청</h4>
+			<div class="request_date">정회원 등록 시 이용 가능합니다.</div>
+		</c:if>
+		<c:if test="${memberlv == 1 }">
+			<h4>현재 매칭 상대</h4>
+			<div class="state_matching">
+				현재 진행중인 매칭이 없습니다.
+				<p class="look_match">
+					<a href="${pageContext.request.contextPath}/_mypage/search_SE.do"
+						id="lf_partner">내 연-결 찾기</a>
+				</p>
+			</div>
+			<h4>데이트 신청</h4>
+			<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
+		</c:if>
+		<c:if test="${memberlv == 2 }">
+			<h4>현재 매칭 상대</h4>
+			<div class="state_matching">
+				현재 진행중인 매칭이 없습니다.
+				<p class="look_match">
+					<a href="${pageContext.request.contextPath}/_mypage/search_SE.do"
+						id="lf_partner">내 연-결 찾기</a>
+				</p>
+			</div>
+			<h4>데이트 신청</h4>
+			<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
+		</c:if>
+		<c:if test="${memberlv == 3 }">
+			<h4>현재 매칭 상대</h4>
+			<div class="state_matching">
+				현재 진행중인 매칭이 없습니다.
+				<p class="look_match">
+					<a href="${pageContext.request.contextPath}/_mypage/search_SE.do"
+						id="lf_partner">내 연-결 찾기</a>
+				</p>
+			</div>
+			<h4>데이트 신청</h4>
+			<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
+		</c:if>
+		<c:if test="${memberlv == 4 }">
+			<h4>현재 매칭 상대</h4>
+			<div class="state_matching">
+				현재 진행중인 매칭이 없습니다.
+				<p class="look_match">
+					<a href="${pageContext.request.contextPath}/_mypage/search_SE.do"
+						id="lf_partner">내 연-결 찾기</a>
+				</p>
+			</div>
+			<h4>데이트 신청</h4>
+			<div class="request_date">현재 들어온 데이트 신청이 없습니다.</div>
+		</c:if>
+
+
+		<c:if test="${memberlv == 0 }">
+			<h4>나의 매니저</h4>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<td width="50px"><img
+						src="${pageContext.request.contextPath}/assets/img/normalUser_Manager.PNG"
+						width="100px;"height:auto;></td>
+					<td><span class="mg_name">미정<span class="job"> -
+						</span></span>
+						<p></p>
+						<p>
+							핸드폰 : <a href="#"> - </a>
+						</p> 이메일 : <span> - </span></td>
+				</tr>
+
+			</table>
+		</c:if>
+		<c:if test="${memberlv == 1 }">
+		<h4>나의 매니저</h4>
+		<table class="table table-bordered table-hover">
+			<tr>
+				<td width="50px"><img
+					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					width="100px;"></td>
+				<td><span class="mg_name">최유한<span class="job">상담
+							수석 실장</span></span>
+					<p></p>
+					<p>
+						핸드폰 : <a href="#">010-9991-1811</a>
+					</p> 이메일 : <span>YouHanJJaEung@gmail.com</span></td>
+			</tr>
+		</table>
+		</c:if>
+		<c:if test="${memberlv == 2 }">
 		<h4>나의 매니저</h4>
 		<table class="table table-bordered table-hover">
 			<tr>
@@ -106,10 +234,40 @@
 						핸드폰 : <a href="#">010-4425-7773</a>
 					</p> 이메일 : <span>azoomma@gmail.com</span></td>
 			</tr>
-
 		</table>
-
-
+		</c:if>
+		<c:if test="${memberlv == 3 }">
+		<h4>나의 매니저</h4>
+		<table class="table table-bordered table-hover">
+			<tr>
+				<td width="50px"><img
+					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					width="100px;"></td>
+				<td><span class="mg_name">박경동&nbsp;<span class="job">상담
+							수석 실장</span></span>
+					<p></p>
+					<p>
+						핸드폰 : <a href="#">010-9991-1811</a>
+					</p> 이메일 : <span>YouHanJJaEung@gmail.com</span></td>
+			</tr>
+		</table>
+		</c:if>
+			<c:if test="${memberlv == 4 }">
+		<h4>나의 매니저</h4>
+		<table class="table table-bordered table-hover">
+			<tr>
+				<td width="50px"><img
+					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					width="100px;"></td>
+				<td><span class="mg_name">아줌마&nbsp;<span class="job">상담
+							수석 실장</span></span>
+					<p></p>
+					<p>
+						핸드폰 : <a href="#">010-4425-7773</a>
+					</p> 이메일 : <span>azoomma@gmail.com</span></td>
+			</tr>
+		</table>
+		</c:if>
 	</div>
 
 

@@ -35,6 +35,7 @@
 		<result property="Date_Count" column="Date_Count" />
 		<result property="Date_Rest" column="Date_Rest" />
 		<result property="isSpUser" column="isSpUser" />
+		<result property="ManagerId" column="ManagerId" />
 	</resultMap>
 
 	<!-- insert -->
@@ -62,6 +63,24 @@
 		SELECT
 		* FROM User
 		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
+
+	</select>
+	
+	<!-- 경동 회원정보 변경 쿼리문 -->
+	<update id="updateItem"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE user
+		SET member_lv=#{member_lv} , date_rest=#{date_rest}, managerid=#{managerid}
+		WHERE
+		UserName=#{UserName};
+	</update>
+	<!-- 경동 아이디  찾기 조회 쿼리문 -->
+	<select id="selectFindaccount"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+
+		select * from user
+		where UserName=#{UserName} and email=#{email}
 
 	</select>
 

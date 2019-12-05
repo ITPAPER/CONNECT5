@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -44,18 +47,20 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/GD/Admin/payment.css">
 
-
-
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
-<script type="text/javascript">
-	function levelcfm() {
-		if (confirm("등급을 변경 하시겠습니까?") == true) {
-			alert("등급이 변경 되었습니다.");
-		}
-	}
-</script>
+<script>
+    	let nowPage = 1;    // 현재 페이지의 기본값
+    	
+    	$(function() {
+            /** 더 보기 버튼에 대한 이벤트 정의 */
+    		$("#ok").click(function() {
+               
+    			
+    		});
+    	});
+    </script>
 
 </head>
 
@@ -75,7 +80,7 @@
 
 
 		<div class="col-md-2 sidebar1">
-		<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
 				class="list-group-item">대시보드</a> <a
 				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
 				class="list-group-item">회원관리</a> <a
@@ -93,188 +98,187 @@
 			<h2>결제 관리</h2>
 		</div>
 
+		<form method="get"
+			action="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do">
+			<div class="col-md-4 searching_box">
+				<ul>
+					<li><select name="keyField">
+							<option value="0">---선택---</option>
+							<option value="name">이름</option>
+							<option value="id">아이디</option>
+					</select> <input type="text" name=keyword placeholder="이름검색"
+						value="${keyword}" />
+						<button type="submit">검색</button>
+				</ul>
 
-		<div class="col-md-4 searching_box">
-			<ul id="key">
-				<li><select name="keyField">
-						<option value="0">---선택---</option>
-						<option value="name">이름</option>
-						<option value="id">아이디</option>
-				</select> <input type="text" name="KeyWord" /> <input type="submit"
-					id="s_btn" value="검색" /></li>
-				<li><select id="start_year">
-						<option value="">--년도--</option>
-						<option value="start_2018">2018</option>
-						<option value="start_2019">2019</option>
-						<option value="start_2020">2020</option>
-				</select> <select id="start_year">
-						<option value="">--월--</option>
-						<option value="start_1">1</option>
-						<option value="start_2">2</option>
-						<option value="start_3">3</option>
-						<option value="start_1">4</option>
-						<option value="start_2">5</option>
-						<option value="start_3">6</option>
-						<option value="start_1">7</option>
-						<option value="start_2">8</option>
-						<option value="start_3">9</option>
-						<option value="start_1">10</option>
-						<option value="start_2">11</option>
-						<option value="start_3">12</option>
-				</select> ~ <select id="start_year">
-						<option value="">--년도--</option>
-						<option value="last_2018">2018</option>
-						<option value="last_2019">2019</option>
-						<option value="last_2020">2020</option>
-				</select> <select id="start_year">
-						<option value="">--월--</option>
-						<option value="last_1">1</option>
-						<option value="last_2">2</option>
-						<option value="last_3">3</option>
-						<option value="last_4">4</option>
-						<option value="last_5">5</option>
-						<option value="last_6">6</option>
-						<option value="last_7">7</option>
-						<option value="last_8">8</option>
-						<option value="last_9">9</option>
-						<option value="last_10">10</option>
-						<option value="last_11">11</option>
-						<option value="last_12">12</option>
-				</select> <input type="submit" id="datesearch_Btn" value="검색" /></li>
-
-			</ul>
-
-		</div>
+			</div>
+		</form>
 		<br /> <br />
 		<div class="col-md-10 text_box">
 			<table class="table table-striped table-bordered table-hover">
-				<tr class="text-center">
-					<td id="num">번호</td>
-					<td>아이디</td>
-					<td>이름</td>
-					<td>결제수단</td>
-					<td id="views">결제금액</td>
-					<td id="date">결제일</td>
-					<td>현재 등급</td>
-					<td id="delete">등급</td>
-					<td id="manager">매니저</td>
-					<td>승인</td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">4</td>
-					<td>yuhanJJaEung</td>
-					<td onclick="location='#'" style="cursor: pointer;">박경동</td>
-					<td>카드</td>
-					<td id="">6,999,000</td>
-					<td id="">2019-10-22</td>
-					<td>일반</td>
-					<td><select>
-							<option value="bronze">브론즈</option>
-							<option value="bronze">실버</option>
-							<option value="bronze">골드</option>
-							<option value="bronze">VIP</option>
-					</select></td>
+				<thead>
+					<tr class="text-center">
+						<td id="num">번호</td>
+						<td>이름</td>
+						<td>결제수단</td>
+						<td id="views">결제금액</td>
+						<td id="date">결제일</td>
+						<td>현재 등급</td>
+						<td id="delete">등급</td>
+						<td id="manager">매니저</td>
+						<td id="date_count">서비스</td>
+						<td>승인</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<%--조회결과가 없는 경우 --%>
+						<c:when test="${output == null || fn:length(output) == 0}">
+							<tr>
+								<td colspan="9" align="center">조회결과가 없습니다.</td>
+							</tr>
+						</c:when>
+						<%--조회결과가 있는 경우 --%>
+						<c:otherwise>
+							<%--조회 결과에 따른 반복 처리 --%>
+							<c:forEach var="item" items="${output}" varStatus="status">
+								<%--출력을 위해 준비한 학과이름과 위치 --%>
+								<c:set var="name" value="${item.username}" />
 
-					<td><select>
-							<option value="bronze">박경동</option>
-							<option value="bronze">최유한</option>
-							<option value="bronze">배세은</option>
-							<option value="bronze">정유빈</option>
-							<option value="bronze">남희권</option>
-					</select></td>
-					<td><button type="button" class="label label-warning"
-							onclick="levelcfm()">확인</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">3</td>
-					<td>yuhanJJaEung</td>
-					<td onclick="location='#'" style="cursor: pointer;">박경동</td>
-					<td>카드</td>
-					<td id="">6,999,000</td>
-					<td id="">2019-10-22</td>
-					<td>골드</td>
-					<td><select>
-							<option value="bronze">브론즈</option>
-							<option value="bronze">실버</option>
-							<option value="bronze">골드</option>
-							<option value="bronze">VIP</option>
-					</select></td>
-					<td><select>
-							<option value="bronze">박경동</option>
-							<option value="bronze">최유한</option>
-							<option value="bronze">배세은</option>
-							<option value="bronze">정유빈</option>
-							<option value="bronze">남희권</option>
-					</select></td>
-					<td><button type="button" class="label label-warning"
-							onclick="levelcfm()">확인</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">2</td>
-					<td>yuhanJJaEung</td>
-					<td onclick="location='#'" style="cursor: pointer;">박경동</td>
-					<td>카드</td>
-					<td id="">6,999,000</td>
-					<td id="">2019-10-22</td>
-					<td>실버</td>
-					<td><select>
-							<option value="bronze">브론즈</option>
-							<option value="bronze">실버</option>
-							<option value="bronze">골드</option>
-							<option value="bronze">VIP</option>
-					</select></td>
-					<td><select>
-							<option value="bronze">박경동</option>
-							<option value="bronze">최유한</option>
-							<option value="bronze">배세은</option>
-							<option value="bronze">정유빈</option>
-							<option value="bronze">남희권</option>
-					</select></td>
+								<%-- 검색어가 있다면? --%>
+								<c:if test="${keyword != ''}">
+									<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+									<c:set var="mark" value="<mark>${keyword}</mark>" />
+									<%-- 출력을 위해 준비한 교수이름에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+									<c:set var="name" value="${fn:replace(username, keyword, mark)}" />
+								</c:if>
 
-					<td><button type="button" class="label label-warning"
-							onclick="levelcfm()">확인</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">1</td>
-					<td>yuhanJJaEung</td>
-					<td onclick="location='#'" style="cursor: pointer;">박경동</td>
-					<td>카드</td>
-					<td id="">6,999,000</td>
-					<td id="">2019-10-22</td>
-					<td>일반</td>
-					<td><select>
-							<option value="bronze">브론즈</option>
-							<option value="bronze">실버</option>
-							<option value="bronze">골드</option>
-							<option value="bronze">VIP</option>
-					</select></td>
-					<td><select>
-							<option value="bronze">박경동</option>
-							<option value="bronze">최유한</option>
-							<option value="bronze">배세은</option>
-							<option value="bronze">정유빈</option>
-							<option value="bronze">남희권</option>
-					</select></td>
-					<td><button type="button" class="label label-warning"
-							onclick="levelcfm()">확인</button></td>
-				</tr>
+								<form method="post"
+									action="${pageContext.request.contextPath}/_admin/admin_Payment_edit_GD.do">
+									<input type="hidden" name="UserName" value="${item.username}">
+									<tr>
+										<td align="center">${item.paymentid}</td>
+										<td align="center">${item.username}</td>
+										<c:if test="${item.pmttype == 1 }">
+											<td align="center">무통장입금</td>
+										</c:if>
+										<c:if test="${item.pmttype == 2 }">
+											<td align="center">카드결제</td>
+										</c:if>
+										<c:if test="${item.servicetype == 1 }">
+											<td align="center">2,999,000</td>
+										</c:if>
+										<c:if test="${item.servicetype == 2 }">
+											<td align="center">4,999,000</td>
+										</c:if>
+										<c:if test="${item.servicetype == 3 }">
+											<td align="center">6,999,000</td>
+										</c:if>
+										<c:if test="${item.servicetype == 4 }">
+											<td align="center">9,999,000</td>
+										</c:if>
 
+										<td align="center">${item.datetime}</td>
+										<c:if test="${item.member_lv == 0 }">
+											<td align="center">일반</td>
+										</c:if>
+										<c:if test="${item.member_lv == 1 }">
+											<td align="center">브론즈</td>
+										</c:if>
+										<c:if test="${item.member_lv == 2 }">
+											<td align="center">실버</td>
+										</c:if>
+										<c:if test="${item.member_lv == 3 }">
+											<td align="center">골드</td>
+										</c:if>
+										<c:if test="${item.member_lv == 4 }">
+											<td align="center">V.I.P</td>
+										</c:if>
+										<td align="center"><select name="memlv" id="memlv">
+												<option value="1">브론즈</option>
+												<option value="2">실버</option>
+												<option value="3">골드</option>
+												<option value="4">V.I.P</option>
+										</select></td>
+										<%-- 조회 결과에 따른 반복 처리 --%>
+										<td align="center"><select name="manager" id="manager">
+												<c:forEach var="item" items="${managerList }"
+													varStatus="status">
+													<option value="${item.managerid }">${item.managerid }</option>
+												</c:forEach>
+										</select></td>
+
+										<td align="center"><select name="service" id="service">
+												<option value="1">3회</option>
+												<option value="2">5회</option>
+												<option value="3">7회</option>
+												<option value="4">무제한</option>
+										</select></td>
+
+										<td align="center"><input type="submit" value="확인"
+											id="ok"></td>
+									</tr>
+								</form>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
 			</table>
-			<ul class="pagination pagination-sm">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-
-
+			<!-- 페이지 번호 구현 -->
+    <%-- 이전 그룹에 대한 링크 --%>
+    <c:choose>
+        <%-- 이전 그룹으로 이동 가능하다면? --%>
+        <c:when test="${pageData.prevPage > 0}">
+            <%-- 이동할 URL 생성 --%>
+            <c:url value="/_admin/admin_Payment_GD.do" var="prevPageUrl">
+                <c:param name="page" value="${pageData.prevPage}" />
+                <c:param name="keyword" value="${keyword}" />
+            </c:url>
+            <a href="${prevPageUrl}">[이전]</a>
+        </c:when>
+        <c:otherwise>
+            [이전]
+        </c:otherwise>
+    </c:choose>
+    
+    <%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
+    <c:forEach var="i" begin="${pageData.startPage}" end="${pageData.endPage}" varStatus="status">
+        <%-- 이동할 URL 생성 --%>
+        <c:url value="/_admin/admin_Payment_GD.do" var="pageUrl">
+            <c:param name="page" value="${i}" />
+            <c:param name="keyword" value="${keyword}" />
+        </c:url>
+        
+        <%-- 페이지 번호 출력 --%>
+        <c:choose>
+            <%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+            <c:when test="${pageData.nowPage == i}">
+                <strong>[${i}]</strong>
+            </c:when>
+            <%-- 나머지 페이지의 경우 링크 적용함 --%>
+            <c:otherwise>
+                <a href="${pageUrl}">[${i}]</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    
+    <%-- 다음 그룹에 대한 링크 --%>
+    <c:choose>
+        <%-- 다음 그룹으로 이동 가능하다면? --%>
+        <c:when test="${pageData.nextPage > 0}">
+            <%-- 이동할 URL 생성 --%>
+            <c:url value="/_admin/admin_Payment_GD.do" var="nextPageUrl">
+                <c:param name="page" value="${pageData.nextPage}" />
+                <c:param name="keyword" value="${keyword}" />
+            </c:url>
+            <a href="${nextPageUrl}">[다음]</a>
+        </c:when>
+        <c:otherwise>
+            [다음]
+        </c:otherwise>
+    </c:choose>
 		</div>
 	</div>
-
-
 	<!-- Javascript -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
