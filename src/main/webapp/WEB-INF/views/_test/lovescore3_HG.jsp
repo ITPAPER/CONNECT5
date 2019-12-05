@@ -10,6 +10,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore3.css">
+
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -56,43 +57,58 @@
 			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG">
 			<div class="table-responsive">
 				<br /> <br />
-				
-					<table class="table table-bordered">
-						<tbody>
-							<c:choose>
-								<c:when test="${output == null || fn:length(output) == 0}">
-									<tr>
-										<td align="center">조회결과가 없습니다.</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="item" items="${output}" varStatus="status">
-										<c:set var="resultTitle" value="${item.resultTitle}" />
-										<c:set var="resultContent" value="${item.resultContent}" />
-										
-										 <c:url value="/_test/lovescore3_HG.do" var="listsUrl">
-                            <c:param name="testId" value="${item.testId}" />
-                        </c:url>
-									</c:forEach>
-									<tr>
-										<th class="text-center" id="num">${item.resultTitle}</th>
-									</tr>
-									<tr>
-										<td id="context" align="left">${item.resultContent}</td>
-									</tr>
 
-								</c:otherwise>
+				<table class="table table-bordered">
+					
+					<tbody>
+					<c:forEach var="item" items="${output}" varStatus="status">
+									<c:set var="resultTitle" value="${item.resultTitle}" />
+									<c:set var="resultContent" value="${item.resultContent}" />
+					
+						<c:if test="${TestQ3 == 0 and TestQ4 == 0}">
+							<tr>
+								<th class="text-center" id="num">${resultTitle}</th>
+								</tr>
+								<tr>
+								<td id="context" align="left">${resultContent}</td>
+							</tr>
+						</c:if>
+						
+						<c:if test="${TestQ3 == 0 and TestQ4 == 1}">
+							<tr>
+								<th class="text-center" id="num">${resultTitle}</th>
+								</tr>
+								<tr>
+								<td id="context" align="left">${resultContent}</td>
+							</tr>
+						</c:if>
+						
+						<c:if test="${TestQ3 == 1 and TestQ4 == 0}">
+							<tr>
+								<th class="text-center" id="num">${resultTitle}</th>
+								</tr>
+								<tr>
+								<td id="context" align="left">${resultContent}</td>
+							</tr>
+						</c:if>
+						
+						<c:if test="${TestQ3 == 1 and TestQ4 == 1}">
+							<tr>
+								<th class="text-center" id="num">${resultTitle}</th>
+								</tr>
+								<tr>
+								<td id="context" align="left">${resultContent}</td>
+							</tr>
+						</c:if>
+						</c:forEach>
+					</tbody>
+				</table>
 
-							</c:choose>
-
-						</tbody>
-
-					</table>
-				
 			</div>
 		</div>
 		<div class="back1">
 			<img src="${pageContext.request.contextPath}/assets/img/backimg1.PNG">
+
 		</div>
 	</div>
 

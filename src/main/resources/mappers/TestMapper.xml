@@ -14,20 +14,21 @@ type="study.spring.simplespring.model.Test">
 <result property="ResultContent" column="ResultContent" />
 </resultMap>
 
-<select id="selectItem"
-parameterType="study.spring.simplespring.model.Test"
-resultMap="testMap">
-SELECT TestId, TestQ1, TestQ2, TestQ3, TestQ4, ResultTitle, ResultContent
-FROM Test WHERE TestQ3=0 AND TestQ4=0
-</select>
-
 <select id="selectList"
 parameterType="study.spring.simplespring.model.Test"
 resultMap="testMap">
 SELECT TestId, TestQ1, TestQ2, TestQ3, TestQ4, ResultTitle, ResultContent
 FROM Test
-WHERE TestQ3=1 AND TestQ4=0
+WHERE TestQ3=#{TestQ3} AND TestQ4=#{TestQ4}
+</select>
 
+
+<select id="selectList1"
+parameterType="study.spring.simplespring.model.Test"
+resultMap="testMap">
+SELECT TestId, TestQ1, TestQ2, TestQ3, TestQ4, ResultTitle, ResultContent
+FROM Test
+WHERE TestQ1=#{TestQ1} AND TestQ2=#{TestQ2}
 </select>
 
 </mapper>

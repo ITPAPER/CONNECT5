@@ -1,13 +1,18 @@
+<%@page import="study.spring.simplespring.helper.WebHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore1.css">
-	
+
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -21,8 +26,9 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/lovescoreimg.PNG" alt="연-결"
-			class="img-responsive" />
+		<img
+			src="${pageContext.request.contextPath}/assets/img/lovescoreimg.PNG"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -50,7 +56,8 @@
 
 	<div class="col-md-9 content">
 		<div class="all">
-			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG"> <br /> <br /> <br />
+			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG">
+			<br /> <br /> <br />
 			<div class="media">
 				<p class="text10">
 					<strong>문장에 집착하지말고 가벼운 마음으로 선택해주세요~</strong>
@@ -66,19 +73,17 @@
 				</table>
 				<div class="box2">
 					<div class="text2">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ3"
-								value="0" checked><br />그렇다
-						<p>
+						<a
+							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ3=0">그렇다</a>
 					</div>
 				</div>
 
 				<div class="box2">
 					<div class="text2">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ3"
-								value="1" checked><br />아니다
-						<p>
+
+						<a
+							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ3=1">아니다</a>
+
 					</div>
 				</div>
 
@@ -92,19 +97,16 @@
 				</table>
 				<div class="box2">
 					<div class="text3">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a2"
-								value="0" checked><br />그렇다
-						<p>
+						<a
+							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ5=0">그렇다</a>
+
 					</div>
 				</div>
 
 				<div class="box2">
 					<div class="text3">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a2"
-								value="1" checked><br />아니다
-						<p>
+						<a
+							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ6=1">아니다</a>
 					</div>
 				</div>
 

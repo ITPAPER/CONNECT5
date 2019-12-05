@@ -18,4 +18,6 @@ public interface TestService {
 	public int editTest(Test input) throws Exception;
 	
 	public int deleteTest(Test input) throws Exception;
+
+	public List<Test> getTestList1(Test input) throws Exception;
 }

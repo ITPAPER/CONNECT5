@@ -39,6 +39,12 @@ public class HG_TestController {
 
 	@RequestMapping(value = "/_test/lovescore2_HG.do", method = RequestMethod.GET)
 	public String lovescore2(Model model) {
+		int TestQ3 = webHelper.getInt("TestQ3");
+
+		Test input = new Test();
+		input.setTestQ3(TestQ3);
+
+		model.addAttribute("TestQ3", TestQ3);
 
 		return "_test/lovescore2_HG";
 
@@ -50,13 +56,12 @@ public class HG_TestController {
 		int TestQ4 = webHelper.getInt("TestQ4");
 		String ResultTitle = webHelper.getString("ResultTitle");
 		String ResultContent = webHelper.getString("ResultContent");
-		
+
 		Test input = new Test();
 		input.setTestQ3(TestQ3);
 		input.setTestQ4(TestQ4);
 		input.setResultTitle(ResultTitle);
 		input.setResultContent(ResultContent);
-		
 
 		List<Test> output = null;
 
@@ -66,6 +71,10 @@ public class HG_TestController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
+		model.addAttribute("TestQ4", TestQ4);
+		model.addAttribute("TestQ3", TestQ3);
+		model.addAttribute("ResultContent", ResultContent);
+		model.addAttribute("ResultTitle", ResultTitle);
 		model.addAttribute("output", output);
 
 		return new ModelAndView("_test/lovescore3_HG");
@@ -81,29 +90,43 @@ public class HG_TestController {
 
 	@RequestMapping(value = "/_test/propensity2_HG.do", method = RequestMethod.GET)
 	public String propensity2(Model model) {
+		int TestQ1 = webHelper.getInt("TestQ1");
 
+		Test input = new Test();
+		input.setTestQ1(TestQ1);
+
+		model.addAttribute("TestQ1", TestQ1);
 		return "_test/propensity2_HG";
 
 	}
 
 	@RequestMapping(value = "/_test/propensity3_HG.do", method = RequestMethod.GET)
 	public ModelAndView list2(Model model) {
-		String keyword = webHelper.getString("keyword", "");
+		int TestQ1 = webHelper.getInt("TestQ1");
+		int TestQ2 = webHelper.getInt("TestQ2");
+		String ResultTitle = webHelper.getString("ResultTitle");
+		String ResultContent = webHelper.getString("ResultContent");
 
 		Test input = new Test();
-		input.setResultTitle(keyword);
-		input.setResultContent(keyword);
+		input.setTestQ1(TestQ1);
+		input.setTestQ2(TestQ2);
+		input.setResultTitle(ResultTitle);
+		input.setResultContent(ResultContent);
 
 		List<Test> output = null;
 
 		try {
-			output = testService.getTestList(input);
+			output = testService.getTestList1(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
+		model.addAttribute("TestQ1", TestQ1);
+		model.addAttribute("TestQ2", TestQ2);
+		model.addAttribute("ResultContent", ResultContent);
+		model.addAttribute("ResultTitle", ResultTitle);
 		model.addAttribute("output", output);
-		
+
 		return new ModelAndView("_test/propensity3_HG");
 
 	}

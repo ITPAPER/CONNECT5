@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +24,9 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/lovescoreimg.PNG" alt="연-결"
-			class="img-responsive" />
+		<img
+			src="${pageContext.request.contextPath}/assets/img/lovescoreimg.PNG"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -49,7 +54,8 @@
 
 	<div class="col-md-9 content">
 		<div class="all">
-			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG"> <br /> <br /> <br />
+			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG">
+			<br /> <br /> <br />
 			<div class="media">
 				<p class="text10">
 					<strong>문장에 집착하지말고 가벼운 마음으로 선택해주세요~</strong>
@@ -64,20 +70,18 @@
 				</table>
 				<div class="box2">
 					<div class="text2">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ4"
-								value="0" checked><br />그렇다
-						<p>
+						<ul>
+							<li>
+							<a href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=0">그렇다</a></li>
+						</ul>
 					</div>
 				</div>
-
-				
 				<div class="box2">
 					<div class="text2">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ4"
-								value="1" ><br />아니다
-						<p>
+						<ul>
+							<li>
+							<a href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=1">아니다</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -100,7 +104,7 @@
 					<div class="text3">
 						<p>
 							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="1" ><br />아니다
+								value="1"><br />아니다
 						<p>
 					</div>
 				</div>

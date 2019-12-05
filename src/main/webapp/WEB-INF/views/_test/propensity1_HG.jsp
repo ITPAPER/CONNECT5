@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Test/propensity1.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Test/propensity1_H.css">
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -49,11 +49,15 @@
 
 	<div class="col-md-9 content">
 		<div class="all">
-			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG"> <br /> <br /> <br />
+			<img src="${pageContext.request.contextPath}/assets/img/test1img.PNG">
 			<div class="media">
 				<p class="text10">
 					<strong>나의 성향에 맞는 것을 선택하세요.</strong>
-				</p>
+					</p>
+					<br />
+				<p class="text11"><strong>손가락 길이에 따른 성향 테스트</strong></p>
+			<p class="text12">다섯 손가락을 바르게 펼쳤을 때, 검지와 약지 중 더 긴 손가락은 어느 손가락이 더 긴가요?</p>
+			
 			</div>
 			<br />
 
@@ -61,42 +65,32 @@
 				<table class="boxtext1 table-bordered">
 				
 					<tr class="boximg1">
-						<td><img src="${pageContext.request.contextPath}/assets/img/test1.PNG"></td>
+						<td>
+						<a
+							href="${pageContext.request.contextPath}/_test/propensity2_HG.do?TestQ1=0">
+						<img src="${pageContext.request.contextPath}/assets/img/test1.PNG"><br />
+						<span class="text2">검지 손가락이 더 길다</span>
+						</a></td>
 						</tr>
 						
 						<tr class="boximg2">
-						<td><img src="${pageContext.request.contextPath}/assets/img/test2.PNG"></td>
+						<td>
+						<a
+							href="${pageContext.request.contextPath}/_test/propensity2_HG.do?TestQ1=1">
+						<img src="${pageContext.request.contextPath}/assets/img/test2.PNG">
+						<span class="text2">약지 손가락이 더 길다</span>
+						</a></td>
 					</tr>
 					
 				</table>
 				<br/><br/>
-				<div class="box2">
-					<div class="text2">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ1"
-								value="0" checked><br/>검지 손가락이 더 길다
-						<p>
-					</div>
-				</div>
-				<div class="box2">
-					<div class="text3">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="TestQ1"
-								value="1" checked><br/>약지 손가락이 더 길다
-						<p>
-					</div>
-				</div>
-				<br/><br/><br/><br/><br/>
-				<p class="text11"><strong>손가락 길이에 따른 성향 테스트</strong></p>
-			<p class="text12">다섯 손가락을 바르게 펼쳤을 때, 검지와 약지 중 더 긴 손가락은 어느 손가락이 더 긴가요?</p>
+			
 				
-				<div class="buttom">
-					<br>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_test/propensity2_HG.do'"
-						style="height: 30px; width: 80px;">다음</button>
-
-				</div>
+				<br/><br/><br/><br/><br/><br/><br/>
+				<p class="text11"><strong>사진을 선택해주세요!!!</strong></p>
+			
+				
+				
 				
 				</div>
 			</div>
