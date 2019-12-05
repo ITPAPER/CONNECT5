@@ -64,47 +64,112 @@
 			<div class="table-responsive">
 				<c:choose>
 					<%-- 조회결과가 없는 경우 --%>
-					<c:when test="${output2 == null || fn:length(output2) == 0}">
+					<c:when test="${output == null || fn:length(output) == 0}">
 						<tr>
 							<td colspan="9" align="center" id="question1">문의 내역이 없습니다.</td>
 						</tr>
 					</c:when>
 					<%-- 조회결과가 있는  경우 --%>
 					<c:otherwise>
-						<table>
+						<table class="table table-striped table-bordered table-hover">
 							<tr>
-								<th align="center" class="num">번호</th>
-								<th align="center">제목</th>
-								<th align="center" class="name">이름</th>
-								<th align="center" class="date">등록일</th>
-								<th align="center" class="reply_ok">답변여부</th>
+								<th id="num">번호</th>
+								<th>제목</th>
+								<th id="name">이름</th>
+								<th id="date">등록일</th>
+								<th id="reply_ok">답변여부</th>
 							</tr>
+							<tr>
 
+								<%-- 조회 결과에 따른 반복 처리 --%>
+								<c:forEach var="item" items="${output}" varStatus="status">
+									<c:set var="title" value="${item.getTitle()}" />
+									<c:set var="username" value="${item.getUserName()}" />
+									<c:set var="CreationDate" value="${item.getCreationDate()}" />
 
+									<c:url value="1_1questionview.do" var="viewUrl">
+										<c:param name="boardId" value="${item.boardId}" />
+									</c:url>
 
-							<%-- 조회 결과에 따른 반복 처리 --%>
-							<c:forEach var="item" items="${output2}" varStatus="status">
-								<c:out value="${status.count}" />
-							</c:forEach>
-							<c:forEach var="item" items="${output2}" varStatus="status">
-								<tr>
-									<th align="center">${item.getTitle()}</th>
-									<th align="center">${item.getContent()}</th>
-									<th align="center">${item.getUserName()}</th>
-									<th align="center">${item.getCreationDate()}</th>
-								</tr>
-
-							</c:forEach>
+									<tr>
+										<td>${item.boardId}</td>
+										<td><a href="${viewUrl}">${item.title}</a></td>
+										<td>${item.userName}</td>
+										<td>${item.creationDate}</td>
+										<th><span class="badge badge_ok">완료</span></th>
+									</tr>
+								</c:forEach>
+							</tr>
 						</table>
 					</c:otherwise>
 				</c:choose>
+
 			</div>
 			<hr>
-			<a
-				href="${pageContext.request.contextPath}/_mypage/1_1questionadd.do">
-				<button class="btn btn-default">문의하기</button>
-			</a>
+			<!-- 페이지 번호 구현 -->
+			<%-- 이전 그룹에 대한 링크 --%>
+			<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_mypage/1_1questionEmpty_YH.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${prevPageUrl}">&laquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 
+			<%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_mypage/1_1questionEmpty_YH.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
+
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+
+			<%-- 다음 그룹에 대한 링크 --%>
+			<c:choose>
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_mypage/1_1questionEmpty_YH.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${pageUrl}">&raquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+			<button class="btn btn-default"
+				onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionadd.do'">문의하기</button>
 		</div>
 	</div>
 

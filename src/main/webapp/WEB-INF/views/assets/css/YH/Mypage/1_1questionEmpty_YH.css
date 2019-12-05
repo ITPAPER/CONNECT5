@@ -12,6 +12,10 @@
 	user-select: none;
 }
 
+.content{
+	text-align: center;
+}
+
 .table-responsive .num {
 	width: 65px;
 }

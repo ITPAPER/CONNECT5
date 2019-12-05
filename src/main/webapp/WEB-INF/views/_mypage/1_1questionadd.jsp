@@ -8,7 +8,15 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
 <script>
-	
+
+function cancel() {
+	if (confirm("정말 취소하시겠습니까?") == true) {
+		alert("취소되었습니다.");
+	} else {
+		return;
+	}
+	location.href = "${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do";
+}
 </script>
 
 <meta charset="utf-8" />
@@ -57,36 +65,33 @@
 		<h5>1:1 문의 상담</h5>
 	</div>
 	<div class="col-md-10 content">
-
+		<form action="${pageContext.request.contextPath}/_mypage/1_1questionadd_Ok.do" method="POST">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" id="Title">제목</th>
-						<th class="text-center">
-							<input type="text" placeholder="제목을 입력하세요." id="Title" name="Title" />
-						</th>
+						<th class="num" id="Title">제목</th>
+						<th><input type="text" placeholder="제목을 입력하세요."
+							class="textarea" id="textarea" name="Title"/></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="Content" colspan="3" align="center">
-							<textarea placeholder="내용을 입력하세요." class="form-control" id="Content" name="Content" /></textarea>
-						</td>
+						<td class="context" colspan="3" align="center" id="Content">
+						<textarea placeholder="내용을 입력하세요." class="form-control" 
+						class="contentarea" id="contentarea" name="Content"/></textarea></td>
 					</tr>
 
 				</tbody>
 			</table>
+			
 		</div>
 
 		<div class="pull-right">
-			<a
-				href="${pageContext.request.contextPath}/_mypage/1_1questionadd_Ok.do">
-				<button type="submit" class="btn btn-default">글쓰기</button>
-			</a>
+			<button type="submit" class="btn btn-default">글쓰기</button>
 			<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
 		</div>
-
+		</form>
 	</div>
 
 

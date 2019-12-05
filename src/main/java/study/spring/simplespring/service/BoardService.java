@@ -27,6 +27,23 @@ public interface BoardService {
 
 	public int deleteBoard(Board input) throws Exception;
 	
-	public List<Board> getBoardList(Board input) throws Exception;
+	public List<Board> getBoardList1_1(Board input) throws Exception;
+	
+	public int addBoard1_1(Board input) throws Exception;
+	
+	public Board getBoardItem1_1(Board input) throws Exception;
+	
+	public int editBoard1_1(Board input) throws Exception;
+	
+	public int addBoardNotice(Board input) throws Exception;
+	
+	public Board getBoardNotice(Board input) throws Exception; 
+	
+	public int editBoardNotice(Board input) throws Exception;
+	
+	public int deleteBoardNotice(Board input) throws Exception;
+	
+	public List<Board> getBoardListadminNotice(Board input) throws Exception;
+	
 	
 }

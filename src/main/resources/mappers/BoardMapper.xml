@@ -196,5 +196,103 @@
 		inner JOIN connect5.User u ON (b.MemberId =
 		u.MemberId) WHERE b.MemberId = #{MemberId};
 	</select>
+	
+	
+	<insert id="insertItem1_1"
+		parameterType="study.spring.simplespring.model.Board"
+		useGeneratedKeys="true" keyProperty="BoardId">
+		INSERT INTO Board
+		(Title,Content,CreationDate,ContentImg,Category,MemberId)
+		VALUES (#{Title},#{Content},#{CreationDate},#{ContentImg},5,#{MemberId}) ;
+	</insert>
+	
+	<select id="selectList1_1"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category, u.UserName
+		FROM connect5.board b
+		inner JOIN connect5.User u ON (b.MemberId =
+		u.MemberId) WHERE b.MemberId = #{MemberId} AND Category=5
 
+		ORDER BY BoardId DESC
+
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+
+	<select id="selectItem1_1"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.board
+		WHERE BoardId=#{BoardId} AND Category = 5;
+	</select>
+
+	<update id="updateItem1_1"
+		parameterType="study.spring.simplespring.model.Board">
+		UPDATE Board SET
+		Title = #{Title},
+		Content=#{Content},CreationDate=#{CreationDate},ContentImg=#{ContentImg}, MemberId=#{MemberId},Category = 5
+		WHERE BoardId=#{BoardId}
+	</update>
+	
+	<insert id="insertItemadminNotice"
+		parameterType="study.spring.simplespring.model.Board"
+		useGeneratedKeys="true" keyProperty="BoardId">
+		INSERT INTO Board
+		(Title,Content,CreationDate,ContentImg,Category,MemberId)
+		VALUES (#{Title},#{Content},#{CreationDate},#{ContentImg},2,#{MemberId}) ;
+	</insert>
+	
+	<select id="selectItemadminNotice"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.board
+		WHERE BoardId=#{BoardId} AND Category = 2;
+	</select>
+	
+	<update id="updateItemadminNotice"
+		parameterType="study.spring.simplespring.model.Board">
+		UPDATE Board SET
+		Title = #{Title},
+		Content=#{Content},CreationDate=#{CreationDate},ContentImg=#{ContentImg}, MemberId=#{MemberId},Category = 2
+		WHERE BoardId=#{BoardId}
+	</update>
+	
+	<delete id="deleteItemadminNotice"
+        parameterType="study.spring.simplespring.model.Board">
+        DELETE FROM Board WHERE BoardId=#{BoardId};
+    </delete>
+    
+    <select id="selectListadminNotice"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category, b.MemberId, u.UserId, u.UserName
+		FROM Board b
+		INNER JOIN User u ON
+		b.MemberId = u.MemberId
+		WHERE Category = 2
+		
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
+
+		ORDER BY BoardId DESC
+
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
 </mapper>

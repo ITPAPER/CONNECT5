@@ -7,7 +7,17 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1question_ok_YH.css">
+	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
+<script>
+	function cancel() {
+		if (confirm("정말 취소하시겠습니까?") == true) {
+			alert("취소되었습니다.");
+		} else {
+			return;
+		}
+		location.href = "${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do";
+	}
+</script>
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -55,48 +65,35 @@
 
 
 	<div class="col-md-10 content">
-
+		<form action="${pageContext.request.contextPath}/_mypage/1_1questioneditOk.do" method="POST">
+		<input type="hidden" name="boardId" value="${output.getBoardId() }" />
 		<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover">
+			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" id="num">번호</th>
-						<th class="text-center">제목</th>
-						<th class="text-center" id="name">이름</th>
-						<th class="text-center" id="date">등록일</th>
-						<th class="text-center" id="reply_ok">답변여부</th>
+						<th class="num" id="Title">제목</th>
+						<th><input type="text" class="textarea" id=textarea name="Title" value="${output.getTitle() }"/></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td class="text-center" id="num">1</td>
-						<td class="text-center"
-							onclick="location='${pageContext.request.contextPath}/_mypage/1_1question_okConfirm_YH.do'"
-							style="cursor: pointer;">결제가 안돼요.</td>
-						<td class="text-center" id="name">박경동</td>
-						<td class="text-center" id="date">2019.10.21</td>
-						<td class="text-center" id="reply_ok"><span
-							class="badge badge_ok">완료</span></td>
+						<td class="context" colspan="3" align="center" id="Content">
+						<textarea placeholder="내용을 입력하세요." 
+						class="contentarea" id="contentarea" name="Content" /></textarea></td>
 					</tr>
+
 				</tbody>
 			</table>
+			
 		</div>
 
+		<div class="pull-right">
+			<button type="submit" class="btn btn-default">글쓰기</button>
+			<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
+		
+		</div>
+		</form>
 
-
-		<ul class="pagination pagination-sm">
-			<li class="disabled"><a href="#">&laquo;</a></li>
-			<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
-
-
-		<button class="btn btn-default"
-			onclick="location='${pageContext.request.contextPath}/_mypage/1_1questionWrite_YH.do'">문의하기</button>
 	</div>
 
 
