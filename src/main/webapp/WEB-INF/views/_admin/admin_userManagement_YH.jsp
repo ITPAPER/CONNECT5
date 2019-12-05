@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -44,18 +47,6 @@
 	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagement_YH.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-
-<script type="text/javascript">
-	function deldet_post() {
-		if (confirm("해당 게시글을 삭제하시겠습니까?") == true) {
-			alert("삭제되었습니다.");
-		} else {
-			return;
-		}
-		location.href = "";
-	}
-</script>
-
 </head>
 
 <body>
@@ -67,7 +58,7 @@
 				<p id="connect">
 					admin 님 접속중
 					<button type="submit" class="btn btn-xs"
-						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+						onclick="location.href = '${pageContext.request.contextPath}/_login/loginOut.do'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -108,146 +99,146 @@
 		</div>
 
 		<div class="col-md-4 searching_box">
-			<ul id="key">
-				<li><select name="keyField">
-						<option value="0">---선택---</option>
-						<option value="title">제목</option>
-						<option value="id">번호</option>
-				</select> <input type="text" name="KeyWord" /> <input type="submit"
-					id="s_btn" value="검색" />
-			</ul>
-
+			<form method="get"
+				action="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do">
+				<ul id="key">
+					<li><select name="keyField">
+							<option value="0">---선택---</option>
+							<option value="Title">제목</option>
+							<option value="id">번호</option>
+					</select> <input type="search" name="keyword" value="${keyword}" />
+						<button type="submit" id="s_btn">검색</button>
+				</ul>
+			</form>
 		</div>
 
 		<div class="col-md-10 text_box">
 			<table class="table table-striped table-bordered table-hover">
-				<tr class="text-center">
-					<td id="num">번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td id="views">조회수</td>
-					<td id="date">날짜</td>
-					<td id="delete">삭제</td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">10</td>
-					<td
-						onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementRead_YH.do'"
-						style="cursor: pointer;">연-결, 가을 낭만 담아 '연극 보러 갈까요?' 이벤트 진행</td>
-					<td>담당자</td>
-					<td id="views">1,543</td>
-					<td id="date">2019-10-22</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">9</td>
-					<td
-						onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementRead2_YH.do'"
-						style="cursor: pointer;">연-결 '창립 10주년 기념' 적극적인 서비스로 높은 성혼율 달성</td>
-					<td>담당자</td>
-					<td id="views">21,553</td>
-					<td id="date">2019-10-20</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">8</td>
-					<td>연-결 로맨틱 미팅파티 'REMARRY SERCRET PARTY'진행</td>
-					<td>담당자</td>
-					<td id="views">453</td>
-					<td id="date">2019-09-25</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">7</td>
-					<td>연-결, 품격 있는 훈남훈녀들의 만남 'COCKTAIL PARTY' 미팅파티 진행</td>
-					<td>담당자</td>
-					<td id="views">853</td>
-					<td id="date">2019-07-14</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">6</td>
-					<td>연-결, 적극적인 서비스를 통해 고객만족도 상승</td>
-					<td>담당자</td>
-					<td id="views">353</td>
-					<td id="date">2019-06-05</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">5</td>
-					<td>연-결 세부에서 사랑을 외치다 '!'Romantic Holiday'</td>
-					<td>담당자</td>
-					<td id="views">1,112</td>
-					<td id="date">2019-05-08</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">4</td>
-					<td>연-결 회원분들의 사랑이 피어나는 '로즈데이' 이벤트 진행</td>
-					<td>담당자</td>
-					<td id="views">853</td>
-					<td id="date">2019-04-26</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">3</td>
-					<td>연-결 회원분들의 외로운 솔로들을 위한 '스위트 화이트데이 이벤트' 진행</td>
-					<td>담당자</td>
-					<td id="views">1,443</td>
-					<td id="date">2019-02-20</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">2</td>
-					<td>연-결 연애정보 대표 박경동, "
-						신뢰를 바탕으로 적극적인 서비스 제공에힘써"
-						</td>
-					<td>담당자</td>
-					<td id="views">21,453</td>
-					<td id="date">2019-01-02</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">1</td>
-					<td>연-결 6년 연속 '2019 고객만족 우수 브랜드 대상'수상</td>
-					<td>담당자</td>
-					<td id="views">21,453</td>
-					<td id="date">2019-10-01</td>
-					<td><button type="button" class="label label-warning"
-							onclick="deldet_post()">삭제</button></td>
-				</tr>
+				<thead>
+					<tr class="text-center">
+						<td id="num">번호</td>
+						<td>제목</td>
+						<td>작성자</td>
+						<td id="views">조회수</td>
+						<td id="date">날짜</td>
+						<td id="delete">삭제</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${output == null || fn:length(output) == 0}">
+							<tr>
+								<td colspan="9" align="center">공지사항이 없습니다.</td>
+							</tr>
+						</c:when>
+
+						<%-- 조회결과가 있는  경우 --%>
+						<c:otherwise>
+							<%-- 조회 결과에 따른 반복 처리 --%>
+							<c:set var="num"
+								value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:forEach var="item" items="${output}" varStatus="status">
+								<c:set var="title" value="${item.title}" />
+								<c:set var="userName" value="${item.userName}" />
+								<c:set var="creationDate" value="${item.creationDate}" />
+								<c:set var="boardId" value="${item.boardId }" />
+
+
+								<%-- 검색어가 있다면? --%>
+								<c:if test="${keyword != ''}">
+									<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+									<c:set var="mark" value="<mark>${keyword}</mark>" />
+									<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+									<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
+
+								</c:if>
+
+								<%-- 상세페이지로 이동하기 위한 URL --%>
+								<c:url value="/_admin/admin_userManagementview.do" var="viewUrl">
+									<c:param name="boardId" value="${item.boardId}" />
+								</c:url>
+
+								<tr>
+									<td>${num}</td>
+									<td><a href="${viewUrl}">${title}</a></td>
+									<td>${item.userName}</td>
+									<td>count</td>
+									<td>${item.creationDate}</td>
+									<td><button type="button" class="label label-warning"
+											onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?boardId=${boardId}'">삭제</button></td>
+								</tr>
+								<c:set var="num" value="${num-1}"></c:set>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
 			</table>
+			<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_userManagement_YH.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${prevPageUrl}">&laquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_admin/admin_userManagement_YH.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
 
-			<ul class="pagination pagination-sm">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<ul class="pagination pagination-sm">
+							<li class="active"><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_userManagement_YH.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${pageUrl}">&raquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementWrite_YH.do'">글쓰기</button>
-		
-			</div>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementadd.do'">글쓰기</button>
 		</div>
+	</div>
 
 
-		<!-- Javascript -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<!-- Javascript -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

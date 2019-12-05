@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,16 +41,13 @@
    <![endif]-->
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagementWrite_YH.css">
+	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagementRead_YH.css">
+
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
 <script type="text/javascript">
-	function add() {
-		if (confirm("게시물 등록이 완료되었습니다.") == true) {
-		}
-		location.href = "${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do";
-	}
+	
 </script>
 
 </head>
@@ -110,29 +108,36 @@
 					<thead>
 						<tr>
 							<th class="text-center" id="num">제목</th>
-							<th class="text-center"><input type="text"
-								placeholder="제목을 입력하세요." id="textarea" /></th>
+							<th class="text-left">${output.getTitle()}</th>
+							<th id="date">${output.creationDate}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td id="context" colspan="3" align="center"><textarea
-									placeholder="내용을 입력하세요." class="form-control" id="contentarea" /></textarea></td>
+							<td id="context" colspan="3">${output.content}</td>
+						</tr>
+						<tr>
+							<td>다음글</td>
+							<th class="text_select" colspan="2"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?boardId=${output.boardId +1} '">
+								${output.getTitle() }</th>
+						</tr>
+						<tr>
+							<td>이전글</td>
+							<th class="text_select" colspan="2"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?boardId=${output.boardId -1} '">
+								${output.getTitle() }</th>
 						</tr>
 
 					</tbody>
 				</table>
 			</div>
-
-			<div class="pull-right">
-				<button class="btn btn-default" onclick="add()">글쓰기</button>
-				<button class="btn btn-default"
-					onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'">취소</button>
-			</div>
-
+			<button class="btn btn-default"
+				onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementedit.do?boardId=${output.boardId }'">수정하기</button>
+			<button class="btn btn-default"
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'">목록</button>
 		</div>
 	</div>
-
 
 
 	<!-- Javascript -->

@@ -72,11 +72,8 @@ ul, ol {
 
 /* 게시판 크기 */
 .text_box {
+	text-align:center;
 	height: 500px;
-}
-
-.text_box>.pagination {
-	padding-left: 380px;
 }
 
 .text-center>#num {
