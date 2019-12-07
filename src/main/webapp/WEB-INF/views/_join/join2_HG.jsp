@@ -123,14 +123,14 @@
 		    	 return false;
 		     }
 		     
-		     if($(':radio[name="Gender"]:checked').length < 1){
+		     if($(':radio[name="Gender"]:checked').length < 0){
 		         alert('성별을 선택해주세요');                        
 		         Gender.focus();
 		         event.preventDefault();
 		     }
 		     
 		     
-		     if($(':radio[name="IsMarried"]:checked').length < 1){
+		     if($(':radio[name="IsMarried"]:checked').length < 0){
 		         alert('결혼여부를 선택해주세요');                        
 		         IsMarried.focus();
 		         event.preventDefault();

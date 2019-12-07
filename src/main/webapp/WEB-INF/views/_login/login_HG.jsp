@@ -63,11 +63,11 @@
 
             <fieldset>
                <div class="user_name">
-                  <label for="UserId">아이디 </label> <input type="text" id="UserId"
+                  <label for="UserId" style="width: 40px">아이디 </label> <input type="text" id="UserId"
                      name="UserId" size="20" />
                </div>
                <div class="user_pw">
-                  <label for="UserPw">비밀번호 </label> <input type="password"
+                  <label for="UserPw" style="width: 40px">비밀번호 </label> <input type="password"
                      id="UserPw" name="UserPw" size="20"/>
                </div>
 

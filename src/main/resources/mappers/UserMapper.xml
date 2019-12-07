@@ -65,23 +65,34 @@
 		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
 
 	</select>
-	
+
 	<!-- 경동 회원정보 변경 쿼리문 -->
 	<update id="updateItem"
 		parameterType="study.spring.simplespring.model.User">
 		UPDATE user
-		SET member_lv=#{member_lv} , date_rest=#{date_rest}, managerid=#{managerid}
+		SET member_lv=#{member_lv} ,
+		date_rest=#{date_rest}, managerid=#{managerid}
 		WHERE
 		UserName=#{UserName};
 	</update>
-	<!-- 경동 아이디  찾기 조회 쿼리문 -->
+	<!-- 경동 아이디 찾기 조회 쿼리문 -->
 	<select id="selectFindaccount"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
 
 		select * from user
-		where UserName=#{UserName} and email=#{email}
+		where UserName=#{UserName} and
+		email=#{email}
 
 	</select>
 
+	
+	
+	<select id="selectItem"
+	parameterType="study.spring.simplespring.model.User"
+	resultMap="userMap">
+	SELECT *
+	FROM User
+	WHERE MemberId=#{MemberId}
+	</select>
 </mapper>

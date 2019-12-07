@@ -32,7 +32,7 @@ public class HG_Controller {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	TestService testService;
 
@@ -94,21 +94,14 @@ public class HG_Controller {
 		if (BirthDate == null) {
 			return webHelper.redirect(null, "생년월일을 입력하세요.");
 		}
-		if (Gender == 0) {
-			return webHelper.redirect(null, "성별을 선택해주세요.");
-		}
-		if (IsMarried == 0) {
-			return webHelper.redirect(null, "결혼여부를 선택해주세요.");
-		}
+		
 		if (Mobile == null) {
 			return webHelper.redirect(null, "핸드폰번호를 입력하세요.");
 		}
 		if (!regexHelper.isCellPhone(Mobile)) {
 			return webHelper.redirect(null, "핸드폰번호는 숫자로만 입력하세요.");
 		}
-		if (!regexHelper.isTel(TEL)) {
-			return webHelper.redirect(null, "전화번호는 숫자로만 입력하세요.");
-		}
+		
 		if (Email == null) {
 			return webHelper.redirect(null, "이메일을 입력해주세요.");
 		}
@@ -161,12 +154,28 @@ public class HG_Controller {
 	@RequestMapping(value = "/_admin/admin_userManager1_HG.do", method = RequestMethod.GET)
 	public String admin_userManager1(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+
+			String login = loginInfo.getUserName();
+
+			model.addAttribute("login", login);
+		}
+
 		return "_admin/admin_userManager1_HG";
 
 	}
 
 	@RequestMapping(value = "/_admin/admin_userManager2_HG.do", method = RequestMethod.GET)
 	public String admin_userManager2(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_admin/admin_userManager2_HG";
 
@@ -180,6 +189,12 @@ public class HG_Controller {
 	@RequestMapping(value = "/_info/partner_HG.do", method = RequestMethod.GET)
 	public String partner(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		return "_info/partner_HG";
 
 	}
@@ -191,6 +206,13 @@ public class HG_Controller {
 	@RequestMapping(value = "/_info/manager_HG.do", method = RequestMethod.GET)
 	public String manager(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return "_info/manager_HG";
 
 	}
@@ -200,212 +222,271 @@ public class HG_Controller {
 	 */
 
 	@RequestMapping(value = "/_login/login_HG.do", method = RequestMethod.GET)
-	   public String location(Model model) {
+	public String location(Model model) {
 
-	      return "_login/login_HG";
+		return "_login/login_HG";
 
-	   }
+	}
 
-	   @RequestMapping(value = "/_login/loginOk.do", method = RequestMethod.POST)
-	   public ModelAndView loginaction(Model model, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/_login/loginOk.do", method = RequestMethod.POST)
+	public ModelAndView loginaction(Model model, HttpServletRequest request, HttpServletResponse response) {
 
-	      String UserId = webHelper.getString("UserId");
-	      
-	      //LocalDate selectDate = LocalDate.now();
-	      
-	      String UserPw = webHelper.getString("UserPw");
+		String UserId = webHelper.getString("UserId");
 
-	      User input = new User();
-	      input.setUserId(UserId);
-	      input.setUserPw(UserPw);
+		// LocalDate selectDate = LocalDate.now();
 
-	      User loginInfo = null;
-	      try {
+		String UserPw = webHelper.getString("UserPw");
 
-	         loginInfo = userService.selectLoginInfo(input);
-	      } catch (Exception e) {
-	         return webHelper.redirect(null, e.getLocalizedMessage());
-	      }
+		User input = new User();
+		input.setUserId(UserId);
+		input.setUserPw(UserPw);
 
-	      webHelper.setSession("loginInfo", loginInfo);
+		User loginInfo = null;
+		try {
 
-	      int admin = loginInfo.getIsadmin();
-	      if (admin == 1) {
-	         return new ModelAndView("_admin/admin_main_SE");
-	      }
-	      
-	      String logininfo = loginInfo.getUserName();
-	      
-	      model.addAttribute("login",logininfo);
-	      String viewPath = "home";
-	      return new ModelAndView(viewPath);
+			loginInfo = userService.selectLoginInfo(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
 
-	   }
-	   @RequestMapping(value = "/_login/loginOut.do", method = { RequestMethod.GET, RequestMethod.POST })
-	   public ModelAndView logout(Model model, HttpServletRequest request, HttpServletResponse response) {
-	      
-	      webHelper.removeAllSession();
-	      
-	      return webHelper.redirect(request.getContextPath() + "/", "연-결을 이용해 주셔서 감사합니다. 안녕하가세요.");
-	   }
-	   
-	   /**
-		 * -------------------------------- 로그인 controller 끝 --------------------------
-		 */
-	   
-	   @RequestMapping(value = "/_mypage/withdrawal1_HG.do", method = RequestMethod.GET)
-		public String withdrawal1(Model model) {
-			
-			
+		webHelper.setSession("loginInfo", loginInfo);
 
-			return "_mypage/withdrawal1_HG";
+		int admin = loginInfo.getIsadmin();
+		if (admin == 1) {
+			return new ModelAndView("_admin/admin_main_SE");
+		}
 
+		String logininfo = loginInfo.getUserName();
+
+		model.addAttribute("login", logininfo);
+		String viewPath = "home";
+		return new ModelAndView(viewPath);
+
+	}
+
+	@RequestMapping(value = "/_login/loginOut.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView logout(Model model, HttpServletRequest request, HttpServletResponse response) {
+
+		webHelper.removeAllSession();
+
+		return webHelper.redirect(request.getContextPath() + "/", "연-결을 이용해 주셔서 감사합니다. 안녕히가세요.");
+	}
+
+	/**
+	 * -------------------------------- 로그인 controller 끝 --------------------------
+	 */
+
+	@RequestMapping(value = "/_mypage/withdrawal1_HG.do", method = RequestMethod.GET)
+	public ModelAndView withdrawal1(Model model) {
+
+		return new ModelAndView("_mypage/withdrawal1_HG");
+
+	}
+
+	@RequestMapping(value = "/_mypage/withdrawal2_HG.do", method = RequestMethod.GET)
+	public ModelAndView withdrawal2(Model model) {
+
+		return new ModelAndView("_mypage/withdrawal2_HG");
+
+	}
+
+	/**
+	 * -------------------------------- 탈퇴 controller 끝 --------------------------
+	 */
+
+	@RequestMapping(value = "/_mypage/personal_information1_HG.do", method = RequestMethod.GET)
+	public ModelAndView personal_information1(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요");
 		}
 		
-		@RequestMapping(value = "/_mypage/withdrawal2_HG.do", method = RequestMethod.GET)
-		public String withdrawal2(Model model) {
-			
-			
+		int MemberId = loginInfo.getMemberId();
+		String UserId = loginInfo.getUserId();
+		
+		
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserId(UserId);
+		
 
-			return "_mypage/withdrawal2_HG";
-
+		User output = null;
+		
+		try {
+			output = userService.getUserItem(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 		
-		/**
-		 * -------------------------------- 탈퇴 controller 끝 --------------------------
-		 */
+		model.addAttribute("output", output);
 		
-		@RequestMapping(value = "/_mypage/personal_information1_HG.do", method = RequestMethod.GET)
-		public String personal_information1(Model model) {
+		return new ModelAndView("_mypage/personal_information1_HG");
+	}
+
+	@RequestMapping(value = "/_mypage/personal_information1ok_HG.do", method = RequestMethod.POST)
+	public ModelAndView personal_information1ok(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = loginInfo.getMemberId();
+		String UserId = loginInfo.getUserId();
+		String UserPw = loginInfo.getUserPw();
+		
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserId(UserId);
+		input.setUserPw(UserPw);
+		
+		User output = null;
+		try {
+			userService.getUserItem(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		if (UserPw != UserPw) {
+			String redirectUrl = contextPath + "/_mypage/personal_information1_HG.do";
+			return webHelper.redirect(redirectUrl, "비밀번호가 틀렸습니다.");
+		}
 			
-			
-
-			return "_mypage/personal_information1_HG";
-
-		}
+		model.addAttribute("output", output);
 		
-		@RequestMapping(value = "/_mypage/personal_information2_HG.do", method = RequestMethod.GET)
-		public String personal_information2(Model model) {
-			
-			
+		return new ModelAndView("_mypage/personal_information2_HG");
+	}
+	
+	
 
-			return "_mypage/personal_information2_HG";
+	@RequestMapping(value = "/_mypage/personal_information2_HG.do", method = RequestMethod.GET)
+	public ModelAndView personal_information2(Model model) {
 
-		}
-		
-		/**
-		 * -------------------------------- 개인정보수정 controller 끝 --------------------------
-		 */
-		
-		@RequestMapping(value = "/_test/lovescore1_HG.do", method = RequestMethod.GET)
-		public String lovescore1(Model model) {
+		return new ModelAndView("_mypage/personal_information2_HG");
 
-			return "_test/lovescore1_HG";
+	}
 
-		}
+	@RequestMapping(value = "/_mypage/personal_information2_HG.do", method = RequestMethod.POST)
+	public ModelAndView personal_information2ok(Model model) {
 
-		@RequestMapping(value = "/_test/lovescore2_HG.do", method = RequestMethod.GET)
-		public String lovescore2(Model model) {
-			int TestQ3 = webHelper.getInt("TestQ3");
+		return new ModelAndView("_mypage/personal_information2_HG");
 
-			Test input = new Test();
-			input.setTestQ3(TestQ3);
+	}
 
-			model.addAttribute("TestQ3", TestQ3);
+	/**
+	 * -------------------------------- 개인정보수정 controller 끝
+	 * --------------------------
+	 */
 
-			return "_test/lovescore2_HG";
+	@RequestMapping(value = "/_test/lovescore1_HG.do", method = RequestMethod.GET)
+	public String lovescore1(Model model) {
 
-		}
+		return "_test/lovescore1_HG";
 
-		@RequestMapping(value = "/_test/lovescore3_HG.do", method = RequestMethod.GET)
-		public ModelAndView list(Model model) {
-			int TestQ3 = webHelper.getInt("TestQ3");
-			int TestQ4 = webHelper.getInt("TestQ4");
-			String ResultTitle = webHelper.getString("ResultTitle");
-			String ResultContent = webHelper.getString("ResultContent");
+	}
 
-			Test input = new Test();
-			input.setTestQ3(TestQ3);
-			input.setTestQ4(TestQ4);
-			input.setResultTitle(ResultTitle);
-			input.setResultContent(ResultContent);
+	@RequestMapping(value = "/_test/lovescore2_HG.do", method = RequestMethod.GET)
+	public String lovescore2(Model model) {
+		int TestQ3 = webHelper.getInt("TestQ3");
 
-			List<Test> output = null;
+		Test input = new Test();
+		input.setTestQ3(TestQ3);
 
-			try {
-				output = testService.getTestList(input);
-			} catch (Exception e) {
-				return webHelper.redirect(null, e.getLocalizedMessage());
-			}
+		model.addAttribute("TestQ3", TestQ3);
 
-			model.addAttribute("TestQ4", TestQ4);
-			model.addAttribute("TestQ3", TestQ3);
-			model.addAttribute("ResultContent", ResultContent);
-			model.addAttribute("ResultTitle", ResultTitle);
-			model.addAttribute("output", output);
+		return "_test/lovescore2_HG";
 
-			return new ModelAndView("_test/lovescore3_HG");
+	}
 
-		}
+	@RequestMapping(value = "/_test/lovescore3_HG.do", method = RequestMethod.GET)
+	public ModelAndView list(Model model) {
+		int TestQ3 = webHelper.getInt("TestQ3");
+		int TestQ4 = webHelper.getInt("TestQ4");
+		String ResultTitle = webHelper.getString("ResultTitle");
+		String ResultContent = webHelper.getString("ResultContent");
 
-		@RequestMapping(value = "/_test/propensity1_HG.do", method = RequestMethod.GET)
-		public String propensity1(Model model) {
+		Test input = new Test();
+		input.setTestQ3(TestQ3);
+		input.setTestQ4(TestQ4);
+		input.setResultTitle(ResultTitle);
+		input.setResultContent(ResultContent);
 
-			return "_test/propensity1_HG";
+		List<Test> output = null;
 
+		try {
+			output = testService.getTestList(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		@RequestMapping(value = "/_test/propensity2_HG.do", method = RequestMethod.GET)
-		public String propensity2(Model model) {
-			int TestQ1 = webHelper.getInt("TestQ1");
+		model.addAttribute("TestQ4", TestQ4);
+		model.addAttribute("TestQ3", TestQ3);
+		model.addAttribute("ResultContent", ResultContent);
+		model.addAttribute("ResultTitle", ResultTitle);
+		model.addAttribute("output", output);
 
-			Test input = new Test();
-			input.setTestQ1(TestQ1);
+		return new ModelAndView("_test/lovescore3_HG");
 
-			model.addAttribute("TestQ1", TestQ1);
-			return "_test/propensity2_HG";
+	}
 
+	@RequestMapping(value = "/_test/propensity1_HG.do", method = RequestMethod.GET)
+	public String propensity1(Model model) {
+
+		return "_test/propensity1_HG";
+
+	}
+
+	@RequestMapping(value = "/_test/propensity2_HG.do", method = RequestMethod.GET)
+	public String propensity2(Model model) {
+		int TestQ1 = webHelper.getInt("TestQ1");
+
+		Test input = new Test();
+		input.setTestQ1(TestQ1);
+
+		model.addAttribute("TestQ1", TestQ1);
+		return "_test/propensity2_HG";
+
+	}
+
+	@RequestMapping(value = "/_test/propensity3_HG.do", method = RequestMethod.GET)
+	public ModelAndView list2(Model model) {
+		int TestQ1 = webHelper.getInt("TestQ1");
+		int TestQ2 = webHelper.getInt("TestQ2");
+		String ResultTitle = webHelper.getString("ResultTitle");
+		String ResultContent = webHelper.getString("ResultContent");
+
+		Test input = new Test();
+		input.setTestQ1(TestQ1);
+		input.setTestQ2(TestQ2);
+		input.setResultTitle(ResultTitle);
+		input.setResultContent(ResultContent);
+
+		List<Test> output = null;
+
+		try {
+			output = testService.getTestList1(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		@RequestMapping(value = "/_test/propensity3_HG.do", method = RequestMethod.GET)
-		public ModelAndView list2(Model model) {
-			int TestQ1 = webHelper.getInt("TestQ1");
-			int TestQ2 = webHelper.getInt("TestQ2");
-			String ResultTitle = webHelper.getString("ResultTitle");
-			String ResultContent = webHelper.getString("ResultContent");
+		model.addAttribute("TestQ1", TestQ1);
+		model.addAttribute("TestQ2", TestQ2);
+		model.addAttribute("ResultContent", ResultContent);
+		model.addAttribute("ResultTitle", ResultTitle);
+		model.addAttribute("output", output);
 
-			Test input = new Test();
-			input.setTestQ1(TestQ1);
-			input.setTestQ2(TestQ2);
-			input.setResultTitle(ResultTitle);
-			input.setResultContent(ResultContent);
+		return new ModelAndView("_test/propensity3_HG");
 
-			List<Test> output = null;
+	}
 
-			try {
-				output = testService.getTestList1(input);
-			} catch (Exception e) {
-				return webHelper.redirect(null, e.getLocalizedMessage());
-			}
+	@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
+	public String Map(Model model) {
 
-			model.addAttribute("TestQ1", TestQ1);
-			model.addAttribute("TestQ2", TestQ2);
-			model.addAttribute("ResultContent", ResultContent);
-			model.addAttribute("ResultTitle", ResultTitle);
-			model.addAttribute("output", output);
+		return "_test/idealtype_HG";
 
-			return new ModelAndView("_test/propensity3_HG");
+	}
 
-		}
-
-		@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
-		public String Map(Model model) {
-
-			return "_test/idealtype_HG";
-
-		}
-		
-		/**
-		 * -------------------------------- 테스트 controller 끝 --------------------------
-		 */
+	/**
+	 * -------------------------------- 테스트 controller 끝 --------------------------
+	 */
 }

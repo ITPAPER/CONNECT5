@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,27 +81,37 @@
 		<div class="col-md-10 text1">
 			<h5>비밀번호를 입력해주세요.</h5>
 		</div>
-		<div class="col-md-9 content">
-			<hr />
-			<fieldset>
-				<div class="user_name">
-						<label for="user_name">아이디　　　</label>
-							<p>abc123</p>
-								</div>
-								<div class="user_pw">
-								<label for="text">비밀번호　　</label>
-								<input type="password" placeholder="비밀번호 입력해주세요" name="user_pw" id="user_pw" size="20"  />
-							</div>
-				<div class="buttom">
-					<br />
-					<button class="btn btn-default" id="btn1"
-						style="height: 30px; width: 80px;">확인</button>
-				</div>
-			</fieldset>
+		
+			<div class="col-md-9 content">
+				<hr />
+				<fieldset>
+			<form action="${pageContext.request.contextPath}/_mypage/personal_information1ok_HG.do" method="POST" >
+				<c:set var="userId" value="${output.userId}" />
+				<c:set var="userPw" value="${output.userPw}" />
+				
+					<div class="user_name">
+						<label for="user_name" style="width:100px;">아이디 </label>
+						<a>${userId}</a>
+					</div>
+					<div class="user_pw">
+						<label for="text" style="width:100px;">비밀번호 </label> 
+						<input type="password"
+							placeholder="비밀번호 입력해주세요" name="UserPw" id="user_pw" size="20" ${userPw}/>
+							
+					</div>
+					<div class="buttom">
+						<br />
+						<button class="btn btn-default" id="btn1"
+							style="height: 30px; width: 80px;">확인</button>
+					</div>
+					
+					</form>
+				</fieldset>
 
 
 
-		</div>
+			</div>
+		
 	</div>
 
 	<!-- 가운데 영역 끝 -->
@@ -107,5 +120,6 @@
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+	
 </body>
 </html>
