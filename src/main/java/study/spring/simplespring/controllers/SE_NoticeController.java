@@ -62,7 +62,7 @@ public class SE_NoticeController {
 
         try {
             // 전체 게시글 수 조회
-            totalCount = boardService.getBoardCount(input);
+            totalCount = boardService.getBoardCountNotice(input);
             // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
             pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 

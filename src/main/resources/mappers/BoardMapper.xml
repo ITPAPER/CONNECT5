@@ -9,7 +9,6 @@
 		<result property="CreationDate" column="CreationDate" />
 		<result property="ContentImg" column="ContentImg" />
 		<result property="Category" column="Category" />
-		<result property="seq" column="seq" />
 		<result property="MemberId" column="MemberId" />
 		<result property="UserId" column="UserId" />
 		<result property="UserName" column="UserName" />
@@ -20,7 +19,7 @@
 		resultMap="boardMap">
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
-		ContentImg, Category, seq, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -33,7 +32,7 @@
 		resultMap="boardMap">
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
-		ContentImg, Category, seq, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -57,7 +56,7 @@
 		resultMap="boardMap">
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
-		ContentImg, Category, seq, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -81,7 +80,7 @@
 		resultMap="boardMap">
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
-		ContentImg, Category, seq, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -105,7 +104,7 @@
 		resultMap="boardMap">
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
-		ContentImg, Category, seq, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -138,6 +137,62 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="selectCountAllStory"
+		parameterType="study.spring.simplespring.model.Board" resultType="int">
+		SELECT COUNT(*)
+		FROM Board b
+		INNER JOIN User u ON b.MemberId=u.MemberId
+		WHERE Category=1
+
+		<where>
+			<if test="Title != null and Title != ''">
+				Title LIKE concat('%', #{Title}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectCountAllNotice"
+		parameterType="study.spring.simplespring.model.Board" resultType="int">
+		SELECT COUNT(*)
+		FROM Board b
+		INNER JOIN User u ON b.MemberId=u.MemberId
+		WHERE Category=2
+
+		<where>
+			<if test="Title != null and Title != ''">
+				Title LIKE concat('%', #{Title}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectCountAllReview"
+		parameterType="study.spring.simplespring.model.Board" resultType="int">
+		SELECT COUNT(*)
+		FROM Board b
+		INNER JOIN User u ON b.MemberId=u.MemberId
+		WHERE Category=3
+
+		<where>
+			<if test="Title != null and Title != ''">
+				Title LIKE concat('%', #{Title}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectCountAllQnA"
+		parameterType="study.spring.simplespring.model.Board" resultType="int">
+		SELECT COUNT(*)
+		FROM Board b
+		INNER JOIN User u ON b.MemberId=u.MemberId
+		WHERE Category=4
+
+		<where>
+			<if test="Title != null and Title != ''">
+				Title LIKE concat('%', #{Title}, '%')
+			</if>
+		</where>
+	</select>
 
 
 	<!-- 데이터 저장을 위한 기능 정의 -->
@@ -145,9 +200,9 @@
 		parameterType="study.spring.simplespring.model.Board"
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
-		Title, Content, CreationDate, ContentImg, Category, seq, MemberId
+		Title, Content, CreationDate, ContentImg, Category, MemberId
 		) VALUES (
-		#{Title}, #{Content}, now(), #{ContentImg}, 3, #{seq} #{MemberId}
+		#{Title}, #{Content}, now(), #{ContentImg}, 3, #{MemberId}
 		)
 	</insert>
 
@@ -155,9 +210,9 @@
 		parameterType="study.spring.simplespring.model.Board"
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
-		Title, Content, CreationDate, ContentImg, Category, seq, MemberId
+		Title, Content, CreationDate, ContentImg, Category, MemberId
 		) VALUES (
-		#{Title}, #{Content}, now(), #{ContentImg}, 3, #{seq}, #{MemberId}
+		#{Title}, #{Content}, now(), #{ContentImg}, 3, #{MemberId}
 		)
 	</insert>
 
@@ -165,9 +220,9 @@
 		parameterType="study.spring.simplespring.model.Board"
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
-		Title, Content, CreationDate, ContentImg, Category, seq, MemberId
+		Title, Content, CreationDate, ContentImg, Category, MemberId
 		) VALUES (
-		#{Title}, #{Content}, now(), #{ContentImg}, 4, (SELECT IFNULL(MAX(seq)+1, 0)), #{MemberId}
+		#{Title}, #{Content}, now(), #{ContentImg}, 4, #{MemberId}
 		)
 
 
@@ -184,7 +239,7 @@
 		parameterType="study.spring.simplespring.model.Board">
 		UPDATE Board SET
 		Title=#{Title}, Content=#{Content}, CreationDate=#{CreationDate},
-		ContentImg=#{ContentImg}, Category=#{Category}, seq=#{seq}, MemberId=#{MemberId}
+		ContentImg=#{ContentImg}, Category=#{Category}, MemberId=#{MemberId}
 		WHERE BoardId=#{BoardId}
 	</update>
 

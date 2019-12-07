@@ -15,8 +15,10 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.Reply;
 import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
+import study.spring.simplespring.service.ReplyService;
 import study.spring.simplespring.service.UserService;
 
 @Controller
@@ -29,6 +31,8 @@ public class SE_QnAController {
 	@Autowired BoardService boardService;
 	
 	@Autowired UserService userService;
+	
+	@Autowired ReplyService replyService;
 	
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -63,7 +67,7 @@ public class SE_QnAController {
 
         try {
             // 전체 게시글 수 조회
-            totalCount = boardService.getBoardCount(input);
+            totalCount = boardService.getBoardCountQnA(input);
             // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
             pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 
@@ -93,20 +97,6 @@ public class SE_QnAController {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
-		
-		/** 목록 조회하기 */
-        // 조회결과를 저장할 객체 선언
-        List<User> output = null;
-
-        try {
-            // 데이터 조회 
-            output = userService.getUserList(null);
-        } catch (Exception e) {
-            return webHelper.redirect(null, e.getLocalizedMessage());
-        }
-
-        // View에 추가
-        model.addAttribute("output", output);
 
         return new ModelAndView("_coach/QnAWrite_SE");
 
@@ -136,7 +126,7 @@ public class SE_QnAController {
         input.setContentImg(ContentImg);
         input.setCategory(Category);
         input.setUserId(UserId);
-
+        
         try {
             // 데이터 저장
             // --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
@@ -163,32 +153,148 @@ public class SE_QnAController {
 		
 		 /** 1) 필요한 변수값 생성 */
        // 조회할 대상에 대한 PK값
-       int boardId = webHelper.getInt("BoardId");
+       int BoardId = webHelper.getInt("BoardId");
 
        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
-       if (boardId == 0) {
+       if (BoardId == 0) {
            return webHelper.redirect(null, "글번호가 없습니다.");
        }
-
+      
        /** 2) 데이터 조회하기 */
        // 데이터 조회에 필요한 조건값을 Beans에 저장하기
        Board input = new Board();
-       input.setBoardId(boardId);
-
+       input.setBoardId(BoardId);
+       
+       Reply input1 = new Reply();
+       input1.setBoardId(BoardId);
+    
        // 조회결과를 저장할 객체 선언
        Board output = null;
-
+       List<Reply> output1 = null;
+       
        try {
            // 데이터 조회
            output = boardService.getBoardItem(input);
+           output1 = replyService.getReplyListQnA(input1);
        } catch (Exception e) {
            return webHelper.redirect(null, e.getLocalizedMessage());
        }
        
        /** 3) View 처리 */
        model.addAttribute("output", output);
+       model.addAttribute("output1", output1);
        
        return new ModelAndView("_coach/QnARead_SE");
+
+	}
+	
+	@RequestMapping(value = "/_coach/replyDelete_SE.do", method = RequestMethod.GET)
+	public ModelAndView delete(Model model) {
+		
+		int ReplyId = webHelper.getInt("ReplyId");
+	
+		
+		if (ReplyId == 0) {
+			webHelper.redirect(null, "댓글번호가 없습니다.");
+		}
+				
+		Reply input = new Reply();
+		input.setReplyId(ReplyId);
+		
+		try {
+			replyService.deleteReply(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		return webHelper.redirect(contextPath + "/_coach/QnA_SE.do", "삭제되었습니다.");
+	}
+	
+	@RequestMapping(value = "/_coach/replyWrite_ok_SE.do", method = RequestMethod.POST)
+    public ModelAndView replyadd_ok(Model model) {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = loginInfo.getMemberId();
+		String UserName = loginInfo.getUserName();
+		int BoardId = webHelper.getInt("BoardId");
+		String Re_Title = webHelper.getString("Re_Title");
+		String Re_Content = webHelper.getString("Re_Content");
+		
+		
+		Reply input = new Reply();
+		input.setBoardId(BoardId);
+		input.setMemberId(MemberId);
+		input.setRe_Content(Re_Content);
+		input.setRe_Title(Re_Title);
+		input.setUserName(UserName);
+        
+        try {
+            // 데이터 저장
+            // --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+            replyService.addReply(input);
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+
+        /** 3) 결과를 확인하기 위한 페이지 이동 */
+        // 저장 결과를 확인하기 위해서 데이터 저장시 생성된 PK값을 상세 페이지로 전달해야 한다.
+        String redirectUrl = contextPath + "/_coach/QnARead_SE.do?BoardId=" + input.getBoardId();
+        return webHelper.redirect(redirectUrl, "저장되었습니다.");
+    }
+	
+	@RequestMapping(value = "/_coach/replyedit.do", method = RequestMethod.POST)
+	public ModelAndView edit(Model model) {
+		
+		int ReplyId = webHelper.getInt("ReplyId");
+		
+		if (ReplyId == 0) {
+			return webHelper.redirect(null, "댓글번호가 없습니다.");
+		}
+		
+		Reply input = new Reply();
+		input.setReplyId(ReplyId);
+		
+		Reply output = null;
+		
+		try {
+			output = replyService.getReplyItem(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		model.addAttribute("output", output);
+		return new ModelAndView("_coach/replyedit");
+	}
+
+	@RequestMapping(value = "/_coach/replyeditOk.do", method = RequestMethod.POST)
+	public ModelAndView edit_ok(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		int ReplyId = webHelper.getInt("ReplyId");
+		String Re_Title = webHelper.getString("Re_Title");
+		String Re_Content = webHelper.getString("Re_Content");
+		String Re_CreationDate = webHelper.getString("Re_CreationDate");
+		int BoardId = webHelper.getInt("BoardId");
+		int MemberId = loginInfo.getMemberId();
+		String UserName = loginInfo.getUserName();
+		
+		Reply input = new Reply();
+		input.setReplyId(ReplyId);
+		input.setRe_Title(Re_Title);
+		input.setRe_Content(Re_Content);
+		input.setRe_CreationDate(Re_CreationDate);
+		input.setBoardId(BoardId);
+		input.setMemberId(MemberId);
+		input.setUserName(UserName);
+		
+		try {
+			replyService.editReply(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		String redirectUrl = contextPath + "/_coach/QnARead_SE.do?BoardId=" + input.getBoardId();
+        return webHelper.redirect(redirectUrl, "댓글이 수정 되었습니다.");
 
 	}
 }

@@ -10,4 +10,5 @@ public class Reply {
 	private String Re_CreationDate;
 	private int BoardId;
 	private int MemberId;
+	private String UserName;
 }

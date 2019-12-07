@@ -10,7 +10,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead2.css">
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -76,41 +76,77 @@
 						<th colspan="2" align="center"><a href="#">신중한 그녀, 나 혼자
 								앞서간 건가?</a></th>
 					</tr>
-				</tbody>			
+				</tbody>
 			</table>
-			
-			<div class="form-group">
-				<label for="Re_Content" class="control-label">댓글</label>
-				<input type="text" id="Re_Content" name="Re_Content" class="form-control" placeholder = "댓글을 입력하세요" value="${reply.Re_Content}" >
-			</div>
 			<br />
-			<div>
-				<ul>
-					<li class="media">
-					<div class="media-body">
-						<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
-						<div class="clearfix">
-							<!-- 제목에 float: left 적용 - pull-left -->
-							<h4 class="media-heading pull-left">주영아 <small>2013-11-20 13:12:32</small></h4>
-							<!-- 제목에 float: right 적용 - pull-right -->
-							<div class="pull-right">
-								<a href="#" title="수정"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="#" title="삭제"><i class="glyphicon glyphicon-remove"></i></a>
+
+			<form method="post"
+				action="${pageContext.request.contextPath}/_coach/replyWrite_ok_SE.do">
+				<div class="form-group" id="inputreply">
+				<input type="hidden" name="BoardId" value=${output.getBoardId() }>
+					<input type="hidden" name="Re_Title" value="댓글달기" /> 댓글달기 &nbsp; <input type="text" id="Re_Content" name="Re_Content" class="form-control" placeholder="댓글을 입력하세요." />
+					<button type="submit" class="btn btn-default pull-right"
+						id="replybtn">등록</button>
+				</div>
+			</form>
+
+			<br />
+
+			<c:choose>
+				<%-- 조회결과가 없는 경우 --%>
+				<c:when test="${output1 == null || fn:length(output1) == 0}">
+
+				</c:when>
+				<%-- 조회결과가 있는  경우 --%>
+				<c:otherwise>
+					<%-- 조회 결과에 따른 반복 처리 --%>
+					<c:forEach var="item" items="${output1}" varStatus="status">
+						<c:set var="re_content" value="${item.re_Content}" />
+						<c:set var="username" value="${item.userName}" />
+						<c:set var="re_creationDate" value="${item.re_CreationDate}" />
+
+						<div class="media-body">
+							<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
+							<div class="clearfix">
+								<!-- 제목에 float: left 적용 - pull-left -->
+								<h4 class="media-heading pull-left">${username}
+									&nbsp; <small>${re_creationDate}</small>
+								</h4>
+								<!-- 제목에 float: right 적용 - pull-right -->
+								<div class="pull-right">
+									<i class="glyphicon glyphicon-edit" id="editBtn" title="수정"></i>
+									<a
+										href="${pageContext.request.contextPath}/_coach/replyDelete_SE.do?ReplyId=${item.replyId}"
+										title="삭제"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
 							</div>
+							<p>${re_content}</p>
+							<div id="edit"></div>
 						</div>
-						<p>Twitter Bootstrap 정말 좋은 것 같습니다. 이 전에는 힘들게 하던 작업들이 너무 간결해 졌어요.</p>
-					</div>
-				</li>
-				</ul>
-			</div>
+
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 
-
+		<br />
 		<button class="btn btn-default pull-right"
 			onclick="location.href = '${pageContext.request.contextPath}/_coach/QnA_SE.do'">목록</button>
 
 	</div>
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+	<script>
+		$("#editBtn").click(function() {
+							var repEdit;
+							repEdit = "<form method='post' action='${pageContext.request.contextPath}/_coach/replyedit.do'>"
+							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}><input type='hidden' name='ReplyId' value=${item.getReplyId()}>"
+							repEdit += "<input type='hidden' name='Re_Title' value='댓글달기' /> 댓글달기 &nbsp; <input type='text' id='Re_Content1' name='Re_Content' class='form-control' placeholder='댓글을 입력하세요.' />"
+							repEdit += "<button type='submit' class='btn btn-default pull-right' id='cancelbtn'>취소</button>"
+							repEdit += "<button type='submit' class='btn btn-default pull-right' id='replybtn'>등록</button></div></form>"
+							$("#edit").html(repEdit);
+						});
+	</script>
 </body>
 </html>

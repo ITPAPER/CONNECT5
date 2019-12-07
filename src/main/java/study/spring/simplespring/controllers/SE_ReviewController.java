@@ -14,8 +14,10 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.Reply;
 import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
+import study.spring.simplespring.service.ReplyService;
 import study.spring.simplespring.service.UserService;
 
 @Controller
@@ -28,6 +30,8 @@ public class SE_ReviewController {
 	@Autowired BoardService boardService;
 	
 	@Autowired UserService userService;
+	
+	@Autowired ReplyService replyService;
 	
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -62,7 +66,7 @@ public class SE_ReviewController {
 
         try {
             // 전체 게시글 수 조회
-            totalCount = boardService.getBoardCount(input);
+            totalCount = boardService.getBoardCountReview(input);
             // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
             pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 
@@ -92,20 +96,6 @@ public class SE_ReviewController {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
-		
-		/** 목록 조회하기 */
-        // 조회결과를 저장할 객체 선언
-        List<User> output = null;
-
-        try {
-            // 데이터 조회 
-            output = userService.getUserList(null);
-        } catch (Exception e) {
-            return webHelper.redirect(null, e.getLocalizedMessage());
-        }
-
-        // View에 추가
-        model.addAttribute("output", output);
 
         return new ModelAndView("_coach/reviewWrite_SE");
 
@@ -173,19 +163,114 @@ public class SE_ReviewController {
 	       // 데이터 조회에 필요한 조건값을 Beans에 저장하기
 	       Board input = new Board();
 	       input.setBoardId(boardId);
+	       
+	       Reply input1 = new Reply();
+	       input1.setBoardId(boardId);
 
 	       // 조회결과를 저장할 객체 선언
 	       Board output = null;
+	       List<Reply> output1 = null;
 
 	       try {
 	           // 데이터 조회
 	           output = boardService.getBoardItem(input);
+	           output1 = replyService.getReplyList(input1);
 	       } catch (Exception e) {
 	           return webHelper.redirect(null, e.getLocalizedMessage());
 	       }
 	       
 	       /** 3) View 처리 */
 	       model.addAttribute("output", output);
+	       model.addAttribute("output1", output1);
 	       return new ModelAndView("_coach/reviewRead_SE");
+	}
+	
+	@RequestMapping(value = "/_coach/repReviewDelete_SE.do", method = RequestMethod.GET)
+	public ModelAndView delete(Model model) {
+		
+		int ReplyId = webHelper.getInt("ReplyId");
+	
+		
+		if (ReplyId == 0) {
+			webHelper.redirect(null, "댓글번호가 없습니다.");
+		}
+				
+		Reply input = new Reply();
+		input.setReplyId(ReplyId);
+		
+		try {
+			replyService.deleteReply(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		return webHelper.redirect(contextPath + "/_coach/review_SE.do", "삭제되었습니다.");
+	}
+	
+	@RequestMapping(value = "/_coach/repReviewWrite_ok.do", method = RequestMethod.POST)
+    public ModelAndView replyadd_ok(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = loginInfo.getMemberId();
+		String UserName = loginInfo.getUserName();
+        /** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
+		int BoardId = webHelper.getInt("BoardId");
+        String Re_Content = webHelper.getString("Re_Content");      
+       
+        /** 2) 데이터 저장하기 */
+        // 저장할 값들을 Beans에 담는다.
+        Reply input = new Reply();
+        input.setBoardId(BoardId);
+        input.setMemberId(MemberId);
+        input.setRe_Content(Re_Content);
+        input.setUserName(UserName);
+        
+        
+        try {
+            // 데이터 저장
+            // --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+            replyService.addReply(input);
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+
+        /** 3) 결과를 확인하기 위한 페이지 이동 */
+        // 저장 결과를 확인하기 위해서 데이터 저장시 생성된 PK값을 상세 페이지로 전달해야 한다.
+        String redirectUrl = contextPath + "/_coach/reviewRead_SE.do?BoardId=" + input.getBoardId();
+        return webHelper.redirect(redirectUrl, "저장되었습니다.");
+    }
+	
+
+	@RequestMapping(value = "/_coach/repReviewEditOk.do", method = RequestMethod.GET)
+	public ModelAndView edit_ok(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		int ReplyId = webHelper.getInt("ReplyId");
+		String Re_Content = webHelper.getString("Re_Content");
+		String Re_CreationDate = webHelper.getString("Re_CreationDate");
+		int MemberId = loginInfo.getMemberId();
+		String UserName = loginInfo.getUserName();
+		
+		if (ReplyId == 0) {
+			return webHelper.redirect(null, "댓글이 없습니다.");
+		}
+		
+		Reply input = new Reply();
+		input.setBoardId(ReplyId);
+		input.setRe_Content(Re_Content);
+		input.setRe_CreationDate(Re_CreationDate);
+		input.setMemberId(MemberId);
+		input.setUserName(UserName);
+		
+		try {
+			replyService.editReply(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		String redirectUrl = contextPath + "/_coach/reviewRead_SE.do";
+        return webHelper.redirect(redirectUrl, "댓글이 수정 되었습니다.");
+
 	}
 }

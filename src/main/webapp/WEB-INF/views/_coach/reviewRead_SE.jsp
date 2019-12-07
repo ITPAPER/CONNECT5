@@ -10,7 +10,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead.css">
+	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnARead2.css">
 
 
 <meta charset="utf-8" />
@@ -73,6 +73,53 @@
 					</tr>
 				</tbody>
 			</table>
+			<br  />
+			
+			<form method="post" action="${pageContext.request.contextPath}/_coach/replyWrite_ok_SE.do">
+			<div class="form-group" id="inputreply">
+				<label for="Re_Content" class="control-label">댓글달기 &nbsp;</label>
+				<input type="text" id="Re_Content" name="Re_Content" class="form-control" placeholder = "댓글을 입력하세요." />
+				<button type="submit" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${output.boardId}'" class="btn btn-default pull-right" id="replybtn">등록</button>
+			</div>
+			</form>
+			
+			<br />
+			
+			<c:choose>
+                <%-- 조회결과가 없는 경우 --%>
+                <c:when test="${output1 == null || fn:length(output1) == 0}">
+                    
+                </c:when>
+                <%-- 조회결과가 있는  경우 --%>
+                <c:otherwise>
+                    <%-- 조회 결과에 따른 반복 처리 --%>         
+                    <c:forEach var="item" items="${output1}" varStatus="status">     
+                        <c:set var="re_content" value="${item.re_Content}" />
+                        <c:set var="username" value="${item.userName}" />
+                        <c:set var="re_creationDate" value="${item.re_CreationDate}" />
+
+						<div class="media-body">
+							<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
+							<div class="clearfix">
+								<!-- 제목에 float: left 적용 - pull-left -->
+								<h4 class="media-heading pull-left">${username} &nbsp;
+									<small>${re_creationDate}</small>
+								</h4>
+								<!-- 제목에 float: right 적용 - pull-right -->
+								<div class="pull-right">
+									<i class="glyphicon glyphicon-edit" id="editBtn" title="수정"></i>
+									<a href="${pageContext.request.contextPath}/_coach/replyDelete_SE.do?ReplyId=${item.replyId}" title="삭제"><i
+										class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</div>
+							<p>${re_content}</p>
+							<div id="edit"></div>
+						</div>
+
+					</c:forEach>
+                </c:otherwise>
+            </c:choose>
+			
 		</div>
 
 		<button class="btn btn-default pull-right"
@@ -82,5 +129,14 @@
 
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+	<script>
+	$("#editBtn").click(function(){
+		var repEdit;
+		repEdit = "<div class='form-group' id='inputreply'><input type='text' id='Re_Content' name='Re_Content' class='form-control' placeholder='댓글을 입력하세요.' />"
+		repEdit += "<button type='submit' onclick='location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${output.boardId}'' class='btn btn-default pull-right' id='replybtn'>등록</button>"
+		repEdit += "<button type='submit' onclick='location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${output.boardId}'' class='btn btn-default pull-right' id='replybtn'>취소</button></div>"
+		$("#edit").html(repEdit);
+	});
+	</script>
 </body>
 </html>

@@ -77,4 +77,5 @@ public class PageData {
         // 계산 결과를 로그로 기록한다.
         log.debug(this.toString());
     }
+    
 }

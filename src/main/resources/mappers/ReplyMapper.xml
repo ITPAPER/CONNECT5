@@ -9,31 +9,45 @@
 		<result property="Re_CreationDate" column="Re_CreationDate" />
 		<result property="BoardId" column="BoardId" />
 		<result property="MemberId" column="MemberId" />
+		<result property="UserName" column="UserName" />
 	</resultMap>
-
+	
 	<select id="selectItem"
 		parameterType="study.spring.simplespring.model.Reply"
 		resultMap="replyMap">
 		SELECT ReplyId, Re_Title, Re_Content,
 		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
-		r.BoardId, r.MemberId, u.UserId
+		r.BoardId, r.MemberId, u.UserName
 		FROM Reply r
-		INNER JOIN User u ON
-		r.MemberId = u.MemberId
+		INNER JOIN User u ON r.MemberId = u.MemberId
+		INNER JOIN board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}
 		WHERE ReplyId=#{ReplyId}
 	</select>
-
+	
 	<!-- 다중행 조회를 위한 기능 정의 -->
 	<select id="selectList"
 		parameterType="study.spring.simplespring.model.Reply"
 		resultMap="replyMap">
 		SELECT ReplyId, Re_Title, Re_Content,
 		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
-		r.BoardId, r.MemberId, u.UserId
+		r.BoardId, r.MemberId, u.UserName
 		FROM Reply r
-		INNER JOIN User u ON
-		r.MemberId = u.MemberId
+		INNER JOIN User u ON r.MemberId = u.MemberId
+		INNER JOIN board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}
 
+		ORDER BY ReplyId DESC
+	</select>
+	
+	<select id="selectListQnA"
+		parameterType="study.spring.simplespring.model.Reply"
+		resultMap="replyMap">
+		SELECT ReplyId, Re_Title, Re_Content,
+		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
+		r.BoardId, r.MemberId, u.UserName
+		FROM Reply r
+		INNER JOIN User u ON r.MemberId = u.MemberId
+		INNER JOIN board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}	
+		
 		ORDER BY ReplyId DESC
 	</select>
 
@@ -42,14 +56,19 @@
 	<insert id="insertItem"
 		parameterType="study.spring.simplespring.model.Reply"
 		useGeneratedKeys="true" keyProperty="ReplyId">
+		INSERT INTO Reply (Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId) 
+		VALUES (#{Re_Title}, #{Re_Content}, #{Re_CreationDate}, #{BoardId}, #{MemberId})
+	</insert>
+
+	<insert id="insertItemQnA"
+		parameterType="study.spring.simplespring.model.Reply"
+		useGeneratedKeys="true" keyProperty="ReplyId">
 		INSERT INTO Reply (
 		Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId
 		) VALUES (
-		#{Title}, #{Content}, now(), #{BoardId}, #{MemberId}
+		#{Re_Title}, #{Re_Content}, now(), #{BoardId}, #{MemberId}
 		)
 	</insert>
-
-	
 
 	<!-- 데이터 삭제를 위한 기능 정의 -->
 	<delete id="deleteItem"

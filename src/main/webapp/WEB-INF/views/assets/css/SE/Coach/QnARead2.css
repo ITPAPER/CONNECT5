@@ -25,3 +25,18 @@
 #context {
 	height: 300px;
 }
+
+#Re_Content {
+	width: 770px;
+	display: inline;
+}
+
+#Re_Content1 {
+	width: 700px;
+	display: inline;
+}
+
+.media-body {
+	padding: 10px;
+	border: 1px solid #EAEAEA;
+}

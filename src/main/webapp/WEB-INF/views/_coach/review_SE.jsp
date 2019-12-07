@@ -82,7 +82,7 @@
                 <%-- 조회결과가 있는  경우 --%>
                 <c:otherwise>
                     <%-- 조회 결과에 따른 반복 처리 --%>
-                    <c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}"/>
+                    <c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
                     <c:forEach var="item" items="${output}" varStatus="status">         
                         <c:set var="title" value="${item.title}" />
                         <c:set var="userId" value="${item.userId}" />
@@ -106,8 +106,8 @@
                         <tr>
                             <td>${num}</td>
                             <td><a href="${viewUrl}">${title}</a></td>
-                            <td>${item.userId}</td>
-                            <td>${item.creationDate}</td>
+                            <td>${userId}</td>
+                            <td>${creationDate}</td>
                         </tr>
                         <c:set var="num" value="${num-1}" ></c:set>
                     </c:forEach>
@@ -129,10 +129,13 @@
                 <c:param name="page" value="${pageData.prevPage}" />
                 <c:param name="keyword" value="${keyword}" />
             </c:url>
-            <a href="${prevPageUrl}">[이전]</a>
+            <a href="${prevPageUrl}">&laquo;</a>
         </c:when>
         <c:otherwise>
-            [이전]
+	            <ul class="pagination pagination-sm">
+	            <li>
+	            <a href="${prevPageUrl}">&laquo;</a></li>	
+            	</ul>
         </c:otherwise>
     </c:choose>
     
@@ -147,15 +150,19 @@
         <%-- 페이지 번호 출력 --%>
         <c:choose>
             <%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
-            <c:when test="${pageData.nowPage == i}">
-                <strong>[${i}]</strong>
-            </c:when>
-            <%-- 나머지 페이지의 경우 링크 적용함 --%>
-            <c:otherwise>
-                <a href="${pageUrl}">[${i}]</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
+             <c:when test="${pageData.nowPage == i}">
+                     <ul class="pagination pagination-sm">
+                        <li><a href="${pageUrl}">${i}</a></li>
+                     </ul>
+                  </c:when>
+                  <%-- 나머지 페이지의 경우 링크 적용함 --%>
+                  <c:otherwise>
+                     <ul class="pagination pagination-sm">
+                        <li><a href="${pageUrl}">${i}</a></li>
+                     </ul>
+                  </c:otherwise>
+               </c:choose>
+            </c:forEach>
     
     <%-- 다음 그룹에 대한 링크 --%>
     <c:choose>
@@ -166,10 +173,13 @@
                 <c:param name="page" value="${pageData.nextPage}" />
                 <c:param name="keyword" value="${keyword}" />
             </c:url>
-            <a href="${nextPageUrl}">[다음]</a>
+            <a href="${nextPageUrl}">&raquo;</a>
         </c:when>
         <c:otherwise>
-            [다음]
+            <ul class="pagination pagination-sm">
+               <li>
+           <a href="${pageUrl}">&raquo;</a></li>
+            </ul>
         </c:otherwise>
     </c:choose>
 
