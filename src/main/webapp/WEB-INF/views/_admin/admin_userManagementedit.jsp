@@ -106,7 +106,7 @@
 
 		<div class="col-md-10 text_box">
 			<form action="${pageContext.request.contextPath}/_admin/admin_userManagementeditOk.do" method="POST">
-				<input type="hidden" name="boardId" value="${output.getBoardId() }" />
+				<input type="hidden" name="BoardId" value="${output.getBoardId() }" />
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
 						<thead>

@@ -141,7 +141,7 @@
 								<c:set var="title" value="${item.title}" />
 								<c:set var="userName" value="${item.userName}" />
 								<c:set var="creationDate" value="${item.creationDate}" />
-								<c:set var="boardId" value="${item.boardId }" />
+								<c:set var="BoardId" value="${item.getBoardId() }" />
 
 
 								<%-- 검색어가 있다면? --%>
@@ -155,17 +155,17 @@
 
 								<%-- 상세페이지로 이동하기 위한 URL --%>
 								<c:url value="/_admin/admin_userManagementview.do" var="viewUrl">
-									<c:param name="boardId" value="${item.boardId}" />
+									<c:param name="BoardId" value="${item.getBoardId()}" />
 								</c:url>
 
 								<tr>
-									<td>${num}</td>
+									<td>${item.getBoardId()}</td>
 									<td><a href="${viewUrl}">${title}</a></td>
 									<td>${item.userName}</td>
 									<td>count</td>
 									<td>${item.creationDate}</td>
 									<td><button type="button" class="label label-warning"
-											onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?boardId=${boardId}'">삭제</button></td>
+											onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?BoardId=${BoardId}'">삭제</button></td>
 								</tr>
 								<c:set var="num" value="${num-1}"></c:set>
 							</c:forEach>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -81,6 +84,7 @@
 
 		<div class="col-md-10 text_box">
 			<table class="table table-striped table-bordered table-hover">
+				<thead>
 				<tr class="text-center">
 					<td id="num">번호</td>
 					<td id="title">제목</td>
@@ -88,89 +92,109 @@
 					<td id="date">날짜</td>
 					<td id="answer">답변여부</td>
 				</tr>
-				<tr class="text-center">
-					<td id="num">10</td>
-					<td id="title" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionRead_SE.do'" style="cursor: pointer;">문의 드립니다.</td>
-					<td id="name">최유한</td>
-					<td id="date">2019.10.01</td>
-					<td id="answer"><span class="label label-primary">미답변</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">9</td>
-					<td id="title">결제가 안됩니다.</td>
-					<td id="name">박경동</td>
-					<td id="date">2019.10.01</td>
-					<td id="answer"><span class="label label-primary">미답변</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">8</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.10.01</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">7</td>
-					<td id="title">결제문의</td>
-					<td id="name">남희권</td>
-					<td id="date">2019.10.01</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">6</td>
-					<td id="title">결제문의</td>
-					<td id="name">정유빈</td>
-					<td id="date">2019.10.01</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">5</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.09.28</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">4</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.09.25</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">3</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.09.16</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">2</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.09.15</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				<tr class="text-center">
-					<td id="num">1</td>
-					<td id="title">결제문의</td>
-					<td id="name">배세은</td>
-					<td id="date">2019.09.02</td>
-					<td id="answer"><span class="label label-default">완료</span></td>
-				</tr>
-				
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${output == null || fn:length(output) == 0}">
+							<tr>
+								<td colspan="9" align="center">공지사항이 없습니다.</td>
+							</tr>
+						</c:when>
+
+						<%-- 조회결과가 있는  경우 --%>
+						<c:otherwise>
+							<%-- 조회 결과에 따른 반복 처리 --%>
+							<c:set var="num"
+								value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:forEach var="item" items="${output}" varStatus="status">
+								<c:set var="Title" value="${item.getTitle()}" />
+								<c:set var="UserName" value="${item.getUserName()}" />
+								<c:set var="CreationDate" value="${item.getCreationDate()}" />
+								<c:set var="BoardId" value="${item.getBoardId() }" />
+								
+								<%-- 검색어가 있다면? --%>
+								<c:if test="${keyword != ''}">
+									<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+									<c:set var="mark" value="<mark>${keyword}</mark>" />
+									<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+									<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
+
+								</c:if>
+								
+								<%-- 상세페이지로 이동하기 위한 URL --%>
+								<c:url value="/_admin/admin_QuestionRead_SE.do" var="viewUrl">
+									<c:param name="BoardId" value="${item.getBoardId()}" />
+								</c:url>
+
+								<tr>
+									<td>${item.getBoardId()}</td>
+									<td><a href="${viewUrl}">${item.getTitle()}</a></td>
+									<td>${item.getUserName()}</td>
+									<td>${item.getCreationDate()}</td>
+									<td><span class="badge badge_ok">완료</span></td>
+								</tr>
+								<c:set var="num" value="${num-1}"></c:set>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
 			</table>
+			<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_QuestionRead_SE.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${prevPageUrl}">&laquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_admin/admin_QuestionRead_SE.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
 
-			<ul class="pagination pagination-sm">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<ul class="pagination pagination-sm">
+							<li class="active"><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_QuestionRead_SE.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${pageUrl}">&raquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 

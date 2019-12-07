@@ -137,7 +137,7 @@ public class YH_1_1questionEmpty {
 
 		// View에 추가
 
-		String redirectUrl = contextPath + "/_mypage/1_1questionview.do?boardId=" + input.getBoardId();
+		String redirectUrl = contextPath + "/_mypage/1_1questionview.do?BoardId=" + input.getBoardId();
 		return webHelper.redirect(redirectUrl, "1:1 문의글이 등록되었습니다.");
 
 	}
@@ -154,14 +154,14 @@ public class YH_1_1questionEmpty {
 			model.addAttribute("login", login);
 		}
 
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "문의내역이 없습니다.");
 		}
 
 		Board input = new Board();
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 
 		Board output = null;
 
@@ -191,14 +191,14 @@ public class YH_1_1questionEmpty {
 			model.addAttribute("login", login);
 		}
 		
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 		
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "문의내역이 없습니다.");
 		}
 		
 		Board input = new Board();
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 		
 		Board output = null;
 		
@@ -218,14 +218,14 @@ public class YH_1_1questionEmpty {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 		String Title = webHelper.getString("Title");
 		String Content = webHelper.getString("Content");
 		int MemberId = loginInfo.getMemberId();
 		int Category = webHelper.getInt("Category");
 		String CreationDate = webHelper.getString("CreationDate");
 		
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "문의내역이 없습니다.");
 		}
 		
@@ -235,7 +235,7 @@ public class YH_1_1questionEmpty {
 		input.setMemberId(MemberId);
 		input.setCategory(Category);
 		input.setCreationDate(CreationDate);
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 		
 		try {
 			boardService.editBoard1_1(input);

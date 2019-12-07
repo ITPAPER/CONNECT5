@@ -44,7 +44,6 @@ ul, ol {
 
 /* 게시판 크기 */
 .text_box {
-	height: 500px;
 	margin-top: 30px;
 }
 
@@ -75,4 +74,8 @@ ul, ol {
 
 #context {
 	height: 400px;
+}
+
+.Question{
+	height: 300px;
 }

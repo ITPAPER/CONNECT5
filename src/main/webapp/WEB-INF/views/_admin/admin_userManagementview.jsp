@@ -119,13 +119,13 @@
 						<tr>
 							<td>다음글</td>
 							<th class="text_select" colspan="2"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?boardId=${output.boardId +1} '">
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() +1} '">
 								${output.getTitle() }</th>
 						</tr>
 						<tr>
 							<td>이전글</td>
 							<th class="text_select" colspan="2"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?boardId=${output.boardId -1} '">
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() -1} '">
 								${output.getTitle() }</th>
 						</tr>
 
@@ -133,7 +133,7 @@
 				</table>
 			</div>
 			<button class="btn btn-default"
-				onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementedit.do?boardId=${output.boardId }'">수정하기</button>
+				onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementedit.do?BoardId=${output.getBoardId() }'">수정하기</button>
 			<button class="btn btn-default"
 				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'">목록</button>
 		</div>

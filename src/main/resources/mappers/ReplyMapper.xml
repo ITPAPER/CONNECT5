@@ -84,5 +84,29 @@
 		BoardId=#{BoardId}, MemberId=#{MemberId}
 		WHERE ReplyId=#{ReplyId}
 	</update>
+	
+	<select id="selectItem1_1"
+		parameterType="study.spring.simplespring.model.Reply"
+		resultMap="replyMap">
+		SELECT ReplyId, Re_Title, Re_Content,
+		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,BoardId,MemberId,b.BoardId,b.Category,u.UserName FROM Reply r
+		INNER JOIN User u ON (r.MemberId = #{MemberId} AND  u.MemberId = #{MemberId}) AND Category = 5
+	</select>
+	
+	<insert id="insertItemadmin1_1"
+		parameterType="study.spring.simplespring.model.Reply"
+		useGeneratedKeys="true" keyProperty="ReplyId">
+		INSERT INTO Reply
+		(Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId)
+		VALUES (#{Re_Title}, #{Re_Content}, #{Re_CreationDate}, #{BoardId}, #{MemberId})
 
+	</insert>
+	
+	<select id="selectItemadmin1_1"
+		parameterType="study.spring.simplespring.model.Reply"
+		resultMap="replyMap">
+		SELECT r.* , b.BoardId , u.UserName FROM connect5.reply r
+		INNER JOIN connect5.board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}
+		INNER JOIN connect5.user u On (b.MemberId = u.MemberId)
+	</select>
 </mapper>

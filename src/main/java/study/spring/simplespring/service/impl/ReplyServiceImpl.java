@@ -145,5 +145,47 @@ public class ReplyServiceImpl implements ReplyService {
         return result;
 	}
 
+	@Override
+	public int addReplyadmin1_1(Reply input2) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.insert("ReplyMapper.insertItemadmin1_1", input2);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("저장된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 저장에 실패했습니다.");
+        }
+        
+        return result;
+	}
+
+	@Override
+	public Reply getReplyadmin1_1(Reply input) throws Exception {
+		Reply result = null;
+
+		try {
+			result = sqlSession.selectOne("ReplyMapper.selectItem1_1", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 
 }

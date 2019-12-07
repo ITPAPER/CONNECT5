@@ -66,7 +66,7 @@
 
 	<div class="col-md-10 content">
 		<form action="${pageContext.request.contextPath}/_mypage/1_1questioneditOk.do" method="POST">
-		<input type="hidden" name="boardId" value="${output.getBoardId() }" />
+		<input type="hidden" name="BoardId" value="${output.getBoardId() }" />
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>

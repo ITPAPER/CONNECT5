@@ -84,11 +84,12 @@
 					<thead>
 						<tr>
 							<th id="title">제목</th>
-							<th id="textarea">${output.getTitle()}</th>
+							<th id="textarea">${output1.getTitle()}</th>
 							<th id="title">작성자</th>
-							<th id="userid">${output.getUserName()}</th>
+							<th id="userid">${output1.getUserName()}</th>
 							<th id="title">문의일</th>
-							<th id="date">${output.getCreationDate()}</th>
+							<th id="date">${output1.getCreationDate()}</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -97,47 +98,37 @@
 						</tr>
 					</tbody>
 				</table>
-				<form
-					action="${pageContext.request.contextPath}/_admin/admin_QuestionRead_SEaddOk.do?BoardId=${output.getBoardId()}"
-					method="POST">
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<th id="title">제목</th>
-								<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input type="hidden"
-									name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
-								<th id="title">작성자</th>
-								<th id="userid">운영진</th>
-								<th id="title">문의일</th>
-								<th id="date">${output1.getCreationDate()}</th>
-							</tr>
-						</tbody>
-						<c:choose>
-							<c:when test="${output1.Re_Content == null } ">
-								<tbody>
-									<tr>
-										<td class="Question" colspan="6" align="center" id="Content">
-											<textarea class="form-control" class="contentarea"
-												id="contentarea" name="Re_Content"></textarea>
-										</td>
-									</tr>
-								</tbody>
-							</c:when>
-							<c:otherwise>
-								<tbody>
-									<tr>
-										<th class="Question" colspan="6">${output1.getRe_Content()}</th>
-									</tr>
-								</tbody>
-							</c:otherwise>
-						</c:choose>
-					</table>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
-				</form>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th id="title">제목</th>
+							<th id="textarea">${output.getRe_Title() }</th>
+							<th id="title">작성자</th>
+							<th id="userid">운영진</th>
+							<th id="title">문의일</th>
+							<th id="date">${output.getRe_CreationDate()}</th>
+						</tr>
+					</tbody>
+					<c:choose>
+						<c:when test="${output.getRe_Content != null } ">
+							<tbody>
+								<tr>
+									<th class="Question" colspan="6">${output.getRe_Content()}</th>
+								</tr>
+							</tbody>
+						</c:when>
+						<c:otherwise>
+						
+						</c:otherwise>
+					</c:choose>
+				</table>
 			</div>
+
+			<div class="pull-right">
+				<button class="btn btn-default"
+					onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+			</div>
+
 		</div>
 	</div>
 

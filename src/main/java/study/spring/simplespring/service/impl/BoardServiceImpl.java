@@ -500,4 +500,48 @@ public class BoardServiceImpl implements BoardService {
         return result;
 	}
 
+
+	@Override
+	public List<Board> getBoardListadmin1_1(Board input) throws Exception {
+		List<Board> result = null;
+
+        try {
+            result = sqlSession.selectList("BoardMapper.selectListadmin1_1", input);
+
+            if (result == null) {
+                throw new NullPointerException("result=null");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("조회된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 조회에 실패했습니다.");
+        }
+
+        return result;
+	}
+
+
+	@Override
+	public Board getBoardItemadmin1_1(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectItemadmin1_1", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+
+	}
 }

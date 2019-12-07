@@ -96,7 +96,7 @@
 		</div>
 
 		<div class="pull-right">
-			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?boardId=${output.boardId }'">재문의</button>
+			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?BoardId=${output.getBoardId() }'">재문의</button>
 			<button class="btn btn-default"
 				onclick="location.href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'">확인</button>
 		</div>

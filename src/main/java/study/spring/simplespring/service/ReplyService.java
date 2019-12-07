@@ -17,5 +17,8 @@ public interface ReplyService {
 	public int editReply(Reply input) throws Exception;
 
 	public int deleteReply(Reply input) throws Exception;
+	
+	public int addReplyadmin1_1(Reply input) throws Exception;
 
+	public Reply getReplyadmin1_1(Reply input) throws Exception;
 }

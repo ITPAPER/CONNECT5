@@ -57,6 +57,7 @@ ul, ol {
 /* 게시판 크기 */
 .text_box {
 	height: 500px;
+	text-align : center;
 }
 
 .text_box>.pagination {

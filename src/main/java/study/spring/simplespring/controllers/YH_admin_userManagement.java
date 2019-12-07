@@ -134,7 +134,7 @@ public class YH_admin_userManagement {
 
 		// View에 추가
 
-		String redirectUrl = contextPath + "/_admin/admin_userManagementview.do?boardId=" + input.getBoardId();
+		String redirectUrl = contextPath + "/_admin/admin_userManagementview.do?BoardId=" + input.getBoardId();
 		return webHelper.redirect(redirectUrl, "공지사항이 등록되었습니다.");
 
 	}
@@ -151,16 +151,16 @@ public class YH_admin_userManagement {
 			model.addAttribute("login", login);
 		}
 
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 		String Title = webHelper.getString("Title");
 		
 		
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "공지사항이 없습니다.");
 		}
 
 		Board input = new Board();
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 		input.setTitle(Title);
 		
 		
@@ -191,16 +191,16 @@ public class YH_admin_userManagement {
 			model.addAttribute("login", login);
 		}
 		
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 		String Content = webHelper.getString("Content");
 		String Title = webHelper.getString("Title");
 		
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "공지사항이 없습니다.");
 		}
 		
 		Board input = new Board();
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 		input.setTitle(Title);
 		input.setContent(Content);
 		
@@ -222,14 +222,14 @@ public class YH_admin_userManagement {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
-		int boardId = webHelper.getInt("boardId");
+		int BoardId = webHelper.getInt("BoardId");
 		String Title = webHelper.getString("Title");
 		String Content = webHelper.getString("Content");
 		int MemberId = loginInfo.getMemberId();
 		int Category = webHelper.getInt("Category");
 		String CreationDate = webHelper.getString("CreationDate");
 		
-		if (boardId == 0) {
+		if (BoardId == 0) {
 			return webHelper.redirect(null, "공지사항이 없습니다.");
 		}
 		
@@ -239,7 +239,7 @@ public class YH_admin_userManagement {
 		input.setMemberId(MemberId);
 		input.setCategory(Category);
 		input.setCreationDate(CreationDate);
-		input.setBoardId(boardId);
+		input.setBoardId(BoardId);
 		
 		try {
 			boardService.editBoardNotice(input);
@@ -255,7 +255,7 @@ public class YH_admin_userManagement {
 	@RequestMapping(value = "/_admin/admin_userManagementdeleteOk.do", method = RequestMethod.GET)
     public ModelAndView delete_ok(Model model) {
 		
-	int BoardId = webHelper.getInt("boardId");
+	int BoardId = webHelper.getInt("BoardId");
 	
 	if (BoardId ==0) {
 		return webHelper.redirect(null, "공지사항 게시글이 없습니다.");

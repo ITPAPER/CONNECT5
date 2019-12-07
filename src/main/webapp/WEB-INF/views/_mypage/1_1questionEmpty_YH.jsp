@@ -83,19 +83,19 @@
 
 								<%-- 조회 결과에 따른 반복 처리 --%>
 								<c:forEach var="item" items="${output}" varStatus="status">
-									<c:set var="title" value="${item.getTitle()}" />
-									<c:set var="username" value="${item.getUserName()}" />
+									<c:set var="Title" value="${item.getTitle()}" />
+									<c:set var="Username" value="${item.getUserName()}" />
 									<c:set var="CreationDate" value="${item.getCreationDate()}" />
 
 									<c:url value="1_1questionview.do" var="viewUrl">
-										<c:param name="boardId" value="${item.boardId}" />
+										<c:param name="BoardId" value="${item.getBoardId()}" />
 									</c:url>
 
 									<tr>
-										<td>${item.boardId}</td>
-										<td><a href="${viewUrl}">${item.title}</a></td>
-										<td>${item.userName}</td>
-										<td>${item.creationDate}</td>
+										<td>${item.getBoardId()}</td>
+										<td><a href="${viewUrl}">${item.getTitle()}</a></td>
+										<td>${item.getUserName()}</td>
+										<td>${item.getCreationDate()}</td>
 										<th><span class="badge badge_ok">완료</span></th>
 									</tr>
 								</c:forEach>
@@ -139,7 +139,7 @@
 					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
 					<c:when test="${pageData.nowPage == i}">
 						<ul class="pagination pagination-sm">
-							<li><a href="${pageUrl}">${i}</a></li>
+							<li class="active"><a href="${pageUrl}">${i}</a></li>
 						</ul>
 					</c:when>
 					<%-- 나머지 페이지의 경우 링크 적용함 --%>

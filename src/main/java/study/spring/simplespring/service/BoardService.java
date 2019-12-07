@@ -53,5 +53,7 @@ public interface BoardService {
 	
 	public List<Board> getBoardListadminNotice(Board input) throws Exception;
 	
+	public List<Board> getBoardListadmin1_1(Board input) throws Exception;
 	
+	public Board getBoardItemadmin1_1(Board input) throws Exception;
 }

@@ -350,4 +350,31 @@
 			LIMIT #{offset}, #{listCount}
 		</if>
 	</select>
+	
+	<select id="selectListadmin1_1"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category, u.isadmin,u.UserName
+		FROM connect5.board b
+		iNNER JOIN connect5.User u ON u.MemberId = b.MemberId AND Category=5 AND u.isadmin != 1
+	
+		ORDER BY CreationDate DESC
+
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	
+	<select id="selectItemadmin1_1"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category , u.UserName
+		FROM connect5.board b
+		INNER JOIN connect5.user u ON b.MemberId = u.MemberId AND BoardId = #{BoardId} AND Category = 5
+	</select>
+	
 </mapper>
