@@ -10,14 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
+import study.spring.simplespring.helper.MailHelper;
 import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
+import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.Email;
 import study.spring.simplespring.model.Manager;
 import study.spring.simplespring.model.Payment;
 import study.spring.simplespring.model.User;
+import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.service.ManagerService;
 import study.spring.simplespring.service.PaymentService;
 import study.spring.simplespring.service.UserService;
@@ -31,6 +38,9 @@ public class GD_Controller {
 
 	@Autowired
 	RegexHelper regexHelper;
+	
+	@Autowired
+	MailHelper mailHelper;
 
 	@Autowired
 	UserService userService;
@@ -40,10 +50,15 @@ public class GD_Controller {
 	
 	@Autowired
 	ManagerService managerService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
 
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 
 	@RequestMapping(value = "/_payment/mustInput_SE.do", method = RequestMethod.GET)
 	public ModelAndView mustinput(Model model) {
@@ -53,7 +68,7 @@ public class GD_Controller {
 		
 		if (loginInfo == null) {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
-			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요");
+			return webHelper.redirect(redirectUrl, "濡쒓렇�씤 �썑 �씠�슜�빐二쇱꽭�슂");
 		}
 		
 		Integer memberlv = (Integer)loginInfo.getMember_Lv();
@@ -61,7 +76,7 @@ public class GD_Controller {
 		
 		if (memberlv != 0) {
 			String redirectUrl = contextPath + "/_payment/payment_GD.do";
-			return webHelper.redirect(redirectUrl, "결제페이지로 이동합니다.");
+			return webHelper.redirect(redirectUrl, "寃곗젣�럹�씠吏�濡� �씠�룞�빀�땲�떎.");
 		}else if(memberlv == 0){
 			return new ModelAndView("_payment/mustInput_SE");
 		}
@@ -105,7 +120,7 @@ public class GD_Controller {
 		}
 
 		String redirectUrl = contextPath + "/_payment/payment_GD.do";
-		return webHelper.redirect(redirectUrl, "결제페이지로 이동합니다.");
+		return webHelper.redirect(redirectUrl, "ㅎㅎ");
 	}
 
 	@RequestMapping(value = "/_payment/payment_GD.do", method = RequestMethod.GET)
@@ -144,11 +159,11 @@ public class GD_Controller {
 			paymentService.createPayment(input);
 			System.out.println(input);
 		} catch (Exception e) {
-			return webHelper.redirect(null, "DB 오류");
+			return webHelper.redirect(null, "DB ㅎㅎ");
 		}
 
 		String redirectUrl = contextPath + "/_payment/pay_ok_GD.do";
-		return webHelper.redirect(redirectUrl, "결제가 정상적으로 완료되었습니다.");
+		return webHelper.redirect(redirectUrl, "ㅎㅎ");
 
 	}
 	
@@ -163,13 +178,14 @@ public class GD_Controller {
 	@RequestMapping(value = "/_findAccount/FindId_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView findid(Model model) {
 		
-
+		
 		return new ModelAndView ("_findAccount/FindId_GD");
 
 	}
 	
-	@RequestMapping(value = "/_findAccount/FindId_GD_ok.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView findidok(Model model) {
+	@ResponseBody
+	@RequestMapping(value = "/_findAccount/FindId_GD_ok.do", method =RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public  ModelAndView findidok(Model model) {
 		
 		String username = webHelper.getString("user_name");
 		String useremail = webHelper.getString("user_email");
@@ -178,15 +194,39 @@ public class GD_Controller {
 		input.setUserName(username);
 		input.setEmail(useremail);
 		
+		Email email = new Email();
+		
+		email.setTo("");
+		email.setReceiver("user_email");
+		email.setContent("user_name 님의 비밀번호는 ran 입니다.");
+		email.setSubject("user_name (주)연-결 비밀번호 찾기 인증번호 입니다.");
+		
+		String receive = useremail;
+		String subject = "(주)연-결 아이디 찾기 인증번호 입니다. ";
+		String content = username + "님의 인증번호는 ran 입니다.";
+		
+		
+		try {
+			mailHelper.sendMail(receive,subject,content);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+	            return webHelper.redirect(null, "메일 발송에 실패했습니다.");
+		}
+		
+		
 		User req = null;
 		
 		try {
 			req = userService.selectFindaccount(input);
 		}catch(Exception e) {
-			return webHelper.redirect(null, "아이디와 이메일이 일치 하지 않습니다.");
 		}
 		
-		return new ModelAndView("_findAccount/FindId_GD");
+		System.out.println(req);
+		Gson gson = new Gson();
+		return new ModelAndView(gson.toJson(req));
+
 		}
 
 	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -339,7 +379,6 @@ public class GD_Controller {
 		input.setManagerId(manager);
 		input.setUserName(UserName);
 		
-		
 
 		try {
 			userService.editUser(input);
@@ -372,6 +411,34 @@ public class GD_Controller {
 		return "_admin/admin_QnAWrite_GD";
 
 	}
+	@RequestMapping(value = "/_admin/admin_QnA_Insert.do", method = RequestMethod.POST)
+	public ModelAndView adminqnainsert(Model model) {
+		
+		
+		User loginInfo = (User)webHelper.getSession("loginInfo");
+		
+		Integer memberid = loginInfo.getMemberId();
+			
+		String title = webHelper.getString("title");
+		String content = webHelper.getString("content");
+
+		
+		
+		Board input = new Board();
+		
+		input.setTitle(title);
+		input.setContent(content);
+		input.setCategory(4);
+		input.setContentImg("dd");
+		input.setMemberId(memberid);
+		
+		try {
+			boardService.addBoard(input);
+		}catch(Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		return new ModelAndView("_admin/admin_QnAWrite_GD");
+	}
 
 	@RequestMapping(value = "/_admin/admin_userEx_GD.do", method = RequestMethod.GET)
 	public String adminuserex(Model model) {
@@ -381,9 +448,9 @@ public class GD_Controller {
 	}
 
 	@RequestMapping(value = "/_admin/admin_userExRead_GD.do", method = RequestMethod.GET)
-	public String adminuserexread(Model model) {
+	public ModelAndView adminuserexread(Model model) {
 
-		return "_admin/admin_userExRead_GD";
+		return new ModelAndView("_admin/admin_userExRead_GD");
 
 	}
 

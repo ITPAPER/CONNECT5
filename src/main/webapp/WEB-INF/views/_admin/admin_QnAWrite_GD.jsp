@@ -64,7 +64,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-				<button type="submit" class="btn btn-xs"
+					<button type="submit" class="btn btn-xs"
 						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
@@ -72,7 +72,7 @@
 
 
 		<div class="col-md-2 sidebar1">
-		<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
 				class="list-group-item">대시보드</a> <a
 				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
 				class="list-group-item">회원관리</a> <a
@@ -90,7 +90,7 @@
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-		<button
+			<button
 				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'"
 				class="btn">공지사항</button>
 			<button
@@ -106,30 +106,35 @@
 
 
 		<div class="col-md-10 text_box">
-			<div class="table-responsive">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th class="text-center" id="num">제목</th>
-							<th class="text-center"><input type="text"
-								placeholder="제목을 입력하세요." id="textarea" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td id="context" colspan="3" align="center"><textarea
-									placeholder="내용을 입력하세요." class="form-control" id="contentarea" /></textarea></td>
-						</tr>
+			<form method="post"
+				action="${pageContext.request.contextPath}/_admin/admin_QnA_Insert.do">
+				<div class="table-responsive">
 
-					</tbody>
-				</table>
-			</div>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="text-center" id="title">제목</th>
+								<th class="text-center"><input type="text"
+									placeholder="제목을 입력하세요." id="textarea" name="title"/></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="context" colspan="3" align="center"><textarea
+										placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="content"/></textarea></td>
+							</tr>
 
-			<div class="pull-right">
-				<button class="btn btn-default" onclick="add()">글쓰기</button>
-				<button class="btn btn-default" onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'">취소</button>
-			</div>
+						</tbody>
+					</table>
 
+				</div>
+
+				<div class="pull-right">
+					<button class="btn btn-default" onclick="add()">글쓰기</button>
+					<button class="btn btn-default"
+						onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'">취소</button>
+				</div>
+			</form>
 		</div>
 	</div>
 
