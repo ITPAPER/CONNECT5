@@ -152,20 +152,20 @@ public class SE_ReviewController {
 		
 		 /** 1) 필요한 변수값 생성 */
 	       // 조회할 대상에 대한 PK값
-	       int boardId = webHelper.getInt("BoardId");
+	       int BoardId = webHelper.getInt("BoardId");
 
 	       // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
-	       if (boardId == 0) {
+	       if (BoardId == 0) {
 	           return webHelper.redirect(null, "글번호가 없습니다.");
 	       }
 
 	       /** 2) 데이터 조회하기 */
 	       // 데이터 조회에 필요한 조건값을 Beans에 저장하기
 	       Board input = new Board();
-	       input.setBoardId(boardId);
+	       input.setBoardId(BoardId);
 	       
 	       Reply input1 = new Reply();
-	       input1.setBoardId(boardId);
+	       input1.setBoardId(BoardId);
 
 	       // 조회결과를 저장할 객체 선언
 	       Board output = null;
@@ -241,25 +241,27 @@ public class SE_ReviewController {
     }
 	
 
-	@RequestMapping(value = "/_coach/repReviewEditOk.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/_coach/repReviewEditOk.do", method = RequestMethod.POST)
 	public ModelAndView edit_ok(Model model) {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		int ReplyId = webHelper.getInt("ReplyId");
+		String Re_Title = webHelper.getString("Re_Title");
 		String Re_Content = webHelper.getString("Re_Content");
-		String Re_CreationDate = webHelper.getString("Re_CreationDate");
+		int BoardId = webHelper.getInt("BoardId");
 		int MemberId = loginInfo.getMemberId();
 		String UserName = loginInfo.getUserName();
 		
 		if (ReplyId == 0) {
-			return webHelper.redirect(null, "댓글이 없습니다.");
+			return webHelper.redirect(null, "댓글번호가 없습니다.");
 		}
 		
 		Reply input = new Reply();
-		input.setBoardId(ReplyId);
+		input.setReplyId(ReplyId);
+		input.setRe_Title(Re_Title);
 		input.setRe_Content(Re_Content);
-		input.setRe_CreationDate(Re_CreationDate);
+		input.setBoardId(BoardId);
 		input.setMemberId(MemberId);
 		input.setUserName(UserName);
 		
@@ -269,7 +271,7 @@ public class SE_ReviewController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 		
-		String redirectUrl = contextPath + "/_coach/reviewRead_SE.do";
+		String redirectUrl = contextPath + "/_coach/reviewRead_SE.do?BoardId=" + input.getBoardId();
         return webHelper.redirect(redirectUrl, "댓글이 수정 되었습니다.");
 
 	}

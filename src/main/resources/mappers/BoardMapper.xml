@@ -38,11 +38,11 @@
 		b.MemberId = u.MemberId
 		WHERE Category=1
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 
 		ORDER BY BoardId DESC
 
@@ -62,11 +62,11 @@
 		b.MemberId = u.MemberId
 		WHERE Category=2
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 
 		ORDER BY BoardId DESC
 
@@ -86,11 +86,11 @@
 		b.MemberId = u.MemberId
 		WHERE Category=3
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 
 		ORDER BY BoardId DESC
 
@@ -108,13 +108,13 @@
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
-		WHERE Category=4
+		WHERE Category=4 
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 
 		ORDER BY BoardId DESC
 
@@ -131,11 +131,11 @@
 		FROM Board b
 		INNER JOIN User u ON b.MemberId=u.MemberId
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectCountAllStory"
@@ -145,11 +145,11 @@
 		INNER JOIN User u ON b.MemberId=u.MemberId
 		WHERE Category=1
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectCountAllNotice"
@@ -159,11 +159,11 @@
 		INNER JOIN User u ON b.MemberId=u.MemberId
 		WHERE Category=2
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectCountAllReview"
@@ -173,11 +173,11 @@
 		INNER JOIN User u ON b.MemberId=u.MemberId
 		WHERE Category=3
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectCountAllQnA"
@@ -187,11 +187,11 @@
 		INNER JOIN User u ON b.MemberId=u.MemberId
 		WHERE Category=4
 
-		<where>
-			<if test="Title != null and Title != ''">
-				Title LIKE concat('%', #{Title}, '%')
-			</if>
-		</where>
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
 	</select>
 
 

@@ -154,7 +154,7 @@ public class SE_QnAController {
 		 /** 1) 필요한 변수값 생성 */
        // 조회할 대상에 대한 PK값
        int BoardId = webHelper.getInt("BoardId");
-
+       
        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
        if (BoardId == 0) {
            return webHelper.redirect(null, "글번호가 없습니다.");
@@ -175,7 +175,7 @@ public class SE_QnAController {
        try {
            // 데이터 조회
            output = boardService.getBoardItem(input);
-           output1 = replyService.getReplyListQnA(input1);
+           output1 = replyService.getReplyList(input1);
        } catch (Exception e) {
            return webHelper.redirect(null, e.getLocalizedMessage());
        }
@@ -241,29 +241,6 @@ public class SE_QnAController {
         return webHelper.redirect(redirectUrl, "저장되었습니다.");
     }
 	
-	@RequestMapping(value = "/_coach/replyedit.do", method = RequestMethod.POST)
-	public ModelAndView edit(Model model) {
-		
-		int ReplyId = webHelper.getInt("ReplyId");
-		
-		if (ReplyId == 0) {
-			return webHelper.redirect(null, "댓글번호가 없습니다.");
-		}
-		
-		Reply input = new Reply();
-		input.setReplyId(ReplyId);
-		
-		Reply output = null;
-		
-		try {
-			output = replyService.getReplyItem(input);
-		} catch (Exception e) {
-			return webHelper.redirect(null, e.getLocalizedMessage());
-		}
-		
-		model.addAttribute("output", output);
-		return new ModelAndView("_coach/replyedit");
-	}
 
 	@RequestMapping(value = "/_coach/replyeditOk.do", method = RequestMethod.POST)
 	public ModelAndView edit_ok(Model model) {
@@ -273,16 +250,18 @@ public class SE_QnAController {
 		int ReplyId = webHelper.getInt("ReplyId");
 		String Re_Title = webHelper.getString("Re_Title");
 		String Re_Content = webHelper.getString("Re_Content");
-		String Re_CreationDate = webHelper.getString("Re_CreationDate");
 		int BoardId = webHelper.getInt("BoardId");
 		int MemberId = loginInfo.getMemberId();
 		String UserName = loginInfo.getUserName();
+		
+		if (ReplyId == 0) {
+			return webHelper.redirect(null, "댓글번호가 없습니다.");
+		}
 		
 		Reply input = new Reply();
 		input.setReplyId(ReplyId);
 		input.setRe_Title(Re_Title);
 		input.setRe_Content(Re_Content);
-		input.setRe_CreationDate(Re_CreationDate);
 		input.setBoardId(BoardId);
 		input.setMemberId(MemberId);
 		input.setUserName(UserName);

@@ -46,13 +46,14 @@
 
 	<form method="get" action="${pageContext.request.contextPath}/_coach/QnA_SE.do">
 	<div class="search">
-		<select name="keyField" style="margin-top:7px; height:22px;">
+	<ul id="key">
+		<li><select name="keyField" style="margin-top:7px; height:22px;">
 			<option value="0">---선택---</option>
-			<option value="title">제목</option>
-			<option value="content">내용</option>
-		</select> 
-		<input type="text" name="KeyWord" /> 
-		<input type="button" id="s_btn" value="검색" />
+			<option value="Title">제목</option>
+			<option value="Content">내용</option>
+		</select> <input type="search" name="keyword" value="${keyword}" />
+		<button type="submit" id="s_btn">검색</button>
+	</ul>
 	</div>
 	</form>
 

@@ -67,14 +67,13 @@
 					</tr>
 					<tr>
 						<th>다음글</th>
-						<th colspan="2" align="center"><a
-							href="${pageContext.request.contextPath}/_coach/QnARead_SE.do">배경
-								좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></th>
+						<th colspan="2" align="center" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${num +1} '">
+								${output.getTitle()}</th>
 					</tr>
 					<tr>
 						<th>이전글</th>
-						<th colspan="2" align="center"><a href="#">신중한 그녀, 나 혼자
-								앞서간 건가?</a></th>
+						<th colspan="2" align="center" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${num -1} '">
+								${output.getTitle()}</th>
 					</tr>
 				</tbody>
 			</table>
@@ -101,6 +100,7 @@
 				<c:otherwise>
 					<%-- 조회 결과에 따른 반복 처리 --%>
 					<c:forEach var="item" items="${output1}" varStatus="status">
+						<c:set var="replyId" value="${item.replyId}" />
 						<c:set var="re_content" value="${item.re_Content}" />
 						<c:set var="username" value="${item.userName}" />
 						<c:set var="re_creationDate" value="${item.re_CreationDate}" />
@@ -140,13 +140,20 @@
 	<script>
 		$("#editBtn").click(function() {
 							var repEdit;
-							repEdit = "<form method='post' action='${pageContext.request.contextPath}/_coach/replyedit.do'>"
-							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}><input type='hidden' name='ReplyId' value=${item.getReplyId()}>"
+							repEdit = "<form method='post' action='${pageContext.request.contextPath}/_coach/replyeditOk.do'>"
+							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}><input type='hidden' name='ReplyId' value=${replyId}>"
 							repEdit += "<input type='hidden' name='Re_Title' value='댓글달기' /> 댓글달기 &nbsp; <input type='text' id='Re_Content1' name='Re_Content' class='form-control' placeholder='댓글을 입력하세요.' />"
-							repEdit += "<button type='submit' class='btn btn-default pull-right' id='cancelbtn'>취소</button>"
+							repEdit += "<button type='reset' class='btn btn-default pull-right' id='cancelbtn'>취소</button>"
 							repEdit += "<button type='submit' class='btn btn-default pull-right' id='replybtn'>등록</button></div></form>"
 							$("#edit").html(repEdit);
+							
+							$("#cancelbtn").click(function() {
+								$("#edit").hide();
+							});
+							
+							$("#edit").show();
 						});
+		
 	</script>
 </body>
 </html>

@@ -59,35 +59,13 @@ public class ReplyServiceImpl implements ReplyService {
         return result;
 	}
 	
-	@Override
-	public List<Reply> getReplyListQnA(Reply input) throws Exception {
-		List<Reply> result = null;
-
-        try {
-        	System.out.println("@@@@@@@@@@@@@@@@@@@@@" + input);
-            result = sqlSession.selectList("ReplyMapper.selectListQnA", input);
-
-            if (result == null) {
-                throw new NullPointerException("result=null");
-            }
-        } catch (NullPointerException e) {
-            log.error(e.getLocalizedMessage());
-            throw new Exception("조회된 데이터가 없습니다.");
-        } catch (Exception e) {
-            log.error(e.getLocalizedMessage());
-            throw new Exception("데이터 조회에 실패했습니다.");
-        }
-
-        return result;
-	}
 
 	@Override
 	public int addReply(Reply input) throws Exception {
 		int result = 0;
 
         try {
-        	System.out.println("@@@@@@@@@@@@@@@@@@@@@" + input);
-            result = sqlSession.insert("ReplyMapper.insertItemQnA", input);
+            result = sqlSession.insert("ReplyMapper.insertItem", input);
 
             if (result == 0) {
                 throw new NullPointerException("result=0");
