@@ -56,7 +56,7 @@ ul, ol {
 }
 
 #title {
-	width: 8px;
+	width: 30px;
 	background-color: #EAEAEA;
 }
 
@@ -78,4 +78,8 @@ ul, ol {
 
 .Question{
 	height: 300px;
+}
+
+.ck-editor__editable {
+    min-height: 300px;
 }

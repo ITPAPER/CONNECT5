@@ -60,10 +60,6 @@ ul, ol {
 	text-align : center;
 }
 
-.text_box>.pagination {
-	padding-left: 350px;
-}
-
 .text-center>#num {
 	width: 100px;
 }

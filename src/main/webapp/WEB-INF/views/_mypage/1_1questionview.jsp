@@ -33,7 +33,8 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -81,22 +82,47 @@
 					</tr>
 
 				</tbody>
-				<thead>
-					<tr>
-						<th class="text-center" id="num">제목</th>
-						<th class="text-left">안녕하세요. 연-결 담당자 입니다.</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td id="context" colspan="3">관리자 답변 대기중 입니다.</td>
-					</tr>
-				</tbody>
 			</table>
+			<c:choose>
+				<c:when test="${fn:length(output1) gt 0}">
+					<c:forEach var="item" items="${output1}" varStatus="status">
+						<c:set var="Re_content" value="${item.getRe_Content()}" />
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th id="num">제목</th>
+									<th class="text-left">${item.getRe_Title() }</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th id="context" colspan="3">${item.getRe_Content()}</th>
+								</tr>
+							</tbody>
+						</table>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center" id="num">제목</th>
+								<th class="text-left">안녕하세요. 연-결 담당자 입니다.</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="context" colspan="3">관리자 답변 대기중 입니다.</td>
+							</tr>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="pull-right">
-			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?BoardId=${output.getBoardId() }'">재문의</button>
+			<button class="btn btn-default"
+				onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?BoardId=${output.getBoardId() }'">재문의</button>
 			<button class="btn btn-default"
 				onclick="location.href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'">확인</button>
 		</div>

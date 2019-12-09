@@ -7,6 +7,7 @@
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
+<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script>
 
 function cancel() {
@@ -99,5 +100,6 @@ function cancel() {
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

@@ -82,6 +82,7 @@
 							<tr>
 
 								<%-- 조회 결과에 따른 반복 처리 --%>
+								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 								<c:forEach var="item" items="${output}" varStatus="status">
 									<c:set var="Title" value="${item.getTitle()}" />
 									<c:set var="Username" value="${item.getUserName()}" />
@@ -92,12 +93,13 @@
 									</c:url>
 
 									<tr>
-										<td>${item.getBoardId()}</td>
+										<td>${num}</td>
 										<td><a href="${viewUrl}">${item.getTitle()}</a></td>
 										<td>${item.getUserName()}</td>
 										<td>${item.getCreationDate()}</td>
 										<th><span class="badge badge_ok">완료</span></th>
 									</tr>
+								<c:set var="num" value="${num-1}" ></c:set>
 								</c:forEach>
 							</tr>
 						</table>

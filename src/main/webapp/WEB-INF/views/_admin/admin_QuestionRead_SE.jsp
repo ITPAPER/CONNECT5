@@ -44,7 +44,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Admin/questionRead.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -100,20 +100,48 @@
 				<form
 					action="${pageContext.request.contextPath}/_admin/admin_QuestionRead_SEaddOk.do?BoardId=${output.getBoardId()}"
 					method="POST">
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<th id="title">제목</th>
-								<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input type="hidden"
-									name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
-								<th id="title">작성자</th>
-								<th id="userid">운영진</th>
-								<th id="title">문의일</th>
-								<th id="date">${output1.getCreationDate()}</th>
-							</tr>
-						</tbody>
-						<c:choose>
-							<c:when test="${output1.Re_Content == null } ">
+					<c:choose>
+						<c:when test="${fn:length(output1) gt 0}">
+							<c:forEach var="item" items="${output1}" varStatus="status">
+								<c:set var="Re_content" value="${item.getRe_Content()}" />
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<th id="title">제목</th>
+											<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input type="hidden"
+												name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
+											<th id="title">작성자</th>
+											<th id="userid">운영진</th>
+											<th id="title">문의일</th>
+											<th id="date">${item.getRe_CreationDate() }</th>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<th class="Question" colspan="6">${item.getRe_Content()}</th>
+										</tr>
+									</tbody>
+								</table>
+							</c:forEach>
+							<button class="btn btn-default"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
+							<button class="btn btn-default"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+
+						</c:when>
+						<c:otherwise>
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<th id="title">제목</th>
+										<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input type="hidden"
+											name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
+										<th id="title">작성자</th>
+										<th id="userid">운영진</th>
+										<th id="title">문의일</th>
+										<th id="date">${item.getRe_CreationDate() }</th>
+									</tr>
+								</tbody>
 								<tbody>
 									<tr>
 										<td class="Question" colspan="6" align="center" id="Content">
@@ -122,27 +150,21 @@
 										</td>
 									</tr>
 								</tbody>
-							</c:when>
-							<c:otherwise>
-								<tbody>
-									<tr>
-										<th class="Question" colspan="6">${output1.getRe_Content()}</th>
-									</tr>
-								</tbody>
-							</c:otherwise>
-						</c:choose>
-					</table>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+							</table>
+							<button class="btn btn-default"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
+							<button class="btn btn-default"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+						</c:otherwise>
+					</c:choose>
 				</form>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Javascript -->
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

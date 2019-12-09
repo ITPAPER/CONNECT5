@@ -107,24 +107,25 @@ public class SE_AdminController {
 		}
 
 		int BoardId = webHelper.getInt("BoardId");
-		
+		String Re_Content = webHelper.getString("Re_Content");
 		
 		if (BoardId == 0) {
 			return webHelper.redirect(null, "공지사항이 없습니다.");
 		}
 		
-		Reply input1 = new Reply();
-		input1.setBoardId(BoardId);
-		
 		Board input = new Board();
 		input.setBoardId(BoardId);
+
+		Reply input1 = new Reply();
+		input1.setBoardId(BoardId);
+		input1.setRe_Content(Re_Content);
 		
-		Reply output1 = null;
 		Board output = null;
+		List<Reply> output1 = null;
 		
 		try {
 			// 데이터 조회
-			output1 = replyService.getReplyadmin1_1(input1);
+			output1 = replyService.getReplya1_1admin(input1);
 			output = boardService.getBoardItemadmin1_1(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
@@ -133,7 +134,7 @@ public class SE_AdminController {
 		
 		model.addAttribute("output1", output1);
 		model.addAttribute("output", output);
-		return new ModelAndView ("_admin/admin_QuestionRead_SE");
+		return new ModelAndView("_admin/admin_QuestionRead_SE");
 	}
 	@RequestMapping(value = "/_admin/admin_QuestionRead_SEadd.do", method = RequestMethod.GET)
 	public ModelAndView replyaddadmin1_1(Model model) {
@@ -157,7 +158,6 @@ public class SE_AdminController {
 		String Re_Content = webHelper.getString("Re_Content");
 		int MemberId = loginInfo.getMemberId();
 		int BoardId = webHelper.getInt("BoardId");
-		int ReplyId = webHelper.getInt("ReplyId");
 		
 		
 		Reply input = new Reply();
@@ -165,7 +165,6 @@ public class SE_AdminController {
 		input.setRe_Content(Re_Content);
 		input.setRe_Title(Re_Title);
 		input.setBoardId(BoardId);
-		input.setReplyId(ReplyId);
 		
 		try {
 			// 데이터 저장
@@ -178,7 +177,7 @@ public class SE_AdminController {
 
 		// View에 추가
 
-		String redirectUrl = contextPath + "/_admin/admin_QuestionAnswer2_SEview.do?ReplyId=" + input.getReplyId();
+		String redirectUrl = contextPath + "/_admin/admin_QuestionRead_SE.do?BoardId=" + input.getBoardId();
 		return webHelper.redirect(redirectUrl, "댓글이 등록되었습니다.");
 	}
 	

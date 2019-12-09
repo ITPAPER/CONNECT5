@@ -41,6 +41,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagementWrite_YH.css">
+	<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
@@ -128,10 +129,8 @@
 
 
 	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-
+	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

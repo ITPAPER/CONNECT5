@@ -17,8 +17,10 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.Reply;
 import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
+import study.spring.simplespring.service.ReplyService;
 import study.spring.simplespring.service.UserService;
 
 @Controller
@@ -35,6 +37,9 @@ public class YH_1_1questionEmpty {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ReplyService replyService;
 	
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -155,25 +160,31 @@ public class YH_1_1questionEmpty {
 		}
 
 		int BoardId = webHelper.getInt("BoardId");
-
+		String Re_Content = webHelper.getString("Re_Content");
+		
 		if (BoardId == 0) {
 			return webHelper.redirect(null, "문의내역이 없습니다.");
 		}
-
 		Board input = new Board();
 		input.setBoardId(BoardId);
 
+		Reply input1 = new Reply();
+		input1.setBoardId(BoardId);
+		input1.setRe_Content(Re_Content);
+		
 		Board output = null;
-
+		List<Reply> output1 = null;
+		
 		try {
 			// 데이터 조회
-			
+			output1 = replyService.getReplya1_1admin(input1);
 			output = boardService.getBoardItem1_1(input);
 			
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 		
+		model.addAttribute("output1",output1);
 		model.addAttribute("output", output);
 		return new ModelAndView("_mypage/1_1questionview");
 

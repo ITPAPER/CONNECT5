@@ -81,8 +81,22 @@
 	<select id="selectItemadmin1_1"
 		parameterType="study.spring.simplespring.model.Reply"
 		resultMap="replyMap">
-		SELECT r.* , b.BoardId , u.UserName FROM connect5.reply r
-		INNER JOIN connect5.board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}
-		INNER JOIN connect5.user u On (b.MemberId = u.MemberId)
+		SELECT ReplyId, Re_Title, Re_Content,
+		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
+		r.BoardId, r.MemberId, b.BoardId FROM connect5.reply r 
+		inner join connect5.board b On r.BoardId = b.BoardId AND r.BoardId = #{BoardId}
+	</select>
+	
+	<select id="selectListadmin1_1"
+		parameterType="study.spring.simplespring.model.Reply"
+		resultMap="replyMap">
+		SELECT ReplyId, Re_Title, Re_Content,
+		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
+		r.BoardId, r.MemberId, u.UserName
+		FROM Reply r
+		INNER JOIN User u ON r.MemberId = u.MemberId
+		INNER JOIN board b ON (r.BoardId = b.BoardId) AND r.BoardId = #{BoardId}	
+		
+		ORDER BY ReplyId DESC
 	</select>
 </mapper>

@@ -72,14 +72,17 @@
 		</div>
 
 		<div class="col-md-4 searching_box">
+			<form method="get"
+				action="${pageContext.request.contextPath}/_admin/admin_Question_SE.do">
 			<ul id="key">
 				<li><select name="keyField">
 						<option value="0">---선택---</option>
 						<option value="title">제목</option>
-						<option value="id">이름</option>
-				</select> <input type="text" name="KeyWord" />
-					<input type="submit" id="s_btn" value="검색" />
+						<option value="UserName">이름</option>
+				</select> <input type="search" name="keyword" value="${keyword}" />
+					<button type="submit" id="s_btn">검색</button>
 			</ul>
+				</form>
 		</div>
 
 		<div class="col-md-10 text_box">
@@ -104,8 +107,7 @@
 						<%-- 조회결과가 있는  경우 --%>
 						<c:otherwise>
 							<%-- 조회 결과에 따른 반복 처리 --%>
-							<c:set var="num"
-								value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<c:set var="Title" value="${item.getTitle()}" />
 								<c:set var="UserName" value="${item.getUserName()}" />
@@ -118,7 +120,7 @@
 									<c:set var="mark" value="<mark>${keyword}</mark>" />
 									<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
 									<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
-
+									<c:set var="UserName" value="${fn:replace(UserName, keyword, mark)}" />
 								</c:if>
 								
 								<%-- 상세페이지로 이동하기 위한 URL --%>
@@ -127,11 +129,13 @@
 								</c:url>
 
 								<tr>
-									<td>${item.getBoardId()}</td>
+									<td>${num}</td>
 									<td><a href="${viewUrl}">${item.getTitle()}</a></td>
 									<td>${item.getUserName()}</td>
 									<td>${item.getCreationDate()}</td>
-									<td><span class="badge badge_ok">완료</span></td>
+									<td>
+										<span class="label label-primary">완료</span>
+									</td>
 								</tr>
 								<c:set var="num" value="${num-1}"></c:set>
 							</c:forEach>

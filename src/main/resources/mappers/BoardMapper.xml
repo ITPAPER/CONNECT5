@@ -360,8 +360,18 @@
 		FROM connect5.board b
 		iNNER JOIN connect5.User u ON u.MemberId = b.MemberId AND Category=5 AND u.isadmin != 1
 	
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			
+			<when test="UserName != null and UserName != ''">
+				AND UserName LIKE concat('%', #{UserName}, '%')
+			</when>
+		</choose>
+		
 		ORDER BY CreationDate DESC
-
+		
 		<if test="listCount > 0">
 			LIMIT #{offset}, #{listCount}
 		</if>

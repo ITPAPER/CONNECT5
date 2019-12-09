@@ -19,4 +19,6 @@ public interface ReplyService {
 	public int addReplyadmin1_1(Reply input) throws Exception;
 
 	public Reply getReplyadmin1_1(Reply input) throws Exception;
+	
+	public List<Reply> getReplya1_1admin(Reply input) throws Exception;
 }
