@@ -64,4 +64,6 @@ public class User {
 	private int isSpUser;
 
 	private int ManagerId;
+	
+	private int count;
 }

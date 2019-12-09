@@ -2,7 +2,6 @@ package study.spring.simplespring.controllers;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,8 +56,6 @@ public class GD_Controller {
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
 
 	@RequestMapping(value = "/_payment/mustInput_SE.do", method = RequestMethod.GET)
 	public ModelAndView mustinput(Model model) {

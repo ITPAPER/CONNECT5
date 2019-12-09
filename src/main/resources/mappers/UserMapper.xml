@@ -95,4 +95,368 @@
 	FROM User
 	WHERE MemberId=#{MemberId}
 	</select>
+	
+	
+	<!-- 남녀 회원 수 -->
+	<select id="selectCountGenderMen"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User WHERE Gender = 0
+        
+    </select>
+    
+    <select id="selectCountGenderWomen"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User WHERE Gender = 1 
+        
+    </select>
+    
+    <!-- 연봉범위별 남녀 회원 수 -->
+    <select id="selectCountAnnualSalary0010M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 0 AND 1999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary0010W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 0 AND 1999 AND GENDER = 1
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary2000M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 2000 AND 2999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary2000W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 2000 AND 2999 AND GENDER = 1
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary3000M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 3000 AND 3999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary3000W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 3000 AND 3999 AND GENDER = 1
+        
+    </select>
+
+	<select id="selectCountAnnualSalary4000M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 4000 AND 4999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary4000W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 4000 AND 4999 AND GENDER = 1
+        
+    </select>
+    
+    
+    <select id="selectCountAnnualSalary5000M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 5000 AND 5999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary5000W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 5000 AND 5999 AND GENDER = 1
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary6070M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 6000 AND 7999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary6070W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 6000 AND 7999 AND GENDER = 1
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary8090M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 8000 AND 9999 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary8090W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual BETWEEN 8000 AND 9999 AND GENDER = 1
+        
+    </select>
+    
+     <select id="selectCountAnnualSalary10000M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual >= 10000 AND GENDER = 0
+        
+    </select>
+    
+    <select id="selectCountAnnualSalary10000W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Sal_Annual >= 10000 AND GENDER = 1        
+    </select>
+    
+    <!-- 연령대별 남녀 회원 수 -->
+    <select id="selectCountAge2024M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 20 AND 24
+        AND gender = 0        
+    </select>
+
+    <select id="selectCountAge2024W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 20 AND 24
+        AND gender = 1        
+    </select>
+    
+	<select id="selectCountAge2529M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 25 AND 29
+        AND gender = 0        
+    </select>
+
+    <select id="selectCountAge2529W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 25 AND 29
+        AND gender = 1        
+    </select>        
+
+    <select id="selectCountAge3034M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 30 AND 34
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountAge3034W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 30 AND 34
+        AND gender = 1       
+    </select>    
+    
+	<select id="selectCountAge3539M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 35 AND 39
+        AND gender = 0    
+    </select>
+
+    <select id="selectCountAge3539W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 35 AND 39
+        AND gender = 1 
+    </select>
+    
+    <select id="selectCountAge4049M"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 40 AND 49
+        AND gender = 0        
+    </select>
+
+    <select id="selectCountAge4049W"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) BETWEEN 40 AND 49
+        AND gender = 1        
+    </select>    
+    
+    <select id="selectCountAge50PlusM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) >= 50
+        AND gender = 0        
+    </select>
+
+    <select id="selectCountAge50PlusW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE (YEAR(CURDATE()) - YEAR(BirthDate)) >= 50
+        AND gender = 1        
+    </select>    
+     
+    <!-- 최종학력별 남녀 회원 수 -->   
+    <select id="selectCountEduHighschoolM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'HighSchool'
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountEduHighschoolW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'HighSchool'
+        AND gender = 1        
+    </select>            
+
+    <select id="selectCountEduCollegeM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'College'
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountEduCollegeW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'College'
+        AND gender = 1        
+    </select>            
+
+    <select id="selectCountEduUniversityM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'University'
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountEduUniversityW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'University'
+        AND gender = 1        
+    </select>            
+
+    <select id="selectCountEduGraduateSchoolM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'GraduateSchool'
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountEduGraduateSchoolW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'GraduateSchool'
+        AND gender = 1        
+    </select>            
+
+    <select id="selectCountEduDoctoralM"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'Doctoral'
+        AND gender = 0       
+    </select>
+
+    <select id="selectCountEduDoctoralW"
+        parameterType="study.spring.simplespring.model.User"
+        resultType="int">
+        
+        SELECT COUNT(*) FROM User 
+        WHERE Edu_lv LIKE 'Doctoral'
+        AND gender = 1        
+    </select>            
+	
 </mapper>

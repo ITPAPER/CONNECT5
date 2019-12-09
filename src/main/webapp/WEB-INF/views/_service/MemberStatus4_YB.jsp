@@ -15,7 +15,7 @@ body {
 }
 
 #chartdiv {
-  width: 100%;
+  width: 750px;
   height: 500px;
 }
 
@@ -23,7 +23,7 @@ body {
 
 
 <meta charset="utf-8" />
-<title>서비스 안내_멤버 현황(Service_MemberStatus1)</title>
+<title>서비스 안내_멤버 현황(Service_MemberStatus4)</title>
 
 
 </head>
@@ -72,12 +72,12 @@ body {
 		</div>
 	
     	
-	    <!-- Resources -->
+		<!-- Resources -->
 		<script src="https://www.amcharts.com/lib/4/core.js"></script>
 		<script src="https://www.amcharts.com/lib/4/charts.js"></script>
 		<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 		
-		<!-- 데이터 시각화 구현 -->
+		<!-- Chart code -->
 		<script>
 		am4core.ready(function() {
 		
@@ -85,54 +85,69 @@ body {
 		am4core.useTheme(am4themes_animated);
 		// Themes end
 		
-		var chart = am4core.create("chartdiv", am4charts.XYChart);
-		chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+		// Create chart instance
+		var chart = am4core.create("chartdiv", am4charts.XYChart3D);
 		
+		// Add data
 		chart.data = [{
-	
-		  "gender": "연-결 남자 회원비율",
-		  "value": (${jsonListm}/(${jsonListm}+${jsonListw}))
+		    "학력": "고등학교 졸업",
+		    "NoOfEduLvM": ${jsonHighschoolM},
+		    "NoOfEduLvW": ${jsonHighschoolW}
 		}, {
-		  "gender": "연-결 여자 회원비율",
-		  "value": (${jsonListw}/(${jsonListm}+${jsonListw}))
-	
+		    "학력": "전문대 졸업(전문학사)",
+		    "NoOfEduLvM": ${jsonCollegeM},
+		    "NoOfEduLvW": ${jsonCollegeW}
+		}, {
+		    "학력": "대학교 졸업(학사)",
+		    "NoOfEduLvM": ${jsonUniversityM},
+		    "NoOfEduLvW": ${jsonUniversityW}
+		}, {
+		    "학력": "대학원 졸업(석사)",
+		    "NoOfEduLvM": ${jsonGraduateSchoolM},
+		    "NoOfEduLvW": ${jsonGraduateSchoolW}
+		}, {
+		    "학력": "대학원 졸업(박사)",
+		    "NoOfEduLvM": ${jsonDoctoralM},
+		    "NoOfEduLvW": ${jsonDoctoralW}
 		}];
 		
-		
+		// Create axes
 		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "학력";
+		categoryAxis.title.text = "연-결 학력별 남녀 회원 수";
 		categoryAxis.renderer.grid.template.location = 0;
-		categoryAxis.dataFields.category = "gender";
-		categoryAxis.renderer.minGridDistance = 40;
+		categoryAxis.renderer.minGridDistance = 30;
+		categoryAxis.renderer.cellStartLocation = 0.1;
+		categoryAxis.renderer.cellEndLocation = 0.9;
 		
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		
-		var series = chart.series.push(new am4charts.CurvedColumnSeries());
-		series.dataFields.categoryX = "gender";
-		series.dataFields.valueY = "value";
-		series.tooltipText = "{valueY.value}"
-		series.columns.template.strokeOpacity = 0;
-		
-		series.columns.template.fillOpacity = 0.75;
-		
-		var hoverState = series.columns.template.states.create("hover");
-		hoverState.properties.fillOpacity = 1;
-		hoverState.properties.tension = 0.4;
-		
-		chart.cursor = new am4charts.XYCursor();
-		
-		// Add distinctive colors for each column using adapter
-		series.columns.template.adapter.add("fill", function(fill, target) {
-		  return chart.colors.getIndex(target.dataItem.index);
+		valueAxis.title.text = "회원 수";
+		valueAxis.renderer.labels.template.adapter.add("text", function(text) {
+		  return text + "명";
 		});
 		
-		chart.scrollbarX = new am4core.Scrollbar();
+		// Create series
+		var series = chart.series.push(new am4charts.ColumnSeries3D());
+		series.dataFields.valueY = "NoOfEduLvM";
+		series.dataFields.categoryX = "학력";
+		series.name = "남성회원";
+		series.clustered = true;
+		series.columns.template.tooltipText = "연-결 회원 수 {category} (남성회원): [bold]{valueY}[/]";
+		series.columns.template.fillOpacity = 0.9;
+		
+		var series2 = chart.series.push(new am4charts.ColumnSeries3D());
+		series2.dataFields.valueY = "NoOfEduLvW";
+		series2.dataFields.categoryX = "학력";
+		series2.name = "여성회원";
+		series2.clustered = true;
+		series2.columns.template.tooltipText = "연-결 회원 수 {category} (여성회원): [bold]{valueY}[/]";
 		
 		}); // end am4core.ready()
 		</script>
 		
-		<!-- 그래프를 표시할 위치 -->
+		<!-- HTML -->
 		<div id="chartdiv"></div>
-
+		
 	</div>
 	</div>
 		<!-- 가운데(내용) 영역 끝 -->

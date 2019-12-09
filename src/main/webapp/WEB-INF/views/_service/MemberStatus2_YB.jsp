@@ -10,20 +10,16 @@
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <style>
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
 #chartdiv {
   width: 100%;
-  height: 500px;
+  height: 800px;
 }
 
 </style>
 
 
 <meta charset="utf-8" />
-<title>서비스 안내_멤버 현황(Service_MemberStatus1)</title>
+<title>서비스 안내_멤버 현황(Service_MemberStatus2)</title>
 
 
 </head>
@@ -70,14 +66,13 @@ body {
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus3_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 연령 분포</button></a>
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus4_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 학력 분포</button></a>
 		</div>
-	
-    	
-	    <!-- Resources -->
+		
+		<!-- Resources -->
 		<script src="https://www.amcharts.com/lib/4/core.js"></script>
 		<script src="https://www.amcharts.com/lib/4/charts.js"></script>
 		<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 		
-		<!-- 데이터 시각화 구현 -->
+		<!-- Chart code -->
 		<script>
 		am4core.ready(function() {
 		
@@ -85,57 +80,100 @@ body {
 		am4core.useTheme(am4themes_animated);
 		// Themes end
 		
+		 // Create chart instance
 		var chart = am4core.create("chartdiv", am4charts.XYChart);
-		chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
 		
+		// Add data
 		chart.data = [{
-	
-		  "gender": "연-결 남자 회원비율",
-		  "value": (${jsonListm}/(${jsonListm}+${jsonListw}))
-		}, {
-		  "gender": "연-결 여자 회원비율",
-		  "value": (${jsonListw}/(${jsonListm}+${jsonListw}))
-	
+		  "SalaryAnnual": "~2000(만원)이하",
+		  "NoOfSalAnnualM": ${jsonSal0010M},
+		  "NoOfSalAnnualW": ${jsonSal0010W}
+		},{
+		  "SalaryAnnual": "2,000~2,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal2000M},
+		  "NoOfSalAnnualW": ${jsonSal2000W}
+		},{
+		  "SalaryAnnual": "3,000~3,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal3000M},
+		  "NoOfSalAnnualW": ${jsonSal3000W}
+		},{
+		  "SalaryAnnual": "4,000~4,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal4000M},
+		  "NoOfSalAnnualW": ${jsonSal4000W}
+		},{
+		  "SalaryAnnual": "5,000~5,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal5000M},
+		  "NoOfSalAnnualW": ${jsonSal5000W}
+		},{
+		  "SalaryAnnual": "6,000~7,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal6070M},
+		  "NoOfSalAnnualW": ${jsonSal6070W}
+		},{
+		  "SalaryAnnual": "8,000~9,999(만원)",
+		  "NoOfSalAnnualM": ${jsonSal8090M},
+		  "NoOfSalAnnualW": ${jsonSal8090W}
+		},{
+		  "SalaryAnnual": "1억원(10,000만원) 이상~",
+		  "NoOfSalAnnualM": ${jsonSal10000M},
+		  "NoOfSalAnnualW": ${jsonSal10000W}
+		
 		}];
 		
-		
-		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+		// Create axes
+		var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "SalaryAnnual";
+		categoryAxis.numberFormatter.numberFormat = "#";
+		categoryAxis.renderer.inversed = true;
 		categoryAxis.renderer.grid.template.location = 0;
-		categoryAxis.dataFields.category = "gender";
-		categoryAxis.renderer.minGridDistance = 40;
+		categoryAxis.renderer.cellStartLocation = 0.1;
+		categoryAxis.renderer.cellEndLocation = 0.9;
 		
-		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		var  valueAxis = chart.xAxes.push(new am4charts.ValueAxis()); 
+		valueAxis.renderer.opposite = true;
 		
-		var series = chart.series.push(new am4charts.CurvedColumnSeries());
-		series.dataFields.categoryX = "gender";
-		series.dataFields.valueY = "value";
-		series.tooltipText = "{valueY.value}"
-		series.columns.template.strokeOpacity = 0;
+		// Create series
+		function createSeries(field, name) {
+		  var series = chart.series.push(new am4charts.ColumnSeries());
+		  series.dataFields.valueX = field;
+		  series.dataFields.categoryY = "SalaryAnnual";
+		  series.name = name;
+		  series.columns.template.tooltipText = "{name}: [bold]{valueX}[/]";
+		  series.columns.template.height = am4core.percent(100);
+		  series.sequencedInterpolation = true;
 		
-		series.columns.template.fillOpacity = 0.75;
+		  var valueLabel = series.bullets.push(new am4charts.LabelBullet());
+		  valueLabel.label.text = "{valueX}";
+		  valueLabel.label.horizontalCenter = "left";
+		  valueLabel.label.dx = 10;
+		  valueLabel.label.hideOversized = false;
+		  valueLabel.label.truncate = false;
 		
-		var hoverState = series.columns.template.states.create("hover");
-		hoverState.properties.fillOpacity = 1;
-		hoverState.properties.tension = 0.4;
+		  var categoryLabel = series.bullets.push(new am4charts.LabelBullet());
+		  categoryLabel.label.text = "{name}";
+		  categoryLabel.label.horizontalCenter = "right";
+		  categoryLabel.label.dx = -10;
+		  categoryLabel.label.fill = am4core.color("#fff");
+		  categoryLabel.label.hideOversized = false;
+		  categoryLabel.label.truncate = false;
+		}
 		
-		chart.cursor = new am4charts.XYCursor();
-		
-		// Add distinctive colors for each column using adapter
-		series.columns.template.adapter.add("fill", function(fill, target) {
-		  return chart.colors.getIndex(target.dataItem.index);
-		});
-		
-		chart.scrollbarX = new am4core.Scrollbar();
+		createSeries("NoOfSalAnnualM", "남자회원");
+		createSeries("NoOfSalAnnualW", "여자회원");
 		
 		}); // end am4core.ready()
 		</script>
 		
-		<!-- 그래프를 표시할 위치 -->
+		<!-- HTML -->
 		<div id="chartdiv"></div>
+		
+		
+	</div>
+	
+	</div>    	
 
-	</div>
-	</div>
-		<!-- 가운데(내용) 영역 끝 -->
+
+
+	<!-- 가운데(내용) 영역 끝 -->
 
 
 	<!-- 변경 사항 -->
