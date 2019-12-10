@@ -5,7 +5,13 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='${pageContext.request.contextPath}/assets/js/moment.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/jquery.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/gcal.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/ko.js'></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
@@ -20,9 +26,59 @@ function add(){
 }
 
 </script>
+<script>
 
+	$(document).ready(function() {
+	
+		$('#calendar').fullCalendar({
+
+			// THIS KEY WON'T WORK IN PRODUCTION!!!
+			// To make your own Google API key, follow the directions here:
+			// http://fullcalendar.io/docs/google_calendar/
+			googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+		
+			// US Holidays
+			
+			eventClick: function(event) {
+				// opens events in a popup window
+				window.open(event.url, 'gcalevent', 'width=700,height=600');
+				return false;
+			},
+			
+			loading: function(bool) {
+				$('#loading').toggle(bool);
+			}
+			
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+		
+	#loading {
+		display: none;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	#calendar {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+</style>
 <meta charset="utf-8" />
 <title>연-결</title>
+
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
@@ -56,217 +112,18 @@ function add(){
 		<h5>나의 인연을 찾아봅시다.</h5>
 	</div>
 
-	<div class="col-md-9 content">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th id="sun">일</th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-					<th>토</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td id="sun">6</td>
-					<td>7
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>8</td>
-					<td>9</td>
-					<td>10
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>11</td>
-					<td>12</td>
-				</tr>
-				<tr>
-					<td id="sun">13
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>14</td>
-					<td>15
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>16</td>
-					<td>17</td>
-					<td>18
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>19</td>
-				</tr>
-				<tr>
-					<td id="sun">20</td>
-					<td>21</td>
-					<td>22</td>
-					<td>23
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>24</td>
-					<td>25</td>
-					<td>26
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td id="sun">27</td>
-					<td>28</td>
-					<td>29
-						<div id="count">
-							<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-							<a href="#" data-toggle="modal" data-target="#womanModal">여:2</a>
-						</div>
-					</td>
-					<td>30</td>
-					<td>31</td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="col-md-10 content">
+		<div id='loading'>loading...</div>
+
+	<div id='calendar'></div>
 		
-		<div class="pull-right">
+	</div>
+	<div class="pull-right">
 		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox"> 스페셜 서비스 사용</p>
 		<a href="${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do" onclick="window.open(this.href,'mywin','width=500, height=300, scrollbars=yes'); return false;">
 			<button type="button" class="btn btn-default pull-right">등록하기</button></a>
 		</div>
-	</div>
 
-		<div class="modal fade" id="manModal">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">현황</h4>
-					</div>
-					<div class="modal-body">
-						<table class="table-bordered" id="modaltable1">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>이름</th>
-									<th>성별</th>
-									<th>나이</th>
-									<th>직업</th>
-									<th>데이트선호장소</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td><a href="${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do">홍길동</a></td>
-									<td>남</td>
-									<td>30</td>
-									<td>변호사</td>
-									<td>서울</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><a href="${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do">홍길동</a></td>
-									<td>남</td>
-									<td>33</td>
-									<td>검사</td>
-									<td>경기도</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="womanModal">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">현황</h4>
-					</div>
-					<div class="modal-body">
-						<table class="table-bordered" id="modaltable1">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>이름</th>
-									<th>성별</th>
-									<th>나이</th>
-									<th>직업</th>
-									<th>데이트선호장소</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td><a href="${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do">홍길동</a></td>
-									<td>여</td>
-									<td>30</td>
-									<td>의사</td>
-									<td>강원도</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><a href="${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do">홍길동</a></td>
-									<td>여</td>
-									<td>28</td>
-									<td>교사</td>
-									<td>경상도</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
     
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

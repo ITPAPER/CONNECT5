@@ -44,8 +44,7 @@
 
 
 	<!-- Javascript -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 	<!-- 카테고리 스크립트 -->
 	<script type="text/javascript">
 		$(document).ready(

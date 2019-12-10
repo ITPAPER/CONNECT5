@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 .content {
-	height: 500px;
 	margin-top: 10px;
 }
 
@@ -12,10 +11,6 @@
 
 .content td {
 	text-align: right;
-}
-
-thead {
-	background-color: #EAEAEA;
 }
 
 #sun {
@@ -51,7 +46,9 @@ select {
 	width: 100px;
 	height: 30px;
 }
-
+.pull-right{
+	padding-right:80px;
+}
 
 /** 이미지와 input요소간의 정렬 설정 */
 #calImg { vertical-align: middle; }
