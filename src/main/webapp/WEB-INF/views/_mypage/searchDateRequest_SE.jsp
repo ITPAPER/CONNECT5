@@ -12,12 +12,13 @@
 <script>
 function add(){
     if(confirm("해당 날짜를 선택 하시겠습니까?") == true){
+    	var Choose_Date = $("#datepicker").val();
       alert("등록이 완료되었습니다.");
    }else {
       return;
    }
-   location.href="#";
-}
+    location.href="${pageContext.request.contextPath}/_mypage/search_SE.do?Choose_Date="+ Choose_Date;
+    }
 </script>
 
 <meta charset="utf-8" />

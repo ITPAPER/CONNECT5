@@ -19,7 +19,7 @@
     <br />
 
     <div>
-		<button type="button" class="btn btn-primary" onclick="add()">확인</button>
+		<button type="submit" class="btn btn-primary" onclick="add()">확인</button>
 		<button type="button" class="btn btn-primary" onclick="window.close(); return false;">취소</button>
 	</div>
 	
@@ -39,12 +39,13 @@
         
         function add(){
             if(confirm("해당 날짜를 선택 하시겠습니까?") == true){
-              alert("등록이 완료되었습니다.");
+            	var Choose_Date = $("#datepicker").val();
+            	alert("등록이 완료되었습니다.");
+            	window.opener.top.location.href="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do?Choose_Date="+ Choose_Date;	
            }else {
               return;
            }
-           window.opener.top.location.href="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do";
-           window.close();
+			window.close()
         }
     </script>
 	   

@@ -16,17 +16,6 @@
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
 <script>
-function add(){
-    if(confirm("해당 날짜를 선택 하시겠습니까?") == true){
-      alert("등록이 완료되었습니다.");
-   }else {
-      return;
-   }
-   location.href="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.jsp";
-}
-
-</script>
-<script>
 
 	$(document).ready(function() {
 	
@@ -72,7 +61,10 @@ function add(){
 
 	#calendar {
 		max-width: 800px;
-		margin: 0 auto;
+		margin: 0 auto; 
+	}
+	.fc-scroller {
+  	overflow: visible !important;
 	}
 
 </style>
@@ -121,7 +113,7 @@ function add(){
 	<div class="pull-right">
 		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox"> 스페셜 서비스 사용</p>
 		<a href="${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do" onclick="window.open(this.href,'mywin','width=500, height=300, scrollbars=yes'); return false;">
-			<button type="button" class="btn btn-default pull-right">등록하기</button></a>
+			<button type="submit" class="btn btn-default pull-right">등록하기</button></a>
 		</div>
 
     

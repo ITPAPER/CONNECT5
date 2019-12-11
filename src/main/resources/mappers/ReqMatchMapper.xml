@@ -14,59 +14,59 @@
 	</resultMap>
 
 
- <!-- 단일행 조회를 위한 기능 정의 -->
-    <select id="selectItem"
-        parameterType="study.spring.simplespring.model.ReqMatch"
-        resultMap="ReqMatchMap">
-        
-    </select>
+	<!-- 단일행 조회를 위한 기능 정의 -->
+	<select id="selectItem"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
 
-    <!-- 다중행 조회를 위한 기능 정의 -->
-    <select id="selectList"
-        parameterType="study.spring.simplespring.model.ReqMatch"
-        resultMap="ReqMatchMap">
+	</select>
+
+	<!-- 다중행 조회를 위한 기능 정의 -->
+	<select id="selectList"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
 		SELECT r.*, u.UserName FROM ReqMatch r
-		INNER JOIN User u ON (r.MemberId = u.MemberId)
-		
+		INNER JOIN User u ON (r.MemberId
+		= u.MemberId)
+
 		<where>
 			<if test="UserName != null and UserName != ''">
 				u.UserName LIKE concat('%', #{UserName}, '%')
 			</if>
 		</where>
-		 <if test="listCount > 0">
-            LIMIT #{offset}, #{listCount}
-        </if>
-    </select>
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
 
-    <!-- 데이터 저장을 위한 기능 정의 -->
-    <insert id="insertItem"
-        parameterType="study.spring.simplespring.model.ReqMatch"
-        useGeneratedKeys="true"
-        keyProperty="deptno">
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		useGeneratedKeys="true" keyProperty="ReqMatchId">
+		insert Into connect5.ReqMatch (Select_Date, MemberId , Choose_Date)
+		VALUES ( 
+		now(),#{MemberId},#{Choose_Date}
+		)
+	</insert>
 
-    </insert>
+	<!-- 데이터 삭제를 위한 기능 정의 -->
+	<delete id="deleteItem"
+		parameterType="study.spring.simplespring.model.ReqMatch">
 
-    <!-- 데이터 삭제를 위한 기능 정의 -->
-    <delete id="deleteItem"
-        parameterType="study.spring.simplespring.model.ReqMatch">
+	</delete>
 
-    </delete>
+	<!-- 데이터 갱신을 위한 기능 정의 -->
+	<update id="updateItem"
+		parameterType="study.spring.simplespring.model.ReqMatch">
 
-    <!-- 데이터 갱신을 위한 기능 정의 -->
-    <update id="updateItem"
-        parameterType="study.spring.simplespring.model.ReqMatch">
+	</update>
 
-    </update>
-    
-    <!--
-        조건에 맞는 데이터 수를 집계하여 int 타입으로 반환한다.
-        count, max, min, sum, avg 함수를 사용한 경우 Mapper에서는
-        resultMap이 아닌 resultType으로 반환한다.
-    -->
-    <select id="selectCountAll" 
-            parameterType="study.spring.simplespring.model.ReqMatch"
-            resultType="int">
+	<!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환한다. count, max, min, sum, avg 함수를 사용한 
+		경우 Mapper에서는 resultMap이 아닌 resultType으로 반환한다. -->
+	<select id="selectCountAll"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultType="int">
 		SELECT COUNT(*) FROM ReqMatch
-    </select>
+	</select>
 
 </mapper>

@@ -130,7 +130,7 @@
 		SELECT COUNT(*)
 		FROM Board b
 		INNER JOIN User u ON b.MemberId=u.MemberId
-
+		
 		<choose>
 			<when test="Title != null and Title != ''">
 				AND Title = #{Title}
@@ -347,7 +347,7 @@
 		ORDER BY BoardId DESC
 
 		<if test="listCount > 0">
-			LIMIT #{offset}, #{listCount}
+			LIMIT #{offset}, #{listCount} 
 		</if>
 	</select>
 	
