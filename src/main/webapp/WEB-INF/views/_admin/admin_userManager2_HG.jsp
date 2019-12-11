@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -102,68 +105,67 @@
 				<tbody>
 					<tr>
 						<td class="box13" rowspan="4">프로필사진</td>
-						<td class="box14" rowspan="4"><img src="${pageContext.request.contextPath}/assets/img/people.PNG"
-							style="width: 140px;"></td>
+						<td class="box14" rowspan="4">${output.getUser_Img()}</td>
 
 						<td class="box15">성별</td>
-						<td class="box16">남자</td>
+						<td class="box16">${output.gender}</td>
 					</tr>
 					<tr>
 						<td class="box13">이름</td>
-						<td class="box14">남희권</td>
+						<td class="box14">${output.userName}</td>
 					</tr>
 					<tr>
 						<td class="box13">생년월일</td>
-						<td class="box14">1995.04.27</td>
+						<td class="box14">${output.birthDate}</td>
 					</tr>
 					<tr>
 						<td class="box13">가입일</td>
-						<td class="box14">2019.10.27</td>
+						<td class="box14">${output.join_Date}</td>
 					</tr>
 
 					<tr>
 						<td class="box13">아이디</td>
-						<td class="box14">abc123</td>
+						<td class="box14">${output.userId}</td>
 
 						<td class="box15">등급</td>
-						<td class="box16">Gold</td>
+						<td class="box16">${output.member_Lv}</td>
 					</tr>
 
 					<tr>
 						<td class="box13">데이트 횟수</td>
-						<td class="box14">2회</td>
+						<td class="box14">${output.date_Count}</td>
 
 						<td class="box15">잔여 횟수</td>
-						<td class="box16">5회</td>
+						<td class="box16">${output.date_Rest}</td>
 					</tr>
 
 					<tr>
 						<td class="box13">E-mail</td>
-						<td class="box14">abc@naver.com</td>
+						<td class="box14">${output.email}</td>
 
 						<td class="box15">휴대폰번호</td>
-						<td class="box16">010-1234-5678</td>
+						<td class="box16">${output.mobile}</td>
 					</tr>
 
 					<tr>
 						<td class="box13">주소</td>
-						<td class="box14" colspan="3">서울특별시 강남구신사동 591-2</td>
+						<td class="box14" colspan="3">${output.basicAddress}</td>
 
 					</tr>
 
 					<tr>
-						<td class="box13">상세직업</td>
-						<td class="box14">국회의원</td>
+						<td class="box13">직업</td>
+						<td class="box14">${output.job}</td>
 
 						<td class="box15">결혼여부</td>
-						<td class="box16">초혼</td>
+						<td class="box16">${output.isMarried}</td>
 					</tr>
 					<tr>
 						<td class="box13">학력</td>
-						<td class="box14">대학교 졸업</td>
+						<td class="box14">${output.edu_Lv}</td>
 
-						<td class="box15">지역</td>
-						<td class="box16">서울</td>
+						<td class="box15">데이트 선호 지역</td>
+						<td class="box16">${output.date_Loc}</td>
 					</tr>
 				</tbody>
 			</table>

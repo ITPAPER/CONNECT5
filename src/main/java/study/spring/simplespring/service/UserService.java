@@ -24,6 +24,10 @@ public interface UserService {
    
    public User selectMypage(User input) throws Exception;
    
+   public List<User> getUserListadminUser(User input) throws Exception;
+   
+   public User getUserItemadminUser(User input) throws Exception;
+   
    public int getSelectCountGenderMen(User input) throws Exception;
    public int getSelectCountGenderWomen(User input) throws Exception;
 

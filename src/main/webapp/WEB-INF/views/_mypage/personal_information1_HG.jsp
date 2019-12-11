@@ -88,7 +88,6 @@
 			<form action="${pageContext.request.contextPath}/_mypage/personal_information1ok_HG.do" method="POST" >
 				<c:set var="userId" value="${output.userId}" />
 				<c:set var="userPw" value="${output.userPw}" />
-				
 					<div class="user_name">
 						<label for="user_name" style="width:100px;">아이디 </label>
 						<a>${userId}</a>
@@ -96,7 +95,7 @@
 					<div class="user_pw">
 						<label for="text" style="width:100px;">비밀번호 </label> 
 						<input type="password"
-							placeholder="비밀번호 입력해주세요" name="UserPw" id="user_pw" size="20" ${userPw}/>
+							placeholder="비밀번호 입력해주세요" name="UserPw1" id="user_pw" size="20" ${userPw} />
 							
 					</div>
 					<div class="buttom">

@@ -10,17 +10,6 @@
 	font-size: 20px;
 	height: 150px;
 	font-weight: 600;
-	
-}
-
-
-
-.text2 {
-	padding: 10px 20px;
-}
-
-.text3 {
-	padding: 10px 20px;
 }
 
 .buttom {
@@ -43,7 +32,7 @@
 	position: absolute;
 	font-size: 25px;
 	text-align: center;
-	left: 250px;
+	left: 147px;
 	top: 150px;
 	height: 250px;
 }
@@ -53,60 +42,59 @@
 	font-size: 18px;
 	text-align: center;
 	left: 145px;
-	top: 240px;
+	top: 337px;
 	height: 250px;
 	width: 580px;
 }
 
 .box2 {
 	display: inline-block;
-
 }
+
 .text2 {
-position:absolute;
-left: 50px;
-top: 150px;
+	position: absolute;
+	left: -3px;
+	top: 172px;
+	width: 180px;
+	font-size: 18px;
 }
 
-.text3 {
-position:absolute;
-left: 330px;
-top: 150px;
-}
+
+
 .boximg1 {
 	display: inline-block;
 	border: 0;
-	position:absolute;
-	left:80px;
-	
+	position: absolute;
+	left: 80px;
 }
 
 .boximg2 {
 	display: inline-block;
 	border: 0;
-	position:absolute;
-	left:350px;
-	
+	position: absolute;
+	left: 350px;
 }
+
 .boximg1  img {
-	width: 150px;
-	height: 150px;
+	width: 160px;
+	height: 160px;
 }
 
 .boximg2  img {
-	width: 150px;
-	height: 150px;
+	width: 160px;
+	height: 160px;
 }
 
 .table-bordered {
-border: 0px;
+	border: 0px;
 }
 
 .text11 {
-text-align: center;
-font-size: 20px;
+	text-align: center;
+	font-size: 20px;
 }
+
 .text12 {
-text-align: center;
-font-size: 15px;
+	text-align: center;
+	font-size: 15px;
 }

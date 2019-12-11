@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Test;
@@ -94,14 +95,14 @@ public class HG_Controller {
 		if (BirthDate == null) {
 			return webHelper.redirect(null, "생년월일을 입력하세요.");
 		}
-		
+
 		if (Mobile == null) {
 			return webHelper.redirect(null, "핸드폰번호를 입력하세요.");
 		}
 		if (!regexHelper.isCellPhone(Mobile)) {
 			return webHelper.redirect(null, "핸드폰번호는 숫자로만 입력하세요.");
 		}
-		
+
 		if (Email == null) {
 			return webHelper.redirect(null, "이메일을 입력해주세요.");
 		}
@@ -136,7 +137,7 @@ public class HG_Controller {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		String redirectUrl = contextPath + "/_join/join3_HG.do?memberId=" + input.getMemberId();
+		String redirectUrl = contextPath + "/_join/join3_HG.do?MemberId=" + input.getMemberId();
 		return webHelper.redirect(redirectUrl, "회원가입이 완료되었습니다.");
 	}
 
@@ -152,7 +153,7 @@ public class HG_Controller {
 	 */
 
 	@RequestMapping(value = "/_admin/admin_userManager1_HG.do", method = RequestMethod.GET)
-	public String admin_userManager1(Model model) {
+	public ModelAndView admin_userManager1(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
@@ -163,21 +164,76 @@ public class HG_Controller {
 			model.addAttribute("login", login);
 		}
 
-		return "_admin/admin_userManager1_HG";
+		/** 1) 필요한 변수값 생성 */
+		String keyword = webHelper.getString("keyword", ""); // 검색어
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0; // 전체 게시글 수
+		int listCount = 10; // 한 페이지당 표시할 목록 수
+		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
+
+		int MemberId = webHelper.getInt("MemberId");
+		String BirthDate = webHelper.getString("BirthDate");
+		int Height = webHelper.getInt("Height");
+		String Edu_Lv = webHelper.getString("Edu_Lv");
+		String Job = webHelper.getString("Job");
+
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserId(keyword);
+		input.setUserName(keyword);
+		input.setBirthDate(BirthDate);
+		input.setHeight(Height);
+		input.setEdu_Lv(Edu_Lv);
+		input.setJob(Job);
+
+		List<User> output = null; // 조회결과가 저장될 객체
+		PageData pageData = null;
+
+		try {
+			// 전체 게시글 수 조회
+			totalCount = userService.getUserCount(input);
+			// 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
+			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+			// SQL의 LIMIT절에서 사용될 값을 Beans의 static 변수에 저장
+			User.setOffset(pageData.getOffset());
+			User.setListCount(pageData.getListCount());
+
+			output = userService.getUserListadminUser(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("pageData", pageData);
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_admin/admin_userManager1_HG");
 
 	}
 
 	@RequestMapping(value = "/_admin/admin_userManager2_HG.do", method = RequestMethod.GET)
-	public String admin_userManager2(Model model) {
+	public ModelAndView admin_userManager2(Model model) {
 
-		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int MemberId = webHelper.getInt("MemberId");
 
-		if (loginInfo != null) {
-			String login = loginInfo.getUserName();
-			model.addAttribute("login", login);
+		if (MemberId == 0) {
+			return webHelper.redirect(null, "해당 회원이 없습니다.");
 		}
 
-		return "_admin/admin_userManager2_HG";
+		User input = new User();
+		input.setMemberId(MemberId);
+
+		User output = null;
+
+		try {
+			output = userService.getUserItemadminUser(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_admin/admin_userManager2_HG");
 
 	}
 
@@ -279,12 +335,26 @@ public class HG_Controller {
 	@RequestMapping(value = "/_mypage/withdrawal1_HG.do", method = RequestMethod.GET)
 	public ModelAndView withdrawal1(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return new ModelAndView("_mypage/withdrawal1_HG");
 
 	}
 
 	@RequestMapping(value = "/_mypage/withdrawal2_HG.do", method = RequestMethod.GET)
 	public ModelAndView withdrawal2(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return new ModelAndView("_mypage/withdrawal2_HG");
 
@@ -298,69 +368,75 @@ public class HG_Controller {
 	public ModelAndView personal_information1(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
-		
 		if (loginInfo == null) {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
 			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요");
 		}
-		
+
 		int MemberId = loginInfo.getMemberId();
 		String UserId = loginInfo.getUserId();
-		
-		
+
 		User input = new User();
 		input.setMemberId(MemberId);
 		input.setUserId(UserId);
-		
 
 		User output = null;
-		
+
 		try {
 			output = userService.getUserItem(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		
+
 		model.addAttribute("output", output);
-		
+
 		return new ModelAndView("_mypage/personal_information1_HG");
 	}
 
 	@RequestMapping(value = "/_mypage/personal_information1ok_HG.do", method = RequestMethod.POST)
 	public ModelAndView personal_information1ok(Model model) {
-		
+
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		int MemberId = loginInfo.getMemberId();
 		String UserId = loginInfo.getUserId();
 		String UserPw = loginInfo.getUserPw();
-		
+
 		User input = new User();
 		input.setMemberId(MemberId);
 		input.setUserId(UserId);
 		input.setUserPw(UserPw);
-		
+
 		User output = null;
+
 		try {
 			userService.getUserItem(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		if (UserPw != UserPw) {
+		if (UserPw != null) {
 			String redirectUrl = contextPath + "/_mypage/personal_information1_HG.do";
 			return webHelper.redirect(redirectUrl, "비밀번호가 틀렸습니다.");
 		}
-			
+
 		model.addAttribute("output", output);
-		
+
 		return new ModelAndView("_mypage/personal_information2_HG");
 	}
-	
-	
 
 	@RequestMapping(value = "/_mypage/personal_information2_HG.do", method = RequestMethod.GET)
 	public ModelAndView personal_information2(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return new ModelAndView("_mypage/personal_information2_HG");
 
@@ -380,6 +456,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/lovescore1_HG.do", method = RequestMethod.GET)
 	public String lovescore1(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_test/lovescore1_HG";
 
@@ -387,6 +469,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/lovescore2_HG.do", method = RequestMethod.GET)
 	public String lovescore2(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		int TestQ3 = webHelper.getInt("TestQ3");
 
 		Test input = new Test();
@@ -400,6 +488,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/lovescore3_HG.do", method = RequestMethod.GET)
 	public ModelAndView list(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		int TestQ3 = webHelper.getInt("TestQ3");
 		int TestQ4 = webHelper.getInt("TestQ4");
 		String ResultTitle = webHelper.getString("ResultTitle");
@@ -431,6 +525,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/propensity1_HG.do", method = RequestMethod.GET)
 	public String propensity1(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_test/propensity1_HG";
 
@@ -438,6 +538,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/propensity2_HG.do", method = RequestMethod.GET)
 	public String propensity2(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		int TestQ1 = webHelper.getInt("TestQ1");
 
 		Test input = new Test();
@@ -450,6 +556,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/propensity3_HG.do", method = RequestMethod.GET)
 	public ModelAndView list2(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 		int TestQ1 = webHelper.getInt("TestQ1");
 		int TestQ2 = webHelper.getInt("TestQ2");
 		String ResultTitle = webHelper.getString("ResultTitle");
@@ -481,6 +593,12 @@ public class HG_Controller {
 
 	@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
 	public String Map(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_test/idealtype_HG";
 

@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Test/propensity1_H.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Test/propensity1_HGok.css">
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -83,10 +83,10 @@
 					</tr>
 					
 				</table>
-				<br/><br/>
-			
-				
-				<br/><br/><br/><br/><br/><br/><br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
 				<p class="text11"><strong>사진을 선택해주세요!!!</strong></p>
 			
 				

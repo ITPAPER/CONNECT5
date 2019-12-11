@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,7 +29,7 @@
 	href="../assets/css/nanumfont.css" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager1.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager1_HG.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -43,7 +47,7 @@
 		<div class="top">
 			<div class="col-md-12 top_login">
 				<p id="connect">
-					admin 님 접속중 
+					admin 님 접속중
 					<button type="submit" class="btn btn-xs"
 						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
@@ -71,17 +75,19 @@
 			<h2>회원관리</h2>
 		</div>
 
-		<div class="col-md-4 searching_box">
-			<ul id="key">
-				<li><select name="keyField">
-						<option value="0">---선택---</option>
-						<option value="title">아이디</option>
-						<option value="id">이름</option>
-				</select> <input type="text" name="KeyWord" /> <input type="submit"
-					id="s_btn" value="검색" />
-			</ul>
-		</div>
-
+		<form method="get"
+			action="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do">
+			<div class="col-md-4 searching_box">
+				<ul id="key">
+					<li><select name="keyField">
+							<option value="0">---선택---</option>
+							<option value="UserId">아이디</option>
+							<option value="UserName">이름</option>
+					</select> <input type="text" name="keyword" value="${keyword}"/> <button type="submit"
+						id="s_btn">검색</button>
+				</ul>
+			</div>
+		</form>
 		<div class="col-md-10 content">
 			<div class="table-responsive">
 
@@ -98,109 +104,118 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="text-center">
-							<td id="num">10</td>
-							<td id="id">a1</td>
-							<td id="name"><a href="${pageContext.request.contextPath}/_admin/admin_userManager2_HG.do">전지현</a></td>
-							<td id="birthdate">1981.05.29</td>
-							<td id="height">173</td>
-							<td id="academicBackground">대학교 졸업</td>
-							<td id="job">모델</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">9</td>
-							<td id="id">a2</td>
-							<td id="name">오연서</td>
-							<td id="birthdate">1987.06.22</td>
-							<td id="height">168</td>
-							<td id="academicBackground">대학교 졸업</td>
-							<td id="job">회사원</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">8</td>
-							<td id="id">a3</td>
-							<td id="name">김설현</td>
-							<td id="birthdate">1995.01.03</td>
-							<td id="height">167</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">웹개발자</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">7</td>
-							<td id="id">a4</td>
-							<td id="name">아이린</td>
-							<td id="birthdate">1991.03.29</td>
-							<td id="height">160</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">아티스트</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">6</td>
-							<td id="id">a5</td>
-							<td id="name">김태리</td>
-							<td id="birthdate">1990.04.24</td>
-							<td id="height">166</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">공무원</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">5</td>
-							<td id="id">a6</td>
-							<td id="name">배수지</td>
-							<td id="birthdate">1994.10.10</td>
-							<td id="height">168</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">건축가</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">4</td>
-							<td id="id">a7</td>
-							<td id="name">연우</td>
-							<td id="birthdate">1996.08.01</td>
-							<td id="height">165</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">교사</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">3</td>
-							<td id="id">a8</td>
-							<td id="name">박경리</td>
-							<td id="birthdate">1990.07.05</td>
-							<td id="height">170</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">은행원</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">2</td>
-							<td id="id">a9</td>
-							<td id="name">아리아나 그란데</td>
-							<td id="birthdate">1993.06.26</td>
-							<td id="height">153</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">팝아티스트</td>
-						</tr>
-						<tr class="text-center">
-							<td id="num">1</td>
-							<td id="id">a10</td>
-							<td id="name">박지효</td>
-							<td id="birthdate">1997.02.01</td>
-							<td id="height">162</td>
-							<td id="academicBackground">OOO 졸업</td>
-							<td id="job">디자이너</td>
-						</tr>
+						<c:choose>
+							<c:when test="${output == null || fn:length(output) == 0}">
+								<tr>
+									<td colspan="9" align="center">회원들의 정보가 없습니다.</td>
+								</tr>
+							</c:when>
 
+							<%-- 조회결과가 있는  경우 --%>
+							<c:otherwise>
+								<%-- 조회 결과에 따른 반복 처리 --%>
+								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount +1)}"/>
+								<c:forEach var="item" items="${output}" varStatus="status">
+									<c:set var="UserId" value="${item.getUserId()}" />
+									<c:set var="MemberId" value="${item.getMemberId()}" />
+									<c:set var="UserName" value="${item.getUserName()}" />
+									<c:set var="birthDate" value="${item.getBirthDate()}" />
+									<c:set var="height" value="${item.getHeight()}" />
+									<c:set var="edu_Lv" value="${item.getEdu_Lv()}" />
+									<c:set var="job" value="${item.getJob()}" />
+
+									<%-- 검색어가 있다면? --%>
+									<c:if test="${keyword != ''}">
+										<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+										<c:set var="mark" value="<mark>${keyword}</mark>" />
+										<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+										<c:set var="UserName"
+											value="${fn:replace(UserName, keyword, mark)}" />
+											<c:set var="UserId"
+											value="${fn:replace(UserId, keyword, mark)}" />
+
+									</c:if>
+
+									<%-- 상세페이지로 이동하기 위한 URL --%>
+									<c:url value="/_admin/admin_userManager2_HG.do" var="viewUrl">
+										<c:param name="MemberId" value="${item.getMemberId()}" />
+									</c:url>
+
+									<tr>
+										<td>${num}</td>
+										<td>${item.getUserId()}</td>
+										<td><a href="${viewUrl}">${item.getUserName()}</a></td>
+										<td>${item.getBirthDate()}</td>
+										<td>${item.getHeight()}</td>
+										<td>${item.getEdu_Lv()}</td>
+										<td>${item.getJob()}</td>
+									</tr>
+										<c:set var="num" value="${num-1}" ></c:set>
+								</c:forEach>
+								
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
+				<c:choose>
+					<%-- 이전 그룹으로 이동 가능하다면? --%>
+					<c:when test="${pageData.prevPage > 0}">
+						<%-- 이동할 URL 생성 --%>
+						<c:url value="/_admin/admin_userManager1_HG.do"
+							var="prevPageUrl">
+							<c:param name="page" value="${pageData.prevPage}" />
+							<c:param name="keyword" value="${keyword}" />
+						</c:url>
+						<a href="${prevPageUrl}">&laquo;</a>
+					</c:when>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${prevPageUrl}">&laquo;</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${pageData.startPage}"
+					end="${pageData.endPage}" varStatus="status">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_userManager1_HG.do" var="pageUrl">
+						<c:param name="page" value="${i}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
 
-				<ul class="pagination pagination-sm">
-					<li class="disabled"><a href="#">&laquo;</a></li>
-					<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
+					<%-- 페이지 번호 출력 --%>
+					<c:choose>
+						<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+						<c:when test="${pageData.nowPage == i}">
+							<ul class="pagination pagination-sm">
+								<li class="active"><a href="${pageUrl}">${i}</a></li>
+							</ul>
+						</c:when>
+						<%-- 나머지 페이지의 경우 링크 적용함 --%>
+						<c:otherwise>
+							<ul class="pagination pagination-sm">
+								<li><a href="${pageUrl}">${i}</a></li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<%-- 다음 그룹으로 이동 가능하다면? --%>
+					<c:when test="${pageData.nextPage > 0}">
+						<%-- 이동할 URL 생성 --%>
+						<c:url value="/_admin/admin_userManager1_HG.do"
+							var="nextPageUrl">
+							<c:param name="page" value="${pageData.nextPage}" />
+							<c:param name="keyword" value="${keyword}" />
+						</c:url>
+						<a href="${nextPageUrl}">&raquo;</a>
+					</c:when>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">&raquo;</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</div>

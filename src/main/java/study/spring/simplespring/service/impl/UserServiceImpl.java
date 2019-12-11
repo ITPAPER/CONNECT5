@@ -46,8 +46,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int getUserCount(User input) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAll", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
@@ -164,572 +172,610 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public List<User> getUserListadminUser(User input) throws Exception {
+		List<User> result = null;
+
+		try {
+			result = sqlSession.selectList("UserMapper.selectListadminUser", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public User getUserItemadminUser(User input) throws Exception {
+		User result = null;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectItemadminUser", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 
 	/** 남녀 회원 수 */
 	@Override
 	public int getSelectCountGenderMen(User input) throws Exception {
-       int result = 0;
-       
-       try {
-           result = sqlSession.selectOne("UserMapper.selectCountGenderMen", input);
-       } catch (Exception e) {
-           log.error(e.getLocalizedMessage());
-           throw new Exception("데이터 조회에 실패했습니다.");
-       }
-       
-       return result;
-   }
-	
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountGenderMen", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 	@Override
 	public int getSelectCountGenderWomen(User input) throws Exception {
-	       int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountGenderWomen", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
-	   }
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountGenderWomen", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 
 	/** 연봉범위별 남녀 회원 수 */
 	@Override
 	public int getselectCountAnnualSalary0010M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary0010M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
-	   }
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary0010M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 
 	@Override
 	public int getselectCountAnnualSalary0010W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary0010W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
-	   }
-	
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary0010W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 	@Override
 	public int getselectCountAnnualSalary2000M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary2000M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
-	   }
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary2000M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 
 	@Override
 	public int getselectCountAnnualSalary2000W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary2000W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary2000W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary3000M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary3000M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary3000M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary3000W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary3000W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary3000W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary4000M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary4000M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary4000M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary4000W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary4000W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary4000W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary5000M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary5000M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary5000M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary5000W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary5000W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary5000W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary6070M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary6070M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary6070M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary6070W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary6070W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary6070W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary8090M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary8090M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary8090M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary8090W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary8090W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary8090W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary10000M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary10000M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary10000M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAnnualSalary10000W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary10000W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAnnualSalary10000W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
-	
 	/** 연령대별 남녀 회원 수 */
 	@Override
 	public int getselectCountAge2024M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge2024M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge2024M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge2024W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge2024W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge2024W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge2529M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge2529M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge2529M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge2529W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge2529W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge2529W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge3034M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge3034M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge3034M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge3034W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge3034W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge3034W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge3539M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge3539M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge3539M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge3539W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge3539W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge3539W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge4049M(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge4049M", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge4049M", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge4049W(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge4049W", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge4049W", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge50PlusM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge50PlusM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge50PlusM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountAge50PlusW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountAge50PlusW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountAge50PlusW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
-	
 	/** 최종학력별 남녀 회원 수 */
 	@Override
 	public int getselectCountEduHighschoolM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduHighschoolM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduHighschoolM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduHighschoolW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduHighschoolW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduHighschoolW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduCollegeM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduCollegeM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduCollegeM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduCollegeW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduCollegeW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduCollegeW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduUniversityM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduUniversityM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduUniversityM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduUniversityW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduUniversityW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduUniversityW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduGraduateSchoolM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduGraduateSchoolM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduGraduateSchoolM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduGraduateSchoolW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduGraduateSchoolW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduGraduateSchoolW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduDoctoralM(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduDoctoralM", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduDoctoralM", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 	@Override
 	public int getselectCountEduDoctoralW(User input) throws Exception {
 		int result = 0;
-	       
-	       try {
-	           result = sqlSession.selectOne("UserMapper.selectCountEduDoctoralW", input);
-	       } catch (Exception e) {
-	           log.error(e.getLocalizedMessage());
-	           throw new Exception("데이터 조회에 실패했습니다.");
-	       }
-	       
-	       return result;
-	}	
-	
-	
+
+		try {
+			result = sqlSession.selectOne("UserMapper.selectCountEduDoctoralW", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 }
