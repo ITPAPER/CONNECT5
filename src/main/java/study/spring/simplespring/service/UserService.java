@@ -28,6 +28,8 @@ public interface UserService {
    
    public User getUserItemadminUser(User input) throws Exception;
    
+   public int editUserinformation(User input) throws Exception;
+   
    public int getSelectCountGenderMen(User input) throws Exception;
    public int getSelectCountGenderWomen(User input) throws Exception;
 

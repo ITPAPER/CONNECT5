@@ -72,25 +72,38 @@ $(document).ready(function() {
 					<div class="col-md-10 text1">
 			<h5>비밀번호를 입력해주세요.</h5>
 		</div>
-                     <div class="col-md-9 content" >
-                     <hr/>
-                        <fieldset>
+                     <div class="col-md-9 content">
+				<hr />
+				<fieldset>
+			<form action="${pageContext.request.contextPath}/_mypage/withdrawal1ok_HG.do" method="POST" >
+					<input type="hidden" name="MemberId"
+						value="${output.getMemberId()}" />
 					<div class="user_name">
-						<label for="user_name">아이디　　　</label>
-							<p>abc123</p>
-								</div>
-								<div class="user_pw">
-								<label for="text">비밀번호　　</label>
-								<input type="password" placeholder="비밀번호 입력해주세요" name="user_pw" id="user_pw"  size="20"  />
-							</div>
-							<div class="buttom">
-                           <br/>
-			<button class="btn btn-default" id="btn1" style="height:30px; width:80px;">확인</button>
-		</div>
-					</fieldset>
-                        
-                        </div>
-                     </div>
+					
+						<label for="user_name" style="width:100px;" name="UserId">아이디 </label>
+						<a>${output.getUserId()}</a>
+					</div>
+					<div class="user_pw">
+						<label for="text" style="width:100px;">비밀번호 </label> 
+						<input type="password"
+							placeholder="비밀번호 입력해주세요" name="UserPw" id="user_pw" size="20" />
+
+							
+					</div>
+					<div class="buttom">
+						<br />
+						<button class="btn btn-default" id="btn1"
+							style="height: 30px; width: 80px;">확인</button>
+					</div>
+					
+					</form>
+				</fieldset>
+
+
+
+			</div>
+		
+	</div>
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>
 </html>

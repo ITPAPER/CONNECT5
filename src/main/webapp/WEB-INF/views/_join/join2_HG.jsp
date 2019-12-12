@@ -303,13 +303,13 @@
 
       <div class="buttom">
          <br>
-         <button class="btn btn-default" onclick="cancel()"
+         <button class="btn btn-default" onclick="cancel()" type="reset"
             style="height: 30px; width: 80px;">취소</button>
          &nbsp;&nbsp;&nbsp;
-         <button class="btn btn-default" onclick="location.href ='${pageContext.request.contextPath}/_join/join2_HG.do'"
+         <button class="btn btn-default" type="reset"
             style="height: 30px; width: 80px;">초기화</button>
          &nbsp;&nbsp;&nbsp;
-         <button class="btn btn-default" id="btn1"
+         <button class="btn btn-default" id="btn1" type="submit"
             style="height: 30px; width: 80px;">완료</button>
       </div>
 

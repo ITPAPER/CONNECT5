@@ -45,50 +45,19 @@
 		INSERT INTO User (
 		MemberId,
 		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
-		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin,
-		UserPw1
-		) VALUES (
+		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin
+
+		)
+		VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
 		#{BirthDate},
 		#{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
 		#{Email},
 		#{PostCode},
-		#{BasicAddress}, #{StateAddress}, #{DetailAddress}, 0,
-		#{UserPw}
+		#{BasicAddress}, #{StateAddress}, #{DetailAddress}, 0
+
 		)
 	</insert>
-
-	<select id="selectLoginInfo"
-		parameterType="study.spring.simplespring.model.User"
-		resultMap="userMap">
-
-		SELECT
-		* FROM User
-		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
-
-	</select>
-
-	<!-- 경동 회원정보 변경 쿼리문 -->
-	<update id="updateItem"
-		parameterType="study.spring.simplespring.model.User">
-		UPDATE user
-		SET member_lv=#{member_lv} ,
-		date_rest=#{date_rest}, managerid=#{managerid}
-		WHERE
-		UserName=#{UserName};
-	</update>
-	<!-- 경동 아이디 찾기 조회 쿼리문 -->
-	<select id="selectFindaccount"
-		parameterType="study.spring.simplespring.model.User"
-		resultMap="userMap">
-
-		select * from user
-		where UserName=#{UserName} and
-		email=#{email}
-
-	</select>
-
-
 
 	<select id="selectItem"
 		parameterType="study.spring.simplespring.model.User"
@@ -124,6 +93,90 @@
 		SELECT * FROM connect5.user Where MemberId = #{MemberId}
 	</select>
 
+	<update id="updateIteminformation"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE User SET User_Img=#{User_Img},
+		UserName=#{UserName}, UserId=#{UserId},
+		Gender=#{Gender},
+		UserPw=#{UserPw}, Mobile=#{Mobile}, TEL=#{TEL}, Email=#{Email},
+		PostCode=#{PostCode}, BasicAddress=#{BasicAddress},
+		StateAddress=#{StateAddress},
+		DetailAddress=#{DetailAddress}
+		WHERE
+		MemberId=#{MemberId}
+
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteItem"
+		parameterType="study.spring.simplespring.model.User">
+		DELETE FROM connect5.user WHERE MemberId=#{MemberId}
+	</delete>
+	
+	<update id="unsetBoard"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Board SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+
+	<update id="unsetManager"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Manager SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+	
+	<update id="unsetReply"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+	
+	<update id="unsetPayMent"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+	
+	<update id="unsetSucMatch"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+	
+	<update id="unsetReqMatch"
+	parameterType="study.spring.simplespring.model.User">
+	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+	</update>
+	<!-- 삭제 참조 해제 -->
+
+	<select id="selectLoginInfo"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+
+		SELECT
+		* FROM User
+		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
+
+	</select>
+
+	<!-- 경동 회원정보 변경 쿼리문 -->
+	<update id="updateItem"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE user
+		SET member_lv=#{member_lv} ,
+		date_rest=#{date_rest}, managerid=#{managerid}
+		WHERE
+		UserName=#{UserName};
+	</update>
+	<!-- 경동 아이디 찾기 조회 쿼리문 -->
+	<select id="selectFindaccount"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+
+		select * from user
+		where UserName=#{UserName} and
+		email=#{email}
+
+	</select>
+
+
+
+
+
 	<!-- 데이터 수 조회를 위한 기능 정의 -->
 	<select id="selectCountAll"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
@@ -132,11 +185,7 @@
 
 	</select>
 
-	<update id="updateItem2"
-		parameterType="study.spring.simplespring.model.User">
-		UPDATE User SET
 
-	</update>
 
 
 

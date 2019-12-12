@@ -81,36 +81,40 @@
 		<div class="col-md-10 text1">
 			<h5>비밀번호를 입력해주세요.</h5>
 		</div>
-		
-			<div class="col-md-9 content">
-				<hr />
-				<fieldset>
-			<form action="${pageContext.request.contextPath}/_mypage/personal_information1ok_HG.do" method="POST" >
-				<c:set var="userId" value="${output.userId}" />
-				<c:set var="userPw" value="${output.userPw}" />
+
+		<div class="col-md-9 content">
+			<hr />
+			<fieldset>
+				<form
+					action="${pageContext.request.contextPath}/_mypage/personal_information1ok_HG.do"
+					method="POST">
+					<input type="hidden" name="MemberId"
+						value="${output.getMemberId()}" />
 					<div class="user_name">
-						<label for="user_name" style="width:100px;">아이디 </label>
-						<a>${userId}</a>
+
+						<label for="user_name" style="width: 100px;" name="UserId">아이디
+						</label> <a>${output.getUserId()}</a>
 					</div>
 					<div class="user_pw">
-						<label for="text" style="width:100px;">비밀번호 </label> 
-						<input type="password"
-							placeholder="비밀번호 입력해주세요" name="UserPw1" id="user_pw" size="20" ${userPw} />
-							
+						<label for="text" style="width: 100px;">비밀번호 </label> <input
+							type="password" placeholder="비밀번호 입력해주세요" name="UserPw"
+							id="user_pw" size="20" />
+
+
 					</div>
 					<div class="buttom">
 						<br />
 						<button class="btn btn-default" id="btn1"
 							style="height: 30px; width: 80px;">확인</button>
 					</div>
-					
-					</form>
-				</fieldset>
+
+				</form>
+			</fieldset>
 
 
 
-			</div>
-		
+		</div>
+
 	</div>
 
 	<!-- 가운데 영역 끝 -->
@@ -119,6 +123,6 @@
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
-	
+
 </body>
 </html>

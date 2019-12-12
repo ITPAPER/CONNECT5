@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
@@ -20,8 +20,9 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/propensityimg.PNG" alt="연-결"
-			class="img-responsive" />
+		<img
+			src="${pageContext.request.contextPath}/assets/img/propensityimg.PNG"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -53,48 +54,50 @@
 			<div class="media">
 				<p class="text10">
 					<strong>나의 성향에 맞는 것을 선택하세요.</strong>
-					</p>
-					<br />
-				<p class="text11"><strong>손가락 길이에 따른 성향 테스트</strong></p>
-			<p class="text12">다섯 손가락을 바르게 펼쳤을 때, 검지와 약지 중 더 긴 손가락은 어느 손가락이 더 긴가요?</p>
-			
+				</p>
+				<br />
+				<p class="text11">
+					<strong>손가락 길이에 따른 성향 테스트</strong>
+				</p>
+				<p class="text12">다섯 손가락을 바르게 펼쳤을 때, 검지와 약지 중 더 긴 손가락은 어느 손가락이 더
+					긴가요?</p>
+
 			</div>
 			<br />
 
 			<div class="media1">
 				<table class="boxtext1 table-bordered">
-				
+
 					<tr class="boximg1">
-						<td>
-						<a
+						<td><a
 							href="${pageContext.request.contextPath}/_test/propensity2_HG.do?TestQ1=0">
-						<img src="${pageContext.request.contextPath}/assets/img/test1.PNG"><br />
-						<span class="text2">검지 손가락이 더 길다</span>
-						</a></td>
-						</tr>
-						
-						<tr class="boximg2">
-						<td>
-						<a
-							href="${pageContext.request.contextPath}/_test/propensity2_HG.do?TestQ1=1">
-						<img src="${pageContext.request.contextPath}/assets/img/test2.PNG">
-						<span class="text2">약지 손가락이 더 길다</span>
+								<img
+								src="${pageContext.request.contextPath}/assets/img/test1.PNG"><br />
+								<span class="text2">검지 손가락이 더 길다</span>
 						</a></td>
 					</tr>
-					
+
+					<tr class="boximg2">
+						<td><a
+							href="${pageContext.request.contextPath}/_test/propensity2_HG.do?TestQ1=1">
+								<img
+								src="${pageContext.request.contextPath}/assets/img/test2.PNG">
+								<span class="text2">약지 손가락이 더 길다</span>
+						</a></td>
+					</tr>
+
 				</table>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<p class="text11"><strong>사진을 선택해주세요!!!</strong></p>
-			
-				
-				
-				
-				</div>
+				<br /> <br /> <br /> <br />
+				<p class="text11">
+					<strong>사진을 선택해주세요!!!</strong>
+				</p>
+
+
+
+
 			</div>
 		</div>
+	</div>
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

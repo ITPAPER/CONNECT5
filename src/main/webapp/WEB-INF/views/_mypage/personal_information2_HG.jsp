@@ -64,14 +64,18 @@
 				}).open();
 	}
 
-	function yes() {
-		if (confirm("수정하시겠습니까??") == true) {
-			alert("수정되었습니다.");
-		} else {
-			return;
-		}
-		location.href = "${pageContext.request.contextPath}/_mypage/personal_information1_HG.do";
-	}
+	$(document).ready(function() {
+		$("#btn1").click(function() {
+
+			var UserPw = $("#UserPw").val();
+			var UserPw1 = $("#UserPw1").val();
+			if (UserPw != UserPw1) {
+				alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
+				$("#UserPw1").focus();
+				return false;
+			}
+		})
+	})
 </script>
 
 <meta charset="utf-8" />
@@ -87,7 +91,9 @@
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/informationimg.PNG" alt="연-결" class="img-responsive" />
+		<img
+			src="${pageContext.request.contextPath}/assets/img/informationimg.PNG"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -118,94 +124,91 @@
 
 
 		<h3 class="col-md-10">개인정보수정</h3>
-		<div class="col-md-9 content">
+		<form method="post"
+			action="${pageContext.request.contextPath}/_mypage/personal_information2ok_HG.do">
+			<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
+			<div class="col-md-9 content">
+				<div class="box10">
+					<br /> <br />
+					<table>
+						<tbody>
+							<tr>
+								<th class="box13">프로필사진</th>
+								<td class="box14"><input type="file" id="profile_img">${output.getUser_Img()}</td>
 
-			<div class="box10">
-				<br />
-				<br />
-				<table>
-					<tbody>
-						<tr>
-							<th class="box13">프로필사진</th>
-
-							<td class="box14"><input type="file" id="profile_img"></td>
-
-							<th class="box15">이름</th>
-							<td class="box16">남희권</td>
-						</tr>
-						<tr>
-							<th class="box13">아이디</th>
-							<td class="box14">abc123</td>
-
-
-							<th class="box15">성별</th>
-							<td class="box16">남자</td>
-
-						</tr>
+								<th class="box15">이름</th>
+								<td class="box16" name="UserName">${output.getUserName()}</td>
+							</tr>
+							<tr>
+								<th class="box13">아이디</th>
+								<td class="box14" name="UserId">${output.getUserId()}</td>
 
 
-						<tr>
-							<th class="box13">변경할 비밀번호</th>
-							<td class="box14"><input class="text4" type="password" /></td>
+								<th class="box15">성별</th>
+								<td class="box16" name="Gender" value="${output.getGender()}">${output.getGender()}</td>
 
-							<th class="box15">변경할 비밀번호 확인</th>
-							<td class="box16"><input class="text4" type="password" />&nbsp;</td>
-						</tr>
+							</tr>
+							<tr>
+								<th class="box13">변경할 비밀번호</th>
+								<td class="box14"><input class="text4" type="password"
+									name="UserPw" id="UserPw" /></td>
 
-						<tr>
-							<th class="box13">휴대폰번호</th>
-							<td class="box14"><input placeholder="01012345678"></td>
+								<th class="box15">변경할 비밀번호 확인</th>
+								<td class="box16"><input class="text4" type="password"
+									name="UserPw1" id="UserPw1" /></td>
+							</tr>
 
-
-							<th class="box15">전화번호</th>
-							<td class="box16"><input placeholder="022123456"></td>
-						</tr>
-						<tr>
-							<th class="box13">이메일</th>
-							<td class="box14" colspan="3"><input class="text4"
-								placeholder="skarnjs159" type="text" /> @ <input type="text"
-								placeholder="naver.com" /></td>
-						</tr>
-
-						<tr>
-							<td class="box13" rowspan="3">주소</td>
-							<td class="box14" colspan="3"><input type="text"
-								id="sample6_postcode" placeholder="우편번호"> <input
-								type="button" onclick="sample6_execDaumPostcode()"
-								value="우편번호 찾기"><br></td>
-						</tr>
-						<tr>
-							<td class="box14" colspan="2"><input type="text"
-								id="sample6_address" placeholder="주소" size="50"></td>
-							<td class="box14"><input type="text"
-								id="sample6_extraAddress" placeholder="동/읍/리"></td>
-						</tr>
-						<tr>
-							<td class="box14" colspan="3"><input type="text"
-								id="sample6_detailAddress" placeholder="상세주소" size="50"></td>
+							<tr>
+								<th class="box13">휴대폰번호</th>
+								<td class="box14"><input name="Mobile"
+									value="${output.getMobile()}"></td>
 
 
-						</tr>
-					</tbody>
-				</table>
+								<th class="box15">전화번호</th>
+								<td class="box16"><input name="TEL"
+									value="${output.getTEL()}"></td>
+							</tr>
+							<tr>
+								<th class="box13">이메일</th>
+								<td class="box14" colspan="3"><input class="text4"
+									name="Email" value="${output.getEmail()}" type="text"
+									style="width: 200px" /></td>
+							</tr>
 
+							<tr>
+								<td class="box13" rowspan="3">주소</td>
+								<td class="box14" colspan="3"><input type="text"
+									name="PostCode" id="sample6_postcode"
+									value="${output.getPostCode()}"> <input type="button"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
+							</tr>
+							<tr>
+								<td class="box14" colspan="2"><input type="text"
+									name="BasicAddress" id="sample6_address"
+									value="${output.getBasicAddress()}" size="50"></td>
+								<td class="box14"><input type="text" name="StateAddress"
+									id="sample6_extraAddress" value="${output.getStateAddress()}"></td>
+							</tr>
+							<tr>
+								<td class="box14" colspan="3"><input type="text"
+									name="DetailAddress" id="sample6_detailAddress"
+									value="${output.getDetailAddress()}" size="50"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
+				<div class="buttom">
+					<br>
+					<button class="btn btn-default" type="submit" id="btn1"
+						style="height: 30px; width: 80px;">수정하기</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-default" type="reset"
+						style="height: 30px; width: 80px;">다시작성</button>
+
+				</div>
 			</div>
-
-			<div class="buttom">
-				<br>
-				<button class="btn btn-default" onclick="yes()"
-					style="height: 30px; width: 80px;">수정하기</button>
-				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-default"
-					onclick="location.href ='${pageContext.request.contextPath}/_mypage/personal_information2_HG.do'"
-					style="height: 30px; width: 80px;">다시작성</button>
-
-			</div>
-
-
-		</div>
-
+		</form>
 
 
 	</div>
