@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,21 +29,12 @@
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager2.css">
 
 <script type="text/javascript">
-	function withdrawal() {
-		if (confirm("탈퇴시키겠습니까?") == true) {
-			alert("탈퇴시켰습니다..");
-		} else {
-			return;
-		}
-		location.href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do";
-	}
-
 	function yes() {
-		var userInput = prompt("비밀번호 변경");
+		var UserPw = prompt("비밀번호 변경");
 		alert("변경되었습니다.");
 	}
 </script>
@@ -86,19 +77,8 @@
 			<p class="text20">회원정보</p>
 		</div>
 
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br />
 		<div class="box10">
 
 			<table>
@@ -175,11 +155,20 @@
 
 		<div class="buttom">
 			<br>
-			<button class="btn btn-default" onclick="yes()"
-				style="height: 30px; width: 120px;">비밀번호 수정</button>
+			<form method="post" style="display: inline-block;"
+				action="${pageContext.request.contextPath}/_admin/admin_userManager2ok2_HG.do">
+				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
+				<button class="btn btn-default" name="UserPw" onclick="yes()"
+		 		value="${output.getUserPw()}" type="submit"
+					style="height: 30px; width: 120px;">비밀번호 수정</button>
+			</form>
 			&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-default" onclick="withdrawal()"
-				style="height: 30px; width: 80px;">탈퇴</button>
+			<form method="post" style="display: inline-block;"
+				action="${pageContext.request.contextPath}/_admin/admin_userManager2ok1_HG.do">
+				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
+				<button class="btn btn-default" type="submit"
+					style="height: 30px; width: 80px;">탈퇴</button>
+			</form>
 			&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-default"
 				onclick="location.href ='${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do'"

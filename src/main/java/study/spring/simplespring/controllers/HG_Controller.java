@@ -236,6 +236,56 @@ public class HG_Controller {
 		return new ModelAndView("_admin/admin_userManager2_HG");
 
 	}
+	
+	@RequestMapping(value = "/_admin/admin_userManager2ok1_HG.do", method = RequestMethod.POST)
+	public ModelAndView admin_userManager2ok1(Model model) {
+
+		int MemberId = webHelper.getInt("MemberId");
+		String UserName = webHelper.getString("UserName");
+		String UserId = webHelper.getString("UserId");
+		String UserPw = webHelper.getString("UserPw");
+
+		if (MemberId == 0) {
+			return webHelper.redirect(null, "회원 번호가 없습니다.");
+		}
+
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserName(UserName);
+		input.setUserId(UserId);
+		input.setUserPw(UserPw);
+
+		try {
+			userService.deleteUser(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		return webHelper.redirect(contextPath + "/_admin/admin_userManager1_HG.do", "삭제되었습니다.");
+	}
+	
+	@RequestMapping(value = "/_admin/admin_userManager2ok2_HG.do", method = RequestMethod.POST)
+	public ModelAndView admin_userManager2ok2(Model model) {
+
+		int MemberId = webHelper.getInt("MemberId");
+		String UserPw = webHelper.getString("UserPw");
+
+		if (MemberId == 0) {
+			return webHelper.redirect(null, "회원 번호가 없습니다.");
+		}
+
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserPw(UserPw);
+
+		try {
+			userService.editUseradmin(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		return webHelper.redirect(contextPath + "/_admin/admin_userManager1_HG.do", "수정되었습니다.");
+
+	}
 
 	/**
 	 * -------------------------------- 관리자 회원관리 controller 끝

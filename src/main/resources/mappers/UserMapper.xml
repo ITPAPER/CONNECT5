@@ -93,6 +93,14 @@
 		SELECT * FROM connect5.user Where MemberId = #{MemberId}
 	</select>
 
+	<update id="updateItemadmin"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE User SET UserPw = #{UserPw}
+		WHERE
+		MemberId=#{MemberId}
+
+	</update>
+
 	<update id="updateIteminformation"
 		parameterType="study.spring.simplespring.model.User">
 		UPDATE User SET User_Img=#{User_Img},
@@ -109,37 +117,44 @@
 	<!-- 삭제 -->
 	<delete id="deleteItem"
 		parameterType="study.spring.simplespring.model.User">
-		DELETE FROM connect5.user WHERE MemberId=#{MemberId}
+		DELETE FROM User WHERE MemberId=#{MemberId}
 	</delete>
-	
+
 	<update id="unsetBoard"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Board SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Board SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
 
+
 	<update id="unsetManager"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Manager SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Manager SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
-	
+
 	<update id="unsetReply"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Reply SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
-	
+
 	<update id="unsetPayMent"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Reply SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
-	
+
 	<update id="unsetSucMatch"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Reply SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
-	
+
 	<update id="unsetReqMatch"
-	parameterType="study.spring.simplespring.model.User">
-	UPDATE connect5.Reply SET MemberId=null WHERE MemberId=#{MemberId};
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.Reply SET MemberId=null WHERE
+		MemberId=#{MemberId}
 	</update>
 	<!-- 삭제 참조 해제 -->
 
@@ -152,6 +167,8 @@
 		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
 
 	</select>
+
+
 
 	<!-- 경동 회원정보 변경 쿼리문 -->
 	<update id="updateItem"
