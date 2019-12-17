@@ -11,6 +11,7 @@
 		<result property="Select_Date" column="Select_Date" />
 		<result property="MemberId" column="MemberId" />
 		<result property="Choose_Date" column="Choose_Date" />
+		<result property="UserName" column="UserName" />
 	</resultMap>
 
 
@@ -18,7 +19,11 @@
 	<select id="selectItem"
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		resultMap="ReqMatchMap">
-
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(Choose_Date,'%Y-%m-%d') AS Choose_Date,
+		u.UserName FROM connect5.reqmatch r
+		Inner join connect5.user u ON (u.MemberId = r.MemberId) AND r.MemberId = #{MemberId}
+		
 	</select>
 
 	<!-- 다중행 조회를 위한 기능 정의 -->

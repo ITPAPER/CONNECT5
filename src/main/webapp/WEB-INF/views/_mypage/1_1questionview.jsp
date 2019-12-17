@@ -8,8 +8,7 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1question_replyWaiting_YH.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1question_replyWaiting_YH.css">
 <script>
 	function add() {
 		if (confirm("재문의 하시겠습니까?") == true) {
@@ -26,15 +25,11 @@
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
 
-
-
 	<!-- 변경사항  -->
-
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
-			alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -44,22 +39,15 @@
 			<h3 class="title">My 연-결</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do"
-					class="list-group-item">My현황</a> <a
-					href="${pageContext.request.contextPath}/_mypage/search_SE.do"
-					class="list-group-item">인연 찾기</a> <a
-					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"
-					class="list-group-item btncolor">1:1 문의</a> <a
-					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
-					class="list-group-item">매칭 기록 보기 </a><a
-					href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
-					class="list-group-item">개인정보수정</a> <a
-					href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
-					class="list-group-item">회원탈퇴</a>
+				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item btncolor">1:1 문의</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록 보기 </a>
+				<a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
 			</div>
 		</div>
 	</div>
-
 
 	<h3 class="col-md-10">1:1 문의</h3>
 	<div class="col-md-10 text1">
@@ -67,7 +55,6 @@
 	</div>
 
 	<div class="col-md-10 content">
-
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
@@ -80,7 +67,6 @@
 					<tr>
 						<td id="context" colspan="3">${output.getContent()}</td>
 					</tr>
-
 				</tbody>
 			</table>
 			<c:choose>
@@ -121,14 +107,10 @@
 		</div>
 
 		<div class="pull-right">
-			<button class="btn btn-default"
-				onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?BoardId=${output.getBoardId() }'">재문의</button>
-			<button class="btn btn-default"
-				onclick="location.href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'">확인</button>
+			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionedit.do?BoardId=${output.getBoardId() }'">재문의</button>
+			<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'">확인</button>
 		</div>
 	</div>
-
-
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />

@@ -8,25 +8,20 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
 <!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
@@ -43,10 +38,8 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userApply_YH.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userApply_YH.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 
 <script type="text/javascript">
 	function deldet_post() {
@@ -66,36 +59,24 @@
 </script>
 
 </head>
-
 <body>
-
-
 	<div class="container">
 		<div class="top">
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs"
-						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
 				</p>
 			</div>
 		</div>
 
-
 		<div class="col-md-2 sidebar1">
-			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
-				class="list-group-item">대시보드</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
-				class="list-group-item">회원관리</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do"
-				class="list-group-item">게시판 관리</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do"
-				class="list-group-item active">신청현황</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do"
-				class="list-group-item">문의현황</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do"
-				class="list-group-item">결제관리</a>
-
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do" class="list-group-item">게시판 관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do" class="list-group-item active">신청현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do" class="list-group-item">문의현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
 		</div>
 
 		<div class="col-md-10 middle">
@@ -137,15 +118,13 @@
 							<c:otherwise>
 								<%-- 조회 결과에 따른 반복 처리 --%>
 								<c:forEach items="${output}" var="item" varStatus="status">
-
 									<tr>
 										<td align="center"><c:out value="${item.ReqMatchId}"/></td>
 										<td align="center">${item.UserName}</td>
 										<td align="center">${item.Select_Date}</td>
 										<td align="center">${item.Choose_Date}</td>
 										<td align="center"></td>
-										<td align="center"><button type="button"
-												class="label label-warning" onclick="deldet_post()">삭제</button></td>
+										<td align="center"><button type="button" class="label label-warning" onclick="deldet_post()">삭제</button></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

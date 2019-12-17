@@ -866,6 +866,66 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
+	public int editviewcount(Board input1) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.update("BoardMapper.updateviewcount", input1);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("수정된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 수정에 실패했습니다.");
+        }
+
+        return result;
+	}
+
+
+	@Override
+	public Board getPrevDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectPrevDocument", input);
+			
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("이전글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Board getNextDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectNextDocument", input);
+
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("다음글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
 	public int getBoardCountadminQnA(Board input) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;

@@ -12,6 +12,7 @@
 		<result property="MemberId" column="MemberId" />
 		<result property="UserId" column="UserId" />
 		<result property="UserName" column="UserName" />
+		<result property="viewcount" column="viewcount" />
 	</resultMap>
 
 
@@ -336,10 +337,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 3, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 3, #{MemberId},#{viewcount}
 		)
 	</insert>
 
@@ -436,7 +437,7 @@
 		INSERT INTO Board
 		(Title,Content,CreationDate,ContentImg,Category,MemberId)
 		VALUES
-		(#{Title},#{Content},#{CreationDate},#{ContentImg},5,#{MemberId}) ;
+		(#{Title},#{Content},#{CreationDate},#{ContentImg},7,#{MemberId}) ;
 	</insert>
 
 	<select id="selectList1_1"
@@ -449,7 +450,7 @@
 		FROM connect5.board b
 		inner JOIN connect5.User u ON (b.MemberId =
 		u.MemberId) WHERE
-		b.MemberId = #{MemberId} AND Category=5
+		b.MemberId = #{MemberId} AND Category=7
 
 		ORDER BY BoardId DESC
 
@@ -466,7 +467,7 @@
 		ContentImg,
 		Category
 		FROM connect5.board
-		WHERE BoardId=#{BoardId} AND Category = 5;
+		WHERE BoardId=#{BoardId} AND Category = 7;
 	</select>
 
 	<update id="updateItem1_1"
@@ -474,7 +475,7 @@
 		UPDATE Board SET
 		Title = #{Title},
 		Content=#{Content},CreationDate=#{CreationDate},ContentImg=#{ContentImg},
-		MemberId=#{MemberId},Category = 5
+		MemberId=#{MemberId},Category = 7
 		WHERE BoardId=#{BoardId}
 	</update>
 
@@ -482,9 +483,9 @@
 		parameterType="study.spring.simplespring.model.Board"
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board
-		(Title,Content,CreationDate,ContentImg,Category,MemberId)
+		(Title,Content,CreationDate,ContentImg,Category,MemberId,viewcount)
 		VALUES
-		(#{Title},#{Content},#{CreationDate},#{ContentImg},2,#{MemberId}) ;
+		(#{Title},#{Content},#{CreationDate},#{ContentImg},2,#{MemberId},#{viewcount});
 	</insert>
 
 	<select id="selectItemadminNotice"
@@ -539,13 +540,13 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId, u.UserName
+		ContentImg, Category, viewcount,b.MemberId, u.UserId, u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
 		WHERE Category
 		= 2
-
+		
 		<choose>
 			<when test="Title != null and Title != ''">
 				AND Title = #{Title}
@@ -569,7 +570,7 @@
 		FROM
 		connect5.board b
 		iNNER JOIN connect5.User u ON u.MemberId = b.MemberId
-		AND Category=5 AND u.isadmin != 1
+		AND Category=7 AND u.isadmin != 1
 
 		<choose>
 			<when test="Title != null and Title != ''">
@@ -597,7 +598,37 @@
 		Category , u.UserName
 		FROM connect5.board b
 		INNER JOIN connect5.user u
-		ON b.MemberId = u.MemberId AND BoardId = #{BoardId} AND Category = 5
+		ON b.MemberId = u.MemberId AND BoardId = #{BoardId} AND Category = 7
 	</select>
-
+	
+	
+	<update id="updateviewcount"
+		parameterType="study.spring.simplespring.model.Board">
+		UPDATE connect5.board SET viewcount = viewcount + 1 WHERE BoardId = #{BoardId}
+	</update>
+	
+	<select id="selectPrevDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category = 2
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectNextDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category = 2
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>
 </mapper>

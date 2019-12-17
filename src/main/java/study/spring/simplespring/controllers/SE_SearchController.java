@@ -26,9 +26,44 @@ public class SE_SearchController {
 		String contextPath;
 	 
 	@RequestMapping(value = "/_mypage/search_SE.do", method = RequestMethod.GET)
-	public String view(Model model) {
+	public ModelAndView view(Model model) {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		return "_mypage/search_SE";
+		if (loginInfo != null) {
+
+			String login = loginInfo.getUserName();
+
+			model.addAttribute("login", login);
+		}
+
+		String Choose_Date = webHelper.getString("Choose_Date");
+		int isSpUser = loginInfo.getIsadmin(); 
+		
+		int MemberId = loginInfo.getMemberId();
+		
+		ReqMatch input = new ReqMatch();
+		input.setChoose_Date(Choose_Date);
+		input.setMemberId(MemberId);
+		
+		
+		ReqMatch output = null;
+		
+		// ******************************************** 구분할 컬럼 정한 후 수정 
+		if (isSpUser != 0) {
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchItem(input);
+				
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+			}
+			
+			String redirectUrl = contextPath + "/_mypage/searchview_SE.do?Choose_Date=" + output.getChoose_Date();
+			return webHelper.redirect(redirectUrl," 선택한 날짜가 있네요! 확인해보세요! ");
+		}
+		
+		model.addAttribute("Choose_Date",Choose_Date);
+		return new ModelAndView("_mypage/search_SE");
 	} 
 	@RequestMapping(value = "/_mypage/searchDateOpen_SE.do", method = RequestMethod.GET)
 	public ModelAndView dateOpen(Model model) {
@@ -45,29 +80,51 @@ public class SE_SearchController {
 
 			model.addAttribute("login", login);
 		}
-		
+
 		int MemberId = loginInfo.getMemberId();
 		String Choose_Date = webHelper.getString("Choose_Date");
-		String Select_Date = webHelper.getString("Select_Date");
-		
+
 		ReqMatch input = new ReqMatch();
 		input.setMemberId(MemberId);
 		input.setChoose_Date(Choose_Date);
-		input.setSelect_Date(Select_Date);
-	
-		
+
 		try {
-			
+
 			reqMatchService.addReqMatch(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		String redirectUrl = contextPath + "_mypage/searchDateRequest_SE.do?Choose_Date=" + input.getChoose_Date();
-		return webHelper.redirect(redirectUrl, "선택");
-	} 
-	@RequestMapping(value = "/_mypage/searchRequestConfirm_SE.do", method = RequestMethod.GET)
-	public String reqConfirm(Model model) {
+		String redirectUrl = contextPath + "/_mypage/searchview_SE.do?Choose_Date=" + input.getChoose_Date();
+		return webHelper.redirect(redirectUrl, input.getChoose_Date()+ " 선택 하셨습니다. ");
+	}
+	
+	@RequestMapping(value = "/_mypage/searchview_SE.do", method = RequestMethod.GET)
+	public ModelAndView reqConfirm(Model model) {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		return "_mypage/searchRequestConfirm_SE";
-	} 
+		if (loginInfo != null) {
+
+			String login = loginInfo.getUserName();
+			
+			model.addAttribute("login", login);
+		}
+		
+		String Choose_Date = webHelper.getString("Choose_Date");
+		int MemberId = loginInfo.getMemberId();
+		
+		ReqMatch input = new ReqMatch();
+		input.setChoose_Date(Choose_Date);
+		input.setMemberId(MemberId);
+		
+		ReqMatch output = null;
+		
+		try {
+			// 데이터 조회
+			output = reqMatchService.getReqMatchItem(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		model.addAttribute("output",output);
+		return new ModelAndView("_mypage/searchview_SE");
+	}
 }

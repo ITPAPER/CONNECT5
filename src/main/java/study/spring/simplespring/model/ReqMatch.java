@@ -8,7 +8,8 @@ public class ReqMatch {
 	private String Select_Date;
 	private int MemberId;
 	private String Choose_Date;
-
+	private String UserName;
+	
 	private static int offset;
 
 	private static int listCount;

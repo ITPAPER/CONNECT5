@@ -15,18 +15,14 @@
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
 <!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
@@ -43,10 +39,8 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagement_YH.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagement_YH.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 </head>
 
 <body>
@@ -57,57 +51,43 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs"
-						onclick="location.href = '${pageContext.request.contextPath}/_login/loginOut.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}/_login/loginOut.do'">Logout</button>
 				</p>
 			</div>
 		</div>
 
 
 		<div class="col-md-2 sidebar1">
-			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do"
-				class="list-group-item">대시보드</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do"
-				class="list-group-item">회원관리</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do"
-				class="list-group-item active">게시판 관리</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do"
-				class="list-group-item">신청현황</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do"
-				class="list-group-item">문의현황</a> <a
-				href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do"
-				class="list-group-item">결제관리</a>
-
+			<a href="${pageContext.request.contextPath}/_admin/admin_main_SE.do" class="list-group-item">대시보드</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do" class="list-group-item">회원관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do" class="list-group-item active">게시판 관리</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do" class="list-group-item">신청현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do" class="list-group-item">문의현황</a> 
+			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
 		</div>
 
 		<div class="col-md-10 middle">
 			<h2>게시판 관리</h2>
 		</div>
 		<div class="col-md-10 middle_box">
-			<button
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'"
-				class="btn btn-info">공지사항</button>
-			<button
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'"
-				class="btn">연-결 성혼스토리</button>
-			<button
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'"
-				class="btn">연-결 Q &amp; A</button>
-			<button
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'"
-				class="btn">연-결 만남 후기</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'" class="btn btn-info">공지사항</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'" class="btn">연-결 성혼스토리</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
+			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
 		</div>
 
 		<div class="col-md-4 searching_box">
-			<form method="get"
-				action="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do">
+			<form method="get" action="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do">
 				<ul id="key">
-					<li><select name="keyField">
+					<li>
+						<select name="keyField">
 							<option value="0">---선택---</option>
 							<option value="Title">제목</option>
 							<option value="id">번호</option>
-					</select> <input type="search" name="keyword" value="${keyword}" />
+						</select> 
+							<input type="search" name="keyword" value="${keyword}" />
 						<button type="submit" id="s_btn">검색</button>
+					</li>
 				</ul>
 			</form>
 		</div>
@@ -135,14 +115,13 @@
 						<%-- 조회결과가 있는  경우 --%>
 						<c:otherwise>
 							<%-- 조회 결과에 따른 반복 처리 --%>
-							<c:set var="num"
-								value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<c:set var="title" value="${item.title}" />
 								<c:set var="userName" value="${item.userName}" />
 								<c:set var="creationDate" value="${item.creationDate}" />
+								<c:set var="viewcount" value="${item.viewcount}" />
 								<c:set var="BoardId" value="${item.getBoardId() }" />
-
 
 								<%-- 검색어가 있다면? --%>
 								<c:if test="${keyword != ''}">
@@ -150,7 +129,6 @@
 									<c:set var="mark" value="<mark>${keyword}</mark>" />
 									<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
 									<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
-
 								</c:if>
 
 								<%-- 상세페이지로 이동하기 위한 URL --%>
@@ -162,10 +140,9 @@
 									<td>${item.getBoardId()}</td>
 									<td><a href="${viewUrl}">${title}</a></td>
 									<td>${item.userName}</td>
-									<td>count</td>
+									<td>${item.viewcount}</td>
 									<td>${item.creationDate}</td>
-									<td><button type="button" class="label label-warning"
-											onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?BoardId=${BoardId}'">삭제</button></td>
+									<td><button type="button" class="label label-warning" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?BoardId=${BoardId}'">삭제</button></td>
 								</tr>
 								<c:set var="num" value="${num-1}"></c:set>
 							</c:forEach>
@@ -229,16 +206,11 @@
 					</ul>
 				</c:otherwise>
 			</c:choose>
-			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementadd.do'">글쓰기</button>
+			<button class="btn btn-default" onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagementadd.do'">글쓰기</button>
 		</div>
 	</div>
-
-
 	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

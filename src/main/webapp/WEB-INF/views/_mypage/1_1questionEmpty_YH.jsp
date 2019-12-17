@@ -8,27 +8,19 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/./assets/css/YH/Mypage/1_1questionEmpty_YH.css">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/./assets/css/YH/Mypage/1_1questionEmpty_YH.css">
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
 
-
-
 	<!-- 변경사항  -->
-
-
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
-			alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
-
 	<div>
 		<div class="col-md-2">
 			<!-- 패널 타이틀1 -->
@@ -36,23 +28,15 @@
 				<h3 class="title">My 연-결</h3>
 				<!-- 사이드바 메뉴목록1 -->
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do"
-						class="list-group-item">My현황</a> <a
-						href="${pageContext.request.contextPath}/_mypage/search_SE.do"
-						class="list-group-item">인연 찾기</a> <a
-						href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"
-						class="list-group-item btncolor">1:1 문의</a> <a
-						href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
-						class="list-group-item">매칭 기록 보기 </a><a
-						href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
-						class="list-group-item">개인정보수정</a> <a
-						href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
-						class="list-group-item">회원탈퇴</a>
+					<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
+					<a href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
+					<a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item btncolor">1:1 문의</a> 
+					<a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록 보기 </a>
+					<a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
+					<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
 				</div>
 			</div>
 		</div>
-
-
 
 		<h3 class="col-md-10">1:1 문의</h3>
 		<div class="col-md-10 text1">
@@ -80,7 +64,6 @@
 								<th id="reply_ok">답변여부</th>
 							</tr>
 							<tr>
-
 								<%-- 조회 결과에 따른 반복 처리 --%>
 								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 								<c:forEach var="item" items="${output}" varStatus="status">
@@ -105,9 +88,10 @@
 						</table>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
+			
 			<hr>
+			
 			<!-- 페이지 번호 구현 -->
 			<%-- 이전 그룹에 대한 링크 --%>
 			<c:choose>
@@ -128,8 +112,7 @@
 			</c:choose>
 
 			<%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
-			<c:forEach var="i" begin="${pageData.startPage}"
-				end="${pageData.endPage}" varStatus="status">
+			<c:forEach var="i" begin="${pageData.startPage}" end="${pageData.endPage}" varStatus="status">
 				<%-- 이동할 URL 생성 --%>
 				<c:url value="/_mypage/1_1questionEmpty_YH.do" var="pageUrl">
 					<c:param name="page" value="${i}" />
@@ -170,12 +153,9 @@
 					</ul>
 				</c:otherwise>
 			</c:choose>
-			<button class="btn btn-default"
-				onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionadd.do'">문의하기</button>
+			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/1_1questionadd.do'">문의하기</button>
 		</div>
 	</div>
-
-
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />

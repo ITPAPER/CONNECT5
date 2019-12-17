@@ -6,8 +6,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
 <script>
 	function cancel() {
 		if (confirm("정말 취소하시겠습니까?") == true) {
@@ -24,10 +23,7 @@
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
 
-
-
 	<!-- 변경사항  -->
-
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
@@ -41,18 +37,12 @@
 			<h3 class="title">My 연-결</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do"
-					class="list-group-item">My현황</a> <a
-					href="${pageContext.request.contextPath}/_mypage/search_SE.do"
-					class="list-group-item">인연 찾기</a> <a
-					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"
-					class="list-group-item btncolor">1:1 문의</a> <a
-					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
-					class="list-group-item">매칭 기록 보기 </a><a
-					href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
-					class="list-group-item">개인정보수정</a> <a
-					href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
-					class="list-group-item">회원탈퇴</a>
+				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item btncolor">1:1 문의</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록 보기 </a>
+				<a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
 			</div>
 		</div>
 	</div>
@@ -62,7 +52,6 @@
 	<div class="col-md-10 text1">
 		<h5>1:1 문의 상담</h5>
 	</div>
-
 
 	<div class="col-md-10 content">
 		<form action="${pageContext.request.contextPath}/_mypage/1_1questioneditOk.do" method="POST">
@@ -84,19 +73,13 @@
 
 				</tbody>
 			</table>
-			
 		</div>
-
 		<div class="pull-right">
 			<button type="submit" class="btn btn-default">글쓰기</button>
-			<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
-		
+			<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>		
 		</div>
 		</form>
-
 	</div>
-
-
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />

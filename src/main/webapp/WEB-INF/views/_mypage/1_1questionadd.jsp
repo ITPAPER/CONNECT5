@@ -5,11 +5,9 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
 <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script>
-
 function cancel() {
 	if (confirm("정말 취소하시겠습니까?") == true) {
 		alert("취소되었습니다.");
@@ -25,16 +23,10 @@ function cancel() {
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
-
-
-
 	<!-- 변경사항  -->
-
-
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
-			alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -44,22 +36,15 @@ function cancel() {
 			<h3 class="title">My 연-결</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do"
-					class="list-group-item">My현황</a> <a
-					href="${pageContext.request.contextPath}/_mypage/search_SE.do"
-					class="list-group-item">인연 찾기</a> <a
-					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"
-					class="list-group-item btncolor">1:1 문의</a> <a
-					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
-					class="list-group-item">매칭 기록 보기 </a><a
-					href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
-					class="list-group-item">개인정보수정</a> <a
-					href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
-					class="list-group-item">회원탈퇴</a>
+				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item">My현황</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item">인연 찾기</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item btncolor">1:1 문의</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록 보기 </a>
+				<a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a> 
+				<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
 			</div>
 		</div>
 	</div>
-
 
 	<h3 class="col-md-10">1:1 문의</h3>
 	<div class="col-md-10 text1">
@@ -79,13 +64,10 @@ function cancel() {
 				<tbody>
 					<tr>
 						<td class="context" colspan="3" align="center" id="Content">
-						<textarea placeholder="내용을 입력하세요." class="form-control" 
-						class="contentarea" id="contentarea" name="Content"/></textarea></td>
+						<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content"/></textarea></td>
 					</tr>
-
 				</tbody>
 			</table>
-			
 		</div>
 
 		<div class="pull-right">
@@ -95,11 +77,8 @@ function cancel() {
 		</form>
 	</div>
 
-
-
 	<!-- 변경 사항 -->
-
 	<jsp:include page="../assets/inc/footer.jsp" />
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

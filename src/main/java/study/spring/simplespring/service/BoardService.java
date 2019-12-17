@@ -92,4 +92,10 @@ public interface BoardService {
 	public List<Board> getBoardListadmin1_1(Board input) throws Exception;
 
 	public Board getBoardItemadmin1_1(Board input) throws Exception;
+	
+	public int editviewcount(Board input1) throws Exception;
+	
+	public Board getPrevDocument(Board input) throws Exception;
+
+	public Board getNextDocument(Board input) throws Exception;
 }

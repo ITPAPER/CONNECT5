@@ -8,17 +8,22 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link
+	href='${pageContext.request.contextPath}/assets/js/fullcalendar.css'
+	rel='stylesheet' />
+<link
+	href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.css'
+	rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/assets/js/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/jquery.min.js'></script>
-<script src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
+<script
+	src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/ko.js'></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
+
 <script>
 	$(document).ready(function() {
-		var chooseDate = '${Choose_Date}';
-
 		var calendar = $('#calendar').fullCalendar({
 			header : {
 				left : 'prev,next today',
@@ -27,9 +32,10 @@
 			editable : false,
 			events : [ {
 				title : '선택날짜',
-				start : new Date(chooseDate)
+				start : '${output.getChoose_Date()}'
 			} ]
 		});
+
 	});
 </script>
 <style>
@@ -99,14 +105,7 @@ body {
 
 	<div class="col-md-10 content">
 		<div id='loading'>loading...</div>
-		<c:choose>
-			<c:when test="${Choose_Date == null || fn:length(Choose_Date) == 0}">
 				<div id='calendar'></div>
-			</c:when>
-			<c:otherwise>
-				<div id='calendar'></div>
-			</c:otherwise>
-		</c:choose>
 	</div>
 	<div class="pull-right">
 		<p>
