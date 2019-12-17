@@ -45,19 +45,19 @@ public class User {
 
 	private String User_Img;
 
-	private int Height;
+	private String Height;
 
 	private String BldType;
 
-	private int Date_Loc;
+	private String Date_Loc;
 
-	private int Style;
+	private String Style;
 
-	private int Personality;
+	private String Personality;
 
-	private int Sal_Annual;
+	private String Sal_Annual;
 
-	private int Date_Count;
+	private String Date_Count;
 
 	private int Date_Rest;
 

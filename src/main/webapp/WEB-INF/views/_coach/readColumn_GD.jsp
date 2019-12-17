@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/GD/Board/readColumn.css">
-
+	href="${pageContext.request.contextPath}/assets/css/GD/Board/readTip.css">
 
 
 
@@ -53,7 +55,7 @@
 	</div>
 
 
-	<h3 class="col-md-10">LOVE 칼럼</h3>
+		<h3 class="col-md-10">LOVE 칼럼</h3>
 	<div class="col-md-10 text1">
 		<h5>연애와 결혼에 관한 솔직 담백한 이야기를 들려 드립니다.</h5>
 	</div>
@@ -66,23 +68,22 @@
 
 
 
-		<!-- 내용 작성  -->
-
-		<hr />
+	<hr />
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th class="text-center" id="num">제목</th>
-						<th class="title">소개팅 옷에 따라 성공률이 달라진다!</th>
+						<th class="title">${output.title}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="left">소개팅 옷 어떻게 입으면
-							좋을까요?놓칠 수 있는 사소한 팁 알고 가세요. 첫번째는 자신에게 맞는 옷을 입으세요. 괜히 너무 꾸밀 생각에
-							과한옷이나 튀는 옷을 입는다면..입은 나도 어색하지만 보는 사람도 어색해질 수 있다는 사실~! 알고 계셨나요? 난
-							몰랐어요 ㅎㅎ 좋은하루 됩시다.</td>
+						<td id="context" colspan="2" align="center"><img
+							src="${pageContext.request.contextPath}/assets/upload${output.getContentImg()}"
+							width="250" height="150"> <br /> <br />
+							<p>${output.content}</p></td>
+
 					</tr>
 
 				</tbody>
@@ -94,8 +95,21 @@
 				<a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do">목록</a>
 			</button>
 
-		</div>
+			<c:if test="${isadmin==1 }">
 
+				<button class="btn btn-default">
+					<a
+						href="${pageContext.request.contextPath}/_coach/editColumn.do?BoardId=${output.getBoardId()}">수정</a>
+				</button>
+
+				<button class="btn btn-default">
+					<a
+						href="${pageContext.request.contextPath}/_coach/deleteColumn.do?BoardId=${output.getBoardId()}">삭제</a>
+				</button>
+
+
+			</c:if>
+		</div>
 
 
 

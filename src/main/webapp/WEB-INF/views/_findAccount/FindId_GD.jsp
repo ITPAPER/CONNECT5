@@ -120,14 +120,9 @@
 		src="${pageContext.request.contextPath}/assets/plugins/regex/regex.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			
-			$("#a").click(function(e){
-				swal("인증번호가 발송되었습니다.");
-			});
 
 			$("#get_Num")
 					.click(
-
 							function(e) {
 								e.preventDefault();
 								if (!regex.value('#user_name', '이름을 입력하세요.')) {
@@ -146,9 +141,8 @@
 								}
 
 								var param = $("form[name=verify]").serialize();
-								$
-										.ajax({
-											url : "${pageContext.request.contextPath}/_findAccount/FindId_GD_ok.do",
+								$.ajax({
+											url : "FindId_GD_ok.do",
 											type : "POST",
 											data : param,
 											dataType : 'json',
@@ -195,43 +189,37 @@
 							document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckId_GD.do';
 						});
 
-	
 		function count() {
 
 			var timer2 = "0:02";
-			var interval = setInterval(
-					function() {
-						var timer = timer2.split(':');
-						var minutes = parseInt(timer[0], 10);
-						var seconds = parseInt(timer[1], 10);
-						--seconds;
-						minutes = (seconds < 0) ? --minutes : minutes;
-						if (minutes < 0 && seconds == 0)
-							clearInterval(interval);
-						seconds = (seconds < 0) ? 59 : seconds;
-						seconds = (seconds < 10) ? '0' + seconds : seconds;
-						// minutes 와 seconds 에 대한 값을 계속 count 위치에 초기화
-						if (minutes == -1) {
-							clearInterval(interval);
-							minutes = 0;
-							seconds = 0 + "0";
-							swal("인증 시간이 초과하셨습니다.");
-							$("#number").attr("disabled", true);
-							//$("#user_id").attr("disabled", true);
-							//$("#user_email").attr("disabled", true);
-							$(".count").attr("시간초과");
-							$("#verify_ok")
-									.html(
-											"<button type='button' id='a'>재발송</button>");
-						}
-						
-						
-						$('.count').html(minutes + ':' + seconds);
-						timer2 = minutes + ':' + seconds;
-					}, 1000);
-			
-			
-	
+			var interval = setInterval(function() {
+				var timer = timer2.split(':');
+				var minutes = parseInt(timer[0], 10);
+				var seconds = parseInt(timer[1], 10);
+				--seconds;
+				minutes = (seconds < 0) ? --minutes : minutes;
+				if (minutes < 0 && seconds == 0)
+					clearInterval(interval);
+				seconds = (seconds < 0) ? 59 : seconds;
+				seconds = (seconds < 10) ? '0' + seconds : seconds;
+				// minutes 와 seconds 에 대한 값을 계속 count 위치에 초기화
+				if (minutes == -1) {
+					clearInterval(interval);
+					minutes = 0;
+					seconds = 0 + "0";
+					swal("인증 시간이 초과하셨습니다.");
+					$("#number").attr("disabled", true);
+					//$("#user_id").attr("disabled", true);
+					//$("#user_email").attr("disabled", true);
+					$(".count").attr("시간초과");
+					$("#verify_ok").html(
+							"<button type='button' id='a'>재발송</button>");
+				}
+
+				$('.count').html(minutes + ':' + seconds);
+				timer2 = minutes + ':' + seconds;
+			}, 1000);
+
 		}
 	</script>
 

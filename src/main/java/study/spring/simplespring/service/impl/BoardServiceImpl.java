@@ -544,4 +544,338 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 
 	}
+
+
+	@Override
+	public Board getBoardItemTip(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectItemTip", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public List<Board> getBoardListTip(Board input) throws Exception {
+		List<Board> result = null;
+
+		try {
+			result = sqlSession.selectList("BoardMapper.selectListTip", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int addBoardTip(Board input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.insert("BoardMapper.insertItemTip", input);
+
+			if (result == 0) {
+				throw new NullPointerException("result=0");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("저장된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 저장에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int getBoardCountTip(Board input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectCountTip", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int deleteTip(Board input) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.delete("BoardMapper.deleteItemTip", input);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("삭제된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 삭제에 실패했습니다.");
+        }
+        return result;
+	}
+
+
+	@Override
+	public int editTip(Board input) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.update("BoardMapper.editItemTip", input);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("삭제된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 삭제에 실패했습니다.");
+        }
+        return result;
+	}
+
+
+	@Override
+	public List<Board> getBoardListColumn(Board input) throws Exception {
+		List<Board> result = null;
+
+		try {
+			result = sqlSession.selectList("BoardMapper.selectListColumn", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int addBoardColumn(Board input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.insert("BoardMapper.insertItemColumn", input);
+
+			if (result == 0) {
+				throw new NullPointerException("result=0");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("저장된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 저장에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int getBoardCountColumn(Board input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectCountColumn", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int deleteColumn(Board input) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.delete("BoardMapper.deleteItemColumn", input);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("삭제된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 삭제에 실패했습니다.");
+        }
+        return result;
+	}
+
+
+	@Override
+	public int editColumn(Board input) throws Exception {
+		int result = 0;
+
+        try {
+            result = sqlSession.update("BoardMapper.editItemColumn", input);
+
+            if (result == 0) {
+                throw new NullPointerException("result=0");
+            }
+        } catch (NullPointerException e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("삭제된 데이터가 없습니다.");
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 삭제에 실패했습니다.");
+        }
+        return result;
+	}
+
+
+
+	@Override
+	public Board getBoardItemColumn(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectItemColumn", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public Board getBoardItemadminQnA(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectItemColumn", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public Board getBoardItemadminLater(Board input) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Board> getBoardListadminQnA(Board input) throws Exception {
+		List<Board> result = null;
+
+		try {
+			result = sqlSession.selectList("BoardMapper.selectListadminQnA", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<Board> getBoardListadminLater(Board input) throws Exception {
+		List<Board> result = null;
+
+		try {
+			result = sqlSession.selectList("BoardMapper.selectListColumn", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public int getBoardCountadminQnA(Board input) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getBoardCountadminLater(Board input) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

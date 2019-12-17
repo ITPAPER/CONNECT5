@@ -173,7 +173,7 @@ public class HG_Controller {
 
 		int MemberId = webHelper.getInt("MemberId");
 		String BirthDate = webHelper.getString("BirthDate");
-		int Height = webHelper.getInt("Height");
+		String Height = webHelper.getString("Height");
 		String Edu_Lv = webHelper.getString("Edu_Lv");
 		String Job = webHelper.getString("Job");
 

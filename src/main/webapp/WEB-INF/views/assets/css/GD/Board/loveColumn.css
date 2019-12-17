@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* 추가 CSS 작성란 */
 .table-responsive #num {
 	width: 90px;
 }
@@ -34,9 +33,6 @@
 	border: 0;
 }
 
-
-
-.pagination {
-	margin: auto;
-	padding-left: 337px;
+#write{
+	margin-left:700px;
 }

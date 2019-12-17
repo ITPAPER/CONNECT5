@@ -1,7 +1,7 @@
 package study.spring.simplespring.controllers;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import study.spring.simplespring.helper.MailHelper;
 import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
+import study.spring.simplespring.helper.UploadItem;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
 import study.spring.simplespring.model.Email;
@@ -28,7 +29,6 @@ import study.spring.simplespring.service.ManagerService;
 import study.spring.simplespring.service.PaymentService;
 import study.spring.simplespring.service.UserService;
 
-
 @Controller
 public class GD_Controller {
 
@@ -37,68 +37,84 @@ public class GD_Controller {
 
 	@Autowired
 	RegexHelper regexHelper;
-	
+
 	@Autowired
 	MailHelper mailHelper;
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	PaymentService paymentService;
-	
+
 	@Autowired
 	ManagerService managerService;
-	
+
 	@Autowired
 	BoardService boardService;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
 
-
 	@RequestMapping(value = "/_payment/mustInput_SE.do", method = RequestMethod.GET)
 	public ModelAndView mustinput(Model model) {
-		
-		
+
 		User loginInfo = (User) webHelper.getSession("loginInfo");
-		
+
 		if (loginInfo == null) {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
-			return webHelper.redirect(redirectUrl, "濡쒓렇�씤 �썑 �씠�슜�빐二쇱꽭�슂");
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
 		}
-		
-		Integer memberlv = (Integer)loginInfo.getMember_Lv();
-		
-		
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
+		Integer memberlv = (Integer) loginInfo.getMember_Lv();
+
 		if (memberlv != 0) {
 			String redirectUrl = contextPath + "/_payment/payment_GD.do";
-			return webHelper.redirect(redirectUrl, "寃곗젣�럹�씠吏�濡� �씠�룞�빀�땲�떎.");
-		}else if(memberlv == 0){
+			return webHelper.redirect(redirectUrl, "결제페이지로 이동합니다.");
+		} else if (memberlv == 0) {
 			return new ModelAndView("_payment/mustInput_SE");
 		}
 		return new ModelAndView("_payment/mustInput_SE");
 	}
 
-	@RequestMapping(value = "/_payment/mustInputok.do", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/_payment/mustInputok.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ModelAndView mustInputok(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		Integer memberid = (Integer) loginInfo.getMemberId();
-	
 
-	
-		String job = webHelper.getString("job");
-		String edu_lv = webHelper.getString("edu");
-		int height = webHelper.getInt("height");
-		String bldtype = webHelper.getString("blood");
-		int date_loc = webHelper.getInt("place");
-		int personality = webHelper.getInt("personality");
-		int sal_annual = webHelper.getInt("income");
-		String user_img = webHelper.getString("profile_img");
+		try {
+			webHelper.upload();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			return webHelper.redirect(null, "업로드에 실패");
 
-		
+		}
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String job = paramMap.get("job");
+		String edu_lv = paramMap.get("edu_lv");
+		String height = paramMap.get("height");
+		String bldtype = paramMap.get("blood");
+		String date_loc = paramMap.get("place");
+		String personality = paramMap.get("personality");
+		String sal_annual = paramMap.get("income");
+		String style = paramMap.get("style");
+
+		String user_img = fileList.get(0).getFilePath();
+
 		User input = new User();
 		input.setMemberId(memberid);
 		input.setJob(job);
@@ -109,19 +125,28 @@ public class GD_Controller {
 		input.setSal_Annual(sal_annual);
 		input.setUser_Img(user_img);
 		input.setPersonality(personality);
-	
+		input.setStyle(style);
+
+		System.out.println(fileList.size() + "dddd");
+
 		try {
-			userService.editUser(input);
+			userService.specialEditUser(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		String redirectUrl = contextPath + "/_payment/payment_GD.do";
-		return webHelper.redirect(redirectUrl, "ㅎㅎ");
+		return new ModelAndView("_payment/payment_GD");
 	}
 
 	@RequestMapping(value = "/_payment/payment_GD.do", method = RequestMethod.GET)
 	public ModelAndView payment(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return new ModelAndView("_payment/payment_GD");
 
@@ -132,8 +157,8 @@ public class GD_Controller {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		Integer memberid = (Integer) loginInfo.getMemberId();
-		String username = (String)loginInfo.getUserName();
-		
+		String username = (String) loginInfo.getUserName();
+
 		int servicetype = webHelper.getInt("level");
 		int pmttype = webHelper.getInt("pay");
 		int servicebank = webHelper.getInt("bank");
@@ -151,83 +176,83 @@ public class GD_Controller {
 		input.setPmttype(pmttype);
 		input.setMemberid(memberid);
 		input.setUsername(username);
-	
+
 		try {
 			paymentService.createPayment(input);
 			System.out.println(input);
 		} catch (Exception e) {
-			return webHelper.redirect(null, "DB ㅎㅎ");
+			return webHelper.redirect(null, "DB 오류");
 		}
 
 		String redirectUrl = contextPath + "/_payment/pay_ok_GD.do";
-		return webHelper.redirect(redirectUrl, "ㅎㅎ");
+		return webHelper.redirect(redirectUrl, "결제가 완료되었습니다.");
 
 	}
-	
+
 	@RequestMapping(value = "/_payment/pay_ok_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String paysuccess(Model model) {
 
-	
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return "_payment/pay_ok_GD";
 
 	}
 
-	@RequestMapping(value = "/_findAccount/FindId_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/_findAccount/FindId_GD.do", method = RequestMethod.GET)
 	public ModelAndView findid(Model model) {
-		
-		
-		return new ModelAndView ("_findAccount/FindId_GD");
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
+		return new ModelAndView("_findAccount/FindId_GD");
 
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/_findAccount/FindId_GD_ok.do", method =RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public  ModelAndView findidok(Model model) {
-		
+	@RequestMapping(value = "/_findAccount/FindId_GD_ok.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String findidok(Model model) {
+
 		String username = webHelper.getString("user_name");
 		String useremail = webHelper.getString("user_email");
-		
+
 		User input = new User();
 		input.setUserName(username);
 		input.setEmail(useremail);
-		
-		Email email = new Email();
-		
-		email.setTo("");
-		email.setReceiver("user_email");
-		email.setContent("user_name 님의 비밀번호는 ran 입니다.");
-		email.setSubject("user_name (주)연-결 비밀번호 찾기 인증번호 입니다.");
-		
-		String receive = useremail;
-		String subject = "(주)연-결 아이디 찾기 인증번호 입니다. ";
-		String content = username + "님의 인증번호는 ran 입니다.";
-		
-		
-		try {
-			mailHelper.sendMail(receive,subject,content);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 
-	            return webHelper.redirect(null, "메일 발송에 실패했습니다.");
-		}
-		
-		
 		User req = null;
-		
+
 		try {
 			req = userService.selectFindaccount(input);
-		}catch(Exception e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 		System.out.println(req);
 		Gson gson = new Gson();
-		return new ModelAndView(gson.toJson(req));
+		return  gson.toJson(req);
 
-		}
+	}
+	
+	
 
 	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String findpw(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_findAccount/FindPw_GD";
 
@@ -236,6 +261,13 @@ public class GD_Controller {
 	@RequestMapping(value = "/_findAccount/CheckId_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String checkid(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return "_findAccount/CheckId_GD";
 
 	}
@@ -243,12 +275,26 @@ public class GD_Controller {
 	@RequestMapping(value = "/_findAccount/CheckPw_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String checkpw(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return "_findAccount/CheckPw_GD";
 
 	}
 
 	@RequestMapping(value = "/_info/map_GD.do", method = RequestMethod.GET)
 	public String Map(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_info/map_GD";
 
@@ -259,12 +305,17 @@ public class GD_Controller {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		List<Manager> managerList = null;
-	
+		
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		if (loginInfo == null) {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
-			return webHelper.redirect(redirectUrl, "ㅎㅎ");
-			
+			return webHelper.redirect(redirectUrl, "로그인후 이용 하실수 있습니다.");
+
 		} else {
 			String name = (String) loginInfo.getUserName();
 			Integer date_rest = (Integer) loginInfo.getDate_Rest();
@@ -277,70 +328,531 @@ public class GD_Controller {
 			model.addAttribute("managerid", managerid);
 
 		}
-		
+
 		try {
 			managerList = managerService.getManagerList(null);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		
+
 		model.addAttribute("managerList", managerList);
 		return new ModelAndView("_mypage/myInfo_GD");
 	}
 
 	@RequestMapping(value = "/_coach/loveColumn_GD.do", method = RequestMethod.GET)
-	public String lovecolumn(Model model) {
+	public ModelAndView lovecolumn(Model model) {
 
-		return "_coach/loveColumn_GD";
+		Board board = new Board();
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			Integer isadmin = loginInfo.getIsadmin();
+
+			model.addAttribute("isadmin", isadmin);
+			model.addAttribute("login", login);
+		}
+
+		Board input = new Board();
+
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0;
+		int listCount = 4; // 한 페이지당 표시할 목록 수
+		int pageCount = 5;
+
+		PageData pageData = null;
+
+		List<Board> output = null;
+
+		try {
+			totalCount = boardService.getBoardCountColumn(input);
+			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+
+			Board.setOffset(pageData.getOffset());
+			Board.setListCount(pageData.getListCount());
+			output = boardService.getBoardListColumn(input);
+			System.out.println(output + "안햇어요");
+		} catch (Exception e) {
+			System.out.println(output);
+			return webHelper.redirect(null, e.getLocalizedMessage());
+
+		}
+
+		System.out.println(output + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		model.addAttribute("output", output);
+		model.addAttribute("pageData", pageData);
+		return new ModelAndView("_coach/loveColumn_GD");
 
 	}
 
 	@RequestMapping(value = "/_coach/readColumn_GD.do", method = RequestMethod.GET)
-	public String readlovecolumn(Model model) {
+	public ModelAndView readlovecolumn(Model model) {
 
-		return "_coach/readColumn_GD";
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			Integer isadmin = loginInfo.getIsadmin();
+			model.addAttribute("isadmin", isadmin);
+			model.addAttribute("login", login);
+		}
+
+		/** 1) 필요한 변수값 생성 */
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+
+		Board input = new Board();
+		User user = new User();
+		input.setBoardId(BoardId);
+
+		Board output = null;
+		User out = null;
+		try {
+			output = boardService.getBoardItemColumn(input);
+			user = userService.getUserItem(out);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("user", user);
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_coach/readColumn_GD");
+
+
+	}
+	
+	@RequestMapping(value = "/_coach/deleteColumn.do", method = RequestMethod.GET)
+	public ModelAndView deleteColumn(Model model) {
+
+		/** 1) 필요한 변수값 생성 */
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+
+		Board input = new Board();
+
+		input.setBoardId(BoardId);
+
+		try {
+			
+			boardService.deleteColumn(input);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return webHelper.redirect(contextPath + "/_coach/loveColumn_GD.do", "삭제되었습니다.");
+
+	}
+	
+	@RequestMapping(value = "/_coach/ColumnWrite.do", method = RequestMethod.GET)
+	public ModelAndView columnwrite(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
+		return new ModelAndView("_coach/ColumnWrite");
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/_coach/ColumnWriteOk.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ModelAndView columnok(Model model) {
+
+		User id = (User) webHelper.getSession("loginInfo");
+		Integer memberid = id.getMemberId();
+
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String title = paramMap.get("title");
+		String content = paramMap.get("content");
+		String contentimg = fileList.get(0).getFilePath();
+
+		Board input = new Board();
+		input.setTitle(title);
+		input.setContent(content);
+		input.setContentImg(contentimg);
+		input.setMemberId(memberid);
+
+		try {
+			boardService.addBoardColumn(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return webHelper.redirect(contextPath + "/_coach/loveColumn_GD.do", "등록되었습니다.");
 
 	}
 
 	@RequestMapping(value = "/_coach/meetingTip_GD.do", method = RequestMethod.GET)
-	public String tip(Model model) {
+	public ModelAndView tip(Model model) {
 
-		return "_coach/meetingTip_GD";
+		Board board = new Board();
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			Integer isadmin = loginInfo.getIsadmin();
+
+			model.addAttribute("isadmin", isadmin);
+			model.addAttribute("login", login);
+		}
+
+		Board input = new Board();
+
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0;
+		int listCount = 4; // 한 페이지당 표시할 목록 수
+		int pageCount = 5;
+
+		PageData pageData = null;
+
+		List<Board> output = null;
+
+		try {
+			totalCount = boardService.getBoardCountTip(input);
+			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+
+			Board.setOffset(pageData.getOffset());
+			Board.setListCount(pageData.getListCount());
+			output = boardService.getBoardListTip(input);
+			System.out.println(output + "안햇어요");
+		} catch (Exception e) {
+			System.out.println(output);
+			return webHelper.redirect(null, e.getLocalizedMessage());
+
+		}
+
+		System.out.println(output + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		model.addAttribute("output", output);
+		model.addAttribute("pageData", pageData);
+		return new ModelAndView("_coach/meetingTip_GD");
+
+	}
+
+	@RequestMapping(value = "/_coach/TipWrite.do", method = RequestMethod.GET)
+	public ModelAndView tipwrite(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
+		return new ModelAndView("_coach/TipWrite");
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/_coach/TipWriteok.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ModelAndView tipwriteok(Model model) {
+
+		User id = (User) webHelper.getSession("loginInfo");
+		Integer memberid = id.getMemberId();
+
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String title = paramMap.get("title");
+		String content = paramMap.get("content");
+		String contentimg = fileList.get(0).getFilePath();
+
+		Board input = new Board();
+		input.setTitle(title);
+		input.setContent(content);
+		input.setContentImg(contentimg);
+		input.setMemberId(memberid);
+
+		try {
+			boardService.addBoardTip(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String redirectUrl = contextPath + "/_coach/meetingTip_GD.do";
+		return webHelper.redirect(redirectUrl, "승인되었습니다.");
 
 	}
 
 	@RequestMapping(value = "/_coach/readTip_GD.do", method = RequestMethod.GET)
-	public String readtip(Model model) {
+	public ModelAndView readtip(Model model) {
 
-		return "_coach/readTip_GD";
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			Integer isadmin = loginInfo.getIsadmin();
+			model.addAttribute("isadmin", isadmin);
+			model.addAttribute("login", login);
+		}
+
+		/** 1) 필요한 변수값 생성 */
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+
+		Board input = new Board();
+
+		input.setBoardId(BoardId);
+
+		Board output = null;
+		try {
+			output = boardService.getBoardItemTip(input);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_coach/readTip_GD");
 
 	}
 
-	@RequestMapping(value = "/_admin/admin_Payment_GD.do", method = RequestMethod.GET)
-	public ModelAndView list(Model model) {
+	@RequestMapping(value = "/_coach/deleteTip.do", method = RequestMethod.GET)
+	public ModelAndView deleteTip(Model model) {
+
 		/** 1) 필요한 변수값 생성 */
-		String keyword = webHelper.getString("keyword", "");	// 검색어
-		int nowPage = webHelper.getInt("page", 1);				// 페이지 번호 (기본값 1)
-		int totalCount = 0;										// 전체 게시글 수
-		int listCount = 10;										// 한 페이지당 표시할 목록 수
-		int pageCount = 5;										// 한 그룹당 표시할 페이지 번호 수
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+
+		Board input = new Board();
+
+		input.setBoardId(BoardId);
+
+		try {
+			
+			boardService.deleteTip(input);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return webHelper.redirect(contextPath + "/_coach/meetingTip_GD.do", "삭제되었습니다.");
+
+	}
+	@RequestMapping(value = "/_coach/editTip.do", method = RequestMethod.GET)
+	public ModelAndView editTip(Model model) {
+
+		/** 1) 필요한 변수값 생성 */
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+		Board input = new Board();
+
+		input.setBoardId(BoardId);
 		
+		Board output = null;
+		try {
+			output = boardService.getBoardItemTip(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_coach/editTip");
+
+	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/_coach/editTipok.do", method = RequestMethod.POST ,produces = "text/plain;charset=UTF-8")
+	public ModelAndView editTipOk(Model model) {
+
+		User id = (User) webHelper.getSession("loginInfo");
+		Integer memberid = id.getMemberId();
+		 
+		String CreationDate = webHelper.getString("CreationDate");
+		
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String title = paramMap.get("title");
+		String content = paramMap.get("content");
+		String contentimg = fileList.get(0).getFilePath();
+		String boardid = (String)paramMap.get("boardid");
+		
+		if(boardid==null) {
+			return webHelper.redirect(null, "내용이 없아");
+		}
+		System.out.println(boardid);
+		
+		Board input = new Board();
+		input.setTitle(title);
+		input.setContent(content);
+		input.setContentImg(contentimg);
+		input.setMemberId(memberid);
+		input.setBoardId(Integer.parseInt(boardid));
+		input.setCreationDate(CreationDate);
+		
+		
+
+		try {
+			boardService.editTip(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return webHelper.redirect(null, "DB 오류");
+		}
+
+		String redirectUrl = contextPath + "/_coach/readTip_GD.do";
+		return webHelper.redirect(redirectUrl, "수정되었습니다.");
+	}
+	
+	@RequestMapping(value = "/_coach/editColumn.do", method = RequestMethod.GET)
+	public ModelAndView editColumn(Model model) {
+
+		/** 1) 필요한 변수값 생성 */
+		// 조회할 대상에 대한 PK값
+		int BoardId = webHelper.getInt("BoardId");
+
+		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "글번호가 없습니다.");
+		}
+		Board input = new Board();
+
+		input.setBoardId(BoardId);
+		
+		Board output = null;
+		try {
+			output = boardService.getBoardItemColumn(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("output", output);
+
+		return new ModelAndView("_coach/editColumn");
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/_coach/editColumnok.do", method = RequestMethod.POST ,produces = "text/plain;charset=UTF-8")
+	public ModelAndView editColumnok(Model model) {
+
+		User id = (User) webHelper.getSession("loginInfo");
+		Integer memberid = id.getMemberId();
+		 
+		String CreationDate = webHelper.getString("CreationDate");
+		
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String title = paramMap.get("title");
+		String content = paramMap.get("content");
+		String contentimg = fileList.get(0).getFilePath();
+		String boardid = (String)paramMap.get("boardid");
+		
+		if(boardid==null) {
+			return webHelper.redirect(null, "내용이 없아");
+		}
+		System.out.println(boardid);
+		
+		Board input = new Board();
+		input.setTitle(title);
+		input.setContent(content);
+		input.setContentImg(contentimg);
+		input.setMemberId(memberid);
+		input.setBoardId(Integer.parseInt(boardid));
+		input.setCreationDate(CreationDate);
+		
+		
+
+		try {
+			boardService.editColumn(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return webHelper.redirect(null, "DB 오류");
+		}
+
+		String redirectUrl = contextPath + "/_coach/readColumn_GD.do";
+		return webHelper.redirect(redirectUrl, "수정되었습니다.");
+	}
+	@RequestMapping(value = "/_admin/admin_Payment_GD.do", method = RequestMethod.GET)
+	public ModelAndView adminPaymentList(Model model) {
+		/** 1) 필요한 변수값 생성 */
+		String keyword = webHelper.getString("keyword", ""); // 검색어
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0; // 전체 게시글 수
+		int listCount = 10; // 한 페이지당 표시할 목록 수
+		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
+
 		Payment input = new Payment();
 		input.setPayername(keyword);
 
-		
-		List<Payment> output = null; 
-		PageData pageData = null;		
-		
+		List<Payment> output = null;
+		PageData pageData = null;
+
 		List<Manager> managerList = null;
 		try {
-	
+
 			totalCount = paymentService.getPaymentCount(input);
-	
+
 			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
-			
-			
+
 			Payment.setOffset(pageData.getOffset());
 			Payment.setListCount(pageData.getListCount());
 
@@ -349,49 +861,60 @@ public class GD_Controller {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		
-	
+
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
 		model.addAttribute("managerList", managerList);
 		model.addAttribute("pageData", pageData);
-		
+
 		String viewPath = "_admin/admin_Payment_GD";
 		return new ModelAndView(viewPath);
 	}
-	
+
 	@RequestMapping(value = "/_admin/admin_Payment_edit_GD.do", method = RequestMethod.POST)
 	public ModelAndView adminpayedit(Model model) {
-		
-		
+
 		int memlv = webHelper.getInt("memlv");
 		int service = webHelper.getInt("service");
 		int manager = webHelper.getInt("manager");
 		String UserName = webHelper.getString("UserName");
-		
-		
+
 		User input = new User();
 		input.setMember_Lv(memlv);
 		input.setDate_Rest(service);
 		input.setManagerId(manager);
 		input.setUserName(UserName);
-		
 
 		try {
-			userService.editUser(input);
-			}catch(Exception e) {
+			userService.managerEditUser(input);
+		} catch (Exception e) {
+
 			return webHelper.redirect(null, "DB 오류");
 		}
-		
+
 		String redirectUrl = contextPath + "/_admin/admin_Payment_GD.do";
 		return webHelper.redirect(redirectUrl, "승인되었습니다.");
-		}
+	}
 
-	
 	@RequestMapping(value = "/_admin/admin_QnA_GD.do", method = RequestMethod.GET)
-	public String adminqna(Model model) {
+	public ModelAndView adminqna(Model model) {
+		
+		
+		
+		Board board = new Board();
+		Board output = null;
+		
+		try {
+			output = boardService.getBoardItemadminQnA(board);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("output", output);
 
-		return "_admin/admin_QnA_GD";
+		String viewPath = "_admin/admin_QnA_GD";
+		return new ModelAndView(viewPath);
 
 	}
 
@@ -408,30 +931,28 @@ public class GD_Controller {
 		return "_admin/admin_QnAWrite_GD";
 
 	}
+
 	@RequestMapping(value = "/_admin/admin_QnA_Insert.do", method = RequestMethod.POST)
 	public ModelAndView adminqnainsert(Model model) {
-		
-		
-		User loginInfo = (User)webHelper.getSession("loginInfo");
-		
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
 		Integer memberid = loginInfo.getMemberId();
-			
+
 		String title = webHelper.getString("title");
 		String content = webHelper.getString("content");
 
-		
-		
 		Board input = new Board();
-		
+
 		input.setTitle(title);
 		input.setContent(content);
 		input.setCategory(4);
 		input.setContentImg("dd");
 		input.setMemberId(memberid);
-		
+
 		try {
 			boardService.addBoard(input);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 		return new ModelAndView("_admin/admin_QnAWrite_GD");
@@ -440,6 +961,13 @@ public class GD_Controller {
 	@RequestMapping(value = "/_admin/admin_userEx_GD.do", method = RequestMethod.GET)
 	public String adminuserex(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return "_admin/admin_userEx_GD";
 
 	}
@@ -447,12 +975,26 @@ public class GD_Controller {
 	@RequestMapping(value = "/_admin/admin_userExRead_GD.do", method = RequestMethod.GET)
 	public ModelAndView adminuserexread(Model model) {
 
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
 		return new ModelAndView("_admin/admin_userExRead_GD");
 
 	}
 
 	@RequestMapping(value = "/_admin/admin_userExWrite_GD.do", method = RequestMethod.GET)
 	public String adminuserexwrite(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
 
 		return "_admin/admin_userExWrite_GD";
 

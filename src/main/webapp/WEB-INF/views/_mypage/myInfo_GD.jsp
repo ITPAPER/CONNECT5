@@ -66,7 +66,12 @@
 	<hr />
 
 	<div class="col-md-9 content">
-
+		
+		<%
+		
+			
+			
+		%>
 
 		<p id="level">
 			나의 연-결 등급 
@@ -204,30 +209,30 @@
 
 			</table>
 		</c:if>
-		<c:if test="${memberlv == 1 }">
+		<c:if test="${managerid == 1 }">
 		<h4>나의 매니저</h4>
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td width="50px"><img
-					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					src="${pageContext.request.contextPath}/assets/img/manager2.PNG"
 					width="100px;"></td>
-				<td><span class="mg_name">최유한<span class="job">상담
+				<td><span class="mg_name">강호동&nbsp;<span class="job">상담
 							수석 실장</span></span>
 					<p></p>
 					<p>
 						핸드폰 : <a href="#">010-9991-1811</a>
-					</p> 이메일 : <span>YouHanJJaEung@gmail.com</span></td>
+					</p> 이메일 : <span>SSiReumJJang@gmail.com</span></td>
 			</tr>
 		</table>
 		</c:if>
-		<c:if test="${memberlv == 2 }">
+		<c:if test="${managerid == 2 }">
 		<h4>나의 매니저</h4>
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td width="50px"><img
-					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					src="${pageContext.request.contextPath}/assets/img/manager4.PNG"
 					width="100px;"></td>
-				<td><span class="mg_name">아줌마&nbsp;<span class="job">상담
+				<td><span class="mg_name">신동엽&nbsp;<span class="job">상담
 							수석 실장</span></span>
 					<p></p>
 					<p>
@@ -236,23 +241,23 @@
 			</tr>
 		</table>
 		</c:if>
-		<c:if test="${memberlv == 3 }">
+		<c:if test="${managerid == 3 }">
 		<h4>나의 매니저</h4>
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td width="50px"><img
-					src="${pageContext.request.contextPath}/assets/img/manager1.jpg"
+					src="${pageContext.request.contextPath}/assets/img/manager3.PNG"
 					width="100px;"></td>
-				<td><span class="mg_name">박경동&nbsp;<span class="job">상담
+				<td><span class="mg_name">유재석&nbsp;<span class="job">상담
 							수석 실장</span></span>
 					<p></p>
 					<p>
 						핸드폰 : <a href="#">010-9991-1811</a>
-					</p> 이메일 : <span>YouHanJJaEung@gmail.com</span></td>
+					</p> 이메일 : <span>MeDDuk2@gmail.com</span></td>
 			</tr>
 		</table>
 		</c:if>
-			<c:if test="${memberlv == 4 }">
+			<c:if test="${managerid == 4 }">
 		<h4>나의 매니저</h4>
 		<table class="table table-bordered table-hover">
 			<tr>
