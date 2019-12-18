@@ -238,6 +238,7 @@ public class GD_Controller {
 		}
 			
 		System.out.println(req);
+	
 		Gson gson = new Gson();
 		
 		Map<String,Object> result1 = new HashMap<String,Object>();
@@ -245,7 +246,7 @@ public class GD_Controller {
 		
 		
 		
-		if(req!=null) {
+		if(req.getMemberId()!=0) {
 			
 
 			Random random = new Random(System.currentTimeMillis());
@@ -253,7 +254,6 @@ public class GD_Controller {
 			int range = (int)Math.pow(10, 6);
 			int trim = (int)Math.pow(10, 6-1);
 			int result = random.nextInt(range)+trim;
-			
 			
 			result1.put("result", result);
 			result1.put("req", req);
@@ -265,14 +265,6 @@ public class GD_Controller {
 			String subject = "(주) 연-결 인증번호가 도착했습니다.";
 			String content = username + "님의 인증번호는 " + result +" 입니다. 사이트에서 인증번호를 입력해주세요";
 		
-			   /** 메일 발송 처리 */
-	        try {
-	            // sendMail() 메서드 선언시 throws를 정의했기 때문에 예외처리가 요구된다.
-	            mailHelper.sendMail(useremail, subject, content);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            return "_findAccount/FindId_GD";
-	        }
 	        /** 결과처리 */
 	        return gson.toJson(result1);
 			

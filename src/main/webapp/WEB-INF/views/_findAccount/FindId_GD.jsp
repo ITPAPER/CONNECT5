@@ -167,11 +167,10 @@
 												} else {
 													alert("아이디와 이메일이 일치하지 않습니다.");
 												}
-												
 									
 											},
 											error : function() {
-												alert("serialize 실패");
+												alert("아이디와 이메일이 일치하지 않습니다.");
 											}
 										});
 
@@ -197,7 +196,15 @@
 		
 		$("#a").click(function(e) {
 					e.preventDefault();
-					document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckId_GD.do';
+					
+					if(result1.req == number.val()){
+						document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckId_GD.do';
+						alert("인증이 완료되었습니다.");
+					}else{
+						alert("인증번호가 일치하지 않습니다.");
+						return false;
+					}
+					
 				});
 
 		function count() {
