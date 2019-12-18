@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,12 +30,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager2.css">
 
-<script type="text/javascript">
-	function yes() {
-		var UserPw = prompt("비밀번호 변경");
-		alert("변경되었습니다.");
-	}
-</script>
+
 
 </head>
 
@@ -85,10 +78,16 @@
 				<tbody>
 					<tr>
 						<td class="box13" rowspan="4">프로필사진</td>
-						<td class="box14" rowspan="4">${output.getUser_Img()}</td>
+						<td class="box14" rowspan="4">
+						<img src="${pageContext.request.contextPath}/assets/upload/${output.getUser_Img()}">
+						</td>
 
 						<td class="box15">성별</td>
-						<td class="box16">${output.gender}</td>
+						<td class="box16"><c:choose>
+								<c:when test="${output.gender == 0}">남자</c:when>
+								<c:when test="${output.gender == 1}">여자</c:when>
+								<c:otherwise>${output.gender}</c:otherwise>
+							</c:choose></td>
 					</tr>
 					<tr>
 						<td class="box13">이름</td>
@@ -138,7 +137,11 @@
 						<td class="box14">${output.job}</td>
 
 						<td class="box15">결혼여부</td>
-						<td class="box16">${output.isMarried}</td>
+						<td class="box16"><c:choose>
+								<c:when test="${output.isMarried == 0}">초혼</c:when>
+								<c:when test="${output.isMarried == 1}">재혼</c:when>
+								<c:otherwise>${output.isMarried}</c:otherwise>
+							</c:choose></td>
 					</tr>
 					<tr>
 						<td class="box13">학력</td>
@@ -158,11 +161,13 @@
 			<form method="post" style="display: inline-block;"
 				action="${pageContext.request.contextPath}/_admin/admin_userManager2ok2_HG.do">
 				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
-				<button class="btn btn-default" name="UserPw" onclick="yes()"
-		 		value="${output.getUserPw()}" type="submit"
-					style="height: 30px; width: 120px;">비밀번호 수정</button>
+				<input type="password" name="UserPw" style="height: 28px;"
+					placeholder="&nbsp; &nbsp; &nbsp;&nbsp;비밀번호 입력란" />
+				<button class="btn btn-default" value="${output.getUserPw()}"
+					type="submit" style="height: 30px; width: 120px;">비밀번호 수정</button>
+
 			</form>
-			&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp; <br /> <br />
 			<form method="post" style="display: inline-block;"
 				action="${pageContext.request.contextPath}/_admin/admin_userManager2ok1_HG.do">
 				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />

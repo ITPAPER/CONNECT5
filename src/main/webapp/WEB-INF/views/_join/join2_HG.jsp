@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Join/join2.css">
 
-
+<script src='${pageContext.request.contextPath}/assets/js/ajax_helper.js'></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script>
     function sample6_execDaumPostcode() {
@@ -68,42 +68,13 @@
          location.href="${pageContext.request.contextPath}";
       }
 
-      function ok() {
-         if (confirm("중복확인 하시겠습니까?") == true) {
-            alert("사용가능한 아이디입니다.");
-         } else {
-            return;
-         }
-
-      }
-      
       $(document).ready(function() {
 		   $("#btn1").click(function(){
 		      
-		     var UserId = $("#UserId").val();
 		     var UserPw = $("#UserPw").val();
 		     var UserPw1 = $("#UserPw1").val();
-		     var UserName = $("#UserName").val();
-		     var BirthDate = $("#BirthDate").val();
 		     var Gender = $("#Gender").val();
 		     var IsMarried = $("#IsMarried").val();
-		     var Mobile = $("#Mobile").val();
-		     var Email = $("#Email").val();
-		     var PostCode = $("#PostCode").val();
-		     var DetailAddress = $("#DetailAddress").val();
-		      
-		     if(UserId.length == 0) {
-		    	 alert("아이디를 입력해주세요.");
-		    	 $("#UserId").focus();
-		    	 return false;
-		     }
-		     
-		    	 
-		     if(UserPw.length == 0) {
-		    	 alert("비밀번호를 입력해주세요.");
-		    	 $("#UserPw").focus();
-		    	 return false;
-		     }
 		     
 		     if(UserPw != UserPw1) {
 		    	 alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
@@ -111,17 +82,6 @@
 		    	 return false;
 		     }
 		     
-		     if(UserName.length == 0) {
-		    	 alert("이름을 입력해주세요.");
-		    	 $("#UserName").focus();
-		    	 return false;
-		     }
-		     
-		     if(BirthDate.length == 0) {
-		    	 alert("생년월일을 입력해주세요.");
-		    	 $("#BirthDate").focus();
-		    	 return false;
-		     }
 		     
 		     if($(':radio[name="Gender"]:checked').length < 0){
 		         alert('성별을 선택해주세요');                        
@@ -136,40 +96,19 @@
 		         event.preventDefault();
 		     }
 		     
-		     if(Mobile.length == 0) {
-		    	 alert("핸드폰번호를 입력해주세요.");
-		    	 $("#Mobile").focus();
-		    	 return false;
-		     }
-		     
-		     if(Email.length == 0) {
-		    	 alert("이메일을 입력해주세요.");
-		    	 $("#Email").focus();
-		    	 return false;
-		     }
-		     
-		     if(PostCode.length == 0) {
-		    	 alert("우편번호 찾기를 눌러주세요.");
-		    	 $("#PostCode").focus();
-		    	 return false;
-		     }
-		     
-		     if(DetailAddress.length == 0) {
-		    	 alert("상세주소를 입력해주세요.");
-		    	 $("#DetailAddress").focus();
-		    	 return false;
-		     }
-		     
 		     if(confirm("회원가입을 하시겠습니까?")) {
-		    	 alert("회원가입을 축하합니다.");
+		    	 
 		    	 return true;
 		     }
 		   });
 
 		});
      
-    
+ 
+      
+      
    </script>
+
 
 
 
@@ -223,8 +162,8 @@
                         <td class="box11" >아이디</td>
                         <td class="box12" colspan="3" ><input class="text4"
                             type="text" name="UserId" id="UserId"/>&nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-default" onclick="ok()"
-                                style="height: 30px; width: 80px;">중복확인</button></td>
+                            <button class="btn btn-default" type="button" id="idcheck"
+                                style="height: 30px; width: 80px;" >중복확인</button></td>
                     </tr>
 
                     <tr>
@@ -250,12 +189,12 @@
                     <tr>
                         <td class="box11">성별</td>
                         <td class="box12"><input class="text4" type="radio"
-                            name="Gender" id="Gender"  value="0" /> 남자 &nbsp;&nbsp;<input type="radio"
+                            name="Gender" id="Gender"  value="0" checked/> 남자 &nbsp;&nbsp;<input type="radio"
                             name="Gender" value="1" /> 여자</td>
 
                         <td class="box13">결혼여부</td>
                         <td class="box14"><input class="text4" type="radio"
-                            name="IsMarried" id="IsMarried"  value="0" /> 초혼&nbsp;&nbsp; <input type="radio"
+                            name="IsMarried" id="IsMarried"  value="0" checked /> 초혼&nbsp;&nbsp; <input type="radio"
                             name="IsMarried" value="1"/> 재혼</td>
                     </tr>
 
@@ -321,7 +260,36 @@
    <!-- 변경 사항 -->
 
    <jsp:include page="../assets/inc/footer.jsp" />
-
+   <script>
+$(function() {
+         $("#idcheck").click(function() {
+            var UserId_val = $("#UserId").val();
+            console.log(UserId_val);
+            if(!UserId_val) {
+               alert("아이디를 입력하세요!!!");
+               $("#UserId").focus();
+               return false;
+            } 
+            
+            $.post("idcheck.do", {UserId: UserId_val}, function(req) {
+ 
+            	console.log(UserId_val);
+                console.log(req);
+                
+                if (req == 'OK') {
+                   alert("사용 가능한 아이디 입니다.");
+                   $("#idcheck").attr("value", 1);
+                   
+                } else {
+                   alert("사용할 수 없는 아이디 입니다.");
+                   $("#idcheck").attr("value", 0);
+                   $("#UserId").val("");
+                   $("#UserId").focus();
+                }
+             });
+          });
+       });
+       </script>
 </body>
 
 </html>

@@ -7,6 +7,8 @@ import study.spring.simplespring.model.User;
 public interface UserService {
 
 	public User getUserItem(User input) throws Exception;
+	
+	public User getUserIdCheck(User input) throws Exception;
 
 	public List<User> getUserList(User input) throws Exception;
 

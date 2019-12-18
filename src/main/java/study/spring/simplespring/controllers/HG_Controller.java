@@ -1,6 +1,7 @@
 package study.spring.simplespring.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
+import study.spring.simplespring.helper.UploadItem;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Test;
 import study.spring.simplespring.model.User;
@@ -55,6 +60,34 @@ public class HG_Controller {
 
 		return new ModelAndView("_join/join2_HG");
 
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "idcheck.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String idcheck() {
+
+		String UserId = webHelper.getString("UserId");
+
+		User input = new User();
+		input.setUserId(UserId);
+
+		User output = null;
+
+		try {
+			output = userService.getUserIdCheck(input);
+		} catch (Exception e) {
+			System.out.println("중복된 아이디가 없습니다.");
+		}
+
+		String status = "OK";
+		System.out.println(output);
+
+		if (output != null) {
+			status = "FAIL";
+		}
+
+		Gson gson = new Gson();
+		return gson.toJson(status);
 	}
 
 	@RequestMapping(value = "/_join/join2_HG.do", method = RequestMethod.POST)
@@ -215,14 +248,14 @@ public class HG_Controller {
 	public ModelAndView admin_userManager2(Model model) {
 
 		int MemberId = webHelper.getInt("MemberId");
-
+		String User_Img = webHelper.getString("User_Img");
 		if (MemberId == 0) {
 			return webHelper.redirect(null, "해당 회원이 없습니다.");
 		}
 
 		User input = new User();
 		input.setMemberId(MemberId);
-
+		input.setUser_Img(User_Img);
 		User output = null;
 
 		try {
@@ -236,7 +269,7 @@ public class HG_Controller {
 		return new ModelAndView("_admin/admin_userManager2_HG");
 
 	}
-	
+
 	@RequestMapping(value = "/_admin/admin_userManager2ok1_HG.do", method = RequestMethod.POST)
 	public ModelAndView admin_userManager2ok1(Model model) {
 
@@ -262,7 +295,7 @@ public class HG_Controller {
 		}
 		return webHelper.redirect(contextPath + "/_admin/admin_userManager1_HG.do", "삭제되었습니다.");
 	}
-	
+
 	@RequestMapping(value = "/_admin/admin_userManager2ok2_HG.do", method = RequestMethod.POST)
 	public ModelAndView admin_userManager2ok2(Model model) {
 
@@ -612,27 +645,38 @@ public class HG_Controller {
 
 	}
 
-	@RequestMapping(value = "/_mypage/personal_information2ok_HG.do", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/_mypage/personal_information2ok_HG.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ModelAndView personal_information2ok(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		if (loginInfo != null) {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
+		
+		try {
+			webHelper.upload();
+		} catch (Exception e1) {
+			return webHelper.redirect(null, "업로드에 실패");
 
+		}
+		
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+		
 		int MemberId = loginInfo.getMemberId();
-		String User_Img = loginInfo.getUser_Img();
+		String User_Img = fileList.get(0).getFilePath();
 		String UserName = loginInfo.getUserName();
 		String UserId = loginInfo.getUserId();
 		int Gender = loginInfo.getGender();
-		String UserPw = webHelper.getString("UserPw");
-		String Mobile = webHelper.getString("Mobile");
-		String TEL = webHelper.getString("TEL");
-		String Email = webHelper.getString("Email");
-		String PostCode = webHelper.getString("PostCode");
-		String BasicAddress = webHelper.getString("BasicAddress");
-		String StateAddress = webHelper.getString("StateAddress");
-		String DetailAddress = webHelper.getString("DetailAddress");
+		String UserPw = paramMap.get("UserPw");
+		String Mobile = paramMap.get("Mobile");
+		String TEL = paramMap.get("TEL");
+		String Email = paramMap.get("Email");
+		String PostCode = paramMap.get("PostCode");
+		String BasicAddress = paramMap.get("BasicAddress");
+		String StateAddress = paramMap.get("StateAddress");
+		String DetailAddress = paramMap.get("DetailAddress");
 
 		User input = new User();
 		input.setMemberId(MemberId);
@@ -655,9 +699,8 @@ public class HG_Controller {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		String redirectUrl = contextPath + "/_mypage/personal_information2_HG.do?MemberId=" + input.getMemberId();
+		String redirectUrl = contextPath + "/_mypage/personal_information1_HG.do?MemberId=" + input.getMemberId();
 		return webHelper.redirect(redirectUrl, "수정되었습니다.");
-
 	}
 
 	/**

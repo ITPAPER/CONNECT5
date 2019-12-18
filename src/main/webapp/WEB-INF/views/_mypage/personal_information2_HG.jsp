@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/HG/Mypage/personal_information2.css">
-
+<script
+	src="${pageContext.request.contextPath}/assets/plugins/regex/regex.js"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -63,19 +65,6 @@
 					}
 				}).open();
 	}
-
-	$(document).ready(function() {
-		$("#btn1").click(function() {
-
-			var UserPw = $("#UserPw").val();
-			var UserPw1 = $("#UserPw1").val();
-			if (UserPw != UserPw1) {
-				alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
-				$("#UserPw1").focus();
-				return false;
-			}
-		})
-	})
 </script>
 
 <meta charset="utf-8" />
@@ -122,19 +111,20 @@
 
 
 
-
 		<h3 class="col-md-10">개인정보수정</h3>
-		<form method="post"
+		<form method="post" name="next" id="next"
+			enctype="multipart/form-data"
 			action="${pageContext.request.contextPath}/_mypage/personal_information2ok_HG.do">
-			<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
-			<div class="col-md-9 content">
+			<div class="col-md-9 content" id="ajax">
+				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
 				<div class="box10">
 					<br /> <br />
 					<table>
 						<tbody>
 							<tr>
 								<th class="box13">프로필사진</th>
-								<td class="box14"><input type="file" id="profile_img">${output.getUser_Img()}</td>
+								<td class="box14"><input type="file" name="User_Img"
+									id="User_Img"></td>
 
 								<th class="box15">이름</th>
 								<td class="box16" name="UserName">${output.getUserName()}</td>
@@ -145,8 +135,11 @@
 
 
 								<th class="box15">성별</th>
-								<td class="box16" name="Gender" value="${output.getGender()}">${output.getGender()}</td>
-
+								<td class="box16" name="Gender"><c:choose>
+										<c:when test="${output.getGender() == 0}">남자</c:when>
+										<c:when test="${output.getGender() == 1}">여자</c:when>
+										<c:otherwise>${output.getGender()}</c:otherwise>
+									</c:choose></td>
 							</tr>
 							<tr>
 								<th class="box13">변경할 비밀번호</th>
@@ -213,7 +206,20 @@
 
 	</div>
 
+	<script>
+		$(document).ready(function() {
+			$("#btn1").click(function() {
 
+				var UserPw = $("#UserPw").val();
+				var UserPw1 = $("#UserPw1").val();
+				if (UserPw != UserPw1) {
+					alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
+					$("#UserPw1").focus();
+					return false;
+				}
+			});
+		});
+	</script>
 
 
 

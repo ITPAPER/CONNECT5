@@ -46,7 +46,6 @@
 		MemberId,
 		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
 		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin
-
 		)
 		VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
@@ -55,9 +54,15 @@
 		#{Email},
 		#{PostCode},
 		#{BasicAddress}, #{StateAddress}, #{DetailAddress}, 0
-
 		)
 	</insert>
+
+	<select id="IdCheck"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT * FROM User
+		WHERE UserId=#{UserId}
+	</select>
 
 	<select id="selectItem"
 		parameterType="study.spring.simplespring.model.User"
@@ -66,15 +71,14 @@
 		FROM User
 		WHERE MemberId=#{MemberId}
 	</select>
-	
+
 	<select id="selectList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
 		SELECT * FROM connect5.user
 
-		
+
 	</select>
-		
 
 	<select id="selectListadminUser"
 		parameterType="study.spring.simplespring.model.User"
@@ -210,13 +214,15 @@
 		FROM User
 
 	</select>
-	
+
 	<!-- 경동 회원정보 변경 쿼리문 -->
 	<update id="Special_updateItem"
 		parameterType="study.spring.simplespring.model.User">
 		UPDATE user
-		SET Job=#{Job} ,Edu_Lv=#{Edu_Lv}, User_Img=#{User_Img},Height=#{Height}, BldType=#{BldType},
-		Style=#{Style}, Personality=#{Personality}, Sal_Annual=#{Sal_Annual},Date_Loc=#{Date_Loc}
+		SET Job=#{Job} ,Edu_Lv=#{Edu_Lv},
+		User_Img=#{User_Img},Height=#{Height}, BldType=#{BldType},
+		Style=#{Style}, Personality=#{Personality},
+		Sal_Annual=#{Sal_Annual},Date_Loc=#{Date_Loc}
 		WHERE
 		MemberId=#{MemberId};
 	</update>
@@ -350,8 +356,8 @@
 		GENDER = 1
 
 	</select>
-	
-	
+
+
 
 	<select id="selectCountAnnualSalary8090M"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
@@ -361,7 +367,7 @@
 		GENDER = 0
 
 	</select>
-	
+
 	<update id="Manager_updateItem"
 		parameterType="study.spring.simplespring.model.User">
 		UPDATE user
@@ -586,17 +592,16 @@
 		WHERE Edu_lv LIKE 'Doctoral'
 		AND gender = 1
 	</select>
-	
-	 <update id="reqMatch_updateUser"
-      parameterType="study.spring.simplespring.model.User">
-      UPDATE connect5.user SET isSpUser = 1 WHERE MemberId = #{MemberId}
-   </update>
-	
-	
-	
-	
-	
-	
-	
+
+
+	<update id="reqMatch_updateUser"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId = #{MemberId}
+	</update>
+
+
+
+
+
 
 </mapper>
