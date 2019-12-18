@@ -66,6 +66,15 @@
 		FROM User
 		WHERE MemberId=#{MemberId}
 	</select>
+	
+	<select id="selectList"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT * FROM connect5.user
+
+		
+	</select>
+		
 
 	<select id="selectListadminUser"
 		parameterType="study.spring.simplespring.model.User"
@@ -578,6 +587,10 @@
 		AND gender = 1
 	</select>
 	
+	 <update id="reqMatch_updateUser"
+      parameterType="study.spring.simplespring.model.User">
+      UPDATE connect5.user SET isSpUser = 1 WHERE MemberId = #{MemberId}
+   </update>
 	
 	
 	

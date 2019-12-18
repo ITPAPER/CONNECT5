@@ -8,6 +8,9 @@ public class ReqMatch {
 	private String Select_Date;
 	private int MemberId;
 	private String Choose_Date;
+	private String start;
+	private int Gender;
+	private String title;
 	private String UserName;
 	
 	private static int offset;

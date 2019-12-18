@@ -115,5 +115,7 @@ public interface UserService {
 	public int getselectCountEduDoctoralM(User input) throws Exception;
 
 	public int getselectCountEduDoctoralW(User input) throws Exception;
+	
+	public int editreqMatch_User(User input1) throws Exception;
 
 }

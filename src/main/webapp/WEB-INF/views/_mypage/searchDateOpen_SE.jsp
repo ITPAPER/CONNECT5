@@ -12,6 +12,7 @@
 <body>
 	<h1>날짜를 선택하세요.</h1>
 	<hr />
+	<form id="addForm" action="${pageContext.request.contextPath}/_mypage/search_SE">
 	<div id="date">
         <input type="text" id="datepicker" readonly />
         <a href="#" id="show-cal"><img src="${pageContext.request.contextPath}/assets/img/calendar.png" height="20"></a>
@@ -22,6 +23,7 @@
 		<button type="submit" class="btn btn-primary" onclick="add()">확인</button>
 		<button type="button" class="btn btn-primary" onclick="window.close(); return false;">취소</button>
 	</div>
+	</form>
 	
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/plugins/datepicker/datepicker.min.js"></script>
@@ -39,9 +41,9 @@
         
         function add(){
             if(confirm("해당 날짜를 선택 하시겠습니까?") == true){
-            	var Choose_Date = $("#datepicker").val();
+            	var start = $("#datepicker").val();
             	alert("등록이 완료되었습니다.");
-            	window.opener.top.location.href="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do?Choose_Date="+ Choose_Date;	
+            	window.opener.top.location.href="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do?start="+ start;	
            }else {
               return;
            }

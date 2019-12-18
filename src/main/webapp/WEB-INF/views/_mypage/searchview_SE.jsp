@@ -8,59 +8,47 @@
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
-<link
-	href='${pageContext.request.contextPath}/assets/js/fullcalendar.css'
-	rel='stylesheet' />
-<link
-	href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.css'
-	rel='stylesheet' media='print' />
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.min.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/assets/js/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/jquery.min.js'></script>
-<script
-	src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/ko.js'></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
 <script>
 	$(document).ready(function() {
-		var calendar = $('#calendar').fullCalendar({
-			header : {
-				left : 'prev,next today',
-				center : 'title'
-			},
-			editable : false,
-			events : [ {
-				title : '선택날짜',
-				start : '${output.getChoose_Date()}'
-			} ]
-		});
-
+		
+		$('#calendar').fullCalendar({
+		      defaultDate: '2019-12-12',
+		      editable: false,
+		      eventClick: function(){
+		    	$('#listModal').modal('show');
+		     },
+		      events: ${jsonList}	     
+	    });
+		
 	});
+
 </script>
 <style>
-body {
-	margin: 40px 10px;
-	padding: 0;
-	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
-	font-size: 14px;
-}
 
-#loading {
-	display: none;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-
-#calendar {
-	max-width: 800px;
-	margin: 0 auto;
-}
-
-.fc-scroller {
-	overflow: visible !important;
-}
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+	
+	#calendar {
+		max-width: 800px;
+		margin: 0 auto; 
+	}
+	.fc-scroller {
+  	overflow: visible !important;
+	}
+	
 </style>
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -71,8 +59,8 @@ body {
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/img1_SE.jpg"
-			alt="연-결" class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/img1_SE.jpg" alt="연-결"
+			class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -82,17 +70,12 @@ body {
 			<h3 class="title">My 연-결</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
-				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do"
-					class="list-group-item ">My현황</a> <a href="#"
-					class="list-group-item btncolor">인연 찾기</a> <a
-					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do"
-					class="list-group-item">1:1 문의</a> <a
-					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do"
-					class="list-group-item">매칭 기록 보기 </a><a
-					href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do"
-					class="list-group-item">개인정보수정</a> <a
-					href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do"
-					class="list-group-item">회원탈퇴</a>
+				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item ">My현황</a> <a
+					href="#" class="list-group-item btncolor">인연 찾기</a> <a
+					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item">1:1 문의</a> <a
+					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록
+					보기 </a><a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a>
+				<a href="${pageContext.request.contextPath}/_mypage/withdrawal1_HG.do" class="list-group-item">회원탈퇴</a>
 			</div>
 		</div>
 	</div>
@@ -104,21 +87,76 @@ body {
 	</div>
 
 	<div class="col-md-10 content">
-		<div id='loading'>loading...</div>
-				<div id='calendar'></div>
-	</div>
-	<div class="pull-right">
-		<p>
-			* 잔여 데이트 횟수 ___회 <br /> <input type="checkbox"> 스페셜 서비스 사용
-		</p>
-		<a
-			href="${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do"
-			onclick="window.open(this.href,'mywin','width=500, height=300, scrollbars=yes'); return false;">
-			<button type="submit" class="btn btn-default pull-right">등록하기</button>
-		</a>
-	</div>
+		
 
+	<div id='calendar'>
+	</div>
+		
+	</div>
+	
+	<div class="modal fade" id="listModal">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">현황</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table-bordered" id="modaltable1">
+							<thead>
+								<tr>
+									<th>번호</th>
+									<th>이름</th>
+									<th>성별</th>
+									<th>나이</th>
+									<th>직업</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:choose>
+									<%-- 조회결과가 없는 경우 --%>
+									<c:when test="${output1 == null || fn:length(output1) == 0}">
+										<td colspan="5" align="center">조회결과가 없습니다.</td>
+									</c:when>
+									<%-- 조회결과가 있는  경우 --%>
+									<c:otherwise>
+										<%-- 조회 결과에 따른 반복 처리 --%>
+										<c:forEach var="item" items="${output1}" varStatus="status">
+											<c:set var="userName" value="${item.userName}" />
+											<c:set var="gender" value="${item.gender}" />
+											<c:set var="birthDate" value="${item.birthDate}" />
+											<c:set var="job" value="${item.job}" />
+											
+											<%-- 상세페이지로 이동하기 위한 URL --%>
+											<c:url value="/_mypage/searchRequestConfirm_SE.do"
+												var="viewUrl">
+												<c:param name="start" value="${item.start}" />
+											</c:url>
+	
+											<tr>
+												<td>${status.count}</td>
+												<td><a href="${viewUrl}">${userName}</a></td>
+												<td>${gender}</td>
+												<td>${birthDate}</td>
+												<td>${job}</td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+						</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+
 </body>
 </html>

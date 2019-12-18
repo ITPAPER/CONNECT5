@@ -11,6 +11,9 @@
 		<result property="Select_Date" column="Select_Date" />
 		<result property="MemberId" column="MemberId" />
 		<result property="Choose_Date" column="Choose_Date" />
+		<result property="start" column="start" />
+		<result property="Gender" column="Gender" />
+		<result property="title" column="title" />
 		<result property="UserName" column="UserName" />
 	</resultMap>
 
@@ -20,7 +23,7 @@
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		resultMap="ReqMatchMap">
 		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
-		r.ReqMatchId,DATE_FORMAT(Choose_Date,'%Y-%m-%d') AS Choose_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start,
 		u.UserName FROM connect5.reqmatch r
 		Inner join connect5.user u ON (u.MemberId = r.MemberId) AND r.MemberId = #{MemberId}
 		
@@ -48,9 +51,9 @@
 	<insert id="insertItem"
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		useGeneratedKeys="true" keyProperty="ReqMatchId">
-		insert Into connect5.ReqMatch (Select_Date, MemberId , Choose_Date)
+		insert Into connect5.ReqMatch (Select_Date, MemberId , start)
 		VALUES ( 
-		now(),#{MemberId},#{Choose_Date}
+		now(),#{MemberId},#{start}
 		)
 	</insert>
 
