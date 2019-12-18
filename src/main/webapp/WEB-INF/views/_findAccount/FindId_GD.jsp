@@ -1,7 +1,13 @@
+<%@page import="study.spring.simplespring.helper.MailHelper"%>
+<%@page import="study.spring.simplespring.helper.WebHelper"%>
+<%@page import="java.util.Random"%>
+<%@page import="study.spring.simplespring.model.Email"%>
+<%@page import="org.springframework.mail.MailSender"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!doctype html>
 <html lang="ko">
@@ -80,9 +86,7 @@
 
 		<!-- 내용 작성  -->
 		<fieldset>
-			<form
-				action="${pageContext.request.contextPath}/_findAccount/FindId_GD_ok.do"
-				method="post" id="verify" name="verify">
+			<form method="post" id="verify" name="verify">
 
 				<div class="user_name">
 					<label for="user_name" style="width: 100px">이름</label> <input
@@ -159,8 +163,10 @@
 																	" <button type='submit' id='v_ok'>확인</button>");
 													count();
 												} else {
-													alert("아이디와 비밀번호가 일치하지 않습니다.");
+													alert("아이디와 이메일이 일치하지 않습니다.");
 												}
+												
+									
 											},
 											error : function() {
 												alert("serialize 실패");
@@ -170,9 +176,7 @@
 							});
 		});
 
-		$("#v_ok")
-				.submit(
-						function(e) {
+		$("#v_ok").submit(function(e) {
 							e.preventDefault();
 							if (!regex.value('#number', '인증번호를 입력하세요.')) {
 								return false;
@@ -188,10 +192,15 @@
 
 							document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckId_GD.do';
 						});
+		
+		$("#a").click(function(e) {
+					e.preventDefault();
+					document.location.href = '${pageContext.request.contextPath}/_findAccount/CheckId_GD.do';
+				});
 
 		function count() {
 
-			var timer2 = "0:02";
+			var timer2 = "0:10";
 			var interval = setInterval(function() {
 				var timer = timer2.split(':');
 				var minutes = parseInt(timer[0], 10);

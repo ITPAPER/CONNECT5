@@ -108,42 +108,34 @@
 					<thead>
 						<tr>
 							<th class="text-center" id="num">제목</th>
-							<th class="text-left" id="subject">연-결, 가을 낭만 담아 '연극 보러
-								갈까요?' 이벤트 진행</th>
-							<th class="date">2019-10-22</th>
+							<th class="text-left">${output.getTitle()}</th>
+							<th id="date">${output.creationDate}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td id="context" colspan="3" align="center"><img
-								src="${pageContext.request.contextPath}/assets/img/admin_Read.bmp"><br>
-								<p id="text_read">10월 문화의 계절 가을을 맞아 낭만을 가득 담은 이벤트 ‘연극 보러
-									갈까요?’를 진행한다고 18일 밝혔다. 싱글 미혼남녀들을 위해 ‘바른 만남, 바른 결혼’이라는 모토로 결혼정보
-									서비스를 제공하는 결혼정보업체 바로연이 이번에는 가을의 낭만이 충만한 공연을 마련해 10월 한 달간 방문 상담을
-									받으시는 모든 분들께 ‘연극 무료 관람권’을 1인당 2매씩 증정하는 이벤트를 준비했다.</p>
-
-								<p id="text_read">10월 한 달간 진행되는 이벤트로 준비된 공연으로는 ‘연애하기 좋은 날’,
-									‘나의 ps 파트너’, ‘럭키’ 3개의 공연이 있으며 이 중 티켓을 랜덤 증정 한다. 공연 일자는 티켓에 적혀있는
-									유효기간 내 원하는 일자에 관람이 가능하며 공연 장소는 대학로 아티스탄홀, 대학로 단막극장 두 곳에서 진행 된다.
-								</p></td>
+							<td id="context" colspan="3">${output.content}</td>
 						</tr>
 						<tr>
 							<td>다음글</td>
-							<th class="text_select" colspan="2">...</th>
+							<th class="text_select" colspan="2"
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() +1} '">
+								${output.getTitle() }</th>
 						</tr>
 						<tr>
 							<td>이전글</td>
 							<th class="text_select" colspan="2"
-								onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'"
-								style="cursor: pointer;">연-결 로맨틱 미팅파티 'REMARRY SERCRET
-								PARTY'진행</th>
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() -1} '">
+								${output.getTitle() }</th>
 						</tr>
 
 					</tbody>
 				</table>
 			</div>
 			<button class="btn btn-default"
-				onclick="location='admin_QnA_GD.jsp'">목록</button>
+				onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementedit.do?BoardId=${output.getBoardId() }'">수정하기</button>
+			<button class="btn btn-default"
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'">목록</button>
 		</div>
 	</div>
 
