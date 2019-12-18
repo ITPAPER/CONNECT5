@@ -1,12 +1,12 @@
 package study.spring.simplespring.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,6 @@ import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.UploadItem;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
-import study.spring.simplespring.model.Email;
 import study.spring.simplespring.model.Manager;
 import study.spring.simplespring.model.Payment;
 import study.spring.simplespring.model.User;
@@ -239,46 +238,46 @@ public class GD_Controller {
 		}
 			
 		System.out.println(req);
+		Gson gson = new Gson();
+		
+		Map<String,Object> result1 = new HashMap<String,Object>();
+		
+		
+		
 		
 		if(req!=null) {
 			
-			Email email = new Email();
-			
+
 			Random random = new Random(System.currentTimeMillis());
 			
 			int range = (int)Math.pow(10, 6);
 			int trim = (int)Math.pow(10, 6-1);
 			int result = random.nextInt(range)+trim;
 			
+			
+			result1.put("result", result);
+			result1.put("req", req);
+			
 			if(result>range) {
 				result = result - trim;
 			}
 			
 			String subject = "(주) 연-결 인증번호가 도착했습니다.";
-			String content = username + "님의 인증번호는 " + result +"입니다. 사이트에서 인증번호를 입력해주세요";
+			String content = username + "님의 인증번호는 " + result +" 입니다. 사이트에서 인증번호를 입력해주세요";
 		
-			
-			email.setSubject(subject);
-			email.setContent(content);
-			email.setTo(useremail);
-			
 			   /** 메일 발송 처리 */
 	        try {
 	            // sendMail() 메서드 선언시 throws를 정의했기 때문에 예외처리가 요구된다.
 	            mailHelper.sendMail(useremail, subject, content);
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            return "_payment/pay_ok_GD";
+	            return "_findAccount/FindId_GD";
 	        }
 	        /** 결과처리 */
-	        return "_payment/pay_ok_GD";
-			
-			
+	        return gson.toJson(result1);
 			
 		}
-		Gson gson = new Gson();
-		return  gson.toJson(req);
-
+		return gson.toJson(result1);	
 	}
 	
 	

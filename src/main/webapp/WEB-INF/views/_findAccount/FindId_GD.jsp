@@ -146,6 +146,8 @@
 
 								var param = $("form[name=verify]").serialize();
 								$.ajax({
+									
+									
 											url : "FindId_GD_ok.do",
 											type : "POST",
 											data : param,
@@ -160,7 +162,7 @@
 																	"<div class='verify_num'><label for='number'>인증번호 　 </label><input type='text' size='20px' id='number' /><span class='count'></span></div>");
 													$("#verify_ok")
 															.append(
-																	" <button type='submit' id='v_ok'>확인</button>");
+																	" <button type='button' id='v_ok'>확인</button>");
 													count();
 												} else {
 													alert("아이디와 이메일이 일치하지 않습니다.");
@@ -176,7 +178,7 @@
 							});
 		});
 
-		$("#v_ok").submit(function(e) {
+		$("#v_ok").click(function(e) {
 							e.preventDefault();
 							if (!regex.value('#number', '인증번호를 입력하세요.')) {
 								return false;
