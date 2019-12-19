@@ -71,6 +71,14 @@
 		FROM User
 		WHERE MemberId=#{MemberId}
 	</select>
+	
+	<select id="selectItemFindId"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT *
+		FROM User
+		WHERE UserName=#{UserName}
+	</select>
 
 	<select id="selectList"
 		parameterType="study.spring.simplespring.model.User"
@@ -180,7 +188,14 @@
 		WHERE UserId=#{UserId} AND UserPw=#{UserPw}
 
 	</select>
-
+	<!-- 경동 회원정보 변경 쿼리문 -->
+	<update id="updateItemPw"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE user
+		SET UserPw=#{UserPw}
+		WHERE
+		UserId=#{UserId};
+	</update>
 
 
 	<!-- 경동 회원정보 변경 쿼리문 -->
@@ -200,6 +215,15 @@
 		select * from user
 		where UserName=#{UserName} and
 		email=#{email}
+
+	</select>
+	<select id="selectFindPassword"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+
+		select * from user
+		where UserName=#{UserName} and UserId=#{UserId} and
+		Email=#{Email} 
 
 	</select>
 

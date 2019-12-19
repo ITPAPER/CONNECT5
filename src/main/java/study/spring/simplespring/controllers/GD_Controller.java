@@ -243,8 +243,79 @@ public class GD_Controller {
 		
 		Map<String,Object> result1 = new HashMap<String,Object>();
 		
+		if(req.getMemberId()!=0) {
+			
+
+			Random random = new Random(System.currentTimeMillis());
+			
+			int range = (int)Math.pow(10, 6);
+			int trim = (int)Math.pow(10, 6-1);
+			int result = random.nextInt(range)+trim;
+			
+			result1.put("result", result);
+			result1.put("req", req);
+			
+			if(result>range) {
+				result = result - trim;
+			}
+			
+			String subject = "(주) 연-결 인증번호가 도착했습니다.";
+			String content = username + "님의 인증번호는 " + result +" 입니다. 사이트에서 인증번호를 입력해주세요";
 		
+			System.out.println(result1);
+			/** 메일 발송 처리 */
+			try {
+				// sendMail() 메서드 선언시 throws를 정의했기 때문에 예외처리가 요구된다.
+				mailHelper.sendMail(useremail, subject, content);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return gson.toJson(result1);	
+	}
+	
+	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = RequestMethod.GET)
+	public ModelAndView findpw(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		if (loginInfo != null) {
+			String login = loginInfo.getUserName();
+			model.addAttribute("login", login);
+		}
+
+		return new ModelAndView("_findAccount/FindPw_GD");
+
+	}
+
+	
+	@ResponseBody
+	@RequestMapping(value = "/_findAccount/FindPw_GD_ok.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String findpwok(Model model) {
+
+		String username = webHelper.getString("user_name");
+		String userid = webHelper.getString("user_id");
+		String useremail = webHelper.getString("user_email");
+
+		User input = new User();
+		input.setUserName(username);
+		input.setUserId(userid);
+		input.setEmail(useremail);
+
+		User req = null;
+
+		try {
+			req = userService.selectFindPassword(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		System.out.println(req);
+	
+		Gson gson = new Gson();
 		
+		Map<String,Object> result1 = new HashMap<String,Object>();
 		
 		if(req.getMemberId()!=0) {
 			
@@ -265,40 +336,57 @@ public class GD_Controller {
 			String subject = "(주) 연-결 인증번호가 도착했습니다.";
 			String content = username + "님의 인증번호는 " + result +" 입니다. 사이트에서 인증번호를 입력해주세요";
 		
-	        /** 결과처리 */
-	        return gson.toJson(result1);
+			System.out.println(result1);
 			
 		}
 		return gson.toJson(result1);	
 	}
 	
-	
+	@RequestMapping(value = "/_findAccount/FindPw_GD_Success.do", method = RequestMethod.POST)
+	public ModelAndView findpwsuccess(Model model) {
+		
+		
 
-	@RequestMapping(value = "/_findAccount/FindPw_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String findpw(Model model) {
-
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-
-		if (loginInfo != null) {
-			String login = loginInfo.getUserName();
-			model.addAttribute("login", login);
+		String password = webHelper.getString("new_pwd");
+		String checkpwd = webHelper.getString("check_pwd");
+		String userid = webHelper.getString("userid");
+		User input = new User();
+		
+		input.setUserId(userid);
+		input.setUserPw(password);
+		
+		
+		try {
+			userService.editUserPw(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		return "_findAccount/FindPw_GD";
+		return webHelper.redirect(contextPath + "/_login/login_HG.do", "정상적으로 변경되었습니다.");
 
 	}
 
-	@RequestMapping(value = "/_findAccount/CheckId_GD.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String checkid(Model model) {
+	@RequestMapping(value = "/_findAccount/CheckId_GD.do", method = RequestMethod.POST)
+	public ModelAndView checkid(Model model) {
 
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-
-		if (loginInfo != null) {
-			String login = loginInfo.getUserName();
-			model.addAttribute("login", login);
+		
+		String name = webHelper.getString("user_name");
+		
+		User input = new User();
+		input.setUserName(name);
+		
+		User output = null;
+		try {
+			output = userService.getUserItemFindId(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		model.addAttribute("output",output);
 
-		return "_findAccount/CheckId_GD";
+		return new ModelAndView("_findAccount/CheckId_GD");
 
 	}
 

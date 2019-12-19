@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -16,6 +19,14 @@
 	
 </script>
 
+<style>
+	
+	span{
+	
+		font-size: 20px;
+	}
+
+</style>
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -67,17 +78,10 @@
 		
 		
 		<div id="show_id">
-		<% 
 		
-		String id = "hello";
-		request.setCharacterEncoding("utf-8");
-		String name = request.getParameter("user_name");
+		<span>${output.getUserName()}</span>  회원 님의 아이디는 <span>${output.getUserId()}</span> 입니다.
 		
-		
-		%>
-		<%=name %> 회원 님의 아이디는 <%=id %> 입니다.
-		
-		
+
 		</div>
 		<div id="btn">
 					<br />

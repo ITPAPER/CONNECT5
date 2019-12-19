@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -21,10 +24,10 @@
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
 
-<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
+	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
-		<img src="${pageContext.request.contextPath}/assets/img/question1.png" alt="연-결"
-			class="img-responsive" />
+		<img src="${pageContext.request.contextPath}/assets/img/question1.png"
+			alt="연-결" class="img-responsive" />
 	</div>
 	<!-- 상단 이미지 끝 -->
 
@@ -37,23 +40,23 @@
 	<div class="col-md-2">
 		<!-- 패널 타이틀1 -->
 		<div class="left sidebar1">
-				<h3 class="title">회원가입</h3>
+			<h3 class="title">회원가입</h3>
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
 				<a href="${pageContext.request.contextPath}/_join/join1_HG.do"
-						class="list-group-item ">회원가입</a> <a
-						href="${pageContext.request.contextPath}/_login/login_HG.do"
-						class="list-group-item">로그인</a> <a
-						href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
-						class="list-group-item btncolor">ID/PW 찾기</a>
+					class="list-group-item ">회원가입</a> <a
+					href="${pageContext.request.contextPath}/_login/login_HG.do"
+					class="list-group-item">로그인</a> <a
+					href="${pageContext.request.contextPath}/_findAccount/FindId_GD.do"
+					class="list-group-item btncolor">ID/PW 찾기</a>
 			</div>
 		</div>
 	</div>
 
 
 	<h3 class="col-md-10">비밀번호 찾기</h3>
-		<div class="col-md-10 text1">
-			<h5>새로운 비밀번호를 설정해주세요.</h5>
+	<div class="col-md-10 text1">
+		<h5>새로운 비밀번호를 설정해주세요.</h5>
 	</div>
 
 	<div class="col-md-9 content">
@@ -66,50 +69,53 @@
 
 		<!-- 내용 작성  -->
 
-<hr />
-<div id="show_id">
+		<hr />
+		<div id="show_id">
 
-		<% 
-		
-	
-		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("user_id");
-		
-		
-		%>
-		<%=id %> 계정의 비밀번호를 새롭게 설정해 주세요.
-		
-		
+			<%
+				request.setCharacterEncoding("utf-8");
+				String id = request.getParameter("user_id");
+			%>
+			<%=id%>
+			계정의 비밀번호를 새롭게 설정해 주세요.
+
+
 		</div>
 
-				<div class="new_pwd">
-					<label for="new_pwd">새로운 비밀번호     </label> <input type="text"
-						id="new_pwd" name="new_pwd" size="20" />
-				</div>
-				<div class="check_pwd">
-					<label for="text" >변경할 비밀번호     </label> <input
-						type="text" id="check_pwd" name="user_email" size="20" />
-						<br />
-						
-						<br> <button class="btn btn-default" onclick='move()' id=ok>확인 </button>
-						<br />
-				</div>
-			
-
-
-			
-				
+		<form method="post" name="changepw" id="changepw"
+			action="${pageContext.request.contextPath}/_findAccount/FindPw_GD_Success.do">
+			<input type="hidden" name="userid" value="<%=id%>">
+			<div class="new_pwd">
+				<label for="new_pwd">변경할 비밀번호 </label> <input type="password"
+					id="new_pwd" name="new_pwd" size="20" />
+			</div>
+			<div class="check_pwd">
+				<label for="text">비밀번호 재입력 </label> <input type="password"
+					id="check_pwd" name="check_pwd" size="20" /> <br /> <br>
+				<button type="button" class="btn btn-default" id=ok>확인</button>
+				<br />
+			</div>
+		</form>
 	</div>
+
 	<script type="text/javascript">
+		$(function(e) {
 
-	function move(){
-		 
-		alert("정상적으로 변경되었습니다.");
-		document.location.href="${pageContext.request.contextPath}/_login/login_HG.do";
-	 }
+			$("#ok").click(function(e) {
+				e.preventDefault();
+				if ($("#new_pwd").val() == $("#check_pwd").val()) {
 
-		
-    </script>
+					$("#changepw").submit();
+
+				} else {
+					alert("비밀번호가 일치하지 않습니다.");
+					return false;
+				}
+
+			});
+
+		});
+	</script>
 
 
 
