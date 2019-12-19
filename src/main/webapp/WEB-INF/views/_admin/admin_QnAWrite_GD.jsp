@@ -11,17 +11,18 @@
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="../assets/ico/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 <link rel="apple-touch-icon-precomposed"
-	href="../assets/ico/apple-touch-icon-144-precomposed.png" />
+	href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="../assets/css/bootstrap.min.css" />
+	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
 <link rel="stylesheet" type="text/css"
-	href="../assets/css/nanumfont.css" />
+	href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
 <!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
@@ -38,21 +39,11 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<!-- 시각적 확인을 위한 CSS 적용 -->
-
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/GD/Admin/qnawrite.css">
-
+	href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagementWrite_YH.css">
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-
-<script type="text/javascript">
-	function add() {
-		if (confirm("게시물 등록이 완료되었습니다.") == true) {
-		}
-		location.href = "${pageContext.request.contextPath}/_admin/admin_QnA_GD.do";
-	}
-</script>
 
 </head>
 
@@ -104,35 +95,32 @@
 				class="btn">연-결 만남 후기</button>
 		</div>
 
-
 		<div class="col-md-10 text_box">
-			<form method="post"
-				action="${pageContext.request.contextPath}/_admin/admin_QnA_Insert.do">
+			<form
+				action="${pageContext.request.contextPath}/_admin/admin_QnAWriteOk.do"
+				method="POST">
 				<div class="table-responsive">
-
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th class="text-center" id="title">제목</th>
-								<th class="text-center"><input type="text"
-									placeholder="제목을 입력하세요." id="textarea" name="title"/></th>
+								<th class="num" id="Title">제목</th>
+								<th><input type="text" placeholder="제목을 입력하세요."
+									class="textarea" id="textarea" name="Title" /></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td id="context" colspan="3" align="center"><textarea
-										placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="content"/></textarea></td>
+								<td class="context" colspan="3" align="center" id="Content">
+									<textarea placeholder="내용을 입력하세요." class="form-control"
+										class="contentarea" id="contentarea" name="Content" /></textarea>
+								</td>
 							</tr>
-
 						</tbody>
 					</table>
-
 				</div>
-
 				<div class="pull-right">
-					<button class="btn btn-default" onclick="add()">글쓰기</button>
-					<button class="btn btn-default"
-						onclick="location='${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do'">취소</button>
+					<button type="submit" class="btn btn-default">글쓰기</button>
+					<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
 				</div>
 			</form>
 		</div>
@@ -141,8 +129,10 @@
 
 
 	<!-- Javascript -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
-
+	<script
+		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

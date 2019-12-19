@@ -54,6 +54,10 @@ public interface BoardService {
 	public int getBoardCountColumn(Board input) throws Exception;
 
 	public int addBoard(Board input) throws Exception;
+	
+	public int addBoardadminQnA(Board input) throws Exception;
+	
+	public int addBoardadminReview(Board input) throws Exception;
 
 	public int addBoardReview(Board input) throws Exception;
 

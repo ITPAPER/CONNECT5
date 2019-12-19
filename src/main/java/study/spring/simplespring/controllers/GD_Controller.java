@@ -1018,28 +1018,104 @@ public class GD_Controller {
 	public ModelAndView adminqna(Model model) {
 		
 		
-		
-		Board board = new Board();
-		Board output = null;
-		
-		try {
-			output = boardService.getBoardItemadminQnA(board);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("output", output);
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		/** 1) 필요한 변수값 생성 */
+		String keyword = webHelper.getString("keyword", ""); // 검색어
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0; // 전체 게시글 수
+		int listCount = 10; // 한 페이지당 표시할 목록 수
+		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
+		String UserName = loginInfo.getUserName();
+		int MemberId = loginInfo.getMemberId();
+		int BoardId = webHelper.getInt("BoardId");
+
+		/** 2) 데이터 조회하기 */
+		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
+		Board input = new Board();
+		input.setTitle(keyword);
+		input.setUserName(UserName);
+		input.setMemberId(MemberId);
+		input.setBoardId(BoardId);
+
+		List<Board> output = null; // 조회결과가 저장될 객체
+		PageData pageData = null; // 페이지 번호를 계산한 결과가 저장될 객체
+
+		try {
+			// 전체 게시글 수 조회
+			totalCount = boardService.getBoardCount(input);
+			// 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
+			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+
+			// SQL의 LIMIT절에서 사용될 값을 Beans의 static 변수에 저장
+			Board.setOffset(pageData.getOffset());
+			Board.setListCount(pageData.getListCount());
+
+			// 데이터 조회하기
+			output = boardService.getBoardListadminQnA(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		/** 3) View 처리 */
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("output", output);
+		model.addAttribute("pageData", pageData);
 		String viewPath = "_admin/admin_QnA_GD";
 		return new ModelAndView(viewPath);
 
 	}
 
 	@RequestMapping(value = "/_admin/admin_QnARead_GD.do", method = RequestMethod.GET)
-	public String adminqnaread(Model model) {
+	public ModelAndView adminqnaread(Model model) {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		return "_admin/admin_QnARead_GD";
+		if (loginInfo != null) {
+
+			String login = loginInfo.getUserName();
+
+			model.addAttribute("login", login);
+		}
+
+		int BoardId = webHelper.getInt("BoardId");
+		String Title = webHelper.getString("Title");
+		int viewcount = webHelper.getInt("viewcount");
+
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "공지사항이 없습니다.");
+		}
+
+		Board input = new Board();
+		input.setBoardId(BoardId);
+		input.setTitle(Title);
+
+		Board input1 = new Board();
+		input1.setViewcount(viewcount);
+		input1.setBoardId(BoardId);
+		
+		
+		int output1 = 0;
+		Board output = null;
+		Board prevBoard = null;
+		Board nextBoard = null;
+		
+		
+		try {
+			// 데이터 조회
+			output1 = boardService.editviewcount(input1);
+			output = boardService.getBoardNotice(input);
+			prevBoard = boardService.getNextDocument(input);
+			nextBoard = boardService.getPrevDocument(input);
+			
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		model.addAttribute("nextBoard",nextBoard);
+		model.addAttribute("prevBoard",prevBoard);
+		model.addAttribute("output1",output1);
+		model.addAttribute("output", output);
+		return new ModelAndView("_admin/admin_QnARead_GD");
 
 	}
 
@@ -1050,43 +1126,83 @@ public class GD_Controller {
 
 	}
 
-	@RequestMapping(value = "/_admin/admin_QnA_Insert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/_admin/admin_QnAWriteOk.do", method = RequestMethod.POST)
 	public ModelAndView adminqnainsert(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		Integer memberid = loginInfo.getMemberId();
-
-		String title = webHelper.getString("title");
-		String content = webHelper.getString("content");
+		int MemberId = loginInfo.getMemberId();
+		String Title = webHelper.getString("Title");
+		String Content = webHelper.getString("Content");
+		int Category = webHelper.getInt("Category");
+		String CreationDate = webHelper.getString("CreationDate");
 
 		Board input = new Board();
-
-		input.setTitle(title);
-		input.setContent(content);
-		input.setCategory(4);
-		input.setContentImg("dd");
-		input.setMemberId(memberid);
+		input.setContent(Content);
+		input.setTitle(Title);
+		input.setMemberId(MemberId);
+		input.setCategory(Category);
+		input.setCreationDate(CreationDate);
 
 		try {
-			boardService.addBoard(input);
+			// 데이터 저장
+			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+			boardService.addBoardadminQnA(input);
+
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		return new ModelAndView("_admin/admin_QnAWrite_GD");
+		String redirectUrl = contextPath + "/_admin/admin_QnARead_GD.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "QnA 게시판에 등록되었습니다.");
 	}
 
 	@RequestMapping(value = "/_admin/admin_userEx_GD.do", method = RequestMethod.GET)
-	public String adminuserex(Model model) {
+	public ModelAndView adminuserex(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
+		/** 1) 필요한 변수값 생성 */
+		String keyword = webHelper.getString("keyword", ""); // 검색어
+		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
+		int totalCount = 0; // 전체 게시글 수
+		int listCount = 10; // 한 페이지당 표시할 목록 수
+		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
-		if (loginInfo != null) {
-			String login = loginInfo.getUserName();
-			model.addAttribute("login", login);
+		String UserName = loginInfo.getUserName();
+		int MemberId = loginInfo.getMemberId();
+		int BoardId = webHelper.getInt("BoardId");
+
+		/** 2) 데이터 조회하기 */
+		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
+		Board input = new Board();
+		input.setTitle(keyword);
+		input.setUserName(UserName);
+		input.setMemberId(MemberId);
+		input.setBoardId(BoardId);
+
+		List<Board> output = null; // 조회결과가 저장될 객체
+		PageData pageData = null; // 페이지 번호를 계산한 결과가 저장될 객체
+
+		try {
+			// 전체 게시글 수 조회
+			totalCount = boardService.getBoardCount(input);
+			// 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
+			pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+
+			// SQL의 LIMIT절에서 사용될 값을 Beans의 static 변수에 저장
+			Board.setOffset(pageData.getOffset());
+			Board.setListCount(pageData.getListCount());
+
+			// 데이터 조회하기
+			output = boardService.getBoardListadminLater(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-
-		return "_admin/admin_userEx_GD";
+		/** 3) View 처리 */
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("output", output);
+		model.addAttribute("pageData", pageData);
+		String viewPath = "_admin/admin_userEx_GD";
+		return new ModelAndView(viewPath);
 
 	}
 
