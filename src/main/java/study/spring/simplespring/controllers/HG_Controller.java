@@ -63,7 +63,7 @@ public class HG_Controller {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "idcheck.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "_join/idcheck.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String idcheck() {
 
 		String UserId = webHelper.getString("UserId");
@@ -90,7 +90,7 @@ public class HG_Controller {
 		return gson.toJson(status);
 	}
 
-	@RequestMapping(value = "/_join/join2_HG.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/_join/join2_HGok.do", method = RequestMethod.POST)
 	public ModelAndView addok_HG(Model model) {
 		String UserId = webHelper.getString("UserId");
 		String UserPw = webHelper.getString("UserPw");
@@ -106,48 +106,6 @@ public class HG_Controller {
 		String StateAddress = webHelper.getString("StateAddress");
 		String DetailAddress = webHelper.getString("DetailAddress");
 		String Join_Date = webHelper.getString("Join_Date");
-
-		if (UserId == null) {
-			return webHelper.redirect(null, "아이디를 입력하세요.");
-		}
-		if (!regexHelper.isEngNum(UserId)) {
-			return webHelper.redirect(null, "아이디는 영어와 숫자로만 입력하세요.");
-		}
-		if (UserPw == null) {
-			return webHelper.redirect(null, "비밀번호를 입력하세요.");
-		}
-		if (!regexHelper.isEngNum(UserPw)) {
-			return webHelper.redirect(null, "비밀번호는 영어와 숫자로만 입력하세요.");
-		}
-		if (UserName == null) {
-			return webHelper.redirect(null, "이름을 입력하세요.");
-		}
-		if (!regexHelper.isKor(UserName)) {
-			return webHelper.redirect(null, "이름은 한글만 가능합니다.");
-		}
-		if (BirthDate == null) {
-			return webHelper.redirect(null, "생년월일을 입력하세요.");
-		}
-
-		if (Mobile == null) {
-			return webHelper.redirect(null, "핸드폰번호를 입력하세요.");
-		}
-		if (!regexHelper.isCellPhone(Mobile)) {
-			return webHelper.redirect(null, "핸드폰번호는 숫자로만 입력하세요.");
-		}
-
-		if (Email == null) {
-			return webHelper.redirect(null, "이메일을 입력해주세요.");
-		}
-		if (!regexHelper.isEmail(Email)) {
-			return webHelper.redirect(null, "이메일 형식에 맞춰주세요.");
-		}
-		if (PostCode == null) {
-			return webHelper.redirect(null, "우편번호 찾기를 눌러주세요");
-		}
-		if (DetailAddress == null) {
-			return webHelper.redirect(null, "상세주소를 입력해주세요.");
-		}
 
 		User input = new User();
 		input.setUserId(UserId);

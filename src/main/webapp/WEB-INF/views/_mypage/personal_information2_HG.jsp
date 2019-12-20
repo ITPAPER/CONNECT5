@@ -115,7 +115,7 @@
 		<form method="post" name="next" id="next"
 			enctype="multipart/form-data"
 			action="${pageContext.request.contextPath}/_mypage/personal_information2ok_HG.do">
-			<div class="col-md-9 content" id="ajax">
+			<div class="col-md-9 content" >
 				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
 				<div class="box10">
 					<br /> <br />
