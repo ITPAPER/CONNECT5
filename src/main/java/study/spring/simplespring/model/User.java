@@ -67,6 +67,12 @@ public class User {
 	
 	private int count;
 	
+	private String UserPw1;
+	
+	private String start;
+	
+	private int ReqSpService;
+	
 	private static int offset;
 
 	/** LIMIT 절에서 사용할 조회할 데이터 수 */

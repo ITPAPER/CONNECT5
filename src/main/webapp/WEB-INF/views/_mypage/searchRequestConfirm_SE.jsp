@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -54,21 +57,21 @@
 			<table class="table table-bordered" id="info">
 				<tr>
 					<th>이름</th>
-					<td style="width:130px;">홍길동</td>
+					<td style="width:130px;">${output.username}</td>
 					<th>성별</th>
-					<td>남성</td>
+					<td>${output.gender}</td>
 				</tr>
 				<tr>
 					<th>연봉</th>
-					<td>5000</td>
+					<td>${output.sal_Annual}</td>
 					<th>선호성격</th>
-					<td>외향적</td>
+					<td>${output.personality}</td>
 				</tr>
 				<tr>
 					<th>선호스타일</th>
-					<td>귀여움</td>
+					<td>${output.style}</td>
 					<th>생년월일</th>
-					<td>00년00월00일</td>
+					<td>${output.birthDate}</td>
 				</tr>
 			</table>
 		</div>

@@ -8,7 +8,7 @@ public interface ReqMatchService {
 	public ReqMatch getReqMatchItem(ReqMatch input) throws Exception;
 
 	public List<ReqMatch> getReqMatchList(ReqMatch input) throws Exception;
-
+	
 	public int getReqMatchCount(ReqMatch input) throws Exception;
 
 	public int addReqMatch(ReqMatch input) throws Exception;

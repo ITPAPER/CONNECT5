@@ -12,6 +12,7 @@ public class ReqMatch {
 	private int Gender;
 	private String title;
 	private String UserName;
+	private int ReqSpService;
 	
 	private static int offset;
 

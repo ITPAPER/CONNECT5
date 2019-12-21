@@ -125,5 +125,9 @@ public interface UserService {
 	public int getselectCountEduDoctoralW(User input) throws Exception;
 	
 	public int editreqMatch_User(User input1) throws Exception;
+	
+	public int editreqSpService_User(User input) throws Exception;
+	
+	public List<User> getreqUserList(User input) throws Exception;
 
 }

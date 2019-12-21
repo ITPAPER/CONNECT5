@@ -36,6 +36,8 @@
 		<result property="Date_Rest" column="Date_Rest" />
 		<result property="isSpUser" column="isSpUser" />
 		<result property="ManagerId" column="ManagerId" />
+		<result property="start" column="start" />
+		<result property="ReqSpService" column="ReqSpService" />
 	</resultMap>
 
 	<!-- insert -->
@@ -86,6 +88,14 @@
 		SELECT * FROM connect5.user
 
 
+	</select>
+	
+	<select id="selectModalList"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) AND r.start = #{start}
+		
 	</select>
 
 	<select id="selectListadminUser"
@@ -623,9 +633,9 @@
 		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId = #{MemberId}
 	</update>
 
-
-
-
-
+	<update id="reqSpService_updateUser"
+      parameterType="study.spring.simplespring.model.User">
+      UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}
+   </update>
 
 </mapper>

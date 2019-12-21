@@ -14,24 +14,11 @@
 <script src='${pageContext.request.contextPath}/assets/js/jquery.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/assets/js/ko.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/ajax_helper.js'></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
-<script>
-	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
-		      defaultDate: '2019-12-12',
-		      editable: false,
-		      eventClick: function(){
-		    	$('#listModal').modal('show');
-		     },
-		      events: ${jsonList}	     
-	    });
-		
-	});
 
-</script>
 <style>
 
 	body {
@@ -71,7 +58,7 @@
 			<!-- 사이드바 메뉴목록1 -->
 			<div class="list-group">
 				<a href="${pageContext.request.contextPath}/_mypage/myInfo_GD.do" class="list-group-item ">My현황</a> <a
-					href="#" class="list-group-item btncolor">인연 찾기</a> <a
+					href="${pageContext.request.contextPath}/_mypage/search_SE.do" class="list-group-item btncolor">인연 찾기</a> <a
 					href="${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do" class="list-group-item">1:1 문의</a> <a
 					href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do" class="list-group-item">매칭 기록
 					보기 </a><a href="${pageContext.request.contextPath}/_mypage/personal_information1_HG.do" class="list-group-item">개인정보수정</a>
@@ -115,38 +102,8 @@
 									<th>직업</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:choose>
-									<%-- 조회결과가 없는 경우 --%>
-									<c:when test="${output1 == null || fn:length(output1) == 0}">
-										<td colspan="5" align="center">조회결과가 없습니다.</td>
-									</c:when>
-									<%-- 조회결과가 있는  경우 --%>
-									<c:otherwise>
-										<%-- 조회 결과에 따른 반복 처리 --%>
-										<c:forEach var="item" items="${output1}" varStatus="status">
-											<c:set var="userName" value="${item.userName}" />
-											<c:set var="gender" value="${item.gender}" />
-											<c:set var="birthDate" value="${item.birthDate}" />
-											<c:set var="job" value="${item.job}" />
-											
-											<%-- 상세페이지로 이동하기 위한 URL --%>
-											<c:url value="/_mypage/searchRequestConfirm_SE.do"
-												var="viewUrl">
-												<c:param name="start" value="${item.start}" />
-											</c:url>
-	
-											<tr>
-												<td>${status.count}</td>
-												<td><a href="${viewUrl}">${userName}</a></td>
-												<td>${gender}</td>
-												<td>${birthDate}</td>
-												<td>${job}</td>
-											</tr>
-										</c:forEach>
-									</c:otherwise>
-								</c:choose>
-						</tbody>
+							<tbody id="tbody">
+							</tbody>
 						</table>
 					</div>
 					<div class="modal-footer">
@@ -157,6 +114,45 @@
 		</div>
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+<script>
 
+	$(function(){
+		$('#calendar').fullCalendar({
+		      defaultDate: moment().format('YYYY-MM-DD'),
+		      editable: false,
+		      eventLimit: 2,
+		      eventLimitText:"명",
+		      eventClick: function(calEvent, jsEvent, view){
+		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
+					
+					$.ajax({
+					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
+					type : "GET",
+					data : {start:start},
+					dataType : 'json',
+					success : function(start) {
+						$("#tbody").html("");
+						$.each(start, function(index) {
+							if (start[index].Gender == 0) {
+								start[index].Gender = "남자"
+							} else {
+								start[index].Gender = "여자";
+							}
+							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
+						});
+					},
+					error : function() {
+						alert("오류발생");
+						console.log(data);
+					}
+				});
+					$('#listModal').modal('show');
+		     },
+		      events: ${jsonList}	     
+	    });
+		
+	});
+
+</script>
 </body>
 </html>

@@ -15,6 +15,7 @@
 		<result property="Gender" column="Gender" />
 		<result property="title" column="title" />
 		<result property="UserName" column="UserName" />
+		<result property="ReqSpService" column="ReqSpService" />
 	</resultMap>
 
 
@@ -28,14 +29,22 @@
 		Inner join connect5.user u ON (u.MemberId = r.MemberId) AND r.MemberId = #{MemberId}
 		
 	</select>
+	
+	<select id="selectItemModal"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT DATE_FORMAT(start,'%Y-%m-%d') AS start
+		FROM connect5.reqmatch r
+		Inner join connect5.user u ON (u.MemberId = r.MemberId) AND r.start = #{start}
+		
+	</select>
 
 	<!-- 다중행 조회를 위한 기능 정의 -->
 	<select id="selectList"
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		resultMap="ReqMatchMap">
 		SELECT r.*, u.UserName FROM ReqMatch r
-		INNER JOIN User u ON (r.MemberId
-		= u.MemberId)
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
 
 		<where>
 			<if test="UserName != null and UserName != ''">
@@ -51,9 +60,9 @@
 	<insert id="insertItem"
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		useGeneratedKeys="true" keyProperty="ReqMatchId">
-		insert Into connect5.ReqMatch (Select_Date, MemberId , start)
+		insert Into connect5.ReqMatch (Select_Date, MemberId , start, ReqSpService)
 		VALUES ( 
-		now(),#{MemberId},#{start}
+		now(),#{MemberId},#{start},#{ReqSpService}
 		)
 	</insert>
 
