@@ -19,10 +19,12 @@ import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
 import study.spring.simplespring.model.Reply;
 import study.spring.simplespring.model.ReqMatch;
+import study.spring.simplespring.model.SucMatch;
 import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.service.ReplyService;
 import study.spring.simplespring.service.ReqMatchService;
+import study.spring.simplespring.service.SucMatchService;
 import study.spring.simplespring.service.UserService;
 
 @Controller
@@ -45,6 +47,9 @@ public class SE_Controller {
 	
 	@Autowired
 	ReqMatchService reqMatchService;
+	
+	@Autowired
+	SucMatchService sucMatchService;
 	
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -116,7 +121,11 @@ public class SE_Controller {
 
 			model.addAttribute("login", login);
 		}
-
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
+		}
+		
 		int BoardId = webHelper.getInt("BoardId");
 		String Re_Content = webHelper.getString("Re_Content");
 		
@@ -424,7 +433,7 @@ public class SE_Controller {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
-
+		
         return new ModelAndView("_coach/QnAWrite_SE");
 
 	}
@@ -866,7 +875,7 @@ public class SE_Controller {
 				output1 = userService.getreqUserList(input1);
 			} catch (Exception e) {
 				System.out.println("에러발생");
-			} 
+			}
 	
 			Gson gson = new Gson();
 		    return gson.toJson(output1);
@@ -879,6 +888,45 @@ public class SE_Controller {
 		if (loginInfo != null) {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
+		}
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
+		}
+		
+		// 상대방 MemberId searchRequestConfirm_SE 에서 던져줬음
+		int otherMemberId = webHelper.getInt("MemberId");
+		// 상대방 MemberId 가 0 이 아닐때만 이 로직이 실행되야 함
+		if (otherMemberId != 0) {
+			// User에 otherUser 객체 만든 후  상대방 MemberId 넣어줌
+			User otherUser = new User();
+			otherUser.setMemberId(otherMemberId);
+			
+			// SucMatch DB 에 유저에서 객체 만들어서 넣어야 하니까 상대방 MemberId 와 내꺼 MemberId 넣어줌  
+			SucMatch sucMatch = new SucMatch();
+			sucMatch.setMemberId(loginInfo.getMemberId());
+			sucMatch.setOtherMemberId(otherUser.getMemberId());
+			
+			// ReqMatchId 가 없기 때문에 ReqMatch 객체 하나 더 만들어서 
+			// 내가 데이트 신청하는 날짜는 
+			// 상대방의 등록한 날짜 이기 때문에 상대방 ReqMatchId 를 가져오고
+			// 내가 그사람 한테 신청 한거기 때문에 ReqMatch는 otherMemberId 를 가져와서 add 한것
+			ReqMatch reqMatch = new ReqMatch();
+			reqMatch.setMemberId(otherMemberId);
+			
+			 try {
+				 // ReqMatch 를 검색해서 상대방 ReqMatchId SucMatch 테이블에 ReqMatchId 에 넣어줌
+		         reqMatch = reqMatchService.getReqMatchItem(reqMatch);
+		         sucMatch.setReqMatchId(reqMatch.getReqMatchId()); 
+		         
+		         // 클릭한 사람의 MemberId가 넘어왔을시에 본인의 MemberId와 상대방의 MemberId를 SucMatch 테이블에 저장 
+		         sucMatchService.addSucMatch(sucMatch);
+		      } catch (Exception e) {
+		          return webHelper.redirect(null, e.getLocalizedMessage());
+		      }
+			 // 신청이 완료 되면 MyPage에 MyInfo 페이지로 이동
+			 String redirectUrl = contextPath + "/_mypage/myInfo_GD.do?MemberId=" + loginInfo.getMemberId();
+	          return webHelper.redirect(redirectUrl,"신청이 완료 되었습니다.");
 		}
 		
 		int isSpUser = loginInfo.getIsSpUser();
@@ -1019,37 +1067,45 @@ public class SE_Controller {
 	
 	@RequestMapping(value = "/_mypage/searchRequestConfirm_SE.do", method = RequestMethod.GET)
    public ModelAndView confirm(Model model) {
-		
-		String UserName = webHelper.getString("UserName");
-		int Gender = webHelper.getInt("Gender");
-		String BirthDate = webHelper.getString("BirthDate");
-		String Job = webHelper.getString("Job");
+		User loginInfo = (User) webHelper.getSession("loginInfo");
 
+		if (loginInfo != null) {
+
+			String login = loginInfo.getUserName();
+
+			model.addAttribute("login", login);
+		}
 		
-      /** 데이터 조회하기 */
-      // 데이터 조회에 필요한 조건값을 Beans에 저장하기   
-      User input1 = new User();
-      input1.setUserName(UserName);
-      input1.setGender(Gender);
-      input1.setBirthDate(BirthDate);
-      input1.setJob(Job);
-     
-      // 조회결과를 저장할 객체 선언
-      User output = null;
-      
-      try {
-          // 데이터 조회
-          output = userService.getUserItem(input1);
-      } catch (Exception e) {
-          return webHelper.redirect(null, e.getLocalizedMessage());
-      }
-      
-      /** 3) View 처리 */
-      model.addAttribute("output", output);
+		int MemberId = webHelper.getInt("MemberId");
+		int Gender = webHelper.getInt("Gender");
+		String Style = webHelper.getString("Style");
+		String Personality = webHelper.getString("Personality");
+		String BirthDate = webHelper.getString("BirthDate");
+		String Sal_Annual = webHelper.getString("Sal_Annual");
+		String UserName = webHelper.getString("UserName");
+		String User_Img = webHelper.getString("User_Img");
 		
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setStyle(Style);
+		input.setSal_Annual(Sal_Annual);
+		input.setPersonality(Personality);
+		input.setGender(Gender);
+		input.setBirthDate(BirthDate);
+		input.setUserName(UserName);
+		input.setUser_Img(User_Img);
+		
+		User output = null;
+
+		try {
+			output = userService.getUserItem(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		model.addAttribute("output",output);
 		return new ModelAndView("_mypage/searchRequestConfirm_SE");
 	}
-	
 	// --------------------------------------------------------------------------------------------------
 	// Story_Controller
 	
@@ -1113,6 +1169,11 @@ public class SE_Controller {
 		if (loginInfo != null) {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
+		}
+		
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
 		}
 		
 		 /** 1) 필요한 변수값 생성 */

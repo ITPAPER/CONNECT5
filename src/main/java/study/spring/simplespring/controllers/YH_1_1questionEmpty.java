@@ -59,6 +59,10 @@ public class YH_1_1questionEmpty {
 
 			model.addAttribute("login", login);
 		}
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
+		}
 
 		String UserName = loginInfo.getUserName();
 		int MemberId = loginInfo.getMemberId();

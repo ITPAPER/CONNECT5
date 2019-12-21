@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SucMatchMapper">
+<resultMap id="SucMatchMap"
+type="study.spring.simplespring.model.SucMatch">
+<result property="SucMatchId" column="SucMatchId" />
+<result property="Status" column="Status" />
+<result property="ReqMatchId" column="ReqMatchId" />
+<result property="MemberId" column="MemberId" />
+<result property="OtherMemberId" column="OtherMemberId" />
+</resultMap>
+	
+	<insert id="insertSucMatchItem"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		useGeneratedKeys="true" keyProperty="SucMatchId">
+		INSERT INTO SucMatch (
+		SucMatchId,
+		Status, ReqMatchId, MemberId, OtherMemberId
+		)
+		VALUES (
+		#{SucMatchId}, #{Status}, #{ReqMatchId}, #{MemberId},#{OtherMemberId}
+		)
+	</insert>
+
+</mapper>

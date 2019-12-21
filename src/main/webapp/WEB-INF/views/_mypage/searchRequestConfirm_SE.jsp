@@ -50,39 +50,49 @@
 	<div class="col-md-9 content">
 	<br />
 		<div class="col-md-2">
-			<img src="${pageContext.request.contextPath}/assets/img/고객센터.jpg"
-				style="border: 1px solid black; width: 150px; height: 150px;">
+			<img src="${pageContext.request.contextPath}/assets/upload/${output.getUser_Img()}" style="border: 1px solid black; width: 150px; height: 150px;">
 		</div>
 		<div class="col-md-9">
 			<table class="table table-bordered" id="info">
 				<tr>
 					<th>이름</th>
-					<td style="width:130px;">${output.username}</td>
+					<td style="width:130px;">${output.getUserName()}</td>
 					<th>성별</th>
-					<td>${output.gender}</td>
+					<c:choose>
+					<c:when test="${output.getGender() == 0 }">
+						<td>남성</td>
+					</c:when>
+					<c:otherwise>
+						<td>여성</td>
+					</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<th>연봉</th>
-					<td>${output.sal_Annual}</td>
+					<td>${output.getSal_Annual()}</td>
 					<th>선호성격</th>
-					<td>${output.personality}</td>
+					<td>${output.getPersonality()}</td>
 				</tr>
 				<tr>
 					<th>선호스타일</th>
-					<td>${output.style}</td>
+					<td>${output.getStyle()}</td>
 					<th>생년월일</th>
-					<td>${output.birthDate}</td>
+					<td>${output.getBirthDate()}</td>
 				</tr>
 			</table>
 		</div>
 
 		<div class="pull-right">
 			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_mypage/search_SE.do'">이전</button>
-			<button class="btn btn-default"
-				onclick="alert('데이트 신청이 완료되었습니다.'); location.href = '${pageContext.request.contextPath}/_mypage/search_SE.do'">신청하기</button>
+			<button class="btn btn-default" onclick="apply();">신청하기</button>
 		</div>
 	</div>
 
 <jsp:include page="../assets/inc/footer.jsp" />
+<script>
+	var apply = function() {
+		location.href = '${pageContext.request.contextPath}/_mypage/search_SE.do?MemberId=${output.getMemberId()}';
+	}
+</script>
 </body>
 </html>

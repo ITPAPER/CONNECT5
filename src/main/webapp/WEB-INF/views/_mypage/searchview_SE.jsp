@@ -123,8 +123,8 @@
 		      eventLimit: 2,
 		      eventLimitText:"명",
 		      eventClick: function(calEvent, jsEvent, view){
-		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
-					
+				var start = moment(calEvent.start).format('YYYY-MM-DD');
+		    	  
 					$.ajax({
 					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
 					type : "GET",
@@ -138,8 +138,8 @@
 							} else {
 								start[index].Gender = "여자";
 							}
-							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
-						});
+							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do?MemberId=" + start[index].MemberId + "'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
+						})
 					},
 					error : function() {
 						alert("오류발생");
