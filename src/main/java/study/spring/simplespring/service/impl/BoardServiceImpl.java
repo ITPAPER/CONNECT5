@@ -798,7 +798,7 @@ public class BoardServiceImpl implements BoardService {
 		Board result = null;
 
 		try {
-			result = sqlSession.selectOne("BoardMapper.selectItemColumn", input);
+			result = sqlSession.selectOne("BoardMapper.selectItemadminQnA", input);
 
 			if (result == null) {
 				throw new NullPointerException("result=null");
@@ -817,8 +817,23 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board getBoardItemadminLater(Board input) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectItemadminQnA", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
 	}
 
 
@@ -966,7 +981,7 @@ public class BoardServiceImpl implements BoardService {
 		int result = 0;
 
         try {
-            result = sqlSession.insert("BoardMapper.insertItemadminQnA", input);
+            result = sqlSession.insert("BoardMapper.insertItemadminReview", input);
 
             if (result == 0) {
                 throw new NullPointerException("result=0");

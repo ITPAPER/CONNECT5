@@ -97,7 +97,7 @@
 
 		<div class="col-md-10 text_box">
 			<form
-				action="${pageContext.request.contextPath}/_admin/admin_userManagementaddOk.do"
+				action="${pageContext.request.contextPath}/_admin/admin_userExWriteOk_GD.do"
 				method="POST">
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">

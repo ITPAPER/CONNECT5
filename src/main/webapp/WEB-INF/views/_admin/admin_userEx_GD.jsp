@@ -230,7 +230,7 @@
 				</c:otherwise>
 			</c:choose>
 			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnAWrite_GD.do'">글쓰기</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_userExWrite_GD.do'">글쓰기</button>
 		</div>
 	</div>
 

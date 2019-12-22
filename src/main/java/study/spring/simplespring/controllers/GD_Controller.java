@@ -621,7 +621,9 @@ public class GD_Controller {
 			e.printStackTrace();
 		}
 		
-		return webHelper.redirect(contextPath + "/_coach/loveColumn_GD.do", "등록되었습니다.");
+		
+		String redirectUrl = contextPath + "/_coach/readColumn_GD.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "게시물이 등록되었습니다.");
 
 	}
 
@@ -719,8 +721,9 @@ public class GD_Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String redirectUrl = contextPath + "/_coach/meetingTip_GD.do";
-		return webHelper.redirect(redirectUrl, "승인되었습니다.");
+		
+		String redirectUrl = contextPath + "/_coach/readTip_GD.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "게시물이 등록되었습니다.");
 
 	}
 
@@ -1103,7 +1106,7 @@ public class GD_Controller {
 		try {
 			// 데이터 조회
 			output1 = boardService.editviewcount(input1);
-			output = boardService.getBoardNotice(input);
+			output = boardService.getBoardItemadminQnA(input);
 			prevBoard = boardService.getNextDocument(input);
 			nextBoard = boardService.getPrevDocument(input);
 			
@@ -1212,12 +1215,52 @@ public class GD_Controller {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
 		if (loginInfo != null) {
+
 			String login = loginInfo.getUserName();
+
 			model.addAttribute("login", login);
 		}
 
-		return new ModelAndView("_admin/admin_userExRead_GD");
+		int BoardId = webHelper.getInt("BoardId");
+		String Title = webHelper.getString("Title");
+		int viewcount = webHelper.getInt("viewcount");
 
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "공지사항이 없습니다.");
+		}
+
+		Board input = new Board();
+		input.setBoardId(BoardId);
+		input.setTitle(Title);
+
+		Board input1 = new Board();
+		input1.setViewcount(viewcount);
+		input1.setBoardId(BoardId);
+		
+		
+		int output1 = 0;
+		Board output = null;
+		Board prevBoard = null;
+		Board nextBoard = null;
+		
+		
+		try {
+			// 데이터 조회
+			output1 = boardService.editviewcount(input1);
+			output = boardService.getBoardItemadminLater(input);
+			prevBoard = boardService.getNextDocument(input);
+			nextBoard = boardService.getPrevDocument(input);
+			
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		model.addAttribute("nextBoard",nextBoard);
+		model.addAttribute("prevBoard",prevBoard);
+		model.addAttribute("output1",output1);
+		model.addAttribute("output", output);
+		return new ModelAndView("_admin/admin_userExRead_GD");
+		
 	}
 
 	@RequestMapping(value = "/_admin/admin_userExWrite_GD.do", method = RequestMethod.GET)
@@ -1233,5 +1276,36 @@ public class GD_Controller {
 		return "_admin/admin_userExWrite_GD";
 
 	}
+	
+	@RequestMapping(value = "/_admin/admin_userExWriteOk_GD.do", method = RequestMethod.POST)
+	public ModelAndView adminqnainsertok(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+
+		int MemberId = loginInfo.getMemberId();
+		String Title = webHelper.getString("Title");
+		String Content = webHelper.getString("Content");
+		int Category = webHelper.getInt("Category");
+		String CreationDate = webHelper.getString("CreationDate");
+
+		Board input = new Board();
+		input.setContent(Content);
+		input.setTitle(Title);
+		input.setMemberId(MemberId);
+		input.setCategory(Category);
+		input.setCreationDate(CreationDate);
+
+		try {
+			// 데이터 저장
+			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+			boardService.addBoardadminReview(input);
+
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		String redirectUrl = contextPath + "/_admin/admin_userExRead_GD.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "만남후기 게시판에 등록되었습니다.");
+	}
+
 
 }

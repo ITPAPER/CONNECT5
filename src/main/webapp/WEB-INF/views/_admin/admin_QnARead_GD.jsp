@@ -119,13 +119,13 @@
 						<tr>
 							<td>다음글</td>
 							<th class="text_select" colspan="2"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() +1} '">
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do?BoardId=${output.getBoardId() +1} '">
 								${output.getTitle() }</th>
 						</tr>
 						<tr>
 							<td>이전글</td>
 							<th class="text_select" colspan="2"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementview.do?BoardId=${output.getBoardId() -1} '">
+								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QnARead_GD.do?BoardId=${output.getBoardId() -1} '">
 								${output.getTitle() }</th>
 						</tr>
 
@@ -135,7 +135,7 @@
 			<button class="btn btn-default"
 				onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementedit.do?BoardId=${output.getBoardId() }'">수정하기</button>
 			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do'">목록</button>
+				onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'">목록</button>
 		</div>
 	</div>
 

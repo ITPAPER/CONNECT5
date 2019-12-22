@@ -28,11 +28,11 @@
 		b.MemberId = u.MemberId
 		WHERE BoardId=#{BoardId}
 	</select>
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	<!-- 다중행 조회를 위한 기능 정의 -->
 	<select id="selectListStory"
@@ -70,7 +70,7 @@
 		FROM Board
 		WHERE BoardId=#{BoardId}
 	</select>
-	
+
 
 	<select id="selectItemadminReview"
 		parameterType="study.spring.simplespring.model.Board"
@@ -82,8 +82,8 @@
 		FROM Board
 		WHERE BoardId=#{BoardId}
 	</select>
-	
-	
+
+
 	<select id="selectItemColumn"
 		parameterType="study.spring.simplespring.model.Board"
 		resultMap="boardMap">
@@ -179,7 +179,7 @@
 			LIMIT #{offset}, #{listCount}
 		</if>
 	</select>
-	
+
 
 
 	<select id="selectListQnA"
@@ -359,7 +359,20 @@
 		INSERT INTO Board (
 		Title, Content,
 		CreationDate, Category, MemberId,viewcount
-		) VALUES (
+		)
+		VALUES (
+		#{Title},
+		#{Content}, now(), 1, #{MemberId},#{viewcount}
+		)
+	</insert>
+	<insert id="insertItemadminReview"
+		parameterType="study.spring.simplespring.model.Board"
+		useGeneratedKeys="true" keyProperty="BoardId">
+		INSERT INTO Board (
+		Title, Content,
+		CreationDate, Category, MemberId,viewcount
+		)
+		VALUES (
 		#{Title},
 		#{Content}, now(), 1, #{MemberId},#{viewcount}
 		)

@@ -150,13 +150,14 @@
 												success : function(data) {
 													alert("게시글이 등록 되었습니다.");
 													console.log(data);
+													location.href = "${pageContext.request.contextPath}/_coach/meetingTip_GD.do";
 												},
 												error : function() {
 													alert("오류발생");
 
 												}
 											});
-									location.href = "${pageContext.request.contextPath}/_coach/meetingTip_GD.do";
+									
 								}
 							
 							});

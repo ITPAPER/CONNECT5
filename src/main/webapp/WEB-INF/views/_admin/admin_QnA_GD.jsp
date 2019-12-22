@@ -99,7 +99,7 @@
 
 		<div class="col-md-4 searching_box">
 			<form method="get"
-				action="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do">
+				action="${pageContext.request.contextPath}/_admin/admin_QnA_GD.do">
 				<ul id="key">
 					<li><select name="keyField">
 							<option value="0">---선택---</option>
@@ -153,7 +153,7 @@
 								</c:if>
 
 								<%-- 상세페이지로 이동하기 위한 URL --%>
-								<c:url value="/_admin/admin_QnARead.do" var="viewUrl">
+								<c:url value="/_admin/admin_QnARead_GD.do" var="viewUrl">
 									<c:param name="BoardId" value="${item.getBoardId()}" />
 								</c:url>
 
@@ -176,7 +176,7 @@
 				<%-- 이전 그룹으로 이동 가능하다면? --%>
 				<c:when test="${pageData.prevPage > 0}">
 					<%-- 이동할 URL 생성 --%>
-					<c:url value="/_admin/admin_userManagement_YH.do" var="prevPageUrl">
+					<c:url value="/_admin/admin_QnARead_GD.do" var="prevPageUrl">
 						<c:param name="page" value="${pageData.prevPage}" />
 						<c:param name="keyword" value="${keyword}" />
 					</c:url>
@@ -191,7 +191,7 @@
 			<c:forEach var="i" begin="${pageData.startPage}"
 				end="${pageData.endPage}" varStatus="status">
 				<%-- 이동할 URL 생성 --%>
-				<c:url value="/_admin/admin_userManagement_YH.do" var="pageUrl">
+				<c:url value="/_admin/admin_QnARead_GD.do" var="pageUrl">
 					<c:param name="page" value="${i}" />
 					<c:param name="keyword" value="${keyword}" />
 				</c:url>
@@ -216,7 +216,7 @@
 				<%-- 다음 그룹으로 이동 가능하다면? --%>
 				<c:when test="${pageData.nextPage > 0}">
 					<%-- 이동할 URL 생성 --%>
-					<c:url value="/_admin/admin_userManagement_YH.do" var="nextPageUrl">
+					<c:url value="/_admin/admin_QnARead_GD.do" var="nextPageUrl">
 						<c:param name="page" value="${pageData.nextPage}" />
 						<c:param name="keyword" value="${keyword}" />
 					</c:url>
