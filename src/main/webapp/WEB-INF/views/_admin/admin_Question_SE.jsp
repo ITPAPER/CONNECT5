@@ -107,12 +107,14 @@
 						<%-- 조회결과가 있는  경우 --%>
 						<c:otherwise>
 							<%-- 조회 결과에 따른 반복 처리 --%>
+							
 							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<c:set var="Title" value="${item.getTitle()}" />
 								<c:set var="UserName" value="${item.getUserName()}" />
 								<c:set var="CreationDate" value="${item.getCreationDate()}" />
 								<c:set var="BoardId" value="${item.getBoardId() }" />
+								<c:set var="Reply_Ok" value="${item.getReply_Ok() }" />
 								
 								<%-- 검색어가 있다면? --%>
 								<c:if test="${keyword != ''}">
@@ -127,17 +129,19 @@
 								<c:url value="/_admin/admin_QuestionRead_SE.do" var="viewUrl">
 									<c:param name="BoardId" value="${item.getBoardId()}" />
 								</c:url>
-
+								<c:set var="num" value="${num-1}"></c:set>
 								<tr>
 									<td>${num}</td>
 									<td><a href="${viewUrl}">${item.getTitle()}</a></td>
 									<td>${item.getUserName()}</td>
 									<td>${item.getCreationDate()}</td>
-									<td>
-										<span class="label label-primary">완료</span>
-									</td>
-								</tr>
-								<c:set var="num" value="${num-1}"></c:set>
+								<c:if test="${Reply_Ok == 0 }">
+									<td><span class="label label-default">완료</span></td>
+								</c:if>
+								<c:if test="${Reply_Ok == 1 }">
+									<td><span class="label label-primary">완료</span></td>
+								</c:if>
+								</tr>		
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>

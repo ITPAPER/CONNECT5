@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -50,8 +53,8 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th id="num">제목</th>
-						<th>${output.title}</th>
+						<th class="text-center" id="num">제목</th>
+						<th class="text-left">${output.getTitle()}</th>
 						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
@@ -60,14 +63,39 @@
 						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
-						<th>다음글</th>
-						<th colspan="2" align="center"><a href="${pageContext.request.contextPath}/_info/noticeRead_SE.do">'창립 10주년 기념' 적극적인 서비스로 높은 성혼율 달성</a></th>
-					</tr>
-					<tr>
-						<th>이전글</th>
-						<th colspan="2" align="center"><a
-							href="#">설립 10주년 기념 '고객감사 빅 이벤트' 진행</a></th>
-					</tr>
+							<td>이전글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${nextBoard != null}">
+										<c:url var="nextUrl" value="/_info/noticeRead_SE.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
+										</c:url>
+											<a href="${nextUrl}">${nextBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										이전글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
+						</tr>
+						<tr>
+							<td>다음글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${prevBoard != null}">
+										<c:url var="prevUrl" value="/_info/noticeRead_SE.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
+										</c:url>
+											<a href="${prevUrl}">${prevBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										다음글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
+						</tr>
 				</tbody>
 			</table>
 		</div>

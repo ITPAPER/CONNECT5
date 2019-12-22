@@ -102,4 +102,20 @@ public interface BoardService {
 	public Board getPrevDocument(Board input) throws Exception;
 
 	public Board getNextDocument(Board input) throws Exception;
+	
+	public Board getPrevStoryDocument(Board input) throws Exception;
+
+	public Board getNextStoryDocument(Board input) throws Exception;
+	
+	public Board getPrevNoticeDocument(Board input) throws Exception;
+
+	public Board getNextNoticeDocument(Board input) throws Exception;
+	
+	public Board getPrevQnADocument(Board input) throws Exception;
+
+	public Board getNextQnADocument(Board input) throws Exception;
+	
+	public Board getPrevreviewADocument(Board input) throws Exception;
+
+	public Board getNextreviewDocument(Board input) throws Exception;
 }

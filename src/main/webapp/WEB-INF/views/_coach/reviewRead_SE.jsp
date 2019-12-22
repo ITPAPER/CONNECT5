@@ -52,8 +52,8 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th id="num">제목</th>
-						<th>${output.title}</th>
+						<th class="text-center" id="num">제목</th>
+						<th class="text-left">${output.getTitle()}</th>
 						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
@@ -62,14 +62,34 @@
 						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
-						<th>다음글</th>
-						<th colspan="2" align="center"><a
-							href="${pageContext.request.contextPath}/_coach/reviewRead_SE.do">배경 좋은 그, 집안의 반대, 결혼 생각이 있긴 한거야?</a></th>
+						<td>이전글</td>
+						<th class="text_select" colspan="2"><c:choose>
+								<c:when test="${nextBoard != null}">
+									<c:url var="nextUrl" value="/_coach/reviewRead_SE.do">
+										<c:param name="Title" value="${Title}" />
+										<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
+									</c:url>
+									<a href="${nextUrl}">${nextBoard.getTitle()}</a>
+								</c:when>
+								<c:otherwise>
+										이전글이 없습니다.
+									</c:otherwise>
+							</c:choose></th>
 					</tr>
 					<tr>
-						<th>이전글</th>
-						<th colspan="2" align="center"><a
-							href="#">신중한 그녀, 나 혼자 앞서간 건가?</a></th>
+						<td>다음글</td>
+						<th class="text_select" colspan="2"><c:choose>
+								<c:when test="${prevBoard != null}">
+									<c:url var="prevUrl" value="/_coach/reviewRead_SE.do">
+										<c:param name="Title" value="${Title}" />
+										<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
+									</c:url>
+									<a href="${prevUrl}">${prevBoard.getTitle()}</a>
+								</c:when>
+								<c:otherwise>
+										다음글이 없습니다.
+									</c:otherwise>
+							</c:choose></th>
 					</tr>
 				</tbody>
 			</table>

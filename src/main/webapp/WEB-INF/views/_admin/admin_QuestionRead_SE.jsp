@@ -44,7 +44,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Admin/questionRead.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -93,23 +94,21 @@
 					</thead>
 					<tbody>
 						<tr>
-							<th class="Question" colspan="6">${output.getTitle()}</th>
+							<th class="Question" colspan="6">${output.getContent()}</th>
 						</tr>
 					</tbody>
 				</table>
-				<form
-					action="${pageContext.request.contextPath}/_admin/admin_QuestionRead_SEaddOk.do?BoardId=${output.getBoardId()}"
-					method="POST">
-					<c:choose>
-						<c:when test="${fn:length(output1) gt 0}">
-							<c:forEach var="item" items="${output1}" varStatus="status">
-								<c:set var="Re_content" value="${item.getRe_Content()}" />
+
+				<c:choose>
+					<c:when test="${fn:length(output1) gt 0}">
+						<c:forEach var="item" items="${output1}" varStatus="status">
+							<c:set var="Re_content" value="${item.getRe_Content()}" />
 								<table class="table table-bordered">
 									<tbody>
 										<tr>
 											<th id="title">제목</th>
-											<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input type="hidden"
-												name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
+											<th id="textarea">안녕하세요. 연-결 운영진 입니다.<input
+												type="hidden" name="Re_Title" value="안녕하세요. 연-결 운영진 입니다." /></th>
 											<th id="title">작성자</th>
 											<th id="userid">운영진</th>
 											<th id="title">문의일</th>
@@ -122,14 +121,16 @@
 										</tr>
 									</tbody>
 								</table>
-							</c:forEach>
-							<button class="btn btn-default"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
-							<button class="btn btn-default"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+						</c:forEach>
+						<button type="submit" class="btn btn-default">답변쓰기</button>
+						<button class="btn btn-default"
+							onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
 
-						</c:when>
-						<c:otherwise>
+					</c:when>
+					<c:otherwise>
+						<form
+							action="${pageContext.request.contextPath}/_admin/admin_QuestionRead_SEaddOk.do?BoardId=${output.getBoardId()}"
+							method="POST">
 							<table class="table table-bordered">
 								<tbody>
 									<tr>
@@ -151,17 +152,16 @@
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn btn-default"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_QuestionAnswer2_SEview.do'">답변쓰기</button>
-							<button class="btn btn-default"
-								onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
-						</c:otherwise>
-					</c:choose>
-				</form>
+							<button type="submit" class="btn btn-default">답변쓰기</button>
+						<button class="btn btn-default"
+							onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_Question_SE.do'">목록</button>
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Javascript -->
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/bootstrap.min.js"></script>
