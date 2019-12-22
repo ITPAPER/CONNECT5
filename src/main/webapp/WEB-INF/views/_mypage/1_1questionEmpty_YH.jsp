@@ -57,11 +57,11 @@
 					<c:otherwise>
 						<table class="table table-striped table-bordered table-hover">
 							<tr>
-								<th id="num">번호</th>
-								<th>제목</th>
-								<th id="name">이름</th>
-								<th id="date">등록일</th>
-								<th id="reply_ok">답변여부</th>
+								<td>번호</td>
+								<td>제목</td>
+								<td>이름</td>
+								<td>등록일</td>
+								<td>답변여부</td>
 							</tr>
 							<tr>
 								<%-- 조회 결과에 따른 반복 처리 --%>
@@ -70,6 +70,7 @@
 									<c:set var="Title" value="${item.getTitle()}" />
 									<c:set var="Username" value="${item.getUserName()}" />
 									<c:set var="CreationDate" value="${item.getCreationDate()}" />
+									<c:set var="Reply_Ok" value="${item.getReply_Ok()}" />
 
 									<c:url value="1_1questionview.do" var="viewUrl">
 										<c:param name="BoardId" value="${item.getBoardId()}" />
@@ -80,7 +81,12 @@
 										<td><a href="${viewUrl}">${item.getTitle()}</a></td>
 										<td>${item.getUserName()}</td>
 										<td>${item.getCreationDate()}</td>
-										<th><span class="badge badge_ok">완료</span></th>
+										<c:if test="${Reply_Ok == 0 }">
+										<td><span class="label label-default">완료</span></td>
+										</c:if>
+										<c:if test="${Reply_Ok == 1 }">
+										<td><span class="label label-primary">완료</span></td>
+										</c:if>
 									</tr>
 								<c:set var="num" value="${num-1}" ></c:set>
 								</c:forEach>

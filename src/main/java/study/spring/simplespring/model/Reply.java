@@ -11,4 +11,5 @@ public class Reply {
 	private int BoardId;
 	private int MemberId;
 	private String UserName;
+	private int Reply_Ok;
 }

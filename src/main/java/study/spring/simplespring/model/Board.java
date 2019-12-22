@@ -15,6 +15,7 @@ public class Board {
 	private String UserName;
 	private int isadmin;
 	private int viewcount;
+	private int Reply_Ok;
 	
 	/** LIMIT 절에서 사용할 조회 시작 위치 */
 	private static int offset;

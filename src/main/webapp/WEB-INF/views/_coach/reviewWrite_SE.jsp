@@ -27,7 +27,7 @@
 		} else {
 			return;
 		}
-		location.href = "${pageContext.request.contextPath}/_coach/QnARead_SE.do;
+		location.href = "${pageContext.request.contextPath}/_coach/reviewRead_SE.do;
 	}
 
 	function cancel() {
@@ -36,7 +36,7 @@
 		} else {
 			return;
 		}
-		location.href = "${pageContext.request.contextPath}/_coach/QnA_SE.do";
+		location.href = "${pageContext.request.contextPath}/_coach/review_SE.do";
 	}
 </script>
 
@@ -75,7 +75,7 @@
 	</div>
 	
 	<div class="col-md-10 content">
-		<form method="post" action="${pageContext.request.contextPath}/_coach/QnAWrite_ok_SE.do">
+		<form method="post" action="${pageContext.request.contextPath}/_coach/reviewWrite_ok_SE.do">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<tbody>

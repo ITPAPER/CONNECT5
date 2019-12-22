@@ -10,6 +10,7 @@
 		<result property="BoardId" column="BoardId" />
 		<result property="MemberId" column="MemberId" />
 		<result property="UserName" column="UserName" />
+		<result property="Reply_Ok" column="Reply_Ok" />
 	</resultMap>
 	
 	<select id="selectItem"
@@ -73,8 +74,8 @@
 		parameterType="study.spring.simplespring.model.Reply"
 		useGeneratedKeys="true" keyProperty="ReplyId">
 		INSERT INTO Reply
-		(Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId)
-		VALUES (#{Re_Title}, #{Re_Content}, #{Re_CreationDate}, #{BoardId}, #{MemberId})
+		(Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId,Reply_Ok)
+		VALUES (#{Re_Title}, #{Re_Content}, #{Re_CreationDate}, #{BoardId}, #{MemberId},1)
 
 	</insert>
 	
@@ -91,7 +92,7 @@
 		parameterType="study.spring.simplespring.model.Reply"
 		resultMap="replyMap">
 		SELECT ReplyId, Re_Title, Re_Content,
-		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate,
+		DATE_FORMAT(Re_CreationDate,'%Y-%m-%d') AS Re_CreationDate, Reply_Ok,
 		r.BoardId, r.MemberId, u.UserName
 		FROM Reply r
 		INNER JOIN User u ON r.MemberId = u.MemberId

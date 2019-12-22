@@ -84,25 +84,31 @@
 		</div>
 
 		<div class="col-md-4 searching_box">
-			<form action="${pageContext.request.contextPath }/_admain/admin_userApply_YH.do"></form>
-			<ul id="key">
-				<li>
-					<input type="search" name="keyword" id="s_btn" value="${keyword}">
-					<button type="submit" onclick="searchName()">검색</button>
-				</li>
-			</ul>
+			<form method="get" action="${pageContext.request.contextPath}/_admin/admin_userApply_YH.do">
+				<ul id="key">
+					<li>
+						<select name="keyField">
+							<option value="0">---선택---</option>
+							<option value="UserName">이름</option>
+							<option value="id">번호</option>
+						</select> 
+							<input type="search" name="keyword" value="${keyword}" />
+						<button type="submit" id="s_btn">검색</button>
+					</li>
+				</ul>
+			</form>
 		</div>
 
 		<div class="col-md-10 text_box">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
-						<tr class="text-center">
+						<tr>
 							<td id="num">번호</td>
 							<td id="name">이름</td>
-							<td id="num">신청날짜</td>
-							<td id="date">매칭 신청일</td>
-							<td id="username">신청취소</td>
+							<td id="num">스페셜서비스</td>
+							<td id="date">신청날짜</td>
+							<td id="username">매칭 신청일</td>
 							<td id="delete">신청취소</td>
 						</tr>
 					</thead>
@@ -111,26 +117,103 @@
 							<%-- 조회결과가 없는 경우 --%>
 							<c:when test="${output == null || fn:length(output) == 0}">
 								<tr>
-									<td colspan="9" align="center">조회결과가 없습니다.</td>
+									<td colspan="9" align="center">데이트 신청 회원이 없습니다.</td>
 								</tr>
 							</c:when>
 							<%-- 조회결과가 있는  경우 --%>
 							<c:otherwise>
 								<%-- 조회 결과에 따른 반복 처리 --%>
-								<c:forEach items="${output}" var="item" varStatus="status">
+								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+								<c:forEach var="item" items="${output}" varStatus="status">
+									<c:set var="ReqMatchId" value="${item.getReqMatchId()}" />
+									<c:set var="UserName" value="${item.getUserName()}" />
+									<c:set var="Select_Date" value="${item.getSelect_Date()}" />
+									<c:set var="Start" value="${item.getStart()}" />
+									<c:set var="ReqSpService" value="${item.getReqSpService()}" />
+									
+									<%-- 검색어가 있다면? --%>
+									<c:if test="${keyword != ''}">
+										<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
+										<c:set var="mark" value="<mark>${keyword}</mark>" />
+										<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+										<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
+									</c:if>
+									
 									<tr>
-										<td align="center"><c:out value="${item.ReqMatchId}"/></td>
-										<td align="center">${item.UserName}</td>
-										<td align="center">${item.Select_Date}</td>
-										<td align="center">${item.Choose_Date}</td>
-										<td align="center"></td>
-										<td align="center"><button type="button" class="label label-warning" onclick="deldet_post()">삭제</button></td>
+										<td>${num}</td>
+										<td>${UserName}</td>
+										<c:if test="${ReqSpService == 0 }">
+										<td>X</td>
+										</c:if>
+										<c:if test="${ReqSpService == 1 }">
+										<td>O</td>
+										</c:if>
+										<td>${Select_Date}</td>
+										<td>${Start}</td>
+										<td><button type="button" class="label label-warning" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userApply_YHdeleteOk.do?ReqMatchId=${ReqMatchId}'">삭제</button></td>
 									</tr>
+									<c:set var="num" value="${num-1}"></c:set>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
 				</table>
+				<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_userApply_YH.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${prevPageUrl}">&laquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_admin/admin_userApply_YH.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
+
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<ul class="pagination pagination-sm">
+							<li class="active"><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_userApply_YH.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${pageUrl}">&raquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 	</div>

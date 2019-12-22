@@ -982,4 +982,156 @@ public class BoardServiceImpl implements BoardService {
         return result;
 	}
 
+
+	@Override
+	public Board getPrevStoryDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectStoryPrevDocument", input);
+			
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("이전글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Board getNextStoryDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectStoryNextDocument", input);
+
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("다음글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public Board getPrevNoticeDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectNoticePrevDocument", input);
+			
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("이전글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Board getNextNoticeDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectNoticeNextDocument", input);
+
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("다음글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public Board getPrevQnADocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectQnAPrevDocument", input);
+			
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("이전글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Board getNextQnADocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectQnANextDocument", input);
+
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("다음글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+
+	@Override
+	public Board getPrevreviewADocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectReviewPrevDocument", input);
+			
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("이전글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Board getNextreviewDocument(Board input) throws Exception {
+		Board result = null;
+
+		try {
+			result = sqlSession.selectOne("BoardMapper.selectReviewNextDocument", input);
+
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("다음글이 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 }

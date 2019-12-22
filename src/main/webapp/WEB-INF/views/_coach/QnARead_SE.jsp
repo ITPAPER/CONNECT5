@@ -56,8 +56,8 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th id="num">제목</th>
-						<th>${output.title}</th>
+						<th class="text-center" id="num">제목</th>
+						<th class="text-left">${output.getTitle()}</th>
 						<th id="date">${output.creationDate}</th>
 					</tr>
 				</thead>
@@ -66,14 +66,38 @@
 						<td id="context" colspan="3">${output.content}</td>
 					</tr>
 					<tr>
-						<th>다음글</th>
-						<th colspan="2" align="center" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${num +1} '">
-								${output.getTitle()}</th>
+						<td>이전글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${nextBoard != null}">
+										<c:url var="nextUrl" value="/_coach/QnARead_SE.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
+										</c:url>
+											<a href="${nextUrl}">${nextBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										이전글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
 					</tr>
 					<tr>
-						<th>이전글</th>
-						<th colspan="2" align="center" onclick="location.href = '${pageContext.request.contextPath}/_coach/QnARead_SE.do?BoardId=${num -1} '">
-								${output.getTitle()}</th>
+						<td>다음글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${prevBoard != null}">
+										<c:url var="prevUrl" value="/_coach/QnARead_SE.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
+										</c:url>
+											<a href="${prevUrl}">${prevBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										다음글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
 					</tr>
 				</tbody>
 			</table>
