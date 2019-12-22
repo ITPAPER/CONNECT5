@@ -137,7 +137,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId,u.UserName
+		ContentImg, Category,viewcount, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -161,7 +161,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category,viewcount, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId

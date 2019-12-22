@@ -52,7 +52,8 @@ public class YH_Controller {
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항) 
 	@RequestMapping(value = "/_admin/admin_userManagement_YH.do", method = RequestMethod.GET)
 	public ModelAndView list(Model model) {
 
@@ -104,7 +105,8 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagement_YH");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 추가)
 	@RequestMapping(value = "/_admin/admin_userManagementadd.do", method = RequestMethod.GET)
 	public ModelAndView add(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
@@ -118,7 +120,7 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagementadd");
 
 	}
-
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 추가)
 	@RequestMapping(value = "/_admin/admin_userManagementaddOk.do", method = RequestMethod.POST)
 	public ModelAndView addOk(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
@@ -151,7 +153,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "공지사항이 등록되었습니다.");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 보기)
 	@RequestMapping(value = "/_admin/admin_userManagementview.do", method = RequestMethod.GET)
 	public ModelAndView view(Model model) {
 
@@ -204,7 +207,8 @@ public class YH_Controller {
 		model.addAttribute("output", output);
 		return new ModelAndView("_admin/admin_userManagementview");
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 수정)
 	@RequestMapping(value = "/_admin/admin_userManagementedit.do", method = RequestMethod.GET)
 	public ModelAndView adminUseredit(Model model) {
 
@@ -242,7 +246,8 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagementedit");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 수정 )
 	@RequestMapping(value = "/_admin/admin_userManagementeditOk.do", method = RequestMethod.POST)
 	public ModelAndView admin_Useredit_ok(Model model) {
 
@@ -277,7 +282,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "공지사항이 수정 되었습니다.");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 삭제)
 	@RequestMapping(value = "/_admin/admin_userManagementdeleteOk.do", method = RequestMethod.GET)
 	public ModelAndView delete_ok(Model model) {
 
@@ -300,6 +306,7 @@ public class YH_Controller {
 		return webHelper.redirect(contextPath + "/_admin/admin_userManagement_YH.do", "삭제되었습니다.");
 	}
 	
+	// 관리자 페이지 신청 현황
 	@RequestMapping(value = "/_admin/admin_userApply_YH.do", method = RequestMethod.GET)
 	public ModelAndView userApplyview(Model model) {
 		/** 1) 필요한 변수값 생성 */
@@ -356,6 +363,7 @@ public class YH_Controller {
 
 	}
 	
+	// 관리자 페이지 신청 현황 삭제
 	@RequestMapping(value = "/_admin/admin_userApply_YHdeleteOk.do", method = RequestMethod.GET)
 	public ModelAndView userApplydelete_ok(Model model) {
 
@@ -378,6 +386,7 @@ public class YH_Controller {
 		return webHelper.redirect(contextPath + "/_admin/admin_userApply_YH.do", "신청 취소 되었습니다.");
 	}
 	
+	// My 페이지 1:1문의 하기
 	@RequestMapping(value = "/_mypage/1_1questionEmpty_YH.do", method = RequestMethod.GET)
 	public ModelAndView view(Model model, HttpServletRequest request, HttpServletResponse response) {
 		int nowPage    = webHelper.getInt("page", 1);           // 페이지 번호 (기본값 1)
@@ -392,6 +401,11 @@ public class YH_Controller {
 			String login = loginInfo.getUserName();
 
 			model.addAttribute("login", login);
+		}
+		
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
 		}
 
 		String UserName = loginInfo.getUserName();
@@ -430,7 +444,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionEmpty_YH");
 
 	}
-
+	
+	// My 페이지 1:1문의글 추가
 	@RequestMapping(value = "/_mypage/1_1questionadd.do", method = RequestMethod.GET)
 	public ModelAndView questionadd(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
@@ -445,7 +460,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionadd");
 
 	}
-
+	
+	// My 페이지 1:1문의글 추가 
 	@RequestMapping(value = "/_mypage/1_1questionadd_Ok.do", method = RequestMethod.POST)
 	public ModelAndView questionaddOk(Model model) {
 
@@ -479,7 +495,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "1:1 문의글이 등록되었습니다.");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 보기
 	@RequestMapping(value = "/_mypage/1_1questionview.do", method = RequestMethod.GET)
 	public ModelAndView wait(Model model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -522,7 +539,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionview");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 수정하기
 	@RequestMapping(value = "/_mypage/1_1questionedit.do", method = RequestMethod.GET)
 	public ModelAndView edit(Model model) {
 
@@ -556,7 +574,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionedit");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 수정하기
 	@RequestMapping(value = "/_mypage/1_1questioneditOk.do", method = RequestMethod.POST)
 	public ModelAndView edit_ok(Model model) {
 		
