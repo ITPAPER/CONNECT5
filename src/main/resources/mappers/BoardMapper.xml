@@ -383,10 +383,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 3, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 3, #{MemberId},0
 		)
 	</insert>
 	<insert id="insertItemTip"
@@ -417,10 +417,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 4, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 4, #{MemberId},0
 		)
 
 
