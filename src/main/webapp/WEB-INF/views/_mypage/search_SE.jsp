@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -87,8 +90,20 @@
 	</div>
 	<div class="pull-right">
 		<br />
-		
-		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox" name="ReqSpService" value="1"/> 스페셜 서비스 사용</p>
+
+		<p><span
+				style="font-weight: bold; font-size: 1.3em; margin-left: 40px;"
+				id="name">${username} </span> <span> 님의 잔여 매칭 횟수 </span> <span
+				style="font-weight: bold; font-size: 1.3em;" id="count">
+				<c:if test="${date_rest == 1}">3
+				</c:if>
+				<c:if test="${date_rest == 2}">5
+				</c:if>
+				<c:if test="${date_rest == 3}">7
+				</c:if>
+				<c:if test="${date_rest == 4}">Free
+				</c:if>
+			</span> <span> 회 </span><br/><input type="checkbox" name="ReqSpService" value="1" style="margin-left: 40px;" /> 스페셜 서비스 사용</p>
 		<button id="addBtn" type="submit" class="btn btn-default pull-right">등록하기</button>
 		
 	</div>

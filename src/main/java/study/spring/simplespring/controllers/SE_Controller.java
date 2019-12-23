@@ -1008,6 +1008,8 @@ public class SE_Controller {
 
 		int isSpUser = loginInfo.getIsSpUser();
 		int MemberId = loginInfo.getMemberId();
+		String name = (String) loginInfo.getUserName();
+		Integer date_rest = (Integer) loginInfo.getDate_Rest();
 
 		/** 데이터 조회하기 */
 		// 데이터 조회에 필요한 조건값을 Beans에 저장하기
@@ -1045,6 +1047,8 @@ public class SE_Controller {
 		/** 3) View 처리 */
 		model.addAttribute("output", output);
 		model.addAttribute("jsonList", jsonList);
+		model.addAttribute("username", name);
+		model.addAttribute("date_rest", date_rest);
 
 		return new ModelAndView("_mypage/search_SE");
 	}
