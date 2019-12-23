@@ -11,6 +11,11 @@
 <title>datePicker</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/datepicker/datepicker.min.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/SE/Mypage/searchDateOpen.css">
+<style>
+body{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<h1>날짜를 선택하세요.</h1>
@@ -36,7 +41,8 @@
                 format: 'yyyy-mm-dd',   // 날짜 형식
                 language: 'ko-KR',      // 언어
                 weekStart: 0,           // 시작요일(0=일요일~6=토요일)
-                trigger: '#show-cal'    // 클릭시 달력을 표시할 요소의 id
+                trigger: '#show-cal',    // 클릭시 달력을 표시할 요소의 id
+                startDate:Date()
             });
         });
         

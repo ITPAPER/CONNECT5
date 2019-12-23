@@ -22,7 +22,7 @@
       $(document).ready(function () {
         $('#addBtn').click(function () {
         	var ReqSpService = $('input[name="ReqSpService"]:checked').val();
-        	window.open('${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do?ReqSpService='+ReqSpService,'mywin','width=500, height=300, scrollbars=yes');
+        	window.open('${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do?ReqSpService='+ReqSpService,'mywin','width=700, height=450, scrollbars=yes');
         });
       });
 </script>

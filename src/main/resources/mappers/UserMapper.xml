@@ -755,5 +755,15 @@
 
 	</select>
 	
+	<update id="reqSpService_updateUser"
+      parameterType="study.spring.simplespring.model.User">
+      UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}
+   </update>
+   
+   <update id="reqMatch_isSpUserupdateUser"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET isSpUser = 0 WHERE MemberId = #{MemberId}
+	</update>
+	
 
 </mapper>

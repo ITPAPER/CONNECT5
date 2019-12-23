@@ -46,8 +46,11 @@ select {
 	width: 100px;
 	height: 30px;
 }
-.pull-right{
+.pull-right > p{
 	padding-right:80px;
+}
+#addBtn{
+	margin-right:75px;
 }
 
 /** 이미지와 input요소간의 정렬 설정 */

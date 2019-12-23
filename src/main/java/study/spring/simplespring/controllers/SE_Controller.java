@@ -974,6 +974,10 @@ public class SE_Controller {
 		// 상대방 MemberId searchRequestConfirm_SE 에서 던져줬음
 		int otherMemberId = webHelper.getInt("MemberId");
 		// 상대방 MemberId 가 0 이 아닐때만 이 로직이 실행되야 함
+		if (otherMemberId == loginInfo.getMemberId()){
+			String redirectUrl = contextPath + "/_mypage/searchview_SE.do";
+			return webHelper.redirect(redirectUrl,"인연을 다시 찾아주세요."+ loginInfo.getUserName() + "님 과 데이트 할 수 없어요!");
+		}
 		if (otherMemberId != 0) {
 			// User에 otherUser 객체 만든 후 상대방 MemberId 넣어줌
 			User otherUser = new User();

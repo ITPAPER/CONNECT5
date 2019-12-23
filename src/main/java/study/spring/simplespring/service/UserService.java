@@ -157,4 +157,6 @@ public interface UserService {
 	public int getCountM_All(User input) throws Exception;
 	
 	public int getCountW_All(User input) throws Exception;
+	
+	public int editreqMatch_isSpUserupdateUser(User input) throws Exception;
 }
