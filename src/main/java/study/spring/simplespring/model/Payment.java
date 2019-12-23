@@ -17,6 +17,7 @@ public class Payment {
 	private String datetime;
 	private int member_lv;
 	private int managerid;
+	private int clear;
 	
 	
 	private static int offset;

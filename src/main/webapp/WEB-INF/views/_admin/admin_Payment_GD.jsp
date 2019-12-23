@@ -51,14 +51,22 @@
 
 
 <script>
-    	let nowPage = 1;    // 현재 페이지의 기본값
     	
     	$(function() {
             /** 더 보기 버튼에 대한 이벤트 정의 */
     		$("#ok").click(function() {
-               
-    		
+            	
+    			
+    			
     		});
+            
+			$("#cancel").click(function() {
+            	
+    			
+    			
+    		});
+            
+            
     	});
     </script>
 
@@ -144,18 +152,19 @@
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<%--출력을 위해 준비한 학과이름과 위치 --%>
 								<c:set var="name" value="${item.username}" />
-
+								<c:set var="clear" value="${item.clear}" />
 								<%-- 검색어가 있다면? --%>
 								<c:if test="${keyword != ''}">
 									<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
 									<c:set var="mark" value="<mark>${keyword}</mark>" />
 									<%-- 출력을 위해 준비한 교수이름에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
-									<c:set var="name" value="${fn:replace(username, keyword, mark)}" />
+									<c:set var="name"
+										value="${fn:replace(username, keyword, mark)}" />
 								</c:if>
 
 								<form method="post"
 									action="${pageContext.request.contextPath}/_admin/admin_Payment_edit_GD.do">
-									<input type="hidden" name="UserName" value="${item.username}">
+									<input type="hidden" name="MemberId" value="${item.memberid}">
 									<tr>
 										<td align="center">${item.paymentid}</td>
 										<td align="center">${item.username}</td>
@@ -215,8 +224,13 @@
 												<option value="4">무제한</option>
 										</select></td>
 
-										<td align="center"><input type="submit" value="확인"
-											id="ok"></td>
+										<c:if test="${clear == 0 }">
+											<td align="center"><input type="submit" value="확인"
+												id="ok"></td>
+										</c:if>
+										<c:if test="${clear == 1 }">
+											<td align="center"><span>완료</span></td>
+										</c:if>
 									</tr>
 								</form>
 							</c:forEach>
@@ -225,58 +239,59 @@
 				</tbody>
 			</table>
 			<!-- 페이지 번호 구현 -->
-    <%-- 이전 그룹에 대한 링크 --%>
-    <c:choose>
-        <%-- 이전 그룹으로 이동 가능하다면? --%>
-        <c:when test="${pageData.prevPage > 0}">
-            <%-- 이동할 URL 생성 --%>
-            <c:url value="/_admin/admin_Payment_GD.do" var="prevPageUrl">
-                <c:param name="page" value="${pageData.prevPage}" />
-                <c:param name="keyword" value="${keyword}" />
-            </c:url>
-            <a href="${prevPageUrl}">[이전]</a>
-        </c:when>
-        <c:otherwise>
+			<%-- 이전 그룹에 대한 링크 --%>
+			<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_Payment_GD.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">[이전]</a>
+				</c:when>
+				<c:otherwise>
             [이전]
         </c:otherwise>
-    </c:choose>
-    
-    <%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
-    <c:forEach var="i" begin="${pageData.startPage}" end="${pageData.endPage}" varStatus="status">
-        <%-- 이동할 URL 생성 --%>
-        <c:url value="/_admin/admin_Payment_GD.do" var="pageUrl">
-            <c:param name="page" value="${i}" />
-            <c:param name="keyword" value="${keyword}" />
-        </c:url>
-        
-        <%-- 페이지 번호 출력 --%>
-        <c:choose>
-            <%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
-            <c:when test="${pageData.nowPage == i}">
-                <strong>[${i}]</strong>
-            </c:when>
-            <%-- 나머지 페이지의 경우 링크 적용함 --%>
-            <c:otherwise>
-                <a href="${pageUrl}">[${i}]</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-    
-    <%-- 다음 그룹에 대한 링크 --%>
-    <c:choose>
-        <%-- 다음 그룹으로 이동 가능하다면? --%>
-        <c:when test="${pageData.nextPage > 0}">
-            <%-- 이동할 URL 생성 --%>
-            <c:url value="/_admin/admin_Payment_GD.do" var="nextPageUrl">
-                <c:param name="page" value="${pageData.nextPage}" />
-                <c:param name="keyword" value="${keyword}" />
-            </c:url>
-            <a href="${nextPageUrl}">[다음]</a>
-        </c:when>
-        <c:otherwise>
+			</c:choose>
+
+			<%-- 페이지 번호 (시작 페이지 부터 끝 페이지까지 반복) --%>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_admin/admin_Payment_GD.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
+
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<strong>[${i}]</strong>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<a href="${pageUrl}">[${i}]</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+
+			<%-- 다음 그룹에 대한 링크 --%>
+			<c:choose>
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_admin/admin_Payment_GD.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">[다음]</a>
+				</c:when>
+				<c:otherwise>
             [다음]
         </c:otherwise>
-    </c:choose>
+			</c:choose>
 		</div>
 	</div>
 	<!-- Javascript -->
@@ -284,6 +299,15 @@
 		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+
+
+
+	<script>
+	
+		
+		console.log(${output});
+		
+		</script>
 
 </body>
 </html>

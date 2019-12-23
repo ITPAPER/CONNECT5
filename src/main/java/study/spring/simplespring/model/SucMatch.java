@@ -8,6 +8,7 @@ public class SucMatch {
 	private int Status;
 	private int ReqMatchId;
 	private int MemberId;
+	private String UserName;
 	private int OtherMemberId;
 	
 }

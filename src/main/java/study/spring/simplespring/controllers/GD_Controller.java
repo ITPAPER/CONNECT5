@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import lombok.Data;
 import study.spring.simplespring.helper.MailHelper;
 import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
@@ -24,10 +25,14 @@ import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
 import study.spring.simplespring.model.Manager;
 import study.spring.simplespring.model.Payment;
+import study.spring.simplespring.model.ReqMatch;
+import study.spring.simplespring.model.SucMatch;
 import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.service.ManagerService;
 import study.spring.simplespring.service.PaymentService;
+import study.spring.simplespring.service.ReqMatchService;
+import study.spring.simplespring.service.SucMatchService;
 import study.spring.simplespring.service.UserService;
 
 @Controller
@@ -53,6 +58,12 @@ public class GD_Controller {
 
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	SucMatchService sucmatchService;
+	
+	@Autowired
+	ReqMatchService reqmatchService;
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
@@ -433,9 +444,10 @@ public class GD_Controller {
 		if (loginInfo == null) {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
 			return webHelper.redirect(redirectUrl, "로그인후 이용 하실수 있습니다.");
-
-		} else {
+		} 
+		
 			String name = (String) loginInfo.getUserName();
+			Integer memberid = (Integer) loginInfo.getMemberId();
 			Integer date_rest = (Integer) loginInfo.getDate_Rest();
 			Integer memberlv = (Integer) loginInfo.getMember_Lv();
 			Integer managerid = (Integer) loginInfo.getManagerId();
@@ -444,17 +456,91 @@ public class GD_Controller {
 			model.addAttribute("date_rest", date_rest);
 			model.addAttribute("memberlv", memberlv);
 			model.addAttribute("managerid", managerid);
-
-		}
-
+			
+			ReqMatch reqmatch = new ReqMatch();
+			SucMatch sucmatch = new SucMatch();
+			
+			List<SucMatch> sucuser = null;
+			ReqMatch requser = null;	
+	
 		try {
+		
 			managerList = managerService.getManagerList(null);
+			
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-
+		
+			reqmatch.setMemberId(memberid);
+			sucmatch.setMemberId(memberid);
+			
+			try {
+				requser = reqmatchService.getReqMatchItem(reqmatch);
+				sucuser = sucmatchService.getSucMatchList(sucmatch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(requser != null) {
+				model.addAttribute("requser", requser);
+			}
+			
+			if(sucuser != null) {
+				System.out.println("@@@@@@@@@@@@@"+sucuser);
+				model.addAttribute("sucuser",sucuser);
+			}
+	
+		
 		model.addAttribute("managerList", managerList);
 		return new ModelAndView("_mypage/myInfo_GD");
+	}
+	
+	@RequestMapping(value = "/_mypage/DateConfirm.do", method = RequestMethod.GET)
+	public ModelAndView dateconfirm(Model model) {
+		
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		SucMatch sucmatch = new SucMatch();
+		int memberid = loginInfo.getMemberId();
+		
+		int sucmatchid = webHelper.getInt("SucMatchId");
+		
+		sucmatch.setSucMatchId(sucmatchid);
+		sucmatch.setMemberId(memberid);
+				
+		try {
+			sucmatchService.editSucMatch(sucmatch);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "매칭이 성사 되었습니다.");
+
+	}
+	
+	@RequestMapping(value = "/_mypage/DateConfirm1.do", method = RequestMethod.GET)
+	public ModelAndView datecancel(Model model) {
+		
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		SucMatch sucmatch = new SucMatch();
+		int memberid = loginInfo.getMemberId();
+	
+		sucmatch.setMemberId(memberid);
+				
+		try {
+			sucmatchService.editSucMatch1(sucmatch);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "데이트 신청을 거절 하셨습니다.");
+
 	}
 
 	@RequestMapping(value = "/_coach/loveColumn_GD.do", method = RequestMethod.GET)
@@ -494,7 +580,6 @@ public class GD_Controller {
 		} catch (Exception e) {
 			System.out.println(output);
 			return webHelper.redirect(null, e.getLocalizedMessage());
-
 		}
 
 		System.out.println(output + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -998,16 +1083,19 @@ public class GD_Controller {
 		int memlv = webHelper.getInt("memlv");
 		int service = webHelper.getInt("service");
 		int manager = webHelper.getInt("manager");
-		String UserName = webHelper.getString("UserName");
+		int	memberid = webHelper.getInt("MemberId");
 
 		User input = new User();
 		input.setMember_Lv(memlv);
 		input.setDate_Rest(service);
 		input.setManagerId(manager);
-		input.setUserName(UserName);
+		input.setMemberId(memberid);
 
 		try {
+			
+			paymentService.clearManager(input);
 			userService.managerEditUser(input);
+			
 		} catch (Exception e) {
 
 			return webHelper.redirect(null, "DB 오류");

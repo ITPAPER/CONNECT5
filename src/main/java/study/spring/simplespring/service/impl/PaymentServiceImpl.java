@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import study.spring.simplespring.model.Payment;
+import study.spring.simplespring.model.User;
 import study.spring.simplespring.service.PaymentService;
 
 @Service
@@ -91,5 +92,26 @@ public class PaymentServiceImpl implements PaymentService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int clearManager(User input) throws Exception {
+		int result = 0;
+
+	      try {
+	         result = sqlSession.update("PaymentMapper.updateItem", input);
+	            
+	         if (result == 0) {
+	            throw new NullPointerException("result=0");
+	         }
+	      } catch (NullPointerException e) {
+	         log.error(e.getLocalizedMessage());
+	         throw new Exception("수정된 데이터가 없습니다.");
+	      } catch (Exception e) {
+	         log.error(e.getLocalizedMessage());
+	         throw new Exception("데이터 수정에 실패했습니다.");
+	      }
+
+	      return result;
+	   }
 
 }

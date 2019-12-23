@@ -73,6 +73,8 @@ public class User {
 	
 	private int ReqSpService;
 	
+	private int clear;
+	
 	private static int offset;
 
 	/** LIMIT 절에서 사용할 조회할 데이터 수 */

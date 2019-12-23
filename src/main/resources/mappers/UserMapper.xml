@@ -408,7 +408,7 @@
 		SET member_lv=#{Member_Lv} ,
 		date_rest=#{Date_Rest}, managerid=#{ManagerId}
 		WHERE
-		UserName=#{UserName};
+		MemberId=#{MemberId};
 	</update>
 
 	<select id="selectCountAnnualSalary8090W"

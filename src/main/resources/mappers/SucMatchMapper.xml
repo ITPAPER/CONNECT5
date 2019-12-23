@@ -3,15 +3,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="SucMatchMapper">
-<resultMap id="SucMatchMap"
-type="study.spring.simplespring.model.SucMatch">
-<result property="SucMatchId" column="SucMatchId" />
-<result property="Status" column="Status" />
-<result property="ReqMatchId" column="ReqMatchId" />
-<result property="MemberId" column="MemberId" />
-<result property="OtherMemberId" column="OtherMemberId" />
-</resultMap>
-	
+	<resultMap id="SucMatchMap"
+		type="study.spring.simplespring.model.SucMatch">
+		<result property="SucMatchId" column="SucMatchId" />
+		<result property="Status" column="Status" />
+		<result property="ReqMatchId" column="ReqMatchId" />
+		<result property="MemberId" column="MemberId" />
+		<result property="OtherMemberId" column="OtherMemberId" />
+	</resultMap>
+
 	<insert id="insertSucMatchItem"
 		parameterType="study.spring.simplespring.model.SucMatch"
 		useGeneratedKeys="true" keyProperty="SucMatchId">
@@ -20,8 +20,43 @@ type="study.spring.simplespring.model.SucMatch">
 		Status, ReqMatchId, MemberId, OtherMemberId
 		)
 		VALUES (
-		#{SucMatchId}, #{Status}, #{ReqMatchId}, #{MemberId},#{OtherMemberId}
+		#{SucMatchId},
+		#{Status}, #{ReqMatchId}, #{MemberId},#{OtherMemberId}
 		)
 	</insert>
+
+	<select id="selectItem"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT * FROM sucmatch
+		Inner join user ON (user.MemberId =
+		sucmatch.otherMemberId) AND
+		sucmatch.otherMemberId = #{MemberId}
+
+	</select>
+
+	<select id="selectList"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT s.SucMatchId,s.Status,
+		s.ReqMatchId,s.MemberId, s.OtherMemberId, u.UserName FROM connect5.sucmatch s
+		INNER JOIN connect5.user u ON (s.OtherMemberId = u.MemberId) AND
+		s.OtherMemberId = #{MemberId}
+
+	</select>
+	
+	<update id="updateItem"
+		parameterType="study.spring.simplespring.model.SucMatch">
+		UPDATE SucMatch SET
+		status = 2
+		WHERE MemberId=#{MemberId} and SucMatchId=#{SucMatchId}
+	</update>
+	
+	<update id="updateDisItem"
+		parameterType="study.spring.simplespring.model.SucMatch">
+		UPDATE SucMatch SET
+		status = 1
+		WHERE MemberId=#{MemberId} and SucMatchId=#{SucMatchId}
+	</update>
 
 </mapper>

@@ -1,10 +1,14 @@
 package study.spring.simplespring.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import study.spring.simplespring.model.Payment;
+import study.spring.simplespring.model.ReqMatch;
 import study.spring.simplespring.model.SucMatch;
 import study.spring.simplespring.service.SucMatchService;
 
@@ -37,5 +41,89 @@ public class SucMatchServiceImpl implements SucMatchService {
 
 		return result;
 	}
+
+	@Override
+	public SucMatch getSucMatchItem(SucMatch input) throws Exception {
+		SucMatch result = null;
+		try {
+			result = sqlSession.selectOne("SucMatchMapper.selectItem", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+			} catch (Exception e) {
+				log.error(e.getLocalizedMessage());
+				throw new Exception("데이터 조회에 실패했습니다.");
+			}
+
+		return result;
+	}
+
+	@Override
+	public List<SucMatch> getSucMatchList(SucMatch input) throws Exception {
+		List<SucMatch> result = null;
+
+		try {
+			
+			result = sqlSession.selectList("SucMatchMapper.selectList", input);
+
+			if (result == null) {
+				throw new NullPointerException("result=null");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("조회된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int editSucMatch(SucMatch input) throws Exception {
+		 int result = 0;
+			
+			try {
+				result = sqlSession.update("SucMatchMapper.updateItem", input);
+				
+				if (result == 0) {
+					throw new NullPointerException("result=0");
+				}
+			} catch (NullPointerException e) {
+				log.error(e.getLocalizedMessage());
+				throw new Exception("수정된 데이터가 없습니다.");
+			} catch (Exception e) {
+				log.error(e.getLocalizedMessage());
+				throw new Exception("데이터 수정에 실패했습니다.");
+			}
+			return result;
+		}
+
+	@Override
+	public int editSucMatch1(SucMatch input) throws Exception {
+		 int result = 0;
+			
+			try {
+				result = sqlSession.update("SucMatchMapper.updateDisItem", input);
+				
+				if (result == 0) {
+					throw new NullPointerException("result=0");
+				}
+			} catch (NullPointerException e) {
+				log.error(e.getLocalizedMessage());
+				throw new Exception("수정된 데이터가 없습니다.");
+			} catch (Exception e) {
+				log.error(e.getLocalizedMessage());
+				throw new Exception("데이터 수정에 실패했습니다.");
+			}
+			return result;
+		}
+	
+	
 
 }

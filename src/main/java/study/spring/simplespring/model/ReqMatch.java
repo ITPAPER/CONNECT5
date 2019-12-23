@@ -13,6 +13,7 @@ public class ReqMatch {
 	private String title;
 	private String UserName;
 	private int ReqSpService;
+
 	
 	private static int offset;
 

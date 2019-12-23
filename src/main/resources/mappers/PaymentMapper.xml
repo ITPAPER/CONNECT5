@@ -14,6 +14,7 @@
 		<result property="datetime" column="datetime" />
 		<result property="member_lv" column="member_lv" />
 		<result property="managerid" column="managerid" />
+		<result property="clear" column="clear" />
 		
 
 	</resultMap>
@@ -30,7 +31,7 @@
     <select id="selectList"
         parameterType="study.spring.simplespring.model.Payment"
         resultMap="PaymentMap">
-        SELECT paymentid, user.username, pmttype,DATE_FORMAT(datetime, "%Y-%m-%d") as datetime ,servicetype,user.member_lv 
+        SELECT paymentid, user.username, user.memberid , pmttype,DATE_FORMAT(datetime, "%Y-%m-%d") as datetime ,servicetype,user.member_lv , clear
 		from payment INNER JOIN user ON payment.memberid = user.memberid 
         
         <where>
@@ -69,5 +70,11 @@
 		 VALUES (#{servicetype},  #{pmttype}, #{servicebank}, #{payername}, #{card}, #{pmtplan}, #{memberid},#{username})
 	</insert>
 	
+	<update id="updateItem"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE payment
+		SET clear=1 
+		where MemberId=#{MemberId};
+	</update>
 
 </mapper>

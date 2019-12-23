@@ -897,6 +897,7 @@ public class UserServiceImpl implements UserService {
 
 		return result;
 	}
+	
 
 	@Override
 	public User getUserIdCheck(User input) throws Exception {

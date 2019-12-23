@@ -21,4 +21,5 @@ public interface ManagerService {
 	public int deleteManager(Manager input) throws Exception;
 	
 	public int editManager(User input) throws Exception;
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import study.spring.simplespring.model.Payment;
+import study.spring.simplespring.model.User;
 
 @Service
 public interface PaymentService {
@@ -19,5 +20,5 @@ public interface PaymentService {
 
 	public int deletePayment(Payment input) throws Exception;
 	
-	
+	public int clearManager(User input) throws Exception;
 }
