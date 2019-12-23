@@ -1087,5 +1087,173 @@ int result = 0;
 
 		return result;
 	}
+	
+	@Override
+	public int getCountM_Member_lvB(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountM_Member_lvB", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountM_Member_lvS(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountM_Member_lvS", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountM_Member_lvG(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountM_Member_lvG", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountM_Member_lvV(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountM_Member_lvV", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_Member_lvB(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountW_Member_lvB", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_Member_lvS(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountW_Member_lvS", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_Member_lvG(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountW_Member_lvG", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_Member_lvV(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountW_Member_lvV", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountM_All(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.MCountAll", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_All(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.WCountAll", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountM_Member_lvN(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountM_Member_lvN", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public int getCountW_Member_lvN(User input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.selectOne("UserMapper.CountW_Member_lvN", input);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 
 }

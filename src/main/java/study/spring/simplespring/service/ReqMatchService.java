@@ -13,7 +13,7 @@ public interface ReqMatchService {
 
 	public int addReqMatch(ReqMatch input) throws Exception;
 
-	public int editReqMatch(ReqMatch input) throws Exception;
+	public int editReqSpService(ReqMatch input) throws Exception;
 
 	public int deleteReqMatch(ReqMatch input) throws Exception;
 }

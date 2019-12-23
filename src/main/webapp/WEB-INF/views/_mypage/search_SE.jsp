@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -18,6 +15,14 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
+<script type="text/javascript">
+      $(document).ready(function () {
+        $('#addBtn').click(function () {
+        	var ReqSpService = $('input[name="ReqSpService"]:checked').val();
+        	window.open('${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do?ReqSpService='+ReqSpService,'mywin','width=500, height=300, scrollbars=yes');
+        });
+      });
+</script>
 
 <style>
 
@@ -82,11 +87,10 @@
 	</div>
 	<div class="pull-right">
 		<br />
-		<form method="get" action="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do" >
-		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox" name="ReqSpService" value="1" /> 스페셜 서비스 사용</p>
-		</form>
-		<a href="${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do" onclick="window.open(this.href,'mywin','width=500, height=300, scrollbars=yes'); return false;">
-			<button id="sss" type="submit" class="btn btn-default pull-right">등록하기</button></a>
+		
+		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox" name="ReqSpService" value="1"/> 스페셜 서비스 사용</p>
+		<button id="addBtn" type="submit" class="btn btn-default pull-right">등록하기</button>
+		
 	</div>
 	
 	<div class="modal fade" id="listModal">
@@ -147,7 +151,7 @@
 							} else {
 								start[index].Gender = "여자";
 							}
-							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
+							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do?MemberId=" + start[index].MemberId + "'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
 						});
 					},
 					error : function() {

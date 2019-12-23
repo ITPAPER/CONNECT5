@@ -11,38 +11,24 @@
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="../assets/ico/favicon.ico" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
 <link rel="apple-touch-icon-precomposed"
-	href="../assets/ico/apple-touch-icon-144-precomposed.png" />
+	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="../assets/css/bootstrap.min.css" />
+	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css"
-	href="../assets/css/nanumfont.css" />
-
-<!-- 반응형 웹을 지원하지 않을 경우 -->
-<!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
-
-<!-- IE8 이하 버전 지원 -->
-<!--[if lt IE 9]>
-      <script type="text/javascript" src="assets/js/html5shiv.js"></script>
-      <script type="text/javascript" src="assets/js/respond.min.js"></script>
-   <![endif]-->
-
-<!-- IE10 반응형 웹 버그 보완 -->
-<!--[if gt IE 9]>
-      <link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
-      <script type="text/javascript" src="assets/js/ie10.js"></script>
-   <![endif]-->
-
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/SE/Admin/main.css">
-	
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/nanumfont.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/SE/Admin/main.css">
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.min.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/assets/js/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='${pageContext.request.contextPath}/assets/js/moment.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/jquery.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/ko.js'></script>
+<script src='${pageContext.request.contextPath}/assets/js/ajax_helper.js'></script>
 
 <script type="text/javascript">
 function cancel() {
@@ -54,9 +40,28 @@ return;
 location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 }
 </script>
+
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+	
+	#calendar {
+		max-width: 800px;
+		margin: 0 auto; 
+	}
+	.fc-scroller {
+  	overflow: visible !important;
+	}
+	
+</style>
+
 </head>
 <body>
-
 	<div class="container">
 		<div class="top">
 			<div class="col-md-12 top_login">
@@ -76,174 +81,51 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 			<a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do" class="list-group-item">결제관리</a>
 
 		</div>
-		<div class="col-md-7 middle">
-			<table class="table-bordered" id="status">
-				<tr>
-					<th>결제</th>
-					<th><a href="${pageContext.request.contextPath}/_admin/admin_Payment_GD.do">3건</a></th>
-					<th>문의</th>
-					<th><a href="${pageContext.request.contextPath}/_admin/admin_Question_SE.do">7건</a></th>
-					<th>신입회원</th>
-					<th><a href="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do">12명</a></th>
-				</tr>
-			</table>
+		<div class="col-md-10 middle">
 			<div class="col-md-12 text_box">
-				<div class="table-responsive">
-					<p>10월 회원 현황</p> 
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th id="sun">일</th>
-								<th>월</th>
-								<th>화</th>
-								<th>수</th>
-								<th>목</th>
-								<th>금</th>
-								<th>토</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td>1</td>
-								<td>2</td>
-								<td>3</td>
-								<td>4</td>
-								<td>5
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td id="sun">6</td>
-								<td>7
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>8</td>
-								<td>9</td>
-								<td>10
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>11</td>
-								<td>12</td>
-							</tr>
-							<tr>
-								<td id="sun">13
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>14</td>
-								<td>15
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>16</td>
-								<td>17</td>
-								<td>18
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>19</td>
-							</tr>
-							<tr>
-								<td id="sun">20</td>
-								<td>21</td>
-								<td>22</td>
-								<td>23
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>24</td>
-								<td>25</td>
-								<td>26
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td id="sun">27</td>
-								<td>28</td>
-								<td>29
-									<div id="count">
-										<a href="#" data-toggle="modal" data-target="#manModal">남:3</a><br />
-										<a href="#" data-toggle="modal" data-target="#womanModal">여:2<br /></a><a
-											href="#" data-toggle="modal" data-target="#myModal">매칭:3</a>
-									</div>
-								</td>
-								<td>30</td>
-								<td>31</td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
+				<br />
+				<div id="calendar">
 				</div>
-
+				
+				<br />
 				<p>연-결 등급별 현황</p>
 				<table class="table table-bordered" id="foot">
 					<thead>
 						<tr>
 							<th>성별</th>
 							<th>준회원</th>
-							<th>새싹</th>
-							<th>일반</th>
-							<th>우수</th>
-							<th>최우수</th>
+							<th>브론즈</th>
+							<th>실버</th>
+							<th>골드</th>
+							<th>VIP</th>
 							<th>총 회원 수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>남성</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
+							<td>${countM_N}</td>
+							<td>${countM_B}</td>
+							<td>${countM_S}</td>
+							<td>${countM_G}</td>
+							<td>${countM_V}</td>
+							<td>${countM_All}</td>
 						</tr>
 						<tr>
 							<td>여성</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
+							<td>${countW_N}</td>
+							<td>${countW_B}</td>
+							<td>${countW_S}</td>
+							<td>${countW_G}</td>
+							<td>${countW_V}</td>
+							<td>${countW_All}</td>
 						</tr>
 					</tbody>
 				</table>
 
 			</div>
 
-			<div class="modal fade" id="manModal">
+			<div class="modal fade" id="listModal">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -264,68 +146,7 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 										<th>직업</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>남</td>
-										<td>30</td>
-										<td>변호사</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>홍길동</td>
-										<td>남</td>
-										<td>33</td>
-										<td>검사</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="womanModal">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">현황</h4>
-						</div>
-						<div class="modal-body">
-							<table class="table-bordered" id="modaltable1">
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>이름</th>
-										<th>성별</th>
-										<th>나이</th>
-										<th>직업</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>여</td>
-										<td>30</td>
-										<td>의사</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>홍길동</td>
-										<td>여</td>
-										<td>28</td>
-										<td>교사</td>
-									</tr>
+								<tbody id="tbody">
 								</tbody>
 							</table>
 						</div>
@@ -419,16 +240,50 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 			</div>
 			
 		</div>
-		<div class="col-md-2 sidebar2">
-			<p>관리메모</p>
-		</div>
-		
 	</div>
 
-
 	<!-- Javascript -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script>
+	
+	$(function(){
+		$('#calendar').fullCalendar({
+		      defaultDate: moment().format('YYYY-MM-DD'),
+		      editable: false,
+		      eventLimit: 2,
+		      eventLimitText:"명",
+		      eventClick: function(calEvent, jsEvent, view){
+		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
+					$.ajax({
+					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
+					type : "GET",
+					data : {start:start},
+					dataType : 'json',
+					success : function(start) {
+						console.log(start);
+						$("#tbody").html("");
+						$.each(start, function(index) {
+							if (start[index].Gender == 0) {
+								start[index].Gender = "남자"
+							} else {
+								start[index].Gender = "여자";
+							}
+							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do?MemberId=" + start[index].MemberId + "'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
+						});
+					},
+					error : function() {
+						alert("오류발생");
+						console.log(data);
+					}
+				});
+					$('#listModal').modal('show');
+		     },
+		      events: ${jsonList}	     
+	    });
+		
+	});
+
+</script>
 
 </body>
 </html>

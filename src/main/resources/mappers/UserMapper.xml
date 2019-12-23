@@ -47,7 +47,7 @@
 		INSERT INTO User (
 		MemberId,
 		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
-		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin
+		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin, Member_Lv
 		)
 		VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
@@ -55,7 +55,7 @@
 		#{Gender}, #{IsMarried}, #{Mobile}, #{TEL},
 		#{Email},
 		#{PostCode},
-		#{BasicAddress}, #{StateAddress}, #{DetailAddress}, 0
+		#{BasicAddress}, #{StateAddress}, #{DetailAddress}, 0, 0
 		)
 	</insert>
 
@@ -636,13 +636,7 @@
 		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId =
 		#{MemberId}
 	</update>
-
-	<update id="reqSpService_updateUser"
-		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId
-		= #{MemberId}
-	</update>
-
+	
 	<select id="idealtype"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
@@ -666,5 +660,100 @@
 		resultMap="userMap">
 		SELECT * FROM User WHERE MemberId=#{MemberId}
 	</select>
+	
+	 <select id="CountM_Member_lvN"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 0
+		AND gender = 0
+	</select>
+   
+   <select id="CountM_Member_lvB"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 1
+		AND gender = 0
+	</select>
+	
+	<select id="CountM_Member_lvS"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 2
+		AND gender = 0
+	</select>
+	
+	<select id="CountM_Member_lvG"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 3
+		AND gender = 0
+	</select>
+	
+	<select id="CountM_Member_lvV"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 4
+		AND gender = 0
+	</select>
+	
+	<select id="CountW_Member_lvN"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 0
+		AND gender = 1
+	</select>
+	
+	<select id="CountW_Member_lvB"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 1
+		AND gender = 1
+	</select>
+	
+	<select id="CountW_Member_lvS"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 2
+		AND gender = 1
+	</select>
+	
+	<select id="CountW_Member_lvG"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 3
+		AND gender = 1
+	</select>
+	
+	<select id="CountW_Member_lvV"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+
+		SELECT COUNT(*) FROM User
+		WHERE Member_Lv LIKE 4
+		AND gender = 1
+	</select>
+	
+	<select id="MCountAll"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+		SELECT COUNT(*)
+		FROM User WHERE Gender = 0
+
+	</select>
+	
+	<select id="WCountAll"
+		parameterType="study.spring.simplespring.model.User" resultType="int">
+		SELECT COUNT(*)
+		FROM User WHERE Gender = 1
+
+	</select>
+	
 
 </mapper>

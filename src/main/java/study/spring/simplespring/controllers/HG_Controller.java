@@ -388,7 +388,7 @@ public class HG_Controller {
 
 		int admin = loginInfo.getIsadmin();
 		if (admin == 1) {
-			return new ModelAndView("_admin/admin_main_SE");
+			return webHelper.redirect(contextPath + "/_admin/admin_main_SE.do","관리자페이지로 이동합니다.");
 		}
 
 		String logininfo = loginInfo.getUserName();

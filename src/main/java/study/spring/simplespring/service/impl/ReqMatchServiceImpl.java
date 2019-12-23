@@ -104,11 +104,11 @@ public class ReqMatchServiceImpl implements ReqMatchService {
 	}
 
 	@Override
-	public int editReqMatch(ReqMatch input) throws Exception {
+	public int editReqSpService(ReqMatch input) throws Exception {
 		int result = 0;
 
 		try {
-			result = sqlSession.update("ReqMatchMapper.updateItem", input);
+			result = sqlSession.update("ReqMatchMapper.updateReqSpService", input);
 
 			if (result == 0) {
 				throw new NullPointerException("result=0");
@@ -123,6 +123,7 @@ public class ReqMatchServiceImpl implements ReqMatchService {
 
 		return result;
 	}
+
 
 	@Override
 	public int deleteReqMatch(ReqMatch input) throws Exception {
