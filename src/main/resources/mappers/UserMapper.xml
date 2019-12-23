@@ -73,7 +73,7 @@
 		FROM User
 		WHERE MemberId=#{MemberId}
 	</select>
-	
+
 	<select id="selectItemFindId"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
@@ -89,13 +89,15 @@
 
 
 	</select>
-	
+
 	<select id="selectModalList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
 		SELECT u.*,r.start FROM connect5.user u
-		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) AND r.start = #{start}
-		
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId) AND r.start =
+		#{start}
+
 	</select>
 
 	<select id="selectListadminUser"
@@ -232,8 +234,9 @@
 		resultMap="userMap">
 
 		select * from user
-		where UserName=#{UserName} and UserId=#{UserId} and
-		Email=#{Email} 
+		where UserName=#{UserName} and
+		UserId=#{UserId} and
+		Email=#{Email}
 
 	</select>
 
@@ -630,12 +633,38 @@
 
 	<update id="reqMatch_updateUser"
 		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId = #{MemberId}
+		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId =
+		#{MemberId}
 	</update>
 
 	<update id="reqSpService_updateUser"
-      parameterType="study.spring.simplespring.model.User">
-      UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}
-   </update>
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId
+		= #{MemberId}
+	</update>
+
+	<select id="idealtype"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT
+		Gender,BirthDate,IsMarried,Date_Loc,Height,Edu_Lv,Style,Personality,BldType,Sal_Annual
+		FROM User
+		WHERE
+		UserName=#{UserName} AND
+		Gender=#{Gender} AND
+		BirthDate=#{BirthDate} AND
+		IsMarried=#{IsMarried} AND
+		Date_Loc=#{Date_Loc} AND Height=#{Height}
+		AND Edu_Lv=#{Edu_Lv} AND
+		Style=#{Style} AND Personality=#{Personality}
+		AND BldType=#{BldType}
+		AND Sal_Annual=#{Sal_Annual} AND MemberId=#{MemberId}
+	</select>
+
+	<select id="idealtypeList"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT * FROM User WHERE MemberId=#{MemberId}
+	</select>
 
 </mapper>

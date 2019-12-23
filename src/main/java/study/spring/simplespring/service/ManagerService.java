@@ -19,6 +19,19 @@ public interface ManagerService {
 	public int createManager(Manager input) throws Exception;
 
 	public int deleteManager(Manager input) throws Exception;
-	
+
 	public int editManager(User input) throws Exception;
+
+	public Manager getManagerItem1(Manager input) throws Exception;
+
+	public Manager getManagerItem2(Manager input) throws Exception;
+
+	public Manager getManagerItem3(Manager input) throws Exception;
+
+	public Manager getManagerItem4(Manager input) throws Exception;
+
+	public Manager getManagerItem5(Manager input) throws Exception;
+
+	public List<Manager> getManagerList1(Manager input) throws Exception;
+
 }
