@@ -129,5 +129,34 @@ public interface UserService {
 	public int editreqSpService_User(User input) throws Exception;
 	
 	public List<User> getreqUserList(User input) throws Exception;
+	
+	public List<User> getidealtype(User input) throws Exception;
+	
+	public List<User> getidealtypeok(User input) throws Exception;
 
+	public int getCountM_Member_lvN(User input) throws Exception;
+	
+	public int getCountM_Member_lvB(User input) throws Exception;
+	
+	public int getCountM_Member_lvS(User input) throws Exception;
+	
+	public int getCountM_Member_lvG(User input) throws Exception;
+	
+	public int getCountM_Member_lvV(User input) throws Exception;
+	
+	public int getCountW_Member_lvN(User input) throws Exception;
+	
+	public int getCountW_Member_lvB(User input) throws Exception;
+	
+	public int getCountW_Member_lvS(User input) throws Exception;
+	
+	public int getCountW_Member_lvG(User input) throws Exception;
+	
+	public int getCountW_Member_lvV(User input) throws Exception;
+	
+	public int getCountM_All(User input) throws Exception;
+	
+	public int getCountW_All(User input) throws Exception;
+	
+	public int editreqMatch_isSpUserupdateUser(User input) throws Exception;
 }

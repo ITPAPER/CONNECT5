@@ -1173,7 +1173,7 @@ public class GD_Controller {
 		int viewcount = webHelper.getInt("viewcount");
 
 		if (BoardId == 0) {
-			return webHelper.redirect(null, "공지사항이 없습니다.");
+			return webHelper.redirect(null, "게시글이 없습니다.");
 		}
 
 		Board input = new Board();
@@ -1194,7 +1194,7 @@ public class GD_Controller {
 		try {
 			// 데이터 조회
 			output1 = boardService.editviewcount(input1);
-			output = boardService.getBoardItemadminQnA(input);
+			output = boardService.getBoardItem(input);
 			prevBoard = boardService.getNextDocument(input);
 			nextBoard = boardService.getPrevDocument(input);
 			
@@ -1209,7 +1209,29 @@ public class GD_Controller {
 		return new ModelAndView("_admin/admin_QnARead_GD");
 
 	}
+	
+	@RequestMapping(value = "/_admin/admin_QnA_GDdeleteOk.do", method = RequestMethod.GET)
+	public ModelAndView delete_ok(Model model) {
 
+		int BoardId = webHelper.getInt("BoardId");
+
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "공지사항 게시글이 없습니다.");
+		}
+
+		Board input = new Board();
+		input.setBoardId(BoardId);
+
+		try {
+			// 데이터 삭제
+			boardService.deleteBoardNotice(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		return webHelper.redirect(contextPath + "/_admin/admin_QnA_GD.do", "삭제되었습니다.");
+	}
+	
 	@RequestMapping(value = "/_admin/admin_QnAWrite_GD.do", method = RequestMethod.GET)
 	public String adminqnawrite(Model model) {
 
@@ -1284,7 +1306,7 @@ public class GD_Controller {
 			Board.setListCount(pageData.getListCount());
 
 			// 데이터 조회하기
-			output = boardService.getBoardListadminLater(input);
+			output = boardService.getBoardListReview(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
@@ -1314,7 +1336,7 @@ public class GD_Controller {
 		int viewcount = webHelper.getInt("viewcount");
 
 		if (BoardId == 0) {
-			return webHelper.redirect(null, "공지사항이 없습니다.");
+			return webHelper.redirect(null, "게시글이 없습니다.");
 		}
 
 		Board input = new Board();
@@ -1335,7 +1357,7 @@ public class GD_Controller {
 		try {
 			// 데이터 조회
 			output1 = boardService.editviewcount(input1);
-			output = boardService.getBoardItemadminLater(input);
+			output = boardService.getBoardItem(input);
 			prevBoard = boardService.getNextDocument(input);
 			nextBoard = boardService.getPrevDocument(input);
 			
@@ -1350,7 +1372,29 @@ public class GD_Controller {
 		return new ModelAndView("_admin/admin_userExRead_GD");
 		
 	}
+	
+	@RequestMapping(value = "/_admin/admin_userExdeleteOk_GD.do", method = RequestMethod.GET)
+	public ModelAndView userExdelete_ok(Model model) {
 
+		int BoardId = webHelper.getInt("BoardId");
+
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "공지사항 게시글이 없습니다.");
+		}
+
+		Board input = new Board();
+		input.setBoardId(BoardId);
+
+		try {
+			// 데이터 삭제
+			boardService.deleteBoardNotice(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		return webHelper.redirect(contextPath + "/_admin/admin_userEx_GD.do", "삭제되었습니다.");
+	}
+	
 	@RequestMapping(value = "/_admin/admin_userExWrite_GD.do", method = RequestMethod.GET)
 	public String adminuserexwrite(Model model) {
 

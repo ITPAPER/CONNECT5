@@ -12,13 +12,11 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Grid</title>
+<title>연-결</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
@@ -100,7 +98,7 @@
 
 		<div class="col-md-4 searching_box">
 			<form method="get"
-				action="${pageContext.request.contextPath}/_admin/admin_userManagement_YH.do">
+				action="${pageContext.request.contextPath}/_admin/admin_userEx_GD.do">
 				<ul id="key">
 					<li><select name="keyField">
 							<option value="0">---선택---</option>
@@ -128,7 +126,7 @@
 					<c:choose>
 						<c:when test="${output == null || fn:length(output) == 0}">
 							<tr>
-								<td colspan="9" align="center">공지사항이 없습니다.</td>
+								<td colspan="9" align="center">게시글이 없습니다.</td>
 							</tr>
 						</c:when>
 
@@ -141,6 +139,7 @@
 								<c:set var="title" value="${item.title}" />
 								<c:set var="userName" value="${item.userName}" />
 								<c:set var="creationDate" value="${item.creationDate}" />
+								<c:set var="viewcount" value="${item.viewcount}" />
 								<c:set var="BoardId" value="${item.getBoardId() }" />
 
 
@@ -154,7 +153,7 @@
 								</c:if>
 
 								<%-- 상세페이지로 이동하기 위한 URL --%>
-								<c:url value="/_admin/admin_QnARead.do" var="viewUrl">
+								<c:url value="/_admin/admin_userExRead_GD.do" var="viewUrl">
 									<c:param name="BoardId" value="${item.getBoardId()}" />
 								</c:url>
 
@@ -162,10 +161,9 @@
 									<td>${item.getBoardId()}</td>
 									<td><a href="${viewUrl}">${title}</a></td>
 									<td>${item.userName}</td>
-									<td>count</td>
+									<td>${item.viewcount}</td>
 									<td>${item.creationDate}</td>
-									<td><button type="button" class="label label-warning"
-											onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userManagementdeleteOk.do?BoardId=${BoardId}'">삭제</button></td>
+									<td><button type="button" class="label label-warning" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userExdeleteOk_GD.do?BoardId=${BoardId}'">삭제</button></td>
 								</tr>
 								<c:set var="num" value="${num-1}"></c:set>
 							</c:forEach>
@@ -177,7 +175,7 @@
 				<%-- 이전 그룹으로 이동 가능하다면? --%>
 				<c:when test="${pageData.prevPage > 0}">
 					<%-- 이동할 URL 생성 --%>
-					<c:url value="/_admin/admin_userManagement_YH.do" var="prevPageUrl">
+					<c:url value="/_admin/admin_userEx_GD.do" var="prevPageUrl">
 						<c:param name="page" value="${pageData.prevPage}" />
 						<c:param name="keyword" value="${keyword}" />
 					</c:url>
@@ -192,7 +190,7 @@
 			<c:forEach var="i" begin="${pageData.startPage}"
 				end="${pageData.endPage}" varStatus="status">
 				<%-- 이동할 URL 생성 --%>
-				<c:url value="/_admin/admin_userManagement_YH.do" var="pageUrl">
+				<c:url value="/_admin/admin_userEx_GD.do" var="pageUrl">
 					<c:param name="page" value="${i}" />
 					<c:param name="keyword" value="${keyword}" />
 				</c:url>
@@ -217,7 +215,7 @@
 				<%-- 다음 그룹으로 이동 가능하다면? --%>
 				<c:when test="${pageData.nextPage > 0}">
 					<%-- 이동할 URL 생성 --%>
-					<c:url value="/_admin/admin_userManagement_YH.do" var="nextPageUrl">
+					<c:url value="/_admin/admin_userEx_GD.do" var="nextPageUrl">
 						<c:param name="page" value="${pageData.nextPage}" />
 						<c:param name="keyword" value="${keyword}" />
 					</c:url>
@@ -229,8 +227,6 @@
 					</ul>
 				</c:otherwise>
 			</c:choose>
-			<button class="btn btn-default"
-				onclick="location='${pageContext.request.contextPath}/_admin/admin_userExWrite_GD.do'">글쓰기</button>
 		</div>
 	</div>
 

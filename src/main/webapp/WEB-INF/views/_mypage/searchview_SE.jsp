@@ -78,7 +78,9 @@
 
 	<div id='calendar'>
 	</div>
-		
+	<div class="pull-right">
+		<button id="sss" type="submit" class="btn btn-default pull-right" onclick="location.href = '${pageContext.request.contextPath}/_mypage/deleteOk.do?MemberId=${MemberId}'">취소하기</button>
+	</div>
 	</div>
 	
 	<div class="modal fade" id="listModal">

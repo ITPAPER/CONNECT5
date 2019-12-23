@@ -21,8 +21,10 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.UploadItem;
 import study.spring.simplespring.helper.WebHelper;
+import study.spring.simplespring.model.Manager;
 import study.spring.simplespring.model.Test;
 import study.spring.simplespring.model.User;
+import study.spring.simplespring.service.ManagerService;
 import study.spring.simplespring.service.TestService;
 import study.spring.simplespring.service.UserService;
 import study.spring.simplespring.service.impl.UserServiceImpl;
@@ -41,6 +43,9 @@ public class HG_Controller {
 
 	@Autowired
 	TestService testService;
+
+	@Autowired
+	ManagerService managerService;
 
 	@Autowired
 	UserServiceImpl userServiceImpl;
@@ -301,7 +306,7 @@ public class HG_Controller {
 	 */
 
 	@RequestMapping(value = "/_info/manager_HG.do", method = RequestMethod.GET)
-	public String manager(Model model) {
+	public ModelAndView manager(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
@@ -310,8 +315,41 @@ public class HG_Controller {
 			model.addAttribute("login", login);
 		}
 
-		return "_info/manager_HG";
+		int managerid = webHelper.getInt("managerid");
+		String m_name = webHelper.getString("m_name");
+		int m_tel = webHelper.getInt("m_tel");
+		String m_email = webHelper.getString("m_email");
+		String m_content = webHelper.getString("m_content");
 
+		Manager input = new Manager();
+		input.setManagerid(managerid);
+		input.setM_name(m_name);
+		input.setM_tel(m_tel);
+		input.setM_email(m_email);
+		input.setM_content(m_content);
+
+		Manager output1 = null;
+		Manager output2 = null;
+		Manager output3 = null;
+		Manager output4 = null;
+		Manager output5 = null;
+
+		try {
+			output1 = managerService.getManagerItem1(input);
+			output2 = managerService.getManagerItem2(input);
+			output3 = managerService.getManagerItem3(input);
+			output4 = managerService.getManagerItem4(input);
+			output5 = managerService.getManagerItem5(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		model.addAttribute("output1", output1);
+		model.addAttribute("output2", output2);
+		model.addAttribute("output3", output3);
+		model.addAttribute("output4", output4);
+		model.addAttribute("output5", output5);
+
+		return new ModelAndView("_info/manager_HG");
 	}
 
 	/**
@@ -350,7 +388,7 @@ public class HG_Controller {
 
 		int admin = loginInfo.getIsadmin();
 		if (admin == 1) {
-			return new ModelAndView("_admin/admin_main_SE");
+			return webHelper.redirect(contextPath + "/_admin/admin_main_SE.do","관리자페이지로 이동합니다.");
 		}
 
 		String logininfo = loginInfo.getUserName();
@@ -611,17 +649,17 @@ public class HG_Controller {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
-		
+
 		try {
 			webHelper.upload();
 		} catch (Exception e1) {
 			return webHelper.redirect(null, "업로드에 실패");
 
 		}
-		
+
 		List<UploadItem> fileList = webHelper.getFileList();
 		Map<String, String> paramMap = webHelper.getParamMap();
-		
+
 		int MemberId = loginInfo.getMemberId();
 		String User_Img = fileList.get(0).getFilePath();
 		String UserName = loginInfo.getUserName();
@@ -803,16 +841,78 @@ public class HG_Controller {
 
 	}
 
+	
+	@ResponseBody
+	@RequestMapping(value = "/_test/idealtype_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String idealtypeok() {
+		int MemberId = webHelper.getInt("MemberId");
+
+		User input1 = new User();
+		input1.setMemberId(MemberId);
+
+		List<User> output1 = null;
+
+		try {
+			output1 = userService.getidealtypeok(input1);
+		} catch (Exception e) {
+			System.out.println("에러발생");
+		}
+
+		Gson gson = new Gson();
+		return gson.toJson(output1);
+	}
+
 	@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
-	public String Map(Model model) {
+	public ModelAndView idealtype(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		if (loginInfo != null) {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
+		
+		int MemberId = webHelper.getInt("MemberId");
+		String UserName = webHelper.getString("UserName");
+		int Gender = webHelper.getInt("Gender");
+		String BirthDate = webHelper.getString("BirthDate");
+		int IsMarried = webHelper.getInt("IsMarried");
+		String Date_Loc = webHelper.getString("Date_Loc");
+		String Height = webHelper.getString("Height");
+		String Edu_Lv = webHelper.getString("Edu_Lv");
+		String Personality = webHelper.getString("Personality");
+		String BldType = webHelper.getString("BldType");
+		String Sal_Annual = webHelper.getString("Sal_Annual");
 
-		return "_test/idealtype_HG";
+		User input = new User();
+		input.setMemberId(MemberId);
+		input.setUserName(UserName);
+		input.setGender(Gender);
+		input.setBirthDate(BirthDate);
+		input.setIsMarried(IsMarried);
+		input.setDate_Loc(Date_Loc);
+		input.setHeight(Height);
+		input.setEdu_Lv(Edu_Lv);
+		input.setPersonality(Personality);
+		input.setBldType(BldType);
+		input.setSal_Annual(Sal_Annual);
+
+
+		List<User> output = null;
+		PageData pageData = null;
+
+		try {
+			output = userService.getidealtype(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		Gson gson = new Gson();
+		String jsonList = gson.toJson(output);
+
+		model.addAttribute("jsonList", jsonList);
+		model.addAttribute("output", output);
+		model.addAttribute("pageData", pageData);
+		
+		return new ModelAndView("_test/idealtype_HG");
 
 	}
 

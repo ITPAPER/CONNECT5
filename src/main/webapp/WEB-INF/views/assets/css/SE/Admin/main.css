@@ -16,7 +16,7 @@ ul, ol {
 
 /* 전체 박스 크기*/
 .container {
-	height: 1000px;
+	height: 1200px;
 }
 
 /* 로그인 박스 위치 */
@@ -30,13 +30,6 @@ ul, ol {
 	height: 500px;
 }
 
-/* 오른쪽 메모 */
-.sidebar2 {
-	height: 775px;
-	margin-top: 80px;
-	border: 1px solid #EAEAEA;
-}
-
 /* 로그인 버튼 위치 */
 .top_login>.btn {
 	float: right;
@@ -46,7 +39,7 @@ ul, ol {
 
 /* 게시판 관리 글씨 위치 */
 .middle {
-	padding-top: 80px;
+	padding-top: 45px;
 }
 
 .middle th {
@@ -76,10 +69,6 @@ ul, ol {
 
 #s_btn {
 	width: 55px;
-}
-
-#foot {
-	background-color: #EAEAEA;
 }
 
 #status {
@@ -126,4 +115,13 @@ ul, ol {
 
 .modal-footer {
 	border: 0;
+}
+
+.table {
+	width: 90%;
+	margin-left: 45px;
+}
+
+p {
+	margin: 0 45px 10px;
 }

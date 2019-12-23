@@ -36,3 +36,7 @@
 .content{
 	text-align: center;
 }
+
+.pull-right{
+	margin-right:80px;
+}

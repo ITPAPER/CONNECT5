@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Grid</title>
+<title>연-결</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
@@ -74,19 +74,25 @@
 		</div>
 
 		<div class="col-md-10 text_box">
-			<form action="${pageContext.request.contextPath}/_admin/admin_userManagementaddOk.do" method="POST">
+			<form action="${pageContext.request.contextPath}/_admin/admin_userManagementaddOk.do" method="POST" enctype="multipart/form-data">
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
 								<th class="num" id="Title">제목</th>
-								<th><input type="text" placeholder="제목을 입력하세요." class="textarea" id="textarea" name="Title" /></th>
+								<th><input type="text" placeholder="제목을 입력하세요." id="textarea" name="Title" /></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
+							<td>이미지</td>
+							<td><input type="file" name="ContentImg" id="ContentImg"></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
 								<td class="context" colspan="3" align="center" id="Content">
-									<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></textarea>
+									<input placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></input>
 								</td>
 							</tr>
 						</tbody>

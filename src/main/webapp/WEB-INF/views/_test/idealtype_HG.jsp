@@ -52,153 +52,147 @@
 	</div>
 
 	<div class="col-md-9 content">
+
 		<div class="media">
 			<div class="testimg">
 				<img
 					src="${pageContext.request.contextPath}/assets/img/testimg1.PNG">
 			</div>
 			<br /> <br />
-			<table class="tabl">
-				<tr id="test11">
-					<td id="title">성별</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="gender" value="0"
-						checked>남자&nbsp;&nbsp; <input type="radio" name="gender"
-						value="1" checked>여자
-					</td>
-				</tr>
+			<form method="get"
+				action="${pageContext.request.contextPath}/_test/idealtype_ok.do">
+				<table class="tabl">
+					<tr id="test11">
+						<td id="title">성별</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Gender" value="0"
+							id="Gender" checked>남자&nbsp;&nbsp; <input type="radio"
+							name="Gender" id="Gender" value="1">여자
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">나이</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="age" value="0"
-						checked>무관 &nbsp; &nbsp;&nbsp;&nbsp; <input type="radio"
-						name="age" value="1" checked>20대 초중반 &nbsp;
-						&nbsp;&nbsp;&nbsp; <input type="radio" name="age" value="2"
-						checked>20대 중후반&nbsp; &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="age" value="3" checked>30대 초중반 <br />
-						<br />&nbsp;&nbsp; <input type="radio" name="age" value="4"
-						checked>30대 중후반 &nbsp; &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="age" value="5" checked>40대 초중반
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="age" value="6"
-						checked>40대 중후반
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">나이</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="BirthDate"
+							id="BirthDate" value="무관">무관 &nbsp; &nbsp;&nbsp;&nbsp; <input
+							type="radio" name="BirthDate" value="950427" id="BirthDate"
+							checked>20대 초중반 &nbsp; &nbsp;&nbsp;&nbsp; <input
+							type="radio" name="BirthDate" value="20대 중후반" id="BirthDate">20대
+							중후반&nbsp; &nbsp;&nbsp;&nbsp; <input type="radio" name="BirthDate"
+							value="30대 초중반" id="BirthDate">30대 초중반 <br /> <br />&nbsp;&nbsp;
+							<input type="radio" name="BirthDate" value="30대 중후반"
+							id="BirthDate">30대 중후반 &nbsp; &nbsp;&nbsp;&nbsp; <input
+							type="radio" name="BirthDate" value="40대 초중반" id="BirthDate">40대
+							초중반 &nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="BirthDate"
+							value="40대 중후반" id="BirthDate">40대 중후반
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">결혼 여부</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="marry" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="marry"
-						value="1" checked>초혼&nbsp;&nbsp; <input type="radio"
-						name="marry" value="2" checked>재혼
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">결혼 여부</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="IsMarried"
+							id="IsMarried" value="2">무관&nbsp;&nbsp; <input
+							type="radio" name="IsMarried" value="0" id="IsMarried" checked>초혼&nbsp;&nbsp;
+							<input type="radio" name="IsMarried" value="1" id="IsMarried">재혼
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">거주지</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="residence"
-						value="0" checked>무관 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="1" checked>서울
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="2" checked>부산 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="3" checked>대구
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="4" checked>광주 &nbsp;&nbsp; <input type="radio"
-						name="residence" value="5" checked>인천
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="6" checked>대전 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="7" checked>울산
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="8" checked>경기 <br /> <br />&nbsp;&nbsp; <input
-						type="radio" name="residence" value="9" checked>강원
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="10" checked>충북 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="11" checked>충남
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="12" checked>경북 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="13" checked>경남
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="14" checked>전북 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="residence" value="15" checked>전남
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="residence"
-						value="16" checked>제주
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">데이트 선호 <br />지역
+						</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Date_Loc"
+							value="무관" id="Date_Loc">무관 &nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="radio" name="Date_Loc" value="서울" id="Date_Loc" checked>서울
+							&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="Date_Loc"
+							value="경기도" id="Date_Loc">경기도 &nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="radio" name="Date_Loc" value="강원도" id="Date_Loc">강원도
+							&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="Date_Loc"
+							value="충청도" id="Date_Loc">충청도 &nbsp;&nbsp; <input
+							type="radio" name="residence" value="전라도" id="Date_Loc">전라도
+							&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="Date_Loc"
+							value="경상도" id="Date_Loc">경상도 &nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="radio" name="Date_Loc" value="제주도" id="Date_Loc">제주도
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">키</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="height" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="height"
-						value="140" checked>150cm이하&nbsp;&nbsp; <input
-						type="radio" name="height" value="150" checked>151~160cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="height" value="160" checked>161~170cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="height" value="170" checked>171~180cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="height" value="180" checked>181이상cm
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">키</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Height" value="0"
+							id="Height">무관&nbsp;&nbsp; <input type="radio"
+							name="Height" value="140" id="Height">150cm이하&nbsp;&nbsp;
+							<input type="radio" name="Height" value="150" id="Height" checked>151~160cm&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Height" value="160" id="Height">161~170cm&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Height" value="170" id="Height">171~180cm&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Height" value="180" id="Height">181이상cm
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">학력</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="academic" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="academic"
-						value="1" checked>고등학교 졸업&nbsp;&nbsp; <input type="radio"
-						name="academic" value="2" checked>전문대 졸업&nbsp;&nbsp; <input
-						type="radio" name="academic" value="3" checked>대학교
-						졸업&nbsp;&nbsp; <input type="radio" name="academic" value="4"
-						checked>대학원 졸업&nbsp;&nbsp; <input type="radio"
-						name="academic" value="5" checked>박사
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">학력</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Edu_Lv "
+							value="무관" id="Edu_Lv">무관&nbsp;&nbsp; <input type="radio"
+							name="Edu_Lv " value="중졸" id="Edu_Lv">중졸&nbsp;&nbsp; <input
+							type="radio" name="Edu_Lv " value="고졸" id="Edu_Lv">고졸&nbsp;&nbsp;
+							<input type="radio" name="Edu_Lv " value="대졸" id="Edu_Lv" checked>대졸&nbsp;&nbsp;
+							<input type="radio" name="Edu_Lv " value="석사이상" id="Edu_Lv">석사이상&nbsp;&nbsp;
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">스타일</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="style" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="style"
-						value="cute" checked>귀여움&nbsp;&nbsp; <input type="radio"
-						name="style" value="man" checked>남성스러움&nbsp;&nbsp; <input
-						type="radio" name="style" value="woman" checked>여성스러움&nbsp;&nbsp;
-						<input type="radio" name="style" value="thin" checked>마름&nbsp;&nbsp;
-						<input type="radio" name="style" value="chubby" checked>통통
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">스타일</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Style" value="무관"
+							id="Style">무관&nbsp;&nbsp; <input type="radio"
+							name="Style" value="귀여움" id="Style">귀여움&nbsp;&nbsp; <input
+							type="radio" name="Style" value="남성스러움" id="Style" checked>남성스러움&nbsp;&nbsp;
+							<input type="radio" name="Style" value="여성스러움" id="Style">여성스러움&nbsp;&nbsp;
+							<input type="radio" name="Style" value="마름" id="Style">마름&nbsp;&nbsp;
+							<input type="radio" name="Style" value="통통" id="Style">통통
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">성격</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="personality"
-						value="0" checked>무관&nbsp;&nbsp; <input type="radio"
-						name="personality" value="extrovert" checked>외향적&nbsp;&nbsp;
-						<input type="radio" name="personality" value="introvert" checked>내향적&nbsp;&nbsp;
-						<input type="radio" name="personality" value="emotional" checked>감성적&nbsp;&nbsp;
-						<input type="radio" name="personality" value="intuitive" checked>직관적&nbsp;&nbsp;
-						<input type="radio" name="personality" value="tender" checked>자상함
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">성격</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Personality"
+							value="무관" id="Personality">무관&nbsp;&nbsp; <input
+							type="radio" name="Personality" value="외향적 " id="Personality"
+							checked>외향적&nbsp;&nbsp; <input type="radio"
+							name="Personality" value="내향적 " id="Personality">내향적&nbsp;&nbsp;
+							<input type="radio" name="Personality" value="감성적 "
+							id="Personality">감성적&nbsp;&nbsp; <input type="radio"
+							name="Personality" value="직관적 " id="Personality">직관적&nbsp;&nbsp;
+							<input type="radio" name="Personality" value="자상함"
+							id="Personality">자상함
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">혈액형</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="blood" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="blood"
-						value="A" checked>A형&nbsp;&nbsp; <input type="radio"
-						name="blood" value="B" checked>B형&nbsp;&nbsp; <input
-						type="radio" name="blood" value="O" checked>O형&nbsp;&nbsp;
-						<input type="radio" name="blood" value="AB" checked>AB형
-					</td>
-				</tr>
+					<tr id="test10">
+						<td id="title">혈액형</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="BldType"
+							value="무관" id="BldType">무관&nbsp;&nbsp; <input
+							type="radio" name="BldType" value="A형" id="BldType" checked>A형&nbsp;&nbsp;
+							<input type="radio" name="BldType" value="B형" id="BldType">B형&nbsp;&nbsp;
+							<input type="radio" name="BldType" value="AB형" id="BldType">AB형&nbsp;&nbsp;
+							<input type="radio" name="BldType" value="O형" id="BldType">O형
+						</td>
+					</tr>
 
-				<tr id="test10">
-					<td id="title">연봉</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="income" value="0"
-						checked>무관&nbsp;&nbsp; <input type="radio" name="income"
-						value="1" checked>3000이하&nbsp;&nbsp; <input type="radio"
-						name="income" value="2" checked>5000이하&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="income" value="3" checked>7000이하&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="income" value="4" checked>1억이상
-					</td>
-				</tr>
-			</table>
+					<tr id="test10">
+						<td id="title">연봉</td>
+						<td>&nbsp; &nbsp;<input type="radio" name="Sal_Annual"
+							value="무관" id="Sal_Annual">무관&nbsp;&nbsp; <input
+							type="radio" name="Sal_Annual" value="3000이하 " id="Sal_Annual"
+							checked>3000이하&nbsp;&nbsp; <input type="radio"
+							name="Sal_Annual" value="5000이하 " id="Sal_Annual">5000이하&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Sal_Annual" value="7000이하 "
+							id="Sal_Annual">7000이하&nbsp;&nbsp;&nbsp;&nbsp; <input
+							type="radio" name="Sal_Annual" value="1억이상" id="Sal_Annual">1억이상
+						</td>
+					</tr>
+				</table>
+			</form>
 			<br />
 			<div class="b1">
-
 				<button class="btn btn-default" style="height: 30px; width: 80px;"
-					data-toggle="modal" data-target="#myModal">검색하기</button>
+					data-toggle="modal" data-target="#myModal" id="showmodal">검색하기</button>
 			</div>
 		</div>
 
@@ -210,172 +204,32 @@
 		<div class="modal-dialog" style="max-width: 100%; width: 1200px;">
 			<div class="modal-content">
 				<div class="modal-header">
-
 					<table class="table table-striped table-bordered table-hover">
-						<tr class="text-center">
-							<th id="num" style="text-align: center;">번호</th>
-							<th id="name" style="text-align: center;">이름</th>
-							<th id="gender" style="text-align: center;">성별</th>
-							<th id="age" style="text-align: center;">나이</th>
-							<th id="marry" style="text-align: center;">결혼여부</th>
-							<th id="residence" style="text-align: center;">거주지</th>
-							<th id="height" style="text-align: center;">키</th>
-							<th id="academic" style="text-align: center;">학력</th>
-							<th id="style" style="text-align: center;">스타일</th>
-							<th id="personality" style="text-align: center;">성격</th>
-							<th id="blood" style="text-align: center;">혈액형</th>
-							<th id="income" style="text-align: center;">연봉</th>
-						</tr>
 
-						<tr class="text-center">
-							<td id="num">10</td>
-							<td id="name">홍길동</td>
-							<td id="gender">남자</td>
-							<td id="age">30</td>
-							<td id="marry">초혼</td>
-							<td id="residence">서울</td>
-							<td id="height">175cm</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">남자다움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">5000</td>
-						</tr>
+						<thead>
+							<tr class="text-center">
 
-						<tr class="text-center">
-							<td id="num">9</td>
-							<td id="name">배수지</td>
-							<td id="gender">여자</td>
-							<td id="age">205</td>
-							<td id="marry">초혼</td>
-							<td id="residence">경기</td>
-							<td id="height">165cm</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">여성스러움</td>
-							<td id="personality">감성적</td>
-							<td id="blood">O형</td>
-							<td id="annual">4000</td>
-						</tr>
+								<th id="num" style="text-align: center;">번호</th>
+								<th id="name" style="text-align: center;" name="UserName">이름</th>
+								<th id="gender" style="text-align: center;" name="Gender">성별</th>
+								<th id="age" style="text-align: center;" name="BirthDate">나이</th>
+								<th id="marry" style="text-align: center;" name="IsMarried">결혼여부</th>
+								<th id="residence" style="text-align: center;" name="Date_Loc">데이트
+									선호 지역</th>
+								<th id="height" style="text-align: center;" name="Height">키</th>
+								<th id="academic" style="text-align: center;" name="Edu_Lv">학력</th>
+								<th id="style" style="text-align: center;" name="Style">스타일</th>
+								<th id="personality" style="text-align: center;"
+									name="Personality">성격</th>
+								<th id="blood" style="text-align: center;" name="BldType">혈액형</th>
+								<th id="income" style="text-align: center;" name="Sal_Annual">연봉</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<tr>
+							</tr>
+						</tbody>
 
-						<tr class="text-center">
-							<td id="num">8</td>
-							<td id="name">오연서</td>
-							<td id="gender">여자</td>
-							<td id="age">28</td>
-							<td id="marry">초혼</td>
-							<td id="residence">서울</td>
-							<td id="height">163cm</td>
-							<td id="academic">고등학교 졸업</td>
-							<td id="style">마름</td>
-							<td id="personality">내향적</td>
-							<td id="blood">AB형</td>
-							<td id="annual">3000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">7</td>
-							<td id="name">전지현</td>
-							<td id="gender">여자</td>
-							<td id="age">33</td>
-							<td id="marry">초혼</td>
-							<td id="residence">대전</td>
-							<td id="height">168</td>
-							<td id="academic">대학원 졸업</td>
-							<td id="style">귀여움</td>
-							<td id="personality">직관적</td>
-							<td id="blood">B형</td>
-							<td id="annual">7000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">6</td>
-							<td id="name">남주혁</td>
-							<td id="gender">남자</td>
-							<td id="age">27</td>
-							<td id="marry">초혼</td>
-							<td id="residence">서울</td>
-							<td id="height">182</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">남성스러움</td>
-							<td id="personality">자상함</td>
-							<td id="blood">A형</td>
-							<td id="annual">6000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">5</td>
-							<td id="name">박경동</td>
-							<td id="gender">남자</td>
-							<td id="age">30</td>
-							<td id="marry">초혼</td>
-							<td id="residence">부산</td>
-							<td id="height">177</td>
-							<td id="academic">박사</td>
-							<td id="style">남성스러움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">1억</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">4</td>
-							<td id="name">정유빈</td>
-							<td id="gender">여자</td>
-							<td id="age">30</td>
-							<td id="marry">초혼</td>
-							<td id="residence">서울</td>
-							<td id="height">165</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">여성스러움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">5000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">3</td>
-							<td id="name">배세은</td>
-							<td id="gender">여자</td>
-							<td id="age">24</td>
-							<td id="marry">초혼</td>
-							<td id="residence">제주</td>
-							<td id="height">166</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">여성스러움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">4000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">2</td>
-							<td id="name">최유한</td>
-							<td id="gender">남자</td>
-							<td id="age">27</td>
-							<td id="marry">초혼</td>
-							<td id="residence">서울</td>
-							<td id="height">178</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">남성스러움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">6000</td>
-						</tr>
-
-						<tr class="text-center">
-							<td id="num">1</td>
-							<td id="name">남희권</td>
-							<td id="gender">남자</td>
-							<td id="age">25</td>
-							<td id="marry">초혼</td>
-							<td id="residence">인천</td>
-							<td id="height">178</td>
-							<td id="academic">대학교 졸업</td>
-							<td id="style">남성스러움</td>
-							<td id="personality">외향적</td>
-							<td id="blood">A형</td>
-							<td id="annual">4000</td>
-						</tr>
 					</table>
 					<ul class="pagination pagination-sm">
 						<li class="disabled"><a href="#">&laquo;</a></li>
@@ -388,7 +242,8 @@
 					</ul>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="listmodal">확인</button>
 				</div>
 			</div>
 		</div>
@@ -401,5 +256,113 @@
 	<!-- 변경 사항 -->
 
 	<jsp:include page="../assets/inc/footer.jsp" />
+
+	<script>
+		$(function() {
+			$('#showmodal')
+					.click(
+							function() {
+								var UserName = $("[name=UserName]").val();
+								var Gender = $("[name=Gender]:checked").val();
+								var BirthDate = $("[name=BirthDate]:checked")
+										.val();
+								var IsMarried = $("[name=IsMarried]:checked")
+										.val();
+								var Date_Loc = $("[name=Date_Loc]:checked")
+										.val();
+								var Height = $("[name=Height]:checked").val();
+								var Edu_Lv = $("[name=Edu_Lv]:checked").val();
+								var Style = $("[name=Style]:checked").val();
+								var Personality = $(
+										"[name=Personality]:checked").val();
+								var BldType = $("[name=BldType]:checked").val();
+								var Sal_Annual = $("[name=Sal_Annual]:checked")
+										.val();
+
+								$
+										.ajax({
+											url : "${pageContext.request.contextPath}/_test/idealtype_ok.do",
+											type : "GET",
+											data : {
+												Gender : Gender,
+												BirthDate : BirthDate,
+												IsMarried : IsMarried,
+												Date_Loc : Date_Loc,
+												Height : Height,
+												Edu_Lv : Edu_Lv,
+												Style : Style,
+												Personality : Personality,
+												BldType : BldType,
+												Sal_Annual : Sal_Annual
+											},
+											dataType : 'json',
+											success : function(Gender,
+													BirthDate, IsMarried,
+													Date_Loc, Height, Edu_Lv,
+													Style, Personality,
+													BldType, Sal_Annual) {
+
+												console.log(Gender, BirthDate,
+														IsMarried, Date_Loc,
+														Height, Edu_Lv, Style,
+														Personality, BldType,
+														Sal_Annual);
+												alert("확인");
+												$("#tbody").html("");
+												$
+														.each(
+																UserName,
+																Gender,
+																BirthDate,
+																IsMarried,
+																Date_Loc,
+																Height,
+																Edu_Lv,
+																Style,
+																Personality,
+																BldType,
+																Sal_Annual,
+																function(index) {
+
+																	$('#tbody')
+																			.append(
+																					"<tr><td>"
+																							+ (index + 1)
+																							+ "</td><td><a href='${pageContext.request.contextPath}/_test/idealtype_HG.do'>"
+																							+ UserName[index].UserName
+																							+ "</a></td><td>"
+																							+ Gender[index].Gender
+																							+ "</td><td>"
+																							+ BirthDate[index].BirthDate
+																							+ "</td><td>"
+																							+ IsMarried[index].IsMarried
+																							+ "</td><td>"
+																							+ Date_Loc[index].Date_Loc
+																							+ "</td></tr>"
+																							+ Height[index].Height
+																							+ "</td></tr>"
+																							+ Edu_Lv[index].Edu_Lv
+																							+ "</td></tr>"
+																							+ Style[index].Style
+																							+ "</td></tr>"
+																							+ Personality[index].Personality
+																							+ "</td></tr>"
+																							+ BldType[index].BldType
+																							+ "</td></tr>"
+																							+ Sal_Annual[index].Sal_Annual
+																							+ "</td></tr>");
+																});
+											},
+											error : function() {
+												alert("오류발생");
+												console.log(data);
+											}
+										});
+								$('#listModal').modal('show');
+
+							});
+
+		});
+	</script>
 </body>
 </html>

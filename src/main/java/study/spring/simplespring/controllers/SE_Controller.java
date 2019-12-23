@@ -58,9 +58,64 @@ public class SE_Controller {
 	// Admin_Controller
 
 	@RequestMapping(value = "/_admin/admin_main_SE.do", method = RequestMethod.GET)
-	public String main(Model model) {
+	public ModelAndView main(Model model) {
+		
+		int countM_N = 0;
+		int countM_B = 0;
+		int countM_S = 0;
+		int countM_G = 0;
+		int countM_V = 0;
+		int countW_N = 0;
+		int countW_B = 0;
+		int countW_S = 0;
+		int countW_G = 0;
+		int countW_V = 0;
+		int countM_All = 0;
+		int countW_All = 0;
+		
+		ReqMatch input = new ReqMatch();
+		User input1 = new User();
+		
+		List<ReqMatch> output = null;
+		
+		try {
+			// 데이터 조회
+			output = reqMatchService.getReqMatchList(input);
+			countM_N = userService.getCountM_Member_lvN(input1);
+			countM_B = userService.getCountM_Member_lvB(input1);
+			countM_S = userService.getCountM_Member_lvS(input1);
+			countM_G = userService.getCountM_Member_lvG(input1);
+			countM_V = userService.getCountM_Member_lvV(input1);
+			countW_N = userService.getCountW_Member_lvN(input1);
+			countW_B = userService.getCountW_Member_lvB(input1);
+			countW_S = userService.getCountW_Member_lvS(input1);
+			countW_G = userService.getCountW_Member_lvG(input1);
+			countW_V = userService.getCountW_Member_lvV(input1);
+			countM_All = userService.getCountM_All(input1);
+			countW_All = userService.getCountW_All(input1);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
 
-		return "_admin/admin_main_SE";
+		Gson gson = new Gson();
+		String jsonList = gson.toJson(output);
+		
+		model.addAttribute("output", output);
+		model.addAttribute("jsonList", jsonList);
+		model.addAttribute("countM_N", countM_N);
+		model.addAttribute("countM_B", countM_B);
+		model.addAttribute("countM_S", countM_S);
+		model.addAttribute("countM_G", countM_G);
+		model.addAttribute("countM_V", countM_V);
+		model.addAttribute("countW_N", countW_N);
+		model.addAttribute("countW_B", countW_B);
+		model.addAttribute("countW_S", countW_S);
+		model.addAttribute("countW_G", countW_G);
+		model.addAttribute("countW_V", countW_V);
+		model.addAttribute("countM_All", countM_All);
+		model.addAttribute("countW_All", countW_All);
+
+		return new ModelAndView("_admin/admin_main_SE");
 	}
 
 	@RequestMapping(value = "/_admin/admin_Question_SE.do", method = RequestMethod.GET)
@@ -76,7 +131,7 @@ public class SE_Controller {
 		int MemberId = loginInfo.getMemberId();
 		int BoardId = webHelper.getInt("BoardId");
 		int Reply_Ok = webHelper.getInt("Reply_Ok");
-		
+
 		/** 2) 데이터 조회하기 */
 		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		Board input = new Board();
@@ -85,7 +140,7 @@ public class SE_Controller {
 		input.setMemberId(MemberId);
 		input.setBoardId(BoardId);
 		input.setReply_Ok(Reply_Ok);
-		
+
 		List<Board> output = null; // 조회결과가 저장될 객체
 		PageData pageData = null; // 페이지 번호를 계산한 결과가 저장될 객체
 
@@ -919,6 +974,10 @@ public class SE_Controller {
 		// 상대방 MemberId searchRequestConfirm_SE 에서 던져줬음
 		int otherMemberId = webHelper.getInt("MemberId");
 		// 상대방 MemberId 가 0 이 아닐때만 이 로직이 실행되야 함
+		if (otherMemberId == loginInfo.getMemberId()){
+			String redirectUrl = contextPath + "/_mypage/searchview_SE.do";
+			return webHelper.redirect(redirectUrl,"인연을 다시 찾아주세요."+ loginInfo.getUserName() + "님 과 데이트 할 수 없어요!");
+		}
 		if (otherMemberId != 0) {
 			// User에 otherUser 객체 만든 후 상대방 MemberId 넣어줌
 			User otherUser = new User();
@@ -953,6 +1012,8 @@ public class SE_Controller {
 
 		int isSpUser = loginInfo.getIsSpUser();
 		int MemberId = loginInfo.getMemberId();
+		String name = (String) loginInfo.getUserName();
+		Integer date_rest = (Integer) loginInfo.getDate_Rest();
 
 		/** 데이터 조회하기 */
 		// 데이터 조회에 필요한 조건값을 Beans에 저장하기
@@ -990,14 +1051,20 @@ public class SE_Controller {
 		/** 3) View 처리 */
 		model.addAttribute("output", output);
 		model.addAttribute("jsonList", jsonList);
+		model.addAttribute("username", name);
+		model.addAttribute("date_rest", date_rest);
 
 		return new ModelAndView("_mypage/search_SE");
 	}
-
+	
 	@RequestMapping(value = "/_mypage/searchDateOpen_SE.do", method = RequestMethod.GET)
 	public ModelAndView dateOpen(Model model) {
+		
+		int ReqSpService = webHelper.getInt("ReqSpService");
+	
+		model.addAttribute("ReqSpService", ReqSpService);
 
-		return new ModelAndView("_mypage/searchDateOpen_SE");
+		return new ModelAndView("_mypage/searchDateRequest_SE");
 	}
 
 	@RequestMapping(value = "/_mypage/searchDateRequest_SE.do", method = RequestMethod.GET)
@@ -1017,12 +1084,10 @@ public class SE_Controller {
 		String Select_Date = webHelper.getString("Select_Date");
 		int isSpUser = loginInfo.getIsSpUser();
 		int ReqSpService = webHelper.getInt("ReqSpService");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + ReqSpService);
 
 		User input1 = new User();
 		input1.setIsSpUser(isSpUser);
 		input1.setMemberId(MemberId);
-		input1.setReqSpService(ReqSpService);
 
 		ReqMatch input = new ReqMatch();
 		input.setMemberId(MemberId);
@@ -1030,19 +1095,19 @@ public class SE_Controller {
 		input.setSelect_Date(Select_Date);
 		input.setReqSpService(ReqSpService);
 
-		if (ReqSpService == 1) {
-			try {
-				userService.editreqSpService_User(input1);
-			} catch (Exception e) {
-				return webHelper.redirect(null, e.getLocalizedMessage());
-			}
-		}
-
 		try {
 			reqMatchService.addReqMatch(input);
 			userService.editreqMatch_User(input1);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+		
+		if (ReqSpService == 1) {
+			try {
+				reqMatchService.editReqSpService(input);
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+			}
 		}
 
 		String redirectUrl = contextPath + "/_mypage/searchview_SE.do?start=" + input.getStart();

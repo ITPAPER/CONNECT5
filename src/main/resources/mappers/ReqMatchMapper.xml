@@ -74,9 +74,9 @@
 	</delete>
 
 	<!-- 데이터 갱신을 위한 기능 정의 -->
-	<update id="updateItem"
+	<update id="updateReqSpService"
 		parameterType="study.spring.simplespring.model.ReqMatch">
-
+		 UPDATE ReqMatch SET ReqSpService = 1 WHERE MemberId = #{MemberId}
 	</update>
 
 	<!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환한다. count, max, min, sum, avg 함수를 사용한 

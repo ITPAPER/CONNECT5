@@ -137,7 +137,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId,u.UserName
+		ContentImg, Category,viewcount, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -161,7 +161,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category,viewcount, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -383,10 +383,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 3, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 3, #{MemberId},0
 		)
 	</insert>
 	<insert id="insertItemTip"
@@ -417,10 +417,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 4, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 4, #{MemberId},0
 		)
 
 

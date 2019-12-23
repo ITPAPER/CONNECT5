@@ -9,6 +9,10 @@
 		<result property="m_content"		column="payername" />
 		<result property="m_position"	column="card" />
 		<result property="memberid"		column="pmtplan" />
+		<result property="m_name"		column="m_name" />
+		<result property="m_tel"	column="m_tel" />
+		<result property="m_email"	column="m_email" />
+		<result property="m_content"		column="m_content" />
 		
 
 	</resultMap>
@@ -17,7 +21,7 @@
 		parameterType="study.spring.simplespring.model.Manager"
 		resultMap="ManagerMap">
 		SELECT *
-		from Manager
+		from Manager WHERE managerid=#{managerid}
 		
 	</select>
 	
@@ -28,4 +32,34 @@
         
     </select>
 
+<select id="selectItem1"
+	parameterType="study.spring.simplespring.model.Manager"
+	resultMap="ManagerMap">
+		SELECT *
+		from Manager WHERE managerid=1
+	</select>
+	<select id="selectItem2"
+	parameterType="study.spring.simplespring.model.Manager"
+	resultMap="ManagerMap">
+		SELECT *
+		from Manager WHERE managerid=2
+	</select>
+	<select id="selectItem3"
+	parameterType="study.spring.simplespring.model.Manager"
+	resultMap="ManagerMap">
+		SELECT *
+		from Manager WHERE managerid=3
+	</select>
+	<select id="selectItem4"
+	parameterType="study.spring.simplespring.model.Manager"
+	resultMap="ManagerMap">
+		SELECT *
+		from Manager WHERE managerid=4
+	</select>
+	<select id="selectItem5"
+	parameterType="study.spring.simplespring.model.Manager"
+	resultMap="ManagerMap">
+		SELECT *
+		from Manager WHERE managerid=5
+	</select>
 </mapper>

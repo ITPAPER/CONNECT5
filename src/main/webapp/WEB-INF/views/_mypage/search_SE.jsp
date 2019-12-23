@@ -18,6 +18,14 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Mypage/search.css">
 
+<script type="text/javascript">
+      $(document).ready(function () {
+        $('#addBtn').click(function () {
+        	var ReqSpService = $('input[name="ReqSpService"]:checked').val();
+        	window.open('${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do?ReqSpService='+ReqSpService,'mywin','width=700, height=450, scrollbars=yes');
+        });
+      });
+</script>
 
 <style>
 
@@ -82,11 +90,22 @@
 	</div>
 	<div class="pull-right">
 		<br />
-		<form method="get" action="${pageContext.request.contextPath}/_mypage/searchDateRequest_SE.do" >
-		<p>* 잔여 데이트 횟수 ___회 <br/><input type="checkbox" name="ReqSpService" value="1" /> 스페셜 서비스 사용</p>
-		</form>
-		<a href="${pageContext.request.contextPath}/_mypage/searchDateOpen_SE.do" onclick="window.open(this.href,'mywin','width=500, height=300, scrollbars=yes'); return false;">
-			<button id="sss" type="submit" class="btn btn-default pull-right">등록하기</button></a>
+
+		<p><span
+				style="font-weight: bold; font-size: 1.3em; margin-left: 40px;"
+				id="name">${username} </span> <span> 님의 잔여 매칭 횟수 </span> <span
+				style="font-weight: bold; font-size: 1.3em;" id="count">
+				<c:if test="${date_rest == 1}">3
+				</c:if>
+				<c:if test="${date_rest == 2}">5
+				</c:if>
+				<c:if test="${date_rest == 3}">7
+				</c:if>
+				<c:if test="${date_rest == 4}">Free
+				</c:if>
+			</span> <span> 회 </span><br/><input type="checkbox" name="ReqSpService" value="1" style="margin-left: 40px;" /> 스페셜 서비스 사용</p>
+		<button id="addBtn" type="submit" class="btn btn-default pull-right">등록하기</button>
+		
 	</div>
 	
 	<div class="modal fade" id="listModal">
@@ -147,7 +166,7 @@
 							} else {
 								start[index].Gender = "여자";
 							}
-							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/1_1questionEmpty_YH.do'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
+							$('#tbody').append("<tr><td>" + (index+1) + "</td><td><a href='${pageContext.request.contextPath}/_mypage/searchRequestConfirm_SE.do?MemberId=" + start[index].MemberId + "'>" + start[index].UserName + "</a></td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td>" + start[index].Job + "</td></tr>");
 						});
 					},
 					error : function() {

@@ -1,9 +1,11 @@
 package study.spring.simplespring.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import study.spring.simplespring.helper.MailHelper;
 import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
+import study.spring.simplespring.helper.UploadItem;
 import study.spring.simplespring.helper.WebHelper;
 import study.spring.simplespring.model.Board;
 import study.spring.simplespring.model.Reply;
@@ -52,7 +55,8 @@ public class YH_Controller {
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항) 
 	@RequestMapping(value = "/_admin/admin_userManagement_YH.do", method = RequestMethod.GET)
 	public ModelAndView list(Model model) {
 
@@ -104,7 +108,8 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagement_YH");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 추가)
 	@RequestMapping(value = "/_admin/admin_userManagementadd.do", method = RequestMethod.GET)
 	public ModelAndView add(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
@@ -118,23 +123,34 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagementadd");
 
 	}
-
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 추가)
 	@RequestMapping(value = "/_admin/admin_userManagementaddOk.do", method = RequestMethod.POST)
 	public ModelAndView addOk(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		Integer MemberId = (Integer) loginInfo.getMemberId();
+		
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		int MemberId = loginInfo.getMemberId();
-		String Title = webHelper.getString("Title");
-		String Content = webHelper.getString("Content");
-		int Category = webHelper.getInt("Category");
+		
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String Title = paramMap.get("Title");
+		String Content = paramMap.get("Content");
+		String ContentImg = fileList.get(0).getFilePath();
 		String CreationDate = webHelper.getString("CreationDate");
-
+		
 		Board input = new Board();
 		input.setContent(Content);
 		input.setTitle(Title);
 		input.setMemberId(MemberId);
-		input.setCategory(Category);
 		input.setCreationDate(CreationDate);
+		input.setContentImg(ContentImg);
 
 		try {
 			// 데이터 저장
@@ -151,7 +167,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "공지사항이 등록되었습니다.");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 보기)
 	@RequestMapping(value = "/_admin/admin_userManagementview.do", method = RequestMethod.GET)
 	public ModelAndView view(Model model) {
 
@@ -204,7 +221,8 @@ public class YH_Controller {
 		model.addAttribute("output", output);
 		return new ModelAndView("_admin/admin_userManagementview");
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 수정)
 	@RequestMapping(value = "/_admin/admin_userManagementedit.do", method = RequestMethod.GET)
 	public ModelAndView adminUseredit(Model model) {
 
@@ -242,7 +260,8 @@ public class YH_Controller {
 		return new ModelAndView("_admin/admin_userManagementedit");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 수정 )
 	@RequestMapping(value = "/_admin/admin_userManagementeditOk.do", method = RequestMethod.POST)
 	public ModelAndView admin_Useredit_ok(Model model) {
 
@@ -277,7 +296,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "공지사항이 수정 되었습니다.");
 
 	}
-
+	
+	// 관리자 페이지 게시판 관리 (공지사항 게시글 삭제)
 	@RequestMapping(value = "/_admin/admin_userManagementdeleteOk.do", method = RequestMethod.GET)
 	public ModelAndView delete_ok(Model model) {
 
@@ -300,6 +320,7 @@ public class YH_Controller {
 		return webHelper.redirect(contextPath + "/_admin/admin_userManagement_YH.do", "삭제되었습니다.");
 	}
 	
+	// 관리자 페이지 신청 현황
 	@RequestMapping(value = "/_admin/admin_userApply_YH.do", method = RequestMethod.GET)
 	public ModelAndView userApplyview(Model model) {
 		/** 1) 필요한 변수값 생성 */
@@ -356,15 +377,16 @@ public class YH_Controller {
 
 	}
 	
+	// 관리자 페이지 신청 현황 삭제
 	@RequestMapping(value = "/_admin/admin_userApply_YHdeleteOk.do", method = RequestMethod.GET)
 	public ModelAndView userApplydelete_ok(Model model) {
-
+		
 		int ReqMatchId = webHelper.getInt("ReqMatchId");
 
 		if (ReqMatchId == 0) {
 			return webHelper.redirect(null, "신청현황이 없습니다.");
 		}
-
+		
 		ReqMatch input = new ReqMatch();
 		input.setReqMatchId(ReqMatchId);
 		
@@ -378,20 +400,30 @@ public class YH_Controller {
 		return webHelper.redirect(contextPath + "/_admin/admin_userApply_YH.do", "신청 취소 되었습니다.");
 	}
 	
+	// My 페이지 1:1문의 하기
 	@RequestMapping(value = "/_mypage/1_1questionEmpty_YH.do", method = RequestMethod.GET)
 	public ModelAndView view(Model model, HttpServletRequest request, HttpServletResponse response) {
+		
 		int nowPage    = webHelper.getInt("page", 1);           // 페이지 번호 (기본값 1)
 	    int totalCount = 0;                                     // 전체 게시글 수
 	    int listCount  = 10;                                    // 한 페이지당 표시할 목록 수
 	    int pageCount  = 5;                                     // 한 그룹당 표시할 페이지 번호 수
 	    
 		User loginInfo = (User) webHelper.getSession("loginInfo");
-
+		
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(60*60);
+		
 		if (loginInfo != null) {
 
 			String login = loginInfo.getUserName();
 
 			model.addAttribute("login", login);
+		}
+		
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
 		}
 
 		String UserName = loginInfo.getUserName();
@@ -430,7 +462,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionEmpty_YH");
 
 	}
-
+	
+	// My 페이지 1:1문의글 추가
 	@RequestMapping(value = "/_mypage/1_1questionadd.do", method = RequestMethod.GET)
 	public ModelAndView questionadd(Model model) {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
@@ -445,7 +478,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionadd");
 
 	}
-
+	
+	// My 페이지 1:1문의글 추가 
 	@RequestMapping(value = "/_mypage/1_1questionadd_Ok.do", method = RequestMethod.POST)
 	public ModelAndView questionaddOk(Model model) {
 
@@ -479,7 +513,8 @@ public class YH_Controller {
 		return webHelper.redirect(redirectUrl, "1:1 문의글이 등록되었습니다.");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 보기
 	@RequestMapping(value = "/_mypage/1_1questionview.do", method = RequestMethod.GET)
 	public ModelAndView wait(Model model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -522,7 +557,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionview");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 수정하기
 	@RequestMapping(value = "/_mypage/1_1questionedit.do", method = RequestMethod.GET)
 	public ModelAndView edit(Model model) {
 
@@ -556,7 +592,8 @@ public class YH_Controller {
 		return new ModelAndView("_mypage/1_1questionedit");
 
 	}
-
+	
+	// My 페이지 1:1문의 게시글 수정하기
 	@RequestMapping(value = "/_mypage/1_1questioneditOk.do", method = RequestMethod.POST)
 	public ModelAndView edit_ok(Model model) {
 		
@@ -592,6 +629,52 @@ public class YH_Controller {
 
 	}
 	
+	@RequestMapping(value = "/_mypage/deleteOk.do", method = RequestMethod.GET)
+	public ModelAndView ex(Model model) {
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		int MemberId = loginInfo.getMemberId();
+		int isSpUser = loginInfo.getIsSpUser();
+		int ReqMatchId = webHelper.getInt("ReqMatchId");
+		
+		ReqMatch input = new ReqMatch();
+		input.setMemberId(MemberId);
+		input.setReqMatchId(ReqMatchId);
+		
+		ReqMatch output = null;
+		
+		User input1 = new User();
+		input1.setMemberId(MemberId);
+		input1.setIsSpUser(isSpUser);
+		
+		if (isSpUser == 1) {
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchItem(input);
+				if(output.getReqMatchId() != 0) {
+					
+					loginInfo.setIsSpUser(0);
+					webHelper.setSession("loginInfo", loginInfo);
+					
+					try {
+						// 데이터 삭제
+						userService.editreqMatch_isSpUserupdateUser(input1);
+						reqMatchService.deleteReqMatch(output);
+					} catch (Exception e) {
+						return webHelper.redirect(null, e.getLocalizedMessage());
+					}
+					
+					return webHelper.redirect(contextPath + "/_mypage/search_SE.do", "데이트 신청 날짜가 취소 되었습니다.");
+					
+				}
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+			}
+		}
+
+		return webHelper.redirect(contextPath + "/_mypage/search_SE.do", "신청 취소 되었습니다.");
+	}
 	@RequestMapping(value = "/_service/SpecialService_YH.do", method = RequestMethod.GET)
 	public String SpecialService(Model model) {
 

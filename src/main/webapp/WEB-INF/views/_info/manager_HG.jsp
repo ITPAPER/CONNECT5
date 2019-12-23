@@ -28,6 +28,7 @@
 
 	<!-- 가운데 영역 -->
 	<div class="center">
+	
 		<div class="col-md-2">
 			<!-- 패널 타이틀1 -->
 			<div class="left_sidebar">
@@ -56,6 +57,7 @@
 		<br />
 		<div class="col-md-9 content">
 			<div class="media">
+			
 				<div class="box2">
 					<div class="box1">
 						<img src="${pageContext.request.contextPath}/assets/img/se.gif">
@@ -63,24 +65,23 @@
 				</div>
 				<br />
 				<div class="text2">
-					<p class="text5">
-						<strong>배 세 은</strong>
+					<p class="text5" name="m_name">
+						<strong>${output1.m_name}</strong>
 					</p>
 					<br />
 					<p>
 						<img src="${pageContext.request.contextPath}/assets/img/call.PNG"
-							style="border-radius: 20px 20px 20px 20px;">&nbsp;&nbsp;
-						010-1234-5678
+							style="border-radius: 20px 20px 20px 20px;" name="m_tel">&nbsp;&nbsp;
+						${output1.m_tel}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
 							src="${pageContext.request.contextPath}/assets/img/email.PNG"
-							style="width: 25px; height: 25px;">
-						&nbsp;&nbsp;skarnjs40970@gmail.com
+							style="width: 25px; height: 25px;" name="m_email">
+						&nbsp;&nbsp;${output1.m_email}
 					</p>
 
 					<br />
-					<p class="text6">
-						결혼은 이제 필수가 아닌 선택입니다. 가족중 유일하게 선택하실 수 있는 것이 배우자이기도합니다.<br />어떤
-						배우자를 선택 하느냐에 따라 인생의 행복지수가 달라집니다.<br /> 최선의 선택을 도와 드리는 매니저가 되겠습니다.<br />
+					<p class="text6" name="m_content">
+						${output1.m_content}
 					</p>
 				</div>
 			</div>
@@ -96,24 +97,23 @@
 				</div>
 				<br />
 				<div class="text2">
-					<p class="text5">
-						<strong>최 유 한</strong>
+					<p class="text5" name="m_name">
+						<strong>${output2.m_name}</strong>
 					</p>
 					<br />
 					<p>
 						<img src="${pageContext.request.contextPath}/assets/img/call.PNG"
-							style="border-radius: 20px 20px 20px 20px;">&nbsp;&nbsp;
-						010-1234-5678
+							style="border-radius: 20px 20px 20px 20px;" name="m_tel">&nbsp;&nbsp;
+						${output2.m_tel}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
 							src="${pageContext.request.contextPath}/assets/img/email.PNG"
-							style="width: 25px; height: 25px;">
-						&nbsp;&nbsp;skarnjs40970@gmail.com
+							style="width: 25px; height: 25px;" name="m_email">
+						&nbsp;&nbsp;${output2.m_email}
 					</p>
 
 					<br />
-					<p class="text6">
-						오랜 경력의 노하우로 VIP, 전문직, 명문가집안 결혼을 최고의 성혼 율로 믿고 맡길 수 있습니다.<br /> 따뜻한
-						햇살보다 눈부시고 아름다운 동행을 저와 함께 시작해요~<br />
+					<p class="text6" name="m_content">
+						${output2.m_content}
 					</p>
 				</div>
 			</div>
@@ -132,24 +132,23 @@
 				</div>
 				<br />
 				<div class="text2">
-					<p class="text5">
-						<strong>정 유 빈</strong>
+					<p class="text5" name="m_name">
+						<strong>${output3.m_name}</strong>
 					</p>
 					<br />
 					<p>
 						<img src="${pageContext.request.contextPath}/assets/img/call.PNG"
-							style="border-radius: 20px 20px 20px 20px;">&nbsp;&nbsp;
-						010-1234-5678
+							style="border-radius: 20px 20px 20px 20px;" name="m_tel">&nbsp;&nbsp;
+						${output3.m_tel}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
 							src="${pageContext.request.contextPath}/assets/img/email.PNG"
-							style="width: 25px; height: 25px;">
-						&nbsp;&nbsp;skarnjs40970@gmail.com
+							style="width: 25px; height: 25px;" name="m_email">
+						&nbsp;&nbsp;${output3.m_email}
 					</p>
 
 					<br />
-					<p class="text6">
-						건강한 사랑, 행복한 결혼생활을 꿈꾸시나요? 행복은 노력하는 자에게 주어지는 선물입니다!<br /> 하루 빨리 내
-						인생의 보물찾기를 시작하세요~ <br />진실된 마음과 항상 응원하는 마음으로, 든든한 동반자가 되어 드립니다<br />
+					<p class="text6" name="m_content">
+						${output3.m_content}
 					</p>
 				</div>
 			</div>
@@ -166,25 +165,23 @@
 				</div>
 				<br />
 				<div class="text2">
-					<p class="text5">
-						<strong>박 경 동</strong>
+					<p class="text5" name="m_name">
+						<strong>${output4.m_name}</strong>
 					</p>
 					<br />
 					<p>
 						<img src="${pageContext.request.contextPath}/assets/img/call.PNG"
-							style="border-radius: 20px 20px 20px 20px;">&nbsp;&nbsp;
-						010-1234-5678
+							style="border-radius: 20px 20px 20px 20px;" name="m_tel">&nbsp;&nbsp;
+						${output4.m_tel}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
 							src="${pageContext.request.contextPath}/assets/img/email.PNG"
-							style="width: 25px; height: 25px;">
-						&nbsp;&nbsp;skarnjs40970@gmail.com
+							style="width: 25px; height: 25px;" name="m_email">
+						&nbsp;&nbsp;${output4.m_email}
 					</p>
 
 					<br />
-					<p class="text6">
-						인연이 있겠지...하고 계신가요? 찾아온 인연은 우연일 뿐입니다.<br /> 필연의 만남이 인연이 되고, 그 인연이
-						운명이 됩니다. 계속 기다리기만 하실건가요?<br /> 직접 움직여 보세요. 저와 함께 하시면 인연 찾기가 더 쉬워
-						집니다.<br />
+					<p class="text6" name="m_content">
+						${output4.m_content}
 					</p>
 				</div>
 			</div>
@@ -201,24 +198,23 @@
 				</div>
 				<br />
 				<div class="text2">
-					<p class="text5">
-						<strong>남 희 권</strong>
+					<p class="text5" name="m_name">
+						<strong >${output5.m_name}</strong>
 					</p>
 					<br />
 					<p>
 						<img src="${pageContext.request.contextPath}/assets/img/call.PNG"
-							style="border-radius: 20px 20px 20px 20px;">&nbsp;&nbsp;
-						010-1234-5678
+							style="border-radius: 20px 20px 20px 20px;" name="m_tel">&nbsp;&nbsp;
+						${output5.m_tel}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
 							src="${pageContext.request.contextPath}/assets/img/email.PNG"
-							style="width: 25px; height: 25px;">
-						&nbsp;&nbsp;skarnjs40970@gmail.com
+							style="width: 25px; height: 25px;" name="m_email">
+						&nbsp;&nbsp;${output5.m_email}
 					</p>
 
 					<br />
-					<p class="text6">
-						냉철한 통찰력과 따뜻한 가슴으로 성혼 및 교제 성공률 80%이상을 선보입니다.<br /> 또한, 15년이상의 경력을
-						갖춘 베테랑 커플매니저입니다.<br /> 성혼의 달란트를 가진 저와 함께 새로운 인연을 찾아 나서보는 건 어떨까요?<br />
+					<p class="text6" name="m_content">
+						${output5.m_content}
 					</p>
 				</div>
 			</div>
