@@ -772,4 +772,104 @@
 		ORDER BY BoardId ASC
 		LIMIT 0, 1
 	</select>
+	
+
+	<!-- ================== Admin 성혼스토리 게시판 mapper 시작 ================ -->
+	<select id="selectListAdminStory"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
+		CreationDate,
+		ContentImg, Category, viewcount,b.MemberId, u.UserId,
+		u.UserName
+		FROM Board b
+		INNER JOIN User u ON
+		b.MemberId = u.MemberId
+		WHERE Category
+		= 1
+
+		<choose>
+			<when test="Title != null and Title != ''">
+				AND Title = #{Title}
+			</when>
+		</choose>
+
+		ORDER BY BoardId DESC
+
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="selectItemAdminStory"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.board
+		WHERE BoardId=#{BoardId} AND Category = 1;
+	</select>
+	
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItemAdminStory"
+		parameterType="study.spring.simplespring.model.Board"
+		useGeneratedKeys="true" keyProperty="BoardId">
+		INSERT INTO Board
+		(Title, Content, CreationDate, ContentImg, Category, MemberId, viewcount
+		) VALUES (
+		#{Title}, #{Content}, now(), #{ContentImg}, 1, #{MemberId}, #{viewcount});
+	</insert>
+ 
+    
+  	<update id="updateItemAdminStory"
+		parameterType="study.spring.simplespring.model.Board">
+		UPDATE Board SET
+		Title=#{Title}, Content=#{Content}, CreationDate=now(),
+		ContentImg=#{ContentImg}, Category=1, MemberId=#{MemberId}
+		WHERE BoardId=#{BoardId};
+	</update>	
+	
+	<delete id="deleteItemAdminStory"
+        parameterType="study.spring.simplespring.model.Board">
+        DELETE FROM Board WHERE BoardId=#{BoardId} AND Category=1;
+    </delete>
+    
+ 
+ 	<update id="updateviewcountAdminStory"
+		parameterType="study.spring.simplespring.model.Board">
+		UPDATE connect5.board SET viewcount = viewcount + 1
+		WHERE BoardId = #{BoardId} AND Category=1;
+	</update>
+
+	<!-- 이전글 정보를 조회한다. -->
+	<select id="selectPrevPageAdminStory"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category=1
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectNextPageAdminStory"
+		parameterType="study.spring.simplespring.model.Board"
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category=1
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>   
+    
+	<!-- ================== Admin 성혼스토리 게시판 mapper 끝 ================ -->
+	
 </mapper>
