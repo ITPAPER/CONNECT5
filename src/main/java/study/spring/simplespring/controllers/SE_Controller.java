@@ -56,6 +56,28 @@ public class SE_Controller {
 
 	// --------------------------------------------------------------------------------------------------
 	// Admin_Controller
+	
+	@ResponseBody
+	@RequestMapping(value = "/_admin/sucModal_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String sucModalOk() {
+		String start = webHelper.getString("start");
+		
+		User input = new User();
+		input.setStart(start);
+
+		// 조회결과를 저장할 객체 선언
+		List<User> output = null;
+
+		try {
+			// 데이터 조회
+			output = userService.getsucUserList(input);
+		} catch (Exception e) {
+			System.out.println("에러발생");
+		}
+
+		Gson gson = new Gson();
+		return gson.toJson(output);
+	}
 
 	@RequestMapping(value = "/_admin/admin_main_SE.do", method = RequestMethod.GET)
 	public ModelAndView main(Model model) {
@@ -116,6 +138,28 @@ public class SE_Controller {
 		model.addAttribute("countW_All", countW_All);
 
 		return new ModelAndView("_admin/admin_main_SE");
+	}
+	
+	@RequestMapping(value = "/_admin/deleteOk.do", method = RequestMethod.GET)
+	public ModelAndView sucdelete(Model model) {
+		
+		int SucMatchId = webHelper.getInt("SucMatchId");
+		
+		if (SucMatchId == 0) {
+            return webHelper.redirect(null, "매칭번호가 없습니다.");
+        }
+		
+		SucMatch input = new SucMatch();
+		input.setSucMatchId(SucMatchId);
+		
+		try {
+			sucMatchService.deleteSucMatch(input);
+		} catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+		
+		
+		return webHelper.redirect(contextPath + "/_admin/admin_main_SE.do", "매칭 취소 되었습니다.");
 	}
 
 	@RequestMapping(value = "/_admin/admin_Question_SE.do", method = RequestMethod.GET)
@@ -1189,6 +1233,7 @@ public class SE_Controller {
 		model.addAttribute("output", output);
 		return new ModelAndView("_mypage/searchRequestConfirm_SE");
 	}
+	
 	// --------------------------------------------------------------------------------------------------
 	// Story_Controller
 
@@ -1299,4 +1344,5 @@ public class SE_Controller {
 		model.addAttribute("output", output);
 		return new ModelAndView("_info/storyRead_SE");
 	}
+	
 }

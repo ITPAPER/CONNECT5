@@ -38,6 +38,7 @@
 		<result property="ManagerId" column="ManagerId" />
 		<result property="start" column="start" />
 		<result property="ReqSpService" column="ReqSpService" />
+		<result property="SucMatchId" column="SucMatchId" />
 	</resultMap>
 
 	<!-- insert -->
@@ -98,6 +99,16 @@
 		connect5.ReqMatch r ON (u.MemberId = r.MemberId) AND r.start =
 		#{start}
 
+	</select>
+	
+	<select id="selectSucModalList"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.username, u.gender, u.BirthDate,s.SucMatchId,s.Status,
+		s.ReqMatchId,s.MemberId, s.OtherMemberId, u.UserName, r.start FROM connect5.user u
+		INNER JOIN connect5.sucmatch s ON (s.OtherMemberId = u.MemberId)
+		INNER JOIN connect5.reqmatch r ON (u.MemberId = r.MemberId) AND
+		r.start  = #{start} AND s.Status= 2
 	</select>
 
 	<select id="selectListadminUser"

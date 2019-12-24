@@ -22,8 +22,6 @@ public interface ManagerService {
 
 	public int editManager(User input) throws Exception;
 
-<<<<<<< HEAD
-=======
 	public Manager getManagerItem1(Manager input) throws Exception;
 
 	public Manager getManagerItem2(Manager input) throws Exception;
@@ -36,5 +34,4 @@ public interface ManagerService {
 
 	public List<Manager> getManagerList1(Manager input) throws Exception;
 
->>>>>>> 24adff37f79e7e35914d67abb0ddf03f5cfa9847
 }

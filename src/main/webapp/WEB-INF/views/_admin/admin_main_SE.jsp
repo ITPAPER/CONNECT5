@@ -37,7 +37,7 @@ alert("취소 되었습니다.");
 } else {
 return;
 }
-location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
+location.href = "${pageContext.request.contextPath}/_admin/deleteOk.do?MemberId=" + start[index].MemberId;
 }
 </script>
 
@@ -57,6 +57,10 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 	.fc-scroller {
   	overflow: visible !important;
 	}
+	
+	.modal-footer {
+	border-top: 1px solid #e5e5e5;
+}
 	
 </style>
 
@@ -151,94 +155,26 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="myModal">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">현황</h4>
-						</div>
-						<div class="modal-body">
-							<table class="table-bordered" id="modaltable2">
+							<table class="table-bordered" id="modaltable1">
 								<thead>
 									<tr>
 										<th>번호</th>
-										<th>이름</th>
-										<th>나이</th>
+										<th>상대이름</th>
 										<th>성별</th>
+										<th>나이</th>
 										<th>취소</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>30</td>
-										<td>남</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>28</td>
-										<td>여</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>홍길동</td>
-										<td>33</td>
-										<td>남</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>홍길동</td>
-										<td>29</td>
-										<td>여</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>홍길동</td>
-										<td>35</td>
-										<td>남</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>홍길동</td>
-										<td>32</td>
-										<td>여</td>
-										<td><button type="submit" class="btn btn-xs"
-												onclick="cancel();">취소</button></td>
-									</tr>
+								<tbody id="tbody2">
 								</tbody>
 							</table>
-						</div>
-						<div class="modal-footer">
+							<br />
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 
@@ -254,11 +190,13 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 		      eventLimitText:"명",
 		      eventClick: function(calEvent, jsEvent, view){
 		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
+		    	  
 					$.ajax({
 					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
 					type : "GET",
 					data : {start:start},
 					dataType : 'json',
+					async: false,
 					success : function(start) {
 						console.log(start);
 						$("#tbody").html("");
@@ -273,7 +211,33 @@ location.href = "${pageContext.request.contextPath}/_admin/admin_main_SE.do";
 					},
 					error : function() {
 						alert("오류발생");
-						console.log(data);
+						console.log("오류1");
+						console.log(start);
+					}
+				});
+					$.ajax({
+						url : "${pageContext.request.contextPath}/_admin/sucModal_ok.do",
+						type : "GET",
+						data : {start:start},
+						dataType : 'json',
+						
+						success : function(start) {
+							console.log(start);
+							$("#tbody2").html("");
+							$.each(start, function(index) {
+								if (start[index].Gender == 0) {
+									start[index].Gender = "남자"
+								} else {
+									start[index].Gender = "여자";
+								}
+								$('#tbody2').append("<tr><td>" + (index+1) + "</td><td>" + start[index].UserName + "</td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td><a href='${pageContext.request.contextPath}/_admin/deleteOk.do?SucMatchId=" + start[index].SucMatchId + "'><button type='submit' class='btn btn-xs'>" + "취소" + "</button></a></td></tr>");
+							});
+						
+					},
+					error : function() {
+						alert("오류발생");
+						console.log("오류2");
+						console.log(start);
 					}
 				});
 					$('#listModal').modal('show');
