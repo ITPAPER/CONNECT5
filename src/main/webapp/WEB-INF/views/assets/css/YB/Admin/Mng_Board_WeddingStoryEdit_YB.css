@@ -20,7 +20,7 @@ ul, ol {
 
 /* 전체 박스 크기*/
 .container {
-	height: 1200px;
+	height: 900px;
 }
 
 /* 로그인 박스 위치 */
@@ -58,40 +58,51 @@ ul, ol {
 	margin-left: 80px;
 }
 
-/* 검색 박스 */
-.searching_box {
-	float: right;
-	width: 400px;
-	height: 50px;
-	margin-top: 20px;
-}
-
-.searching_box>#key {
-	float: right;
-}
-
 /* 게시판 크기 */
 .text_box {
-	text-align:center;
 	height: 500px;
+	padding-top: 20px;
 }
 
-.text-center>#num {
-	width: 50px;
+.text_box>.pagination {
+	padding-left: 380px;
 }
 
-.text-center>#date {
-	width: 100px;
+#textarea {
+	width: 800px;
 }
 
-.text-center>#views {
-	width: 70px;
+#contentarea {
+	height: 300px;
+}
+
+.write {
+	float: left;
 }
 
 .text_box>.btn {
 	float: right;
 }
 
-#s_btn {
-	width: 55px;
+#date {
+	width: 100px;
+}
+
+#text_read {
+	padding-top: 30px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#name {
+	width: 80px;
+}
+
+.table-responsive #num {
+	width: 90px;
+}
+
+.date {
+	width: 125px;
+	text-align: center;
 }

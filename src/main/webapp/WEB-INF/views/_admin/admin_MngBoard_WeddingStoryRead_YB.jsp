@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_Board_WeddingStoryWrite(Add)</title>
+<title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_MngBoard_WeddingStoryRead_YB</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
@@ -38,15 +38,12 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryWrite_YB.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YB/Admin/MngBoard_WeddingStoryRead_YB.css">
 
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
-
-
 	<div class="container">
 		<div class="top">
 			<div class="col-md-12 top_login">
@@ -77,38 +74,67 @@
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
 		</div>
 
+
 		<div class="col-md-10 text_box">
-			<form action="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryWrite_AddOk_YB.do" method="POST">
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th class="num" id="Title">제목</th>
-								<th><input type="text" placeholder="제목을 입력하세요." class="textarea" id="textarea" name="Title" /></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="context" colspan="3" align="center" id="Content">
-									<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></textarea>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="pull-right">
-					<button type="submit" class="btn btn-default">글쓰기</button>
-					<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
-				</div>
-			</form>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="text-center" id="num">제목</th>
+							<th class="text-left">${output.getTitle()}</th>
+							<th id="date">${output.creationDate}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td id="context" colspan="3">${output.content}</td>
+						</tr>
+						<tr>
+							<td>이전글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${nextBoard != null}">
+										<c:url var="nextUrl" value="/_admin/admin_MngBoard_WeddingStoryRead_YB.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
+										</c:url>
+											<a href="${nextUrl}">${nextBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										이전글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
+						</tr>
+						<tr>
+							<td>다음글</td>
+							<th class="text_select" colspan="2">
+								<c:choose>
+									<c:when test="${prevBoard != null}">
+										<c:url var="prevUrl" value="/_adminadmin_MngBoard_WeddingStoryRead_YB.do">
+											<c:param name="Title" value="${Title}" />
+											<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
+										</c:url>
+											<a href="${prevUrl}">${prevBoard.getTitle()}</a>
+									</c:when>
+									<c:otherwise>
+										다음글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<button class="btn btn-default" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryEdit_YB.do?BoardId=${output.getBoardId()}'">수정하기</button>
+			<button class="btn btn-default" onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do'">목록</button>
 		</div>
 	</div>
-
 
 
 	<!-- Javascript -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
+
 </body>
 </html>
