@@ -118,4 +118,25 @@ public interface BoardService {
 	public Board getPrevreviewADocument(Board input) throws Exception;
 
 	public Board getNextreviewDocument(Board input) throws Exception;
+
+	// 관리자 성혼스토리 게시판 시작 ================================================== /
+	public List<Board> getBoardListAdminStory(Board input) throws Exception;
+	
+	public Board getBoardItemAdminStory(Board input) throws Exception;
+	
+	public int addBoardAdminStory(Board input) throws Exception;
+	
+	public Board getBoardAdminStory(Board input) throws Exception;
+	
+	public int editBoardAdminStory(Board input) throws Exception;
+	
+	public int deleteBoardAdminStory(Board input) throws Exception;
+	
+	public int editviewcountAdminStory(Board inputView) throws Exception;
+	
+	public Board getPrevPageAdminStory(Board inputPrev) throws Exception;
+
+	public Board getNextPageAdminStory(Board inputNext) throws Exception;
+
+	// 관리자 성혼스토리 게시판 끝 ===================================================== /	
 }
