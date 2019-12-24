@@ -132,8 +132,6 @@ public interface UserService {
 	
 	public List<User> getsucUserList(User input) throws Exception;
 	
-	public List<User> getidealtype(User input) throws Exception;
-	
 	public List<User> getidealtypeok(User input) throws Exception;
 
 	public int getCountM_Member_lvN(User input) throws Exception;

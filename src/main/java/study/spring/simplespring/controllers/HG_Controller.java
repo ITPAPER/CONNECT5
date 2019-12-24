@@ -388,7 +388,7 @@ public class HG_Controller {
 
 		int admin = loginInfo.getIsadmin();
 		if (admin == 1) {
-			return webHelper.redirect(contextPath + "/_admin/admin_main_SE.do","관리자페이지로 이동합니다.");
+			return webHelper.redirect(contextPath + "/_admin/admin_main_SE.do", "관리자페이지로 이동합니다.");
 		}
 
 		String logininfo = loginInfo.getUserName();
@@ -842,26 +842,6 @@ public class HG_Controller {
 	}
 
 	
-	@ResponseBody
-	@RequestMapping(value = "/_test/idealtype_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public String idealtypeok() {
-		int MemberId = webHelper.getInt("MemberId");
-
-		User input1 = new User();
-		input1.setMemberId(MemberId);
-
-		List<User> output1 = null;
-
-		try {
-			output1 = userService.getidealtypeok(input1);
-		} catch (Exception e) {
-			System.out.println("에러발생");
-		}
-
-		Gson gson = new Gson();
-		return gson.toJson(output1);
-	}
-
 	@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
 	public ModelAndView idealtype(Model model) {
 
@@ -870,7 +850,14 @@ public class HG_Controller {
 			String login = loginInfo.getUserName();
 			model.addAttribute("login", login);
 		}
-		
+
+		return new ModelAndView("_test/idealtype_HG");
+
+	}
+
+	@RequestMapping(value = "/_test/idealtype1_HG.do", method = RequestMethod.GET)
+	public ModelAndView idealtype1(Model model) {
+
 		int MemberId = webHelper.getInt("MemberId");
 		String UserName = webHelper.getString("UserName");
 		int Gender = webHelper.getInt("Gender");
@@ -878,12 +865,13 @@ public class HG_Controller {
 		int IsMarried = webHelper.getInt("IsMarried");
 		String Date_Loc = webHelper.getString("Date_Loc");
 		String Height = webHelper.getString("Height");
-		String Edu_Lv = webHelper.getString("Edu_Lv");
+		String Style = webHelper.getString("Style");
 		String Personality = webHelper.getString("Personality");
-		String BldType = webHelper.getString("BldType");
-		String Sal_Annual = webHelper.getString("Sal_Annual");
+		 String BldType = webHelper.getString("BldType");
+		 String Sal_Annual = webHelper.getString("Sal_Annual");
 
 		User input = new User();
+
 		input.setMemberId(MemberId);
 		input.setUserName(UserName);
 		input.setGender(Gender);
@@ -891,29 +879,32 @@ public class HG_Controller {
 		input.setIsMarried(IsMarried);
 		input.setDate_Loc(Date_Loc);
 		input.setHeight(Height);
-		input.setEdu_Lv(Edu_Lv);
+		input.setStyle(Style);
 		input.setPersonality(Personality);
-		input.setBldType(BldType);
-		input.setSal_Annual(Sal_Annual);
-
+		 input.setBldType(BldType);
+		 input.setSal_Annual(Sal_Annual);
 
 		List<User> output = null;
-		PageData pageData = null;
 
 		try {
-			output = userService.getidealtype(input);
+			output = userService.getidealtypeok(input);
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		Gson gson = new Gson();
-		String jsonList = gson.toJson(output);
-
-		model.addAttribute("jsonList", jsonList);
+		model.addAttribute("MemberId", MemberId);
+		model.addAttribute("UserName", UserName);
+		model.addAttribute("Gender", Gender);
+		model.addAttribute("BirthDate", BirthDate);
+		model.addAttribute("IsMarried", IsMarried);
+		model.addAttribute("Date_Loc", Date_Loc);
+		model.addAttribute("Height", Height);
+		model.addAttribute("Style", Style);
+		model.addAttribute("Personality", Personality);
+		 model.addAttribute("BldType", BldType);
+		 model.addAttribute("Sal_Annual", Sal_Annual);
 		model.addAttribute("output", output);
-		model.addAttribute("pageData", pageData);
-		
-		return new ModelAndView("_test/idealtype_HG");
 
+		return new ModelAndView("_test/idealtype1_HG");
 	}
 
 	/**

@@ -648,29 +648,22 @@
 		#{MemberId}
 	</update>
 	
-	<select id="idealtype"
-		parameterType="study.spring.simplespring.model.User"
-		resultMap="userMap">
-		SELECT
-		Gender,BirthDate,IsMarried,Date_Loc,Height,Edu_Lv,Style,Personality,BldType,Sal_Annual
-		FROM User
-		WHERE
-		UserName=#{UserName} AND
-		Gender=#{Gender} AND
-		BirthDate=#{BirthDate} AND
-		IsMarried=#{IsMarried} AND
-		Date_Loc=#{Date_Loc} AND Height=#{Height}
-		AND Edu_Lv=#{Edu_Lv} AND
-		Style=#{Style} AND Personality=#{Personality}
-		AND BldType=#{BldType}
-		AND Sal_Annual=#{Sal_Annual} AND MemberId=#{MemberId}
-	</select>
-
 	<select id="idealtypeList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
-		SELECT * FROM User WHERE MemberId=#{MemberId}
+		SELECT
+		UserName,
+		Gender,BirthDate,IsMarried, Date_Loc, Height,
+		Style, Personality, BldType, Sal_Annual
+		FROM User
+		WHERE
+		Gender=#{Gender}
+		AND BirthDate=#{BirthDate} AND IsMarried=#{IsMarried} AND
+		Date_Loc=#{Date_Loc} AND Height=#{Height} AND Style=#{Style} AND
+		Personality=#{Personality} AND BldType=#{BldType} AND
+		Sal_Annual=#{Sal_Annual}
 	</select>
+
 	
 	 <select id="CountM_Member_lvN"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
