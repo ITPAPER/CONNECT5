@@ -138,5 +138,5 @@ public interface BoardService {
 
 	public Board getNextPageAdminStory(Board inputNext) throws Exception;
 
-	// 관리자 성혼스토리 게시판 끝 ===================================================== /	
+	// 관리자 성혼스토리 게시판 끝 ===================================================== /
 }

@@ -748,15 +748,13 @@ public class YB_Controller {
         
         try {
             // 관리자 게시판 성혼스토리 기본 정보 조회
-        	output = boardService.getBoardAdminStory(input);
-        //	userList = userService.getUserList(null);
+        	output = boardService.getBoardItemAdminStory(input);
         } catch (Exception e) {
             return webHelper.redirect(null, e.getLocalizedMessage());
         }
         
         /** 3) View 처리 */
         model.addAttribute("output", output);
-    //    model.addAttribute("userList", userList);
         return new ModelAndView("_admin/admin_MngBoard_WeddingStoryEdit_YB"); 
 	}	
 	
