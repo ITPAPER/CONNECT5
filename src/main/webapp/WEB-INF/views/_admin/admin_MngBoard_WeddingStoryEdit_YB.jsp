@@ -48,6 +48,13 @@
 		}
 		location.href = "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
 	}
+	
+	function cancel() {
+		if (confirm("게시글을 등록을 취소하시겠습니까?") == true) {
+			alert("게시글 등록이 취소되었습니다.")
+		}
+		location.href= "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
+	}
 </script>
 </head>
 <body>
