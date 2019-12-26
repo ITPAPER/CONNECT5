@@ -52,7 +52,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs" onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 						<tbody>
 							<tr>
 								<td class="context" colspan="3" align="center" id="Content">
-									<textarea class="form-control" class="contentarea" id="contentarea" name="Content" value="${output.getContent()}"></textarea>
+									<textarea class="form-control" class="contentarea" id="contentarea" name="Content"></textarea>
 								</td>
 							</tr>
 						</tbody>

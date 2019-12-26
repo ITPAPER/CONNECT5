@@ -16,9 +16,8 @@
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="../assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="../assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
@@ -48,8 +47,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs"
-						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>

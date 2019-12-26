@@ -30,3 +30,7 @@
 .ck-editor__editable {
 	min-height: 300px;
 }
+
+.form-control{
+	height : 300px;
+}

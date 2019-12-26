@@ -57,11 +57,11 @@
 					<c:otherwise>
 						<table class="table table-striped table-bordered table-hover">
 							<tr>
-								<td>번호</td>
+								<td class="num">번호</td>
 								<td>제목</td>
-								<td>이름</td>
-								<td>등록일</td>
-								<td>답변여부</td>
+								<td class="name">이름</td>
+								<td class="date">등록일</td>
+								<td class="reply">답변여부</td>
 							</tr>
 							<tr>
 								<%-- 조회 결과에 따른 반복 처리 --%>

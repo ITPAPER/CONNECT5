@@ -35,8 +35,6 @@
    <![endif]-->
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Admin/admin_userManagementWrite_YH.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 
@@ -48,7 +46,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs" onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -111,6 +109,8 @@
 	<!-- Javascript -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
+	<script>
+
+	</script>
 </body>
 </html>

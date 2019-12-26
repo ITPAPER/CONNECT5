@@ -62,8 +62,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs"
-						onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -124,7 +123,6 @@
 								<c:choose>
 									<c:when test="${nextBoard != null}">
 										<c:url var="nextUrl" value="/_admin/admin_QnARead_GD.do">
-											<c:param name="Title" value="${Title}" />
 											<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
 										</c:url>
 											<a href="${nextUrl}">${nextBoard.getTitle()}</a>
@@ -141,7 +139,6 @@
 								<c:choose>
 									<c:when test="${prevBoard != null}">
 										<c:url var="prevUrl" value="/_admin/admin_QnARead_GD.do">
-											<c:param name="Title" value="${Title}" />
 											<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
 										</c:url>
 											<a href="${prevUrl}">${prevBoard.getTitle()}</a>

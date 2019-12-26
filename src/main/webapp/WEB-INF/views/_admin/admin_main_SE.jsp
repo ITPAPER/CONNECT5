@@ -11,9 +11,8 @@
 <title>Grid</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.ico" />
-<link rel="apple-touch-icon-precomposed"
-	href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css"
