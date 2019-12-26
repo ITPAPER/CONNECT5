@@ -11,6 +11,10 @@ public interface SucMatchService {
 	
 	public SucMatch getSucMatchItem(SucMatch sucmatch) throws Exception;
 	
+	public SucMatch getSucMatchItemStatus(SucMatch input) throws Exception;
+	
+	public List<SucMatch> getSucMatchItemStatus0(SucMatch input) throws Exception;
+	
 	public List<SucMatch> getSucMatchList(SucMatch input) throws Exception;
 	
 	public int editSucMatch(SucMatch input) throws Exception;

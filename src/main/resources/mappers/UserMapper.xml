@@ -755,6 +755,16 @@
 
 	</select>
 	
+	<update id="updateItemRest"
+      parameterType="study.spring.simplespring.model.User">
+      UPDATE connect5.user SET Date_Rest = Date_Rest - 1 WHERE MemberId = #{MemberId}
+   </update>
+   
+   <update id="updateItemRestUp"
+      parameterType="study.spring.simplespring.model.User">
+      UPDATE connect5.user SET Date_Rest = Date_Rest + 1 WHERE MemberId = #{MemberId}
+   </update>
+	
 	<update id="reqSpService_updateUser"
       parameterType="study.spring.simplespring.model.User">
       UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}

@@ -203,27 +203,44 @@
 										<c:if test="${item.member_lv == 4 }">
 											<td align="center">V.I.P</td>
 										</c:if>
+										
+										<c:if test="${clear == 0 }">
 										<td align="center"><select name="memlv" id="memlv">
 												<option value="1">브론즈</option>
 												<option value="2">실버</option>
 												<option value="3">골드</option>
 												<option value="4">V.I.P</option>
 										</select></td>
+										</c:if>
+										<c:if test="${clear == 1 }">
+											<td align="center"><span>완료</span></td>
+										</c:if>
+										
 										<%-- 조회 결과에 따른 반복 처리 --%>
+										<c:if test="${clear == 0 }">
 										<td align="center"><select name="manager" id="manager">
 												<c:forEach var="item" items="${managerList }"
 													varStatus="status">
 													<option value="${item.managerid }">${item.managerid }</option>
 												</c:forEach>
 										</select></td>
-
+										</c:if>
+										<c:if test="${clear == 1 }">
+											<td align="center"><span>완료</span></td>
+										</c:if>
+										
+										<c:if test="${clear == 0 }">
 										<td align="center"><select name="service" id="service">
 												<option value="1">3회</option>
 												<option value="2">5회</option>
 												<option value="3">7회</option>
 												<option value="4">무제한</option>
 										</select></td>
-
+										</c:if>
+										<c:if test="${clear == 1 }">
+											<td align="center"><span>완료</span></td>
+										</c:if>
+					
 										<c:if test="${clear == 0 }">
 											<td align="center"><input type="submit" value="확인"
 												id="ok"></td>

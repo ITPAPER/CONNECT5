@@ -223,7 +223,7 @@
 
 		function count() {
 
-			var timer2 = "5:01";
+			var timer2 = "0:03";
 			var interval = setInterval(function() {
 				var timer = timer2.split(':');
 				var minutes = parseInt(timer[0], 10);
@@ -245,7 +245,7 @@
 					//$("#user_email").attr("disabled", true);
 					$(".count").attr("시간초과");
 					$("#verify_ok").html(
-							"<button type='button' id='a'>재발송</button>");
+							"<button type='button' id='a'><a href='${pageContext.request.contextPath}/_findAccount/FindId_GD.do'>재발송</a></button>");
 				}
 
 				$('.count').html(minutes + ':' + seconds);

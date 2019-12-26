@@ -43,6 +43,10 @@ public interface UserService {
 	public int editUserinformation(User input) throws Exception;
 
 	public int editUseradmin(User input) throws Exception;
+	
+	public int editUserRest(User input) throws Exception;
+	
+	public int editUserRestUp(User input) throws Exception;
 
 	public int getSelectCountGenderMen(User input) throws Exception;
 

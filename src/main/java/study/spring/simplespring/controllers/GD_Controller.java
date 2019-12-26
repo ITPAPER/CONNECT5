@@ -460,6 +460,9 @@ public class GD_Controller {
 			ReqMatch reqmatch = new ReqMatch();
 			SucMatch sucmatch = new SucMatch();
 			
+			
+			SucMatch suc1 = null;
+			List<SucMatch> suc0 = null;
 			List<SucMatch> sucuser = null;
 			ReqMatch requser = null;	
 	
@@ -470,29 +473,50 @@ public class GD_Controller {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-		
+			
 			reqmatch.setMemberId(memberid);
 			sucmatch.setMemberId(memberid);
 			
 			try {
+				suc1 = sucmatchService.getSucMatchItemStatus(sucmatch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
 				requser = reqmatchService.getReqMatchItem(reqmatch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
 				sucuser = sucmatchService.getSucMatchList(sucmatch);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			if(requser != null) {
-				model.addAttribute("requser", requser);
-			}
+				try {
+					suc0 = sucmatchService.getSucMatchItemStatus0(sucmatch);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			
-			if(sucuser != null) {
-				System.out.println("@@@@@@@@@@@@@"+sucuser);
+				
+				model.addAttribute("requser", requser);
 				model.addAttribute("sucuser",sucuser);
-			}
-	
+				model.addAttribute("suc1", suc1);
+				model.addAttribute("suc0", suc0);
+			
+				
+				System.out.println("suc1 = " + suc1);
+				System.out.println("req = " + requser);
+				System.out.println("suc = "+sucuser);
+				System.out.println("suc0 = "+suc0);
 		
-		model.addAttribute("managerList", managerList);
+				model.addAttribute("managerList", managerList);
+				
 		return new ModelAndView("_mypage/myInfo_GD");
 	}
 	
@@ -503,15 +527,25 @@ public class GD_Controller {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		SucMatch sucmatch = new SucMatch();
+		User user = new User();
 		int memberid = loginInfo.getMemberId();
 		
 		int sucmatchid = webHelper.getInt("SucMatchId");
 		
 		sucmatch.setSucMatchId(sucmatchid);
 		sucmatch.setMemberId(memberid);
+		user.setMemberId(memberid);
 				
 		try {
 			sucmatchService.editSucMatch(sucmatch);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			userService.editUserRest(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -528,18 +562,56 @@ public class GD_Controller {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		SucMatch sucmatch = new SucMatch();
+		
+
 		int memberid = loginInfo.getMemberId();
+		
+		int sucmatchid = webHelper.getInt("SucMatchId");
+		
+
+		sucmatch.setSucMatchId(sucmatchid);
 	
 		sucmatch.setMemberId(memberid);
 				
 		try {
 			sucmatchService.editSucMatch1(sucmatch);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "데이트 신청을 거절 하셨습니다.");
+
+	}
+	
+	@RequestMapping(value = "/_mypage/DateConfirm2.do", method = RequestMethod.GET)
+	public ModelAndView datecancel1(Model model) {
+		
+		
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		SucMatch sucmatch = new SucMatch();
+		
+		User user = new User();
+		
+		int memberid = loginInfo.getMemberId();
+		
+		int sucmatchid = webHelper.getInt("SucMatchId");
+		
+		user.setMemberId(memberid);
+		sucmatch.setSucMatchId(sucmatchid);
+		sucmatch.setMemberId(memberid);
+				
+		try {
+			sucmatchService.editSucMatch1(sucmatch);
+			userService.editUserRestUp(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "데이트 일정이 취소 되셨습니다.");
 
 	}
 
