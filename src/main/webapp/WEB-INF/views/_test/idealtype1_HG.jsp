@@ -48,7 +48,6 @@
 				<tr class="text-center">
 					<th id="name">이름</th>
 					<th id="gender">성별</th>
-					<th id="birthdate">생년월일</th>
 					<th id="ismarried">결혼여부</th>
 					<th id="date_loc" style="width: 150px;">데이트 선호 지역</th>
 					<th id="height">신장</th>
@@ -72,7 +71,6 @@
 							<c:set var="MemberId" value="${item.getMemberId()}" />
 							<c:set var="UserName" value="${item.getUserName()}" />
 							<c:set var="Gender" value="${item.getGender()}" />
-							<c:set var="BirthDate" value="${item.getBirthDate()}" />
 							<c:set var="IsMarried" value="${item.getIsMarried()}" />
 							<c:set var="Date_Loc" value="${item.getDate_Loc()}" />
 							<c:set var="Height" value="${item.getHeight()}" />
@@ -86,7 +84,6 @@
 								<td><c:if test="${Gender == 0}">남자
 									</c:if> <c:if test="${Gender == 1}">여자
 									</c:if></td>
-								<td>${item.getBirthDate()}</td>
 								<td>
 								<c:if test="${IsMarried == 0}"> 초혼</c:if> <c:if
 										test="${IsMarried == 1}"> 재혼</c:if></td>

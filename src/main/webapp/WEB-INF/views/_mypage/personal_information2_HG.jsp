@@ -112,10 +112,8 @@
 
 
 		<h3 class="col-md-10">개인정보수정</h3>
-		<form method="post" name="next" id="next"
-			enctype="multipart/form-data"
-			action="${pageContext.request.contextPath}/_mypage/personal_information2ok_HG.do">
-			<div class="col-md-9 content" >
+		<form name="next" id="next" enctype="multipart/form-data">
+			<div class="col-md-9 content">
 				<input type="hidden" name="MemberId" value="${output.getMemberId()}" />
 				<div class="box10">
 					<br /> <br />
@@ -193,7 +191,7 @@
 
 				<div class="buttom">
 					<br>
-					<button class="btn btn-default" type="submit" id="btn1"
+					<button class="btn btn-default" type="button" id="btn1"
 						style="height: 30px; width: 80px;">수정하기</button>
 					&nbsp;&nbsp;&nbsp;
 					<button class="btn btn-default" type="reset"
@@ -207,17 +205,48 @@
 	</div>
 
 	<script>
-		$(document).ready(function() {
-			$("#btn1").click(function() {
+		$(function() {
 
-				var UserPw = $("#UserPw").val();
-				var UserPw1 = $("#UserPw1").val();
-				if (UserPw != UserPw1) {
-					alert("비밀번호가 서로 다릅니다. 다시 입력해주세요.");
-					$("#UserPw1").focus();
-					return false;
-				}
-			});
+			$("#btn1")
+					.click(
+							function(e) {
+								e.preventDefault();
+								if ($("#User_Img").val() == "") {
+									alert("프로필사진을 선택해주세요");
+								} else if ($("#UserPw").val() == "") {
+									alert("비밀번호를 입력해주세요.");
+								} else if ($("#UserPw").val() != $("#UserPw1")
+										.val()) {
+									alert("비밀번호가 다릅니다. 다시 입력해주세요.");
+									return false;
+								} else {
+									var form = new FormData(document
+											.getElementById('next'));
+
+									console.log(form);
+
+									$
+											.ajax({
+												url : "${pageContext.request.contextPath}/_mypage/personal_information2ok_HG.do",
+												type : "POST",
+												data : form,
+												dataType : 'text',
+												processData : false,
+												contentType : false,
+												success : function(data) {
+													
+													console.log(data);
+												},
+												error : function() {
+													alert("오류발생");
+
+												}
+											});
+									alert("수정되었습니다.");
+									location.href = "${pageContext.request.contextPath}/_mypage/personal_information1_HG.do";
+								}
+
+							});
 		});
 	</script>
 

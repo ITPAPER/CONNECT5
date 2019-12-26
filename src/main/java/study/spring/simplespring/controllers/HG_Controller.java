@@ -661,7 +661,6 @@ public class HG_Controller {
 		Map<String, String> paramMap = webHelper.getParamMap();
 
 		int MemberId = loginInfo.getMemberId();
-		String User_Img = fileList.get(0).getFilePath();
 		String UserName = loginInfo.getUserName();
 		String UserId = loginInfo.getUserId();
 		int Gender = loginInfo.getGender();
@@ -674,7 +673,10 @@ public class HG_Controller {
 		String StateAddress = paramMap.get("StateAddress");
 		String DetailAddress = paramMap.get("DetailAddress");
 
+		String User_Img = fileList.get(0).getFilePath();
+
 		User input = new User();
+		
 		input.setMemberId(MemberId);
 		input.setUser_Img(User_Img);
 		input.setUserName(UserName);
@@ -695,8 +697,7 @@ public class HG_Controller {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
-		String redirectUrl = contextPath + "/_mypage/personal_information1_HG.do?MemberId=" + input.getMemberId();
-		return webHelper.redirect(redirectUrl, "수정되었습니다.");
+		return new ModelAndView("_mypage/personal_information1_HG");
 	}
 
 	/**
@@ -841,7 +842,6 @@ public class HG_Controller {
 
 	}
 
-	
 	@RequestMapping(value = "/_test/idealtype_HG.do", method = RequestMethod.GET)
 	public ModelAndView idealtype(Model model) {
 
@@ -861,28 +861,26 @@ public class HG_Controller {
 		int MemberId = webHelper.getInt("MemberId");
 		String UserName = webHelper.getString("UserName");
 		int Gender = webHelper.getInt("Gender");
-		String BirthDate = webHelper.getString("BirthDate");
 		int IsMarried = webHelper.getInt("IsMarried");
 		String Date_Loc = webHelper.getString("Date_Loc");
 		String Height = webHelper.getString("Height");
 		String Style = webHelper.getString("Style");
 		String Personality = webHelper.getString("Personality");
-		 String BldType = webHelper.getString("BldType");
-		 String Sal_Annual = webHelper.getString("Sal_Annual");
+		String BldType = webHelper.getString("BldType");
+		String Sal_Annual = webHelper.getString("Sal_Annual");
 
 		User input = new User();
 
 		input.setMemberId(MemberId);
 		input.setUserName(UserName);
 		input.setGender(Gender);
-		input.setBirthDate(BirthDate);
 		input.setIsMarried(IsMarried);
 		input.setDate_Loc(Date_Loc);
 		input.setHeight(Height);
 		input.setStyle(Style);
 		input.setPersonality(Personality);
-		 input.setBldType(BldType);
-		 input.setSal_Annual(Sal_Annual);
+		input.setBldType(BldType);
+		input.setSal_Annual(Sal_Annual);
 
 		List<User> output = null;
 
@@ -894,14 +892,13 @@ public class HG_Controller {
 		model.addAttribute("MemberId", MemberId);
 		model.addAttribute("UserName", UserName);
 		model.addAttribute("Gender", Gender);
-		model.addAttribute("BirthDate", BirthDate);
 		model.addAttribute("IsMarried", IsMarried);
 		model.addAttribute("Date_Loc", Date_Loc);
 		model.addAttribute("Height", Height);
 		model.addAttribute("Style", Style);
 		model.addAttribute("Personality", Personality);
-		 model.addAttribute("BldType", BldType);
-		 model.addAttribute("Sal_Annual", Sal_Annual);
+		model.addAttribute("BldType", BldType);
+		model.addAttribute("Sal_Annual", Sal_Annual);
 		model.addAttribute("output", output);
 
 		return new ModelAndView("_test/idealtype1_HG");
