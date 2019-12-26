@@ -9,8 +9,24 @@
 	}
 	
 	#cc{
-	
 		color:white;
+	}
+	
+	a{
+		color:black;
+	}
+	
+	#lv{
+		color:white;
+	}
+	
+	#lev{
+		background-color:#F73478;
+	}
+	
+	#back{
+	
+	background-image: url(/assets/img/bg.PNG);
 	}
 	
 	
@@ -20,6 +36,10 @@
 		border:1px solid; padding:10px; width:650px;
 		float: left;
 
+	}
+	
+	#img{
+		vertical-align: middle;
 	}
 	.mg_name{
 		font-size:25px; color:brown;

@@ -83,7 +83,7 @@
 		UPDATE SucMatch SET
 		status = 1
 		WHERE
-		otherMemberId=#{MemberId} and SucMatchId=#{SucMatchId}
+		(MemberId=#{MemberId} or otherMemberId=#{MemberId}) and SucMatchId=#{SucMatchId}
 	</update>
 	
 	<delete id="deleteItem"

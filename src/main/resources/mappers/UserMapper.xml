@@ -39,6 +39,7 @@
 		<result property="start" column="start" />
 		<result property="ReqSpService" column="ReqSpService" />
 		<result property="SucMatchId" column="SucMatchId" />
+		
 	</resultMap>
 
 	<!-- insert -->
@@ -74,7 +75,8 @@
 		FROM User
 		WHERE MemberId=#{MemberId}
 	</select>
-
+	
+	
 	<select id="selectItemFindId"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">

@@ -67,7 +67,8 @@ public class GD_Controller {
 
 	@Value("#{servletContext.contextPath}")
 	String contextPath;
-
+	
+	
 	@RequestMapping(value = "/_payment/mustInput_SE.do", method = RequestMethod.GET)
 	public ModelAndView mustinput(Model model) {
 
@@ -91,6 +92,32 @@ public class GD_Controller {
 			return new ModelAndView("_payment/mustInput_SE");
 		}
 		return new ModelAndView("_payment/mustInput_SE");
+	}
+	
+	
+	@ResponseBody		
+	@RequestMapping(value = "/_Reqdate.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String reqdate(Model model) {
+
+		int memberid = webHelper.getInt("MemberId");
+		
+		User input = new User();
+		User output = null;
+		
+		input.setMemberId(memberid);
+		
+		try {
+			output = userService.getUserItem(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("output = "+ output);
+		model.addAttribute("output", output);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(output);
 	}
 
 	@ResponseBody
@@ -124,6 +151,7 @@ public class GD_Controller {
 		String personality = paramMap.get("personality");
 		String sal_annual = paramMap.get("income");
 		String style = paramMap.get("style");
+		
 
 		String user_img = fileList.get(0).getFilePath();
 
