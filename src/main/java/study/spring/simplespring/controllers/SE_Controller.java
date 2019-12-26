@@ -56,6 +56,27 @@ public class SE_Controller {
 
 	// --------------------------------------------------------------------------------------------------
 	// Admin_Controller
+	@ResponseBody
+	@RequestMapping(value = "/_admin/searchAdmin_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String searchAdminOk() {
+		String start = webHelper.getString("start");
+		
+		User input1 = new User();
+		input1.setStart(start);
+
+		// 조회결과를 저장할 객체 선언
+		List<User> output1 = null;
+
+		try {
+			// 데이터 조회
+			output1 = userService.getreqUserList(input1);
+		} catch (Exception e) {
+			System.out.println("에러발생");
+		}
+
+		Gson gson = new Gson();
+		return gson.toJson(output1);
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/_admin/sucModal_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
@@ -983,19 +1004,72 @@ public class SE_Controller {
 	@ResponseBody
 	@RequestMapping(value = "/_mypage/search_ok.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String searchOk() {
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		int member_lv = loginInfo.getMember_Lv();
+		int reqSpService = loginInfo.getReqSpService();
+		
 		String start = webHelper.getString("start");
-
+		
 		User input1 = new User();
 		input1.setStart(start);
-
+		input1.setMember_Lv(member_lv);
+		input1.setReqSpService(reqSpService);
+		
 		// 조회결과를 저장할 객체 선언
 		List<User> output1 = null;
-
-		try {
-			// 데이터 조회
-			output1 = userService.getreqUserList(input1);
-		} catch (Exception e) {
-			System.out.println("에러발생");
+		
+		if (member_lv == 1) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output1 = userService.getreqUserList1_1(input1);
+				} catch (Exception e) {
+					System.out.println("에러발생1_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output1 = userService.getreqUserList1(input1);
+			} catch (Exception e) {
+				System.out.println("에러발생1");
+			}
+		} else if (member_lv == 2) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output1 = userService.getreqUserList2_1(input1);
+				} catch (Exception e) {
+					System.out.println("에러발생2_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output1 = userService.getreqUserList2(input1);
+			} catch (Exception e) {
+				System.out.println("에러발생2");
+			}
+		} else if (member_lv == 3) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output1 = userService.getreqUserList3_1(input1);
+				} catch (Exception e) {
+					System.out.println("에러발생3_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output1 = userService.getreqUserList3(input1);
+			} catch (Exception e) {
+				System.out.println("에러발생3");
+			}
+		} else {
+			try {
+				// 데이터 조회
+				output1 = userService.getreqUserList4(input1);
+			} catch (Exception e) {
+				System.out.println("에러발생4");
+			}
 		}
 
 		Gson gson = new Gson();
@@ -1014,14 +1088,16 @@ public class SE_Controller {
 			String redirectUrl = contextPath + "/_login/login_HG.do";
 			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
 		}
-
+		
 		// 상대방 MemberId searchRequestConfirm_SE 에서 던져줬음
 		int otherMemberId = webHelper.getInt("MemberId");
+		
 		// 상대방 MemberId 가 0 이 아닐때만 이 로직이 실행되야 함
 		if (otherMemberId == loginInfo.getMemberId()){
 			String redirectUrl = contextPath + "/_mypage/searchview_SE.do";
 			return webHelper.redirect(redirectUrl,"인연을 다시 찾아주세요."+ loginInfo.getUserName() + "님 과 데이트 할 수 없어요!");
 		}
+
 		if (otherMemberId != 0) {
 			// User에 otherUser 객체 만든 후 상대방 MemberId 넣어줌
 			User otherUser = new User();
@@ -1038,7 +1114,7 @@ public class SE_Controller {
 			// 내가 그사람 한테 신청 한거기 때문에 ReqMatch는 otherMemberId 를 가져와서 add 한것
 			ReqMatch reqMatch = new ReqMatch();
 			reqMatch.setMemberId(otherMemberId);
-
+			
 			try {
 				// ReqMatch 를 검색해서 상대방 ReqMatchId SucMatch 테이블에 ReqMatchId 에 넣어줌
 				reqMatch = reqMatchService.getReqMatchItem(reqMatch);
@@ -1053,25 +1129,75 @@ public class SE_Controller {
 			String redirectUrl = contextPath + "/_mypage/myInfo_GD.do?MemberId=" + loginInfo.getMemberId();
 			return webHelper.redirect(redirectUrl, "신청이 완료 되었습니다.");
 		}
-
+		
 		int isSpUser = loginInfo.getIsSpUser();
 		int MemberId = loginInfo.getMemberId();
 		String name = (String) loginInfo.getUserName();
 		Integer date_rest = (Integer) loginInfo.getDate_Rest();
-
+		int member_lv = loginInfo.getMember_Lv();
+		int reqSpService = loginInfo.getReqSpService();
+	
 		/** 데이터 조회하기 */
 		// 데이터 조회에 필요한 조건값을 Beans에 저장하기
 		ReqMatch input = new ReqMatch();
 		input.setMemberId(MemberId);
+		input.setReqSpService(reqSpService);
 
 		// 조회결과를 저장할 객체 선언
 		List<ReqMatch> output = null;
 
-		try {
-			// 데이터 조회
-			output = reqMatchService.getReqMatchList(input);
-		} catch (Exception e) {
-			return webHelper.redirect(null, e.getLocalizedMessage());
+		if (member_lv == 1) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList1_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생1_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList1(input);
+			} catch (Exception e) {
+				System.out.println("에러발생1");
+			}
+		} else if (member_lv == 2) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList2_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생2_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList2(input);
+			} catch (Exception e) {
+				System.out.println("에러발생2");
+			}
+		} else if (member_lv == 3) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList3_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생3_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList3(input);
+			} catch (Exception e) {
+				System.out.println("에러발생3");
+			}
+		} else {
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList4(input);
+			} catch (Exception e) {
+				System.out.println("에러발생4");
+			}
 		}
 
 		Gson gson = new Gson();
@@ -1170,17 +1296,67 @@ public class SE_Controller {
 		}
 
 		int MemberId = loginInfo.getMemberId();
+		int member_lv = loginInfo.getMember_Lv();
+		int reqSpService = loginInfo.getReqSpService();
 
 		ReqMatch input = new ReqMatch();
 		input.setMemberId(MemberId);
+		input.setReqSpService(reqSpService);
 
 		List<ReqMatch> output = null;
-
-		try {
-			// 데이터 조회
-			output = reqMatchService.getReqMatchList(input);
-		} catch (Exception e) {
-			return webHelper.redirect(null, e.getLocalizedMessage());
+		
+		if (member_lv == 1) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList1_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생1_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList1(input);
+			} catch (Exception e) {
+				System.out.println("에러발생1");
+			}
+		} else if (member_lv == 2) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList2_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생2_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList2(input);
+			} catch (Exception e) {
+				System.out.println("에러발생2");
+			}
+		} else if (member_lv == 3) {
+			if (reqSpService == 1) {
+				try {
+					// 데이터 조회
+					output = reqMatchService.getReqMatchList3_1(input);
+				} catch (Exception e) {
+					System.out.println("에러발생3_1");
+				}
+			}
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList3(input);
+			} catch (Exception e) {
+				System.out.println("에러발생3");
+			}
+		} else {
+			try {
+				// 데이터 조회
+				output = reqMatchService.getReqMatchList4(input);
+			} catch (Exception e) {
+				System.out.println("에러발생4");
+			}
 		}
 
 		Gson gson = new Gson();

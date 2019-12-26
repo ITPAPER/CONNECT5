@@ -192,11 +192,10 @@ location.href = "${pageContext.request.contextPath}/_admin/deleteOk.do?MemberId=
 		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
 		    	  
 					$.ajax({
-					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
+					url : "${pageContext.request.contextPath}/_admin/searchAdmin_ok.do",
 					type : "GET",
 					data : {start:start},
 					dataType : 'json',
-					async: false,
 					success : function(start) {
 						console.log(start);
 						$("#tbody").html("");

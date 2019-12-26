@@ -39,14 +39,10 @@
    <![endif]-->
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryWrite_YB.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 </head>
 
 <body>
-
-
 	<div class="container">
 		<div class="top">
 			<div class="col-md-12 top_login">
@@ -89,7 +85,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="context" colspan="3" align="center" id="Content">
+								<td colspan="3" align="center">
 									<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></textarea>
 								</td>
 							</tr>

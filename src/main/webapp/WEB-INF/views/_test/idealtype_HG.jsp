@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Test/idealtype.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Test/idealtypeHG.css">
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -17,9 +17,6 @@
 											var Gender = $(
 													"input[name=Gender]:checked")
 													.val();
-											var BirthDate = $(
-													"input[name=BirthDate]:checked")
-													.val();
 											var IsMarried = $(
 													"input[name=IsMarried]:checked")
 													.val();
@@ -29,7 +26,7 @@
 											var Height = $(
 													"input[name=Height]:checked")
 													.val();
-												var Style = $(
+											var Style = $(
 													"input[name=Style]:checked")
 													.val();
 											var Personality = $(
@@ -45,8 +42,6 @@
 													.open(
 															'${pageContext.request.contextPath}/_test/idealtype1_HG.do?Gender='
 																	+ Gender
-																	+ '&BirthDate='
-																	+ BirthDate
 																	+ '&IsMarried='
 																	+ IsMarried
 																	+ '&Date_Loc='
@@ -60,7 +55,7 @@
 																	+ '&BldType='
 																	+ BldType
 																	+ '&Sal_Annual='
-																	+ Sal_Annual, 
+																	+ Sal_Annual,
 															'mywin',
 															'width=800, height=300, scrollbars=yes');
 										});
@@ -125,38 +120,20 @@
 					</td>
 				</tr>
 
-				<tr id="test10">
-					<td id="title">나이</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="BirthDate"
-						id="BirthDate" value="무관">무관 &nbsp; &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="BirthDate" value=950427 id="BirthDate"
-						checked>20대 초반 &nbsp; &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="BirthDate" value="20대 중후반" id="BirthDate">20대
-						중후반&nbsp; &nbsp;&nbsp;&nbsp; <input type="radio" name="BirthDate"
-						value="30대 초중반" id="BirthDate">30대 초중반 <br /> <br />&nbsp;&nbsp;
-						<input type="radio" name="BirthDate" value="30대 중후반"
-						id="BirthDate">30대 중후반 &nbsp; &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="BirthDate" value="40대 초중반" id="BirthDate">40대
-						초중반 &nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="BirthDate"
-						value="40대 중후반" id="BirthDate">40대 중후반
-					</td>
-				</tr>
 
 				<tr id="test10">
 					<td id="title">결혼 여부</td>
 					<td>&nbsp; &nbsp;<input type="radio" name="IsMarried"
-						id="IsMarried" value="2">무관&nbsp;&nbsp; <input
-						type="radio" name="IsMarried" value="0" id="IsMarried" checked>초혼&nbsp;&nbsp;
-						<input type="radio" name="IsMarried" value="1" id="IsMarried">재혼
+						value="0" id="IsMarried" checked>초혼&nbsp;&nbsp; <input
+						type="radio" name="IsMarried" value="1" id="IsMarried">재혼
 					</td>
 				</tr>
 
-			  	<tr id="test10">
+				<tr id="test10">
 					<td id="title">데이트 선호 <br />지역
 					</td>
 					<td>&nbsp; &nbsp;<input type="radio" name="Date_Loc"
-						value="무관" id="Date_Loc">무관 &nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="Date_Loc" value="서울" id="Date_Loc" checked>서울
+						value="서울" id="Date_Loc" checked>서울
 						&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="Date_Loc"
 						value="경기도" id="Date_Loc">경기도 &nbsp;&nbsp;&nbsp;&nbsp; <input
 						type="radio" name="Date_Loc" value="강원도" id="Date_Loc">강원도
@@ -171,36 +148,32 @@
 
 				<tr id="test10">
 					<td id="title">키</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="Height" value="0"
-						id="Height">무관&nbsp;&nbsp; <input type="radio"
-						name="Height" value="140" id="Height">150cm이하&nbsp;&nbsp;
-						<input type="radio" name="Height" value="150" id="Height" checked>151~160cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="Height" value="160" id="Height">161~170cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="Height" value="170" id="Height">171~180cm&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="Height" value="180" id="Height">181이상cm
+					<td>&nbsp; &nbsp;<input type="radio" name="Height"
+						value="150cm이하" id="Height">150cm이하&nbsp;&nbsp; <input
+						type="radio" name="Height" value="151~160cm" id="Height" checked>151~160cm&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="Height" value="161~170cm" id="Height">161~170cm&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="Height" value="171~180cm" id="Height">171~180cm&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="Height" value="181이상cm" id="Height">181이상cm
 					</td>
 				</tr>
 
 
-		 		<tr id="test10">
+				<tr id="test10">
 					<td id="title">스타일</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="Style" value="무관"
-						id="Style">무관&nbsp;&nbsp; <input type="radio" name="Style"
-						value="귀여움" id="Style">귀여움&nbsp;&nbsp; <input type="radio"
+					<td>&nbsp; &nbsp;<input type="radio" name="Style" value="귀여움"
+						id="Style">귀여움&nbsp;&nbsp; <input type="radio"
 						name="Style" value="남성스러움" id="Style" checked>남성스러움&nbsp;&nbsp;
 						<input type="radio" name="Style" value="여성스러움" id="Style">여성스러움&nbsp;&nbsp;
 						<input type="radio" name="Style" value="마름" id="Style">마름&nbsp;&nbsp;
 						<input type="radio" name="Style" value="통통" id="Style">통통
 					</td>
 				</tr>
-				
+
 				<tr id="test10">
 					<td id="title">성격</td>
 					<td>&nbsp; &nbsp;<input type="radio" name="Personality"
-						value="무관" id="Personality">무관&nbsp;&nbsp; <input
-						type="radio" name="Personality" value="외향적 " id="Personality"
-						checked>외향적&nbsp;&nbsp; <input type="radio"
-						name="Personality" value="내향적 " id="Personality">내향적&nbsp;&nbsp;
+						value="외향적 " id="Personality" checked>외향적&nbsp;&nbsp; <input
+						type="radio" name="Personality" value="내향적 " id="Personality">내향적&nbsp;&nbsp;
 						<input type="radio" name="Personality" value="감성적 "
 						id="Personality">감성적&nbsp;&nbsp; <input type="radio"
 						name="Personality" value="직관적 " id="Personality">직관적&nbsp;&nbsp;
@@ -211,28 +184,25 @@
 
 				<tr id="test10">
 					<td id="title">혈액형</td>
-					<td>&nbsp; &nbsp;<input type="radio" name="BldType" value="무관"
-						id="BldType">무관&nbsp;&nbsp; <input type="radio"
-						name="BldType" value="A형" id="BldType" checked>A형&nbsp;&nbsp;
-						<input type="radio" name="BldType" value="B형" id="BldType">B형&nbsp;&nbsp;
-						<input type="radio" name="BldType" value="AB형" id="BldType">AB형&nbsp;&nbsp;
-						<input type="radio" name="BldType" value="O형" id="BldType">O형
+					<td>&nbsp; &nbsp;<input type="radio" name="BldType" value="A"
+						id="BldType" checked>A형&nbsp;&nbsp; <input type="radio"
+						name="BldType" value="B" id="BldType">B형&nbsp;&nbsp; <input
+						type="radio" name="BldType" value="AB" id="BldType">AB형&nbsp;&nbsp;
+						<input type="radio" name="BldType" value="O" id="BldType">O형
 					</td>
 				</tr>
 
 				<tr id="test10">
 					<td id="title">연봉</td>
 					<td>&nbsp; &nbsp;<input type="radio" name="Sal_Annual"
-						value="무관" id="Sal_Annual">무관&nbsp;&nbsp; <input
-						type="radio" name="Sal_Annual" value="3000이하 " id="Sal_Annual"
-						checked>3000이하&nbsp;&nbsp; <input type="radio"
-						name="Sal_Annual" value="5000이하 " id="Sal_Annual">5000이하&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="Sal_Annual" value="7000이하 "
-						id="Sal_Annual">7000이하&nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="Sal_Annual" value="1억이상" id="Sal_Annual">1억이상
+						value="3000이하 " id="Sal_Annual" checked>3000이하&nbsp;&nbsp;
+						<input type="radio" name="Sal_Annual" value="5000이하 "
+						id="Sal_Annual">5000이하&nbsp;&nbsp;&nbsp;&nbsp; <input
+						type="radio" name="Sal_Annual" value="7000이하 " id="Sal_Annual">7000이하&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="Sal_Annual" value="1억이상" id="Sal_Annual">1억이상
 					</td>
 				</tr>
-				
+
 			</table>
 			<br />
 			<div class="b1">

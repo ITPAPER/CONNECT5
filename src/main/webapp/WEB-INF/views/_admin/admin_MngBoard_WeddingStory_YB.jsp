@@ -194,6 +194,7 @@
 				</c:choose>
 			</c:forEach>
 			<c:choose>
+			
 				<%-- 다음 그룹으로 이동 가능하다면? --%>
 				<c:when test="${pageData.nextPage > 0}">
 					<%-- 이동할 URL 생성 --%>
@@ -212,8 +213,9 @@
 			<button class="btn btn-default" onclick="location='${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryWrite_YB.do'">글쓰기</button>
 		</div>
 	</div>
+	
 	<!-- Javascript -->
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

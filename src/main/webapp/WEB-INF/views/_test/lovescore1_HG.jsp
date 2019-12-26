@@ -11,7 +11,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore1.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore1HG.css">
 
 <meta charset="utf-8" />
 <title>연-결</title>
@@ -86,40 +86,7 @@
 
 					</div>
 				</div>
-
-
 			</div>
-			<div class="media2">
-				<table class="boxtext1 table-bordered">
-					<tr>
-						<td id="qa" colspan="3">나는 자동차를 좋아하며, 거울로 내 모습 보는것을 좋아한다.</td>
-					</tr>
-				</table>
-				<div class="box2">
-					<div class="text3">
-						<a
-							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ5=0">그렇다</a>
-
-					</div>
-				</div>
-
-				<div class="box2">
-					<div class="text3">
-						<a
-							href="${pageContext.request.contextPath}/_test/lovescore2_HG.do?TestQ6=1">아니다</a>
-					</div>
-				</div>
-
-
-				<div class="buttom">
-					<br>
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_test/lovescore2_HG.do'"
-						style="height: 30px; width: 80px;">다음</button>
-				</div>
-			</div>
-
-
 		</div>
 	</div>
 

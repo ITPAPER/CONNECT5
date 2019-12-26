@@ -102,7 +102,7 @@
 						<tbody>
 							<tr>
 								<td class="context" colspan="3" align="center" id="Content">
-									<textarea class="form-control" class="contentarea" id="contentarea" name="Content" value="${output.getContent()}"></textarea>
+									<textarea class="form-control" class="contentarea" id="contentarea" name="Content" value="${output.getContent()}">${output.getContent()}</textarea>
 								</td>
 							</tr>
 						</tbody>
