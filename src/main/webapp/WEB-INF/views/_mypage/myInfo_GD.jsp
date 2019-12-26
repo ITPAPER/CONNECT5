@@ -346,15 +346,33 @@
 
 									
 								</div>
+								
 								<div class="modal-body">
 									<table class="table table-bordered table-hover" >
 									<tr >
 											<td width="50px" rowspan="5" >
 												<img src="../img/manager1.jpg" width="100px;" >
 											</td>
-											<c:if test="${suc1.getMemberId() == requser.getMemberId()}">
+											
+										<c:choose>
+											<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
 											<td align="center">결혼여부</td>
-											<td align="center"><c:if test="${suc1.getMyMarry() ==0}">
+											<td align="center"><c:if test="${suc1.getPartnerMarry() ==0}">
+																			미혼
+																</c:if>
+																<c:if test="${suc1.getPartnerMarry() ==1}">
+																		이혼
+																</c:if>
+																<c:if test="${suc1.getPartnerMarry() ==2}">
+																		사별
+																</c:if>				
+											</td>
+											</c:when>
+											
+											<c:otherwise>
+											
+											<td align="center">결혼여부</td>
+											<td align="center"><c:if test="${suc1.getMyMarry() == 0}">
 																			미혼
 																</c:if>
 																<c:if test="${suc1.getMyMarry() ==1}">
@@ -363,47 +381,114 @@
 																<c:if test="${suc1.getMyMarry() ==2}">
 																		사별
 																</c:if>
-																
-											</td>
-											</c:if>
-											<c:if test="${suc1.getOtherMemberId() == requser.getMemberId()}">
-											<td align="center">결혼여부</td>
-											<td align="center"><c:if test="${suc1.getPartnerMarry() == 0}">
-																			미혼
-																</c:if>
-																<c:if test="${suc1.getPartnerMarry() ==1}">
-																		이혼
-																</c:if>
-																<c:if test="${suc1.getPartnerMarry() ==2}">
-																		사별
-																</c:if>
-																
-											</td>
-											</c:if>
-											
+											</c:otherwise>
+										</c:choose>
+									
+									
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+								
+											<td align="center">이름</td>
+											<td align="center">${suc1.getPartnerUserName()}</td>
+											</c:when>
+										
+										<c:otherwise>
 											<td align="center">이름</td>
 											<td align="center">${suc1.getUserName()}</td>
+										</c:otherwise>
+									</c:choose>
 										</tr>
 										<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+									
 											<td align="center">핸드폰번호</td>
-											<td align="center">${suc1.getIsMarried()}</td>
-											<td align="center">거주지</td>
-											<td align="center">${suc1.getBasicAddress()}</td>
+											<td align="center">${suc1.getPartnerMobile()}</td>
+									</c:when>
+										<c:otherwise>
+											<td align="center">핸드폰번호</td>
+											<td align="center">${suc1.getMyMobile()}</td>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">연봉</td>
+											<td align="center">${suc1.getPartnerSal()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">연봉</td>
+											<td align="center">${suc1.getMySal()}</td>
+									</c:otherwise>
+									</c:choose>
 										</tr>
 										<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
 											<td align="center">직업</td>
-											<td align="center">가정주부</td>
-											<td align="center">종교</td>
-											<td align="center">기독교</td>
+											<td align="center">${suc1.getPartnerJob()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">직업</td>
+											<td align="center">${suc1.getMyJob()}</td>
+									</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">출신</td>
+											<td align="center">${suc1.getPartnerState()}</td>
+									</c:when>
+									<c:otherwise>
+												<td align="center">출신</td>
+											<td align="center">${suc1.getMyState()}</td>
+									</c:otherwise>
+									</c:choose>
 										</tr>
 									<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
 											<td align="center">생년월일</td>
-											<td align="center">1965년 5월 5일</td>
+											<td align="center">${suc1.getPartnerBirth()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">생년월일</td>
+											<td align="center">${suc1.getMyBirth()}</td>
+									
+									</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
 											<td align="center">성별</td>
-											<td align="center">여자</td>
+											<c:if test="${suc1.getPartnerGender() == 1}">
+												<td align="center">여자</td>
+											</c:if>
+											<c:if test="${suc1.getPartnerGender() == 0}">
+												<td align="center">남자</td>
+											</c:if>
+										
+											
+									</c:when>
+									<c:otherwise>
+											<td align="center">성별</td>
+											<td align="center">${suc1.getMyGender()}</td>
+									
+									</c:otherwise>
+									</c:choose>
+									
+									
 										</tr>
 
 										<tr>
+										
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">혈액형</td>
+											<td align="center">${suc1.getPartnerBld()}형</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">혈액형</td>
+											<td align="center">${suc1.getMyBld()}형</td>
+									</c:otherwise>
+									</c:choose>		
 											<td align="center">혈액형</td>
 											<td align="center">B형</td>
 											<td align="center">지역</td>
@@ -411,6 +496,7 @@
 										</tr>
 									</table>
 								</div>
+								
 								<div class="modal-footer">
 									<button type="button" class="btn btn-danger" id="cc" 
 									><a href="${pageContext.request.contextPath}/_mypage/DateConfirm2.do?SucMatchId=${suc1.getSucMatchId()}">데이트 취소</button>

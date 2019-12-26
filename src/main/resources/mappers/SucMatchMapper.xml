@@ -39,7 +39,7 @@
 		resultMap="SucMatchMap">
 		
 		select s.sucmatchid,s.status,s.reqmatchid, OtherMemberId ,s.memberid , u.memberid as myMemberId ,uu.memberid as partnerMemberId ,u.username as myUserName, uu.username as partnerUserName, u.mobile as myMobile, uu.mobile as partnerMobile, u.gender as myGender, uu.gender as partnerGender, u.job as myJob, uu.job as partnerJob , u.bldtype as myBld, uu.bldtype as partnerBld, u.date_loc as myLoc, uu.date_loc as partnerLoc, u.sal_annual as mySal, uu.sal_annual as partnerSal ,u.user_img as myImg, uu.user_img as partnerImg
-		, u.birthdate as myBirth, uu.birthdate as partnerBirth, u.ismarried as myMarry, uu.ismarried as partnerMarry from sucmatch as s join user as u on s.memberid = u.memberid join user as uu on 
+		,u.member_lv as myLv, uu.member_lv as partnerLv, u.stateaddress as mystate, uu.stateaddress as partnerstate, u.birthdate as myBirth, uu.birthdate as partnerBirth, u.ismarried as myMarry, uu.ismarried as partnerMarry from sucmatch as s join user as u on s.memberid = u.memberid join user as uu on 
 		OtherMemberId = uu.memberid where (s.OtherMemberId=#{MemberId} or s.MemberId=#{MemberId}) and status=2 
 
 	</select>

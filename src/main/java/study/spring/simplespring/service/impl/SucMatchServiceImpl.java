@@ -123,7 +123,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 		}
 
 	@Override
-<<<<<<< HEAD
+
 	public SucMatch getSucMatchItemStatus(SucMatch input) throws Exception {
 		SucMatch result = null;
 		try {
@@ -159,7 +159,11 @@ public class SucMatchServiceImpl implements SucMatchService {
 				log.error(e.getLocalizedMessage());
 				throw new Exception("데이터 조회에 실패했습니다.");
 			}
-=======
+		
+		return result;
+		}
+		
+
 	public int deleteSucMatch(SucMatch input) throws Exception {
 		int result = 0;
 
@@ -176,11 +180,9 @@ public class SucMatchServiceImpl implements SucMatchService {
 			log.error(e.getLocalizedMessage());
 			throw new Exception("데이터 삭제에 실패했습니다.");
 		}
->>>>>>> aad733ad3aeaf98a8c196731a8c76424e4f09f6a
 
 		return result;
 	}
 	
 	
-
 }

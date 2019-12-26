@@ -20,7 +20,27 @@ public class SucMatch {
 	private int MyMarry;
 	private int PartnerMarry;
 	private String myMobile;
-	
+	private String partnerMobile;
+	private String myEdu_lv;
+	private String partnerEdu_lv;
+	private int myGender;
+	private int partnerGender;
+	private String myJob;
+	private String partnerJob;
+	private String myBld;
+	private String partnerBld;
+	private String myLoc;
+	private String partnerLoc;
+	private String mySal;
+	private String partnerSal;
+	private String myImg;
+	private String partnerImg;
+	private String PartnerState;
+	private String myState;
+	private int myLv;
+	private int partnerLv;
+	private String PartnerBirth;
+	private String myBirth;
 	
 
 	private String Mobile;
