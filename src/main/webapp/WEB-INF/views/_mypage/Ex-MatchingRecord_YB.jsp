@@ -11,13 +11,12 @@
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YB/Mypage/Ex-MatchingRecord.css">
+<meta charset="utf-8" />
 
 <title>my연-결_이전 매칭기록(MyPage_Ex-MatchingRecord)</title>
 
-	<!-- 스크립트 추가 작성란 --> 
-	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript">
-	</script>
+<!-- 스크립트 추가 작성란 --> 
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 <body>
@@ -86,6 +85,7 @@
 						</thead>
 						<tbody>
 						<c:choose>
+							<%-- 조회결과가 없는 경우 --%>
 							<c:when test="${output == null || fn:length(output) == 0}">
 								<tr>
 									<td colspan="9" align="center">찾는 상대방 이름의 조회결과가 없습니다.</td>
@@ -95,7 +95,7 @@
 							<%-- 조회결과가 있는  경우 --%>
 							<c:otherwise>
 								<%-- 조회 결과에 따른 반복 처리 --%>
-								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}" />
+								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 								<c:forEach var="item" items="${output}" varStatus="status">
 									<c:set var="partnerName" value="${item.userName}" />
 									<c:set var="birthDate" value="${item.birthDate}" />
@@ -103,12 +103,11 @@
 									<c:set var="academicBackground" value="${item.edu_Lv}" />
 									<c:set var="job" value="${item.job}" />
 	
-							
 									
 									<%-- 상세페이지로 이동하기 위한 URL --%>
-								<c:url value="/_mypage/Ex-MatchingRecordView_YB.do" var="viewUrl">
-									<c:param name="MemberId" value="${item.memberId}" />
-								</c:url>
+									<c:url value="/_mypage/Ex-MatchingRecordView_YB.do" var="viewUrl">
+										<c:param name="MemberId" value="${item.memberId}" />
+									</c:url>
 	
 									<tr>
 										<td>${num}</td>
@@ -124,7 +123,7 @@
 							</c:choose>
 						</tbody>
 					</table>
-
+				</div>
 			<!-- 페이지 번호 구현 -->
     		<%-- 이전 그룹에 대한 링크 --%>
 			<c:choose>
@@ -184,7 +183,6 @@
 					</ul>
 				</c:otherwise>
 			</c:choose>
-		</div>
 	</div>
 	
 	<!-- Javascript -->
