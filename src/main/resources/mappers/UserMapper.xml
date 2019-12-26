@@ -101,6 +101,76 @@
 
 	</select>
 	
+	<select id="selectModalList1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND u.member_lv = 1
+
+	</select>
+	
+	<select id="selectModalList1_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND (u.member_lv = 1 OR u.member_lv = 2) 
+
+	</select>
+	
+	<select id="selectModalList2"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND u.member_lv = 2
+
+	</select>
+	
+	<select id="selectModalList2_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND (u.member_lv = 2 OR u.member_lv = 3) 
+
+	</select>
+	
+	<select id="selectModalList3"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND u.member_lv = 3
+
+	</select>
+	
+	<select id="selectModalList3_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND (u.member_lv = 3 OR u.member_lv = 4) 
+
+	</select>
+	
+	<select id="selectModalList4"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN connect5.ReqMatch r ON (u.MemberId = r.MemberId) 
+		AND r.start = #{start} 
+		AND u.member_lv = 4
+
+	</select>
+	
 	<select id="selectSucModalList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
