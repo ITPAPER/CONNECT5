@@ -30,7 +30,7 @@
 		
 	</select>
 	
-	<select id="selectItemModal"
+	<select id="selectItemModal1"
 		parameterType="study.spring.simplespring.model.ReqMatch"
 		resultMap="ReqMatchMap">
 		SELECT DATE_FORMAT(start,'%Y-%m-%d') AS start
@@ -56,6 +56,70 @@
 			LIMIT #{offset}, #{listCount}
 		</if>
 	</select>
+	
+	<select id="selectList1"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND u.Member_lv = 1
+	</select>
+	
+	<select id="selectList1_1"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND (u.Member_lv = 1 OR u.Member_lv = 2) 
+	</select>
+	
+	<select id="selectList2"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND u.Member_lv = 2
+	</select>
+	
+	<select id="selectList2_1"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND (u.Member_lv = 2 OR u.Member_lv = 3) 
+	</select>
+	
+	<select id="selectList3"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND u.Member_lv = 3
+	</select>
+	
+	<select id="selectList3_1"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND (u.Member_lv = 3 OR u.Member_lv = 4) 
+	</select>
+	
+	<select id="selectList4"
+		parameterType="study.spring.simplespring.model.ReqMatch"
+		resultMap="ReqMatchMap">
+		SELECT r.MemberId,DATE_FORMAT(Select_Date,'%Y-%m-%d') AS Select_Date,
+		r.ReqMatchId,DATE_FORMAT(start,'%Y-%m-%d') AS start, u.UserName FROM ReqMatch r
+		INNER JOIN User u ON (r.MemberId = u.MemberId)
+		AND u.Member_lv = 4
+	</select>
+	
 
 	<!-- 데이터 저장을 위한 기능 정의 -->
 	<insert id="insertItem"

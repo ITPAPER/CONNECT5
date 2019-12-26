@@ -58,11 +58,11 @@
 					<th id="title">키</th>
 					<th><select name="height" id="height">
 							<option value="">--------선택--------</option>
-							<option value="140">150cm이하</option>
-							<option value="150">151~160cm</option>
-							<option value="160">161~170cm</option>
-							<option value="170">171~180cm</option>
-							<option value="180">181cm이상</option>
+							<option value="150cm이하">150cm이하</option>
+							<option value="151~160cm">151~160cm</option>
+							<option value="161~170cm">161~170cm</option>
+							<option value="171~180cm">171~180cm</option>
+							<option value="181cm이상">181cm이상</option>
 					</select></th>
 				</tr>
 

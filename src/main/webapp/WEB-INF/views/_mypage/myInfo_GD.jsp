@@ -16,6 +16,11 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
+<script>
+
+	console.log(${suc1});
+	
+</script>
 
 
 <meta charset="utf-8" />
@@ -104,8 +109,8 @@
 				</c:if></span> <span
 				style="font-weight: bold; font-size: 1.3em; margin-left: 40px;"
 				id="name">${username} </span> <span> 님의 잔여 매칭 횟수 </span> <span
-				style="font-weight: bold; font-size: 1.3em;" id="count"> <c:if
-					test="${date_rest == 1}">3
+				style="font-weight: bold; font-size: 1.3em;" id="count">
+				 <c:if test="${date_rest == 1}">3
 				</c:if> <c:if test="${date_rest == 2}">5
 				</c:if> <c:if test="${date_rest == 3}">7
 				</c:if> <c:if test="${date_rest == 4}">Free
@@ -124,17 +129,40 @@
 		<c:choose>
 			<c:when test="${memberlv == 0 }">
 				<h4>현재 매칭 상대</h4>
-				<div class="state_matching">
+				<div class="state_matching" align="center">
 					정회원 등록 시 이용 가능합니다.
-					<p class="look_match">
+					<p class="look_match" align="center">
 						<a href="${pageContext.request.contextPath}/_payment/mustInput_SE.do"
 							id="lf_partner"> 결제페이지 이동 </a>
 					</p>
 				</div>
 				<h4>데이트 신청</h4>
-				<div class="request_date">정회원 등록 시 이용 가능합니다.</div>
+
 			</c:when>
-	
+			
+		
+
+			<c:when test="${suc1.status == 2}">
+				<h4>현재 매칭 상대</h4>
+				
+					<table class="table table-bordered" align="center" id="partner">
+                        <tr width="400px">
+                           <th class="text-center" width="200px" bgcolor="#F73478" id="p_box" >연-결 파트너</th>
+                           <c:choose>
+					<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+                           <th class="text-center" width="300px" id="match_partner"><a href="#"data-toggle="modal" 
+							data-target="#myModal">${suc1.getPartnerUserName()}</a></th>
+							</c:when>
+							<c:otherwise>
+							 <th class="text-center" width="300px" id="match_partner"><a href="#"data-toggle="modal" 
+							data-target="#myModal">${suc1.getMyUserName()}</a></th>
+							</c:otherwise>
+							</c:choose>
+                        </tr>
+                    </table>
+				<h4>데이트 신청</h4>
+			</c:when>
+			
 			<c:when test="${requser.start != null}">
 				<h4>현재 매칭 상대</h4>
 				<div class="state_matching" align="center">
@@ -146,6 +174,7 @@
 				</div>
 				<h4>데이트 신청</h4>
 			</c:when>
+		
 			
 			<c:otherwise>
 				<h4>현재 매칭 상대</h4>
@@ -160,29 +189,56 @@
 			</c:otherwise>
 		</c:choose>
 		
+		
 				<c:choose>
+					
+					<c:when test="${suc1.status == 2}">
+					<c:choose>
+					<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+						<div class="state_matching" align="center">
+				 [	<span id="n"> 1번 ${suc1.getPartnerUserName()}</span> ] 님 과 [ ${requser.getStart()} ] 에 데이트 진행 예정입니다.
+						</div>
+						</c:when>
+						<c:otherwise>
+						<div class="state_matching" align="center">
+				 [	<span id="n">${suc1.getMyUserName()}</span> ] 님 과 [ ${requser.getStart()} ] 에 데이트 진행 예정입니다.	
+				 </div>	
+						</c:otherwise>
+					</c:choose>
+					
+					</c:when>
+					
+				
 					<c:when test="${sucuser == null || fn:length(sucuser) == 0}">
 							<div class="request_date" align="center">현재 들어온 데이트 신청이 없습니다.</div>
 					</c:when>
 					
 					<c:otherwise>
-					
-						<c:forEach var="item" items="${sucuser}" varStatus="status">
+						
+						<c:choose>
+						<c:when test="${suc0 == null || fn:length(suc0) == 0}">
+						<div class="request_date" align="center">현재 들어온 데이트 신청이 없습니다.</div>
+						</c:when>
+						<c:otherwise>
+						
+							<c:forEach var="item" items="${suc0}" varStatus="status">
 							<%--출력을 위해 준비한 학과이름과 위치 --%>
 						<c:set var="name" value="${item.getUserName()}" />
 						<c:set var="sucmatch" value="${item.getSucMatchId() }" />
-							
+						
 								<table class="table table-bordered table-hover">
 									<tr>
 										<td id="date" align="center">[ <span id="n"> ${name }</span> ] 님에게 [
 										<span id="c">${requser.getStart()}</span> ] 일에 데이트 신청이 들어왔습니다. </td>
 										<td align="center">
-											<a href="${pageContext.request.contextPath}/_mypage/DateConfirm.do?SucMatchId=${sucmatch}">수락</a></button>
-											<a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a>
+											<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm.do?SucMatchId=${sucmatch}">수락</a></button>
+										<span><button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a></button></span>	
 										</td>
 									</tr>
 								</table>
 						</c:forEach>
+						</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 
@@ -270,6 +326,188 @@
 				</tr>
 			</table>
 		</c:if>
+	</div>
+	
+	<div class="modal fade" id="myModal" >
+						<div class="modal-dialog" style="max-width: 100%; width: 500px;">
+							<div class="modal-content">
+								<div class="modal-header">
+									
+									<table class="table table-bordered table-hover" >
+										<tr align="center">
+											<th align="center"><h4 class="modal-title">인사말</h4></th><th align="center">
+											<h4 class="modal-title">노병은 죽지 않는다.</h4>
+											</th>
+										</tr>
+										
+
+									</table>
+
+
+									
+								</div>
+								
+								<div class="modal-body">
+									<table class="table table-bordered table-hover" >
+									<tr >
+											<td width="50px" rowspan="5" >
+												<img src="../img/manager1.jpg" width="100px;" >
+											</td>
+											
+										<c:choose>
+											<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">결혼여부</td>
+											<td align="center"><c:if test="${suc1.getPartnerMarry() ==0}">
+																			미혼
+																</c:if>
+																<c:if test="${suc1.getPartnerMarry() ==1}">
+																		이혼
+																</c:if>
+																<c:if test="${suc1.getPartnerMarry() ==2}">
+																		사별
+																</c:if>				
+											</td>
+											</c:when>
+											
+											<c:otherwise>
+											
+											<td align="center">결혼여부</td>
+											<td align="center"><c:if test="${suc1.getMyMarry() == 0}">
+																			미혼
+																</c:if>
+																<c:if test="${suc1.getMyMarry() ==1}">
+																		이혼
+																</c:if>
+																<c:if test="${suc1.getMyMarry() ==2}">
+																		사별
+																</c:if>
+											</c:otherwise>
+										</c:choose>
+									
+									
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+								
+											<td align="center">이름</td>
+											<td align="center">${suc1.getPartnerUserName()}</td>
+											</c:when>
+										
+										<c:otherwise>
+											<td align="center">이름</td>
+											<td align="center">${suc1.getUserName()}</td>
+										</c:otherwise>
+									</c:choose>
+										</tr>
+										<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+									
+											<td align="center">핸드폰번호</td>
+											<td align="center">${suc1.getPartnerMobile()}</td>
+									</c:when>
+										<c:otherwise>
+											<td align="center">핸드폰번호</td>
+											<td align="center">${suc1.getMyMobile()}</td>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">연봉</td>
+											<td align="center">${suc1.getPartnerSal()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">연봉</td>
+											<td align="center">${suc1.getMySal()}</td>
+									</c:otherwise>
+									</c:choose>
+										</tr>
+										<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">직업</td>
+											<td align="center">${suc1.getPartnerJob()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">직업</td>
+											<td align="center">${suc1.getMyJob()}</td>
+									</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">출신</td>
+											<td align="center">${suc1.getPartnerState()}</td>
+									</c:when>
+									<c:otherwise>
+												<td align="center">출신</td>
+											<td align="center">${suc1.getMyState()}</td>
+									</c:otherwise>
+									</c:choose>
+										</tr>
+									<tr>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">생년월일</td>
+											<td align="center">${suc1.getPartnerBirth()}</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">생년월일</td>
+											<td align="center">${suc1.getMyBirth()}</td>
+									
+									</c:otherwise>
+									</c:choose>
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">성별</td>
+											<c:if test="${suc1.getPartnerGender() == 1}">
+												<td align="center">여자</td>
+											</c:if>
+											<c:if test="${suc1.getPartnerGender() == 0}">
+												<td align="center">남자</td>
+											</c:if>
+										
+											
+									</c:when>
+									<c:otherwise>
+											<td align="center">성별</td>
+											<td align="center">${suc1.getMyGender()}</td>
+									
+									</c:otherwise>
+									</c:choose>
+									
+									
+										</tr>
+
+										<tr>
+										
+									<c:choose>
+									<c:when test="${suc1.getMemberId() == requser.getMemberId()}">
+											<td align="center">혈액형</td>
+											<td align="center">${suc1.getPartnerBld()}형</td>
+									</c:when>
+									<c:otherwise>
+											<td align="center">혈액형</td>
+											<td align="center">${suc1.getMyBld()}형</td>
+									</c:otherwise>
+									</c:choose>		
+											<td align="center">혈액형</td>
+											<td align="center">B형</td>
+											<td align="center">지역</td>
+											<td align="center">포항</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" id="cc" 
+									><a href="${pageContext.request.contextPath}/_mypage/DateConfirm2.do?SucMatchId=${suc1.getSucMatchId()}">데이트 취소</button>
+									<button type="button" class="btn btn-success" 
+									data-dismiss="modal" >확인</button>
+								</div>
+							</div>
+						</div>
+					
+ </div>
+ </div>
 	</div>
 
 

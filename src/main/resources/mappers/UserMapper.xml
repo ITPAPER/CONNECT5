@@ -48,7 +48,8 @@
 		INSERT INTO User (
 		MemberId,
 		UserId, UserPw, UserName, BirthDate, Gender, IsMarried, Mobile, TEL,
-		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin, Member_Lv
+		Email, PostCode, BasicAddress, StateAddress, DetailAddress, isadmin,
+		Member_Lv
 		)
 		VALUES (
 		#{MemberId}, #{UserId}, #{UserPw}, #{UserName},
@@ -100,15 +101,97 @@
 		#{start}
 
 	</select>
-	
+
+	<select id="selectModalList1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND u.member_lv = 1
+
+	</select>
+
+	<select id="selectModalList1_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND (u.member_lv = 1 OR u.member_lv = 2)
+
+	</select>
+
+	<select id="selectModalList2"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND u.member_lv = 2
+
+	</select>
+
+	<select id="selectModalList2_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND (u.member_lv = 2 OR u.member_lv = 3)
+
+	</select>
+
+	<select id="selectModalList3"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND u.member_lv = 3
+
+	</select>
+
+	<select id="selectModalList3_1"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND (u.member_lv = 3 OR u.member_lv = 4)
+
+	</select>
+
+	<select id="selectModalList4"
+		parameterType="study.spring.simplespring.model.User"
+		resultMap="userMap">
+		SELECT u.*,r.start FROM connect5.user u
+		INNER JOIN
+		connect5.ReqMatch r ON (u.MemberId = r.MemberId)
+		AND r.start = #{start}
+		AND u.member_lv = 4
+
+	</select>
+
 	<select id="selectSucModalList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
-		SELECT u.username, u.gender, u.BirthDate,s.SucMatchId,s.Status,
-		s.ReqMatchId,s.MemberId, s.OtherMemberId, u.UserName, r.start FROM connect5.user u
-		INNER JOIN connect5.sucmatch s ON (s.OtherMemberId = u.MemberId)
-		INNER JOIN connect5.reqmatch r ON (u.MemberId = r.MemberId) AND
-		r.start  = #{start} AND s.Status= 2
+		SELECT u.username, u.gender,
+		u.BirthDate,s.SucMatchId,s.Status,
+		s.ReqMatchId,s.MemberId,
+		s.OtherMemberId, u.UserName, r.start FROM connect5.user u
+		INNER JOIN
+		connect5.sucmatch s ON (s.OtherMemberId = u.MemberId)
+		INNER JOIN
+		connect5.reqmatch r ON (u.MemberId = r.MemberId) AND
+		r.start = #{start}
+		AND s.Status= 2
 	</select>
 
 	<select id="selectListadminUser"
@@ -647,40 +730,44 @@
 		UPDATE connect5.user SET isSpUser = 1 WHERE MemberId =
 		#{MemberId}
 	</update>
-	
+
 	<select id="idealtypeList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
 		SELECT
 		UserName,
-		Gender,BirthDate,IsMarried, Date_Loc, Height,
-		Style, Personality, BldType, Sal_Annual
+		Gender,IsMarried, Date_Loc, Height,
+		Style,
+		Personality, BldType, Sal_Annual
 		FROM User
 		WHERE
 		Gender=#{Gender}
-		AND BirthDate=#{BirthDate} AND IsMarried=#{IsMarried} AND
-		Date_Loc=#{Date_Loc} AND Height=#{Height} AND Style=#{Style} AND
-		Personality=#{Personality} AND BldType=#{BldType} AND
+		AND
+		IsMarried=#{IsMarried} AND
+		Date_Loc=#{Date_Loc} AND Height=#{Height}
+		AND Style=#{Style} AND
+		Personality=#{Personality} AND
+		BldType=#{BldType} AND
 		Sal_Annual=#{Sal_Annual}
 	</select>
 
-	
-	 <select id="CountM_Member_lvN"
+
+	<select id="CountM_Member_lvN"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
 		SELECT COUNT(*) FROM User
 		WHERE Member_Lv LIKE 0
 		AND gender = 0
 	</select>
-   
-   <select id="CountM_Member_lvB"
+
+	<select id="CountM_Member_lvB"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
 		SELECT COUNT(*) FROM User
 		WHERE Member_Lv LIKE 1
 		AND gender = 0
 	</select>
-	
+
 	<select id="CountM_Member_lvS"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -688,7 +775,7 @@
 		WHERE Member_Lv LIKE 2
 		AND gender = 0
 	</select>
-	
+
 	<select id="CountM_Member_lvG"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -696,7 +783,7 @@
 		WHERE Member_Lv LIKE 3
 		AND gender = 0
 	</select>
-	
+
 	<select id="CountM_Member_lvV"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -704,7 +791,7 @@
 		WHERE Member_Lv LIKE 4
 		AND gender = 0
 	</select>
-	
+
 	<select id="CountW_Member_lvN"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -712,7 +799,7 @@
 		WHERE Member_Lv LIKE 0
 		AND gender = 1
 	</select>
-	
+
 	<select id="CountW_Member_lvB"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -720,7 +807,7 @@
 		WHERE Member_Lv LIKE 1
 		AND gender = 1
 	</select>
-	
+
 	<select id="CountW_Member_lvS"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -728,7 +815,7 @@
 		WHERE Member_Lv LIKE 2
 		AND gender = 1
 	</select>
-	
+
 	<select id="CountW_Member_lvG"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -736,7 +823,7 @@
 		WHERE Member_Lv LIKE 3
 		AND gender = 1
 	</select>
-	
+
 	<select id="CountW_Member_lvV"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 
@@ -744,30 +831,43 @@
 		WHERE Member_Lv LIKE 4
 		AND gender = 1
 	</select>
-	
+
 	<select id="MCountAll"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 		SELECT COUNT(*)
 		FROM User WHERE Gender = 0
 
 	</select>
-	
+
 	<select id="WCountAll"
 		parameterType="study.spring.simplespring.model.User" resultType="int">
 		SELECT COUNT(*)
 		FROM User WHERE Gender = 1
 
 	</select>
-	
-	<update id="reqSpService_updateUser"
-      parameterType="study.spring.simplespring.model.User">
-      UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}
-   </update>
-   
-   <update id="reqMatch_isSpUserupdateUser"
+
+	<update id="updateItemRest"
 		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.user SET isSpUser = 0 WHERE MemberId = #{MemberId}
+		UPDATE connect5.user SET Date_Rest = Date_Rest - 1 WHERE MemberId =
+		#{MemberId}
 	</update>
-	
+
+	<update id="updateItemRestUp"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET Date_Rest = Date_Rest + 1 WHERE MemberId =
+		#{MemberId}
+	</update>
+
+	<update id="reqSpService_updateUser"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET ReqSpService = 1 WHERE MemberId = #{MemberId}
+	</update>
+
+	<update id="reqMatch_isSpUserupdateUser"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET isSpUser = 0 WHERE MemberId =
+		#{MemberId}
+	</update>
+
 
 </mapper>

@@ -34,29 +34,56 @@
 		sucmatch.otherMemberId = #{MemberId}
 
 	</select>
+	<select id="select1"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		
+		select s.sucmatchid,s.status,s.reqmatchid, OtherMemberId ,s.memberid , u.memberid as myMemberId ,uu.memberid as partnerMemberId ,u.username as myUserName, uu.username as partnerUserName, u.mobile as myMobile, uu.mobile as partnerMobile, u.gender as myGender, uu.gender as partnerGender, u.job as myJob, uu.job as partnerJob , u.bldtype as myBld, uu.bldtype as partnerBld, u.date_loc as myLoc, uu.date_loc as partnerLoc, u.sal_annual as mySal, uu.sal_annual as partnerSal ,u.user_img as myImg, uu.user_img as partnerImg
+		,u.member_lv as myLv, uu.member_lv as partnerLv, u.stateaddress as mystate, uu.stateaddress as partnerstate, u.birthdate as myBirth, uu.birthdate as partnerBirth, u.ismarried as myMarry, uu.ismarried as partnerMarry from sucmatch as s join user as u on s.memberid = u.memberid join user as uu on 
+		OtherMemberId = uu.memberid where (s.OtherMemberId=#{MemberId} or s.MemberId=#{MemberId}) and status=2 
+
+	</select>
+	
+	<select id="select0"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT s.SucMatchId,s.Status,
+		s.ReqMatchId,s.MemberId,
+		s.OtherMemberId, u.UserName FROM connect5.sucmatch s
+		INNER JOIN
+		connect5.user u ON (s.MemberId = u.MemberId) AND
+		s.OtherMemberId =
+		#{MemberId} and s.status = 0;
+
+	</select>
 
 	<select id="selectList"
 		parameterType="study.spring.simplespring.model.SucMatch"
 		resultMap="SucMatchMap">
 		SELECT s.SucMatchId,s.Status,
-		s.ReqMatchId,s.MemberId, s.OtherMemberId, u.UserName FROM connect5.sucmatch s
-		INNER JOIN connect5.user u ON (s.OtherMemberId = u.MemberId) AND
-		s.OtherMemberId = #{MemberId}
-
+		s.ReqMatchId,s.MemberId,
+		s.OtherMemberId, u.UserName FROM connect5.sucmatch s
+		INNER JOIN
+		connect5.user u ON (s.MemberId = u.MemberId) AND
+		s.OtherMemberId =
+		#{MemberId}
+		
 	</select>
-	
+
 	<update id="updateItem"
 		parameterType="study.spring.simplespring.model.SucMatch">
 		UPDATE SucMatch SET
 		status = 2
-		WHERE MemberId=#{MemberId} and SucMatchId=#{SucMatchId}
+		WHERE
+		otherMemberId=#{MemberId} and SucMatchId=#{SucMatchId}
 	</update>
-	
+
 	<update id="updateDisItem"
 		parameterType="study.spring.simplespring.model.SucMatch">
 		UPDATE SucMatch SET
 		status = 1
-		WHERE MemberId=#{MemberId} and SucMatchId=#{SucMatchId}
+		WHERE
+		otherMemberId=#{MemberId} and SucMatchId=#{SucMatchId}
 	</update>
 	
 	<delete id="deleteItem"

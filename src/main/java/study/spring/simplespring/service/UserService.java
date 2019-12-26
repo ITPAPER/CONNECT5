@@ -43,6 +43,10 @@ public interface UserService {
 	public int editUserinformation(User input) throws Exception;
 
 	public int editUseradmin(User input) throws Exception;
+	
+	public int editUserRest(User input) throws Exception;
+	
+	public int editUserRestUp(User input) throws Exception;
 
 	public int getSelectCountGenderMen(User input) throws Exception;
 
@@ -130,6 +134,20 @@ public interface UserService {
 	
 	public List<User> getreqUserList(User input) throws Exception;
 	
+	public List<User> getreqUserList1(User input) throws Exception;
+	
+	public List<User> getreqUserList1_1(User input) throws Exception;
+	
+	public List<User> getreqUserList2(User input) throws Exception;
+	
+	public List<User> getreqUserList2_1(User input) throws Exception;
+	
+	public List<User> getreqUserList3(User input) throws Exception;
+	
+	public List<User> getreqUserList3_1(User input) throws Exception;
+	
+	public List<User> getreqUserList4(User input) throws Exception;
+	
 	public List<User> getsucUserList(User input) throws Exception;
 	
 	public List<User> getidealtypeok(User input) throws Exception;
@@ -159,4 +177,5 @@ public interface UserService {
 	public int getCountW_All(User input) throws Exception;
 	
 	public int editreqMatch_isSpUserupdateUser(User input) throws Exception;
+
 }

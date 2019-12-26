@@ -10,7 +10,7 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore2.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Test/lovescore1HG.css">
 <meta charset="utf-8" />
 <title>연-결</title>
 </head>
@@ -71,51 +71,20 @@
 				<div class="box2">
 					<div class="text2">
 						<ul>
-							<li>
-							<a href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=0">그렇다</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=0">그렇다</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="box2">
 					<div class="text2">
 						<ul>
-							<li>
-							<a href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=1">아니다</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/_test/lovescore3_HG.do?TestQ3=${TestQ3}&TestQ4=1">아니다</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="media2">
-				<table class="boxtext1 table-bordered">
-					<tr>
-						<td id="qa" colspan="3">나는 어두운 계열보다 밝고 튀는 계열을 좋아한다.</td>
-					</tr>
-				</table>
-				<div class="box2">
-					<div class="text3">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="0" checked><br />그렇다
-						<p>
-					</div>
-				</div>
-
-				<div class="box2">
-					<div class="text3">
-						<p>
-							<input type="radio" style="width: 25px; height: 25px;" name="a1"
-								value="1"><br />아니다
-						<p>
-					</div>
-				</div>
-				<div class="buttom">
-
-					<button class="btn btn-default"
-						onclick="location.href = '${pageContext.request.contextPath}/_test/lovescore3_HG.do'"
-						style="height: 30px; width: 80px;">다음</button>
-				</div>
-			</div>
-
 		</div>
 	</div>
 
