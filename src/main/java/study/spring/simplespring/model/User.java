@@ -75,6 +75,8 @@ public class User {
 	
 	private int clear;
 	
+	private String SucMatchId;
+	
 	private static int offset;
 
 	/** LIMIT 절에서 사용할 조회할 데이터 수 */

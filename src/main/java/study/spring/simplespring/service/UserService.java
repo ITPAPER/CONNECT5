@@ -134,7 +134,7 @@ public interface UserService {
 	
 	public List<User> getreqUserList(User input) throws Exception;
 	
-	public List<User> getidealtype(User input) throws Exception;
+	public List<User> getsucUserList(User input) throws Exception;
 	
 	public List<User> getidealtypeok(User input) throws Exception;
 

@@ -85,5 +85,10 @@
 		WHERE
 		otherMemberId=#{MemberId} and SucMatchId=#{SucMatchId}
 	</update>
+	
+	<delete id="deleteItem"
+		parameterType="study.spring.simplespring.model.SucMatch">
+		DELETE FROM SucMatch WHERE SucMatchId=#{SucMatchId}
+	</delete>
 
 </mapper>

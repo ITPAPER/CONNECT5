@@ -106,3 +106,7 @@ ul, ol {
 	width: 125px;
 	text-align: center;
 }
+
+.ck-editor__editable {
+    min-height: 300px;
+}

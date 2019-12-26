@@ -1045,14 +1045,13 @@ int result = 0;
 
 		return result;
 	}
-
-
+	
 	@Override
-	public List<User> getidealtype(User input) throws Exception {
+	public List<User> getsucUserList(User input) throws Exception {
 		List<User> result = null;
 
 		try {
-			result = sqlSession.selectList("UserMapper.idealtype", input);
+			result = sqlSession.selectList("UserMapper.selectSucModalList", input);
 
 			if (result == null) {
 				throw new NullPointerException("result=null");
@@ -1067,6 +1066,9 @@ int result = 0;
 
 		return result;
 	}
+
+
+	
 
 	@Override
 	public List<User> getidealtypeok(User input) throws Exception {

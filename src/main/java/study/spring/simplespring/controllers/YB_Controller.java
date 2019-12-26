@@ -3,6 +3,7 @@ package study.spring.simplespring.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,10 @@ public class YB_Controller {
 	@Autowired
 	BoardService boardService;	
 	
+    /** "/프로젝트이름" 에 해당하는 ContextPath 변수 주입 */
+    @Value("#{servletContext.contextPath}")
+    String contextPath;
+	
 	/**----------------------- 연-결 소개 Controller 시작 ------------------------------*/
 	@RequestMapping(value = "/_info/IntroWebsite_YB.do", method = RequestMethod.GET)
 	public String IntroWebsite(Model model) {
@@ -47,9 +52,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}
 		
 
@@ -63,9 +68,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}
 		return "_info/Greetings_YB";
 	}
@@ -82,9 +87,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 
 		return "_service/MembershipRegisGuide_YB";
@@ -97,9 +102,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		return "_service/ServiceProcedures_YB";
@@ -113,9 +118,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		// 데이터베이스로부터 Gender 데이터 불러오기
@@ -151,9 +156,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 
 		// 데이터베이스로부터 Sal_Annual 데이터 불러오기
@@ -276,9 +281,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		// 데이터베이스로부터 나이 데이터 불러오기
@@ -375,9 +380,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 
 		// 데이터베이스로부터 학력 데이터 불러오기
@@ -466,9 +471,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		return "_coach/DatingCourse_YB";
@@ -481,9 +486,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		return "_coach/DatingCourse2_YB";
@@ -501,9 +506,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}				
 	
 
@@ -517,9 +522,9 @@ public class YB_Controller {
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
 		return "_mypage/Ex-MatchingRecord2_YB";
@@ -533,15 +538,15 @@ public class YB_Controller {
 	/**----------------------- 관리자 Controller 시작 ---------------------------------*/
 	/** 게시판 목록 페이지 */
 	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStory_YB.do", method = RequestMethod.GET)
-	public ModelAndView MngBoard_WeddingStory(Model model) {
+	public ModelAndView MngBoard_WeddingStory_List(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}
 		
 		/** 1) 필요한 변수값 생성 */
@@ -550,18 +555,25 @@ public class YB_Controller {
 	     int totalCount = 0;                                     // 전체 게시글 수
 	     int listCount  = 10;                                    // 한 페이지당 표시할 목록 수
 	     int pageCount  = 5;                                     // 한 그룹당 표시할 페이지 번호 수
-	        
+	     
+	     int BoardId = webHelper.getInt("BoardId");
+		 int MemberId = loginInfo.getMemberId();
+		 String UserName = loginInfo.getUserName();
+		 
 	     /** 2) 데이터 조회하기 */
 	     // 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 	     Board input = new Board();
+	     input.setBoardId(BoardId);
 	     input.setTitle(keyword);
-
+	     input.setUserName(UserName);
+	     input.setMemberId(MemberId);
+	     
 	     List<Board> output = null; // 조회결과가 저장될 객체
 	     PageData pageData = null;  // 페이지 번호를 계산한 결과가 저장될 객체
 	     
 	     try {
 	            // 전체 게시글 수 조회
-	            totalCount = boardService.getBoardCount(input);
+	            totalCount = boardService.getBoardCountStory(input);
 	            // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
 	            pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 
@@ -570,7 +582,7 @@ public class YB_Controller {
 	            Board.setListCount(pageData.getListCount());
 	            
 	            // 데이터 조회하기
-	            output = boardService.getBoardListStory(input);
+	            output = boardService.getBoardListAdminStory(input);
 	     } catch (Exception e) {
 	            return webHelper.redirect(null, e.getLocalizedMessage());
 	     }
@@ -584,106 +596,232 @@ public class YB_Controller {
 	}
 	
 	/** 상세 게시글 페이지  */
-	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryRead1_YB.do", method = RequestMethod.GET)
-	public ModelAndView MngBoard_WeddingStoryRead1(Model model) {
+	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryRead_YB.do", method = RequestMethod.GET)
+	public ModelAndView MngBoard_WeddingStoryRead_Edit(Model model) {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		if (loginInfo != null) {
 			
-			String output = loginInfo.getUserName();
+			String login = loginInfo.getUserName();
 			
-			model.addAttribute("output", output);
+			model.addAttribute("login", login);
 		}		
 		
         /** 1) 필요한 변수값 생성 */
-        // 조회할 대상에 대한 PK값
-        String title = webHelper.getString("itle");
-
+        // 조회할 대상에 대한 값
+		int BoardId = webHelper.getInt("BoardId");
+        String Title = webHelper.getString("Title");
+        int viewcount = webHelper.getInt("viewcount");
+        
         // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
-        if (title == null) {
+        if (BoardId == 0) {
             return webHelper.redirect(null, "조회 제목이 없습니다.");
         }
 
         /** 2) 데이터 조회하기 */
         // 데이터 조회에 필요한 조건값을 Beans에 저장하기
         Board input = new Board();
-        input.setTitle(title);
-
-        // 조회결과를 저장할 객체 선언
+        input.setBoardId(BoardId);
+        input.setTitle(Title);
+        
+        Board inputview = new Board();
+        inputview.setViewcount(viewcount);
+        inputview.setBoardId(BoardId);
+        
+     // 조회결과를 저장할 객체 선언
+        int outputview = 0;
         Board output = null;
+        Board prevBoard = null;
+        Board nextBoard = null;
 
+        
         try {
             // 데이터 조회
-            output = boardService.getBoardItem(input);
+        	outputview = boardService.editviewcountAdminStory(inputview);
+            output = boardService.getBoardItemAdminStory(input);
+            prevBoard = boardService.getPrevPageAdminStory(input);
+            nextBoard = boardService.getNextPageAdminStory(input);
+            
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+ 
+		model.addAttribute("nextBoard",nextBoard);
+		model.addAttribute("prevBoard",prevBoard);
+		model.addAttribute("outputview",outputview);
+		model.addAttribute("output", output);
+        /** 3) View 처리 */
+		return new ModelAndView("_admin/admin_MngBoard_WeddingStoryRead_YB");
+	}
+	
+
+
+	/** 작성 폼 페이지 */
+	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryWrite_YB.do", method = RequestMethod.GET)
+	public ModelAndView MngBoard_WeddingStoryWrite_Add(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		if (loginInfo != null) {
+			
+			String login = loginInfo.getUserName();
+			
+			model.addAttribute("login", login);
+		}		
+		return new ModelAndView("_admin/admin_MngBoard_WeddingStoryWrite_YB");
+	}	
+
+
+	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryWrite_AddOk_YB.do", method = RequestMethod.POST)
+	public ModelAndView MngBoard_WeddingStoryWrite_AddOk(Model model) {
+	
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		/** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
+		int MemberId = loginInfo.getMemberId();
+		String Title = webHelper.getString("Title");
+		String Content = webHelper.getString("Content");
+		int Category = webHelper.getInt("Category");
+		String CreationDate = webHelper.getString("CreationDate");
+	
+	    /** 2) 데이터 저장하기 */
+	    // 저장할 값들을 Beans에 담는다.
+		Board input = new Board();
+		input.setContent(Content);
+		input.setTitle(Title);
+		input.setMemberId(MemberId);
+		input.setCategory(Category);
+		input.setCreationDate(CreationDate);	
+		
+		try {
+			// 데이터 저장
+			// --> 데이터 저장에 성공하면 파라미터로 전달하는 input 객체에 PK값이 저장된다.
+			boardService.addBoardAdminStory(input);
+	
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+	
+		// View에 추가
+	
+		String redirectUrl = contextPath + "/_admin/admin_MngBoard_WeddingStoryRead_YB.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "성혼스토리 게시판에 등록되었습니다.");
+	}	
+
+	
+	/** 수정 폼 페이지 */
+	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryEdit_YB.do", method = RequestMethod.GET)
+	public ModelAndView MngBoard_WeddingStoryEdit(Model model) {
+
+		User loginInfo = (User) webHelper.getSession("loginInfo");
+		
+		if (loginInfo != null) {
+			
+			String login = loginInfo.getUserName();
+			
+			model.addAttribute("login", login);
+		}
+		
+        /** 1) 필요한 변수값 생성 */
+        // 조회할 대상에 대한 값
+		int BoardId = webHelper.getInt("BoardId");
+        String Title = webHelper.getString("Title");
+        String Content = webHelper.getString("Content");
+        
+        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+        if (BoardId == 0) {
+			return webHelper.redirect(null, "성혼스토리 게시글번호가 없습니다.");
+		}
+        
+        /** 2) 데이터 조회하기 */
+        // 데이터 조회에 필요한 조건값을 Beans에 저장하기
+        Board input = new Board();
+        input.setBoardId(BoardId);
+        input.setTitle(Title);
+        input.setContent(Content);
+        
+        // 게시글 조회결과를 저장할 객체 선언
+        Board output = null;
+        
+      //  List<User> userList = null;
+        
+        try {
+            // 관리자 게시판 성혼스토리 기본 정보 조회
+        	output = boardService.getBoardItemAdminStory(input);
         } catch (Exception e) {
             return webHelper.redirect(null, e.getLocalizedMessage());
         }
         
         /** 3) View 처리 */
         model.addAttribute("output", output);
-		return new ModelAndView("_admin/admin_MngBoard_WeddingStoryRead1_YB");
-	}
+        return new ModelAndView("_admin/admin_MngBoard_WeddingStoryEdit_YB"); 
+	}	
 	
-	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryRead2.do", method = RequestMethod.GET)
-	public String MngBoard_WeddingStoryWrite(Model model) {
+    /** 수정 폼에 대한 action 페이지 */
+    @RequestMapping(value = "/_admin/admin_MngBoard_WeddingStory_EditOk.do", method = RequestMethod.POST)
+    public ModelAndView admin_MngBoard_WeddingStory_EditOk(Model model) {
+    	
+    	User loginInfo = (User) webHelper.getSession("loginInfo");
+    	
+    	/** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
+    	int BoardId = webHelper.getInt("BoardId");
+    	String Title = webHelper.getString("Title");
+    	String Content = webHelper.getString("Content");
+    	int Category = webHelper.getInt("Category");
+    	String CreationDate = webHelper.getString("CreationDate");
+    	int MemberId = loginInfo.getMemberId();
+    	
+    	if (BoardId == 0) {
+			return webHelper.redirect(null, "등록할 게시글이 없습니다.");
+		}
 
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-		
-		if (loginInfo != null) {
-			
-			String output = loginInfo.getUserName();
-			
-			model.addAttribute("output", output);
-		}		
-		
-		return "_admin/admin_MngBoard_WeddingStoryRead2_YB";
-	}	
-
-	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryRead3_YB.do", method = RequestMethod.GET)
-	public String MngBoard_WeddingStoryRead3(Model model) {
-
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-		
-		if (loginInfo != null) {
-			
-			String output = loginInfo.getUserName();
-			
-			model.addAttribute("output", output);
-		}		
-		
-		return "_admin/admin_MngBoard_WeddingStoryRead3_YB";
-	}	
-
-	/** 작성 폼 페이지 */
-	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryWrite_YB.do", method = RequestMethod.GET)
-	public ModelAndView MngBoard_WeddingStoryRead2(Model model) {
-
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-		
-		if (loginInfo != null) {
-			
-			String output = loginInfo.getUserName();
-			
-			model.addAttribute("output", output);
-		}		
-		
-	    /** 게시글 제목 목록 조회하기 */
-        // 조회결과를 저장할 객체 선언
-        List<Board> output = null;
+        /** 2) 데이터 저장하기 */
+        // 저장할 값들을 Beans에 담는다.
+    	Board input = new Board();
+    	input.setBoardId(BoardId);
+    	input.setContent(Content);
+    	input.setTitle(Title);
+    	input.setMemberId(MemberId);
+    	input.setCategory(Category);
+    	input.setCreationDate(CreationDate);
 
         try {
-            // 데이터 조회 --> 검색조건 없이 모든 학과 조회
-            output = boardService.getBoardListStory(null);
+            // 데이터 수정
+            boardService.editBoardAdminStory(input);
         } catch (Exception e) {
             return webHelper.redirect(null, e.getLocalizedMessage());
         }
-        
-        // View에 추가
-        model.addAttribute("output", output);
-		
-		return new ModelAndView("_admin/admin_MngBoard_WeddingStoryWrite_YB");
+
+        /** 3) 결과를 확인하기 위한 페이지 이동 */
+        // 수정한 대상을 상세페이지에 알려주기 위해서 PK값을 전달해야 한다. 
+		String redirectUrl = contextPath + "/_admin/admin_MngBoard_WeddingStoryRead_YB.do?BoardId=" + input.getBoardId();
+		return webHelper.redirect(redirectUrl, "성혼스토리 게시글이 수정 되었습니다.");
+    }	
+	
+
+	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStory_DeleteOk.do", method = RequestMethod.GET)
+	public ModelAndView delete_ok(Model model) {
+
+		int BoardId = webHelper.getInt("BoardId");
+
+		if (BoardId == 0) {
+			return webHelper.redirect(null, "성혼스토리 게시글이 없습니다.");
+		}
+
+		Board input = new Board();
+		input.setBoardId(BoardId);
+
+		try {
+			// 데이터 삭제
+			boardService.deleteBoardAdminStory(input);
+		} catch (Exception e) {
+			return webHelper.redirect(null, e.getLocalizedMessage());
+		}
+
+		return webHelper.redirect(contextPath + "/_admin/admin_MngBoard_WeddingStory_YB.do", "게시글이 삭제되었습니다.");
 	}	
+	
 	
 	/**----------------------- 관리자 Controller 끝 ----------------------------------*/
 	

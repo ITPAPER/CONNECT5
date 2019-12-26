@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
@@ -62,7 +64,7 @@
 	
 		<div class="container">
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 현황 비율 </button></a>
-			<a href="${pageContext.request.contextPath}/_service/MemberStatus2_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 연봉 분포</button></a>
+			<a href="${pageContext.request.contextPath}/_service/MemberStatus2_YB.do"><button class="btn btn-graph active" type="submit">연-결 남녀 회원 연봉 분포</button></a>
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus3_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 연령 분포</button></a>
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus4_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 학력 분포</button></a>
 		</div>
@@ -86,36 +88,36 @@
 		// Add data
 		chart.data = [{
 		  "SalaryAnnual": "~2000(만원)이하",
-		  "NoOfSalAnnualM": ${jsonSal0010M},
-		  "NoOfSalAnnualW": ${jsonSal0010W}
+		  "NoOfSalAnnualM": (${jsonSal0010M}/(${jsonSal0010M}+${jsonSal0010W})*100),
+		  "NoOfSalAnnualW": (${jsonSal0010W}/(${jsonSal0010M}+${jsonSal0010W})*100)
 		},{
 		  "SalaryAnnual": "2,000~2,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal2000M},
-		  "NoOfSalAnnualW": ${jsonSal2000W}
+		  "NoOfSalAnnualM": (${jsonSal2000M}/(${jsonSal2000M}+${jsonSal2000W})*100),
+		  "NoOfSalAnnualW": (${jsonSal2000W}/(${jsonSal2000M}+${jsonSal2000W})*100)
 		},{
 		  "SalaryAnnual": "3,000~3,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal3000M},
-		  "NoOfSalAnnualW": ${jsonSal3000W}
+		  "NoOfSalAnnualM": (${jsonSal3000M}/(${jsonSal3000M}+${jsonSal3000W})*100),
+		  "NoOfSalAnnualW": (${jsonSal3000W}/(${jsonSal3000M}+${jsonSal3000W})*100)
 		},{
 		  "SalaryAnnual": "4,000~4,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal4000M},
-		  "NoOfSalAnnualW": ${jsonSal4000W}
+		  "NoOfSalAnnualM": (${jsonSal4000M}/(${jsonSal4000M}+${jsonSal4000W})*100),
+		  "NoOfSalAnnualW": (${jsonSal4000W}/(${jsonSal4000M}+${jsonSal4000W})*100)
 		},{
 		  "SalaryAnnual": "5,000~5,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal5000M},
-		  "NoOfSalAnnualW": ${jsonSal5000W}
+		  "NoOfSalAnnualM": (${jsonSal5000M}/(${jsonSal5000M}+${jsonSal5000W})*100),
+		  "NoOfSalAnnualW": (${jsonSal5000W}/(${jsonSal5000M}+${jsonSal5000W})*100)
 		},{
 		  "SalaryAnnual": "6,000~7,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal6070M},
-		  "NoOfSalAnnualW": ${jsonSal6070W}
+		  "NoOfSalAnnualM": (${jsonSal6070M}/(${jsonSal6070M}+${jsonSal6070W})*100),
+		  "NoOfSalAnnualW": (${jsonSal6070W}/(${jsonSal6070M}+${jsonSal6070W})*100)
 		},{
 		  "SalaryAnnual": "8,000~9,999(만원)",
-		  "NoOfSalAnnualM": ${jsonSal8090M},
-		  "NoOfSalAnnualW": ${jsonSal8090W}
+		  "NoOfSalAnnualM": (${jsonSal8090M}/(${jsonSal8090M}+${jsonSal8090W})*100),
+		  "NoOfSalAnnualW": (${jsonSal8090W}/(${jsonSal8090M}+${jsonSal8090W})*100)
 		},{
 		  "SalaryAnnual": "1억원(10,000만원) 이상~",
-		  "NoOfSalAnnualM": ${jsonSal10000M},
-		  "NoOfSalAnnualW": ${jsonSal10000W}
+		  "NoOfSalAnnualM": (${jsonSal10000M}/(${jsonSal10000M}+${jsonSal10000W})*100),
+		  "NoOfSalAnnualW": (${jsonSal10000W}/(${jsonSal10000M}+${jsonSal10000W})*100)
 		
 		}];
 		
@@ -137,12 +139,12 @@
 		  series.dataFields.valueX = field;
 		  series.dataFields.categoryY = "SalaryAnnual";
 		  series.name = name;
-		  series.columns.template.tooltipText = "{name}: [bold]{valueX}[/]";
+		  series.columns.template.tooltipText = "{name}: [bold]{valueX}%[/]";
 		  series.columns.template.height = am4core.percent(100);
 		  series.sequencedInterpolation = true;
 		
 		  var valueLabel = series.bullets.push(new am4charts.LabelBullet());
-		  valueLabel.label.text = "{valueX}";
+		  valueLabel.label.text = "{valueX}%";
 		  valueLabel.label.horizontalCenter = "left";
 		  valueLabel.label.dx = 10;
 		  valueLabel.label.hideOversized = false;

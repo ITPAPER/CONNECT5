@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import study.spring.simplespring.model.Payment;
-import study.spring.simplespring.model.ReqMatch;
 import study.spring.simplespring.model.SucMatch;
 import study.spring.simplespring.service.SucMatchService;
 
@@ -125,6 +123,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 		}
 
 	@Override
+<<<<<<< HEAD
 	public SucMatch getSucMatchItemStatus(SucMatch input) throws Exception {
 		SucMatch result = null;
 		try {
@@ -160,6 +159,24 @@ public class SucMatchServiceImpl implements SucMatchService {
 				log.error(e.getLocalizedMessage());
 				throw new Exception("데이터 조회에 실패했습니다.");
 			}
+=======
+	public int deleteSucMatch(SucMatch input) throws Exception {
+		int result = 0;
+
+		try {
+			result = sqlSession.delete("SucMatchMapper.deleteItem", input);
+
+			if (result == 0) {
+				throw new NullPointerException("result=0");
+			}
+		} catch (NullPointerException e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("삭제된 데이터가 없습니다.");
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			throw new Exception("데이터 삭제에 실패했습니다.");
+		}
+>>>>>>> aad733ad3aeaf98a8c196731a8c76424e4f09f6a
 
 		return result;
 	}

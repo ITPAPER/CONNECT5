@@ -11,11 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_Board_WeddingStoryWrite(Add)</title>
+<title>관리자페이지_게시판관리(연-결 성혼 스토리)admin_MngBoard_WeddingStoryEdit</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
-<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/img/footerMain.PNG" />
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}assets/ico/apple-touch-icon-144-precomposed.png" />
 
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
@@ -38,15 +38,26 @@
       <script type="text/javascript" src="assets/js/ie10.js"></script>
    <![endif]-->
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryWrite_YB.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YB/Admin/Mng_Board_WeddingStoryEdit_YB.css">
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+
+<script type="text/javascript">
+	function add() {
+		if (confirm("게시물 등록이 완료되었습니다.") == true) {
+		}
+		location.href = "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
+	}
+	
+	function cancel() {
+		if (confirm("게시글을 등록을 취소하시겠습니까?") == true) {
+			alert("게시글 등록이 취소되었습니다.")
+		}
+		location.href= "${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do";
+	}
+</script>
 </head>
-
 <body>
-
-
 	<div class="container">
 		<div class="top">
 			<div class="col-md-12 top_login">
@@ -76,28 +87,29 @@
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_QnA_GD.do'" class="btn">연-결 Q &amp; A</button>
 			<button onclick="location='${pageContext.request.contextPath}/_admin/admin_userEx_GD.do'" class="btn">연-결 만남 후기</button>
 		</div>
-
+		
 		<div class="col-md-10 text_box">
-			<form action="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStoryWrite_AddOk_YB.do" method="POST">
+			<form action="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_EditOk.do" method="POST">
+				<input type="hidden" name="BoardId" value="${output.getBoardId() }" />
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
 								<th class="num" id="Title">제목</th>
-								<th><input type="text" placeholder="제목을 입력하세요." class="textarea" id="textarea" name="Title" /></th>
+								<th><input type="text" class="textarea" id="textarea" name="Title" value="${output.getTitle()}"/></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td class="context" colspan="3" align="center" id="Content">
-									<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></textarea>
+									<textarea class="form-control" class="contentarea" id="contentarea" name="Content" value="${output.getContent()}"></textarea>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="pull-right">
-					<button type="submit" class="btn btn-default">글쓰기</button>
+					<button type="submit" class="btn btn-default">수정하기</button>
 					<button type="reset" class="btn btn-default" onclick="cancel()">취소</button>
 				</div>
 			</form>
@@ -109,6 +121,6 @@
 	<!-- Javascript -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
+
 </body>
 </html>

@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
@@ -68,7 +70,7 @@ body {
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 현황 비율 </button></a>
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus2_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 연봉 분포</button></a>
 			<a href="${pageContext.request.contextPath}/_service/MemberStatus3_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 연령 분포</button></a>
-			<a href="${pageContext.request.contextPath}/_service/MemberStatus4_YB.do"><button class="btn btn-graph" type="submit">연-결 남녀 회원 학력 분포</button></a>
+			<a href="${pageContext.request.contextPath}/_service/MemberStatus4_YB.do"><button class="btn btn-graph active" type="submit">연-결 남녀 회원 학력 분포</button></a>
 		</div>
 	
     	
@@ -88,42 +90,42 @@ body {
 		// Create chart instance
 		var chart = am4core.create("chartdiv", am4charts.XYChart3D);
 		
-		// Add data
+		// Add data (${jsonListm}/(${jsonListm}+${jsonListw})*100)
 		chart.data = [{
 		    "학력": "고등학교 졸업",
-		    "NoOfEduLvM": ${jsonHighschoolM},
-		    "NoOfEduLvW": ${jsonHighschoolW}
+		    "NoOfEduLvM": (${jsonHighschoolM}/(${jsonHighschoolM}+${jsonHighschoolW})*100),
+		    "NoOfEduLvW": (${jsonHighschoolW}/(${jsonHighschoolM}+${jsonHighschoolW})*100)
 		}, {
 		    "학력": "전문대 졸업(전문학사)",
-		    "NoOfEduLvM": ${jsonCollegeM},
-		    "NoOfEduLvW": ${jsonCollegeW}
+		    "NoOfEduLvM": (${jsonCollegeM}/(${jsonCollegeM}+${jsonCollegeW})*100),
+		    "NoOfEduLvW": (${jsonCollegeW}/(${jsonCollegeM}+${jsonCollegeW})*100)
 		}, {
 		    "학력": "대학교 졸업(학사)",
-		    "NoOfEduLvM": ${jsonUniversityM},
-		    "NoOfEduLvW": ${jsonUniversityW}
+		    "NoOfEduLvM": (${jsonUniversityM}/(${jsonUniversityM}+${jsonUniversityW})*100),
+		    "NoOfEduLvW": (${jsonUniversityW}/(${jsonUniversityM}+${jsonUniversityW})*100)
 		}, {
 		    "학력": "대학원 졸업(석사)",
-		    "NoOfEduLvM": ${jsonGraduateSchoolM},
-		    "NoOfEduLvW": ${jsonGraduateSchoolW}
+		    "NoOfEduLvM": (${jsonGraduateSchoolM}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100),
+		    "NoOfEduLvW": (${jsonGraduateSchoolW}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100)
 		}, {
 		    "학력": "대학원 졸업(박사)",
-		    "NoOfEduLvM": ${jsonDoctoralM},
-		    "NoOfEduLvW": ${jsonDoctoralW}
+		    "NoOfEduLvM": (${jsonDoctoralM}/(${jsonDoctoralM}+${jsonDoctoralW})*100),
+		    "NoOfEduLvW": (${jsonDoctoralW}/(${jsonDoctoralM}+${jsonDoctoralW})*100)
 		}];
 		
 		// Create axes
 		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 		categoryAxis.dataFields.category = "학력";
-		categoryAxis.title.text = "연-결 학력별 남녀 회원 수";
+		categoryAxis.title.text = "연-결 학력별 남녀 회원 비율";
 		categoryAxis.renderer.grid.template.location = 0;
 		categoryAxis.renderer.minGridDistance = 30;
 		categoryAxis.renderer.cellStartLocation = 0.1;
 		categoryAxis.renderer.cellEndLocation = 0.9;
 		
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		valueAxis.title.text = "회원 수";
+		valueAxis.title.text = "학력별 남녀 비율(%)";
 		valueAxis.renderer.labels.template.adapter.add("text", function(text) {
-		  return text + "명";
+		  return text + "(%)";
 		});
 		
 		// Create series
@@ -132,7 +134,7 @@ body {
 		series.dataFields.categoryX = "학력";
 		series.name = "남성회원";
 		series.clustered = true;
-		series.columns.template.tooltipText = "연-결 회원 수 {category} (남성회원): [bold]{valueY}[/]";
+		series.columns.template.tooltipText = "연-결 회원 비율 {category} (남성회원): [bold]{valueY}%[/]";
 		series.columns.template.fillOpacity = 0.9;
 		
 		var series2 = chart.series.push(new am4charts.ColumnSeries3D());
@@ -140,7 +142,7 @@ body {
 		series2.dataFields.categoryX = "학력";
 		series2.name = "여성회원";
 		series2.clustered = true;
-		series2.columns.template.tooltipText = "연-결 회원 수 {category} (여성회원): [bold]{valueY}[/]";
+		series2.columns.template.tooltipText = "연-결 회원 비율 {category} (여성회원): [bold]{valueY}%[/]";
 		
 		}); // end am4core.ready()
 		</script>

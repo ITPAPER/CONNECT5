@@ -16,3 +16,12 @@
 	text: bold;
 }
 
+.btn btn-graph {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #5218EA;
+  border: 1px solid #ddd;
+}
+

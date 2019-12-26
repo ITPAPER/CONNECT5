@@ -3,7 +3,6 @@ package study.spring.simplespring.service;
 import java.util.List;
 
 import study.spring.simplespring.model.SucMatch;
-import study.spring.simplespring.model.User;
 
 public interface SucMatchService {
 	
@@ -21,5 +20,5 @@ public interface SucMatchService {
 	
 	public int editSucMatch1(SucMatch input) throws Exception;
 	
-	
+	public int deleteSucMatch(SucMatch input) throws Exception;
 }
