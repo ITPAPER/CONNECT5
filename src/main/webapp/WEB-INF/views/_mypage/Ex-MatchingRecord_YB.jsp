@@ -8,29 +8,20 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 
-
-<title>my연-결_이전 매칭기록(MyPage_Ex-MatchingRecord)</title>
-
 <!-- 시각적 확인을 위한 CSS 적용 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/YB/Mypage/Ex-MatchingRecord.css">
 
+<title>my연-결_이전 매칭기록(MyPage_Ex-MatchingRecord)</title>
 
 	<!-- 스크립트 추가 작성란 --> 
 	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
-	
-</script>
-
+	</script>
 
 </head>
 <body>
 	<jsp:include page="../assets/inc/top.jsp" />
-
-
-
-	<!-- 변경사항  -->
-
 
 	<!-- 상단 이미지 ( 다른 이미지 저장 시 src 변경 이름 ) -->
 	<div class="boximg">
@@ -63,13 +54,30 @@
         	<div class="col-md-10 text1">
 				<h5>회원님의 이전 매칭 기록입니다.</h5>
 			</div>
+
+			<div class="col-md-4 searching_box">
+				<!-- 검색폼 -->
+				<form method="get" action="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord_YB.do">
+					<ul id="key">
+						<li>
+							<select name="keyField">
+								<option value="0">---선택---</option>
+								<option value="UserName">상대방 이름</option>
+							</select> 
+								<input type="search" name="keyword" placeholder="상대방 이름 검색" value="${keyword}"/>
+							<button type="submit" id="s_btn">검색</button>
+						</li>
+					</ul>
+				</form>
+			</div>
 			
 			<div class="col-md-10 content">	
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr class="text-center">
-								<th id="name">이름</th>
+								<th>번호</th>
+								<th id="partnerName">상대방 이름</th>
 								<th id="birthdate">생년월일</th>
 								<th id="height">신장</th>
 								<th id="academicBackground">학력</th>
@@ -77,103 +85,110 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center">
-								<td id="name">전지현</td>
-								<td id="birthdate">1981.05.29</td>
-								<td id="height">173</td>
-								<td id="academicBackground">대학교 졸업</td>
-								<td id="job">모델</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">오연서</td>
-								<td id="birthdate">1987.06.22</td>
-								<td id="height">168</td>
-								<td id="academicBackground">대학교 졸업</td>
-								<td id="job">회사원</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">김설현</td>
-								<td id="birthdate">1995.01.03</td>
-								<td id="height">167</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">웹개발자</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">아이린</td>
-								<td id="birthdate">1991.03.29</td>
-								<td id="height">160</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">아티스트</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">김태리</td>
-								<td id="birthdate">1990.04.24</td>
-								<td id="height">166</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">공무원</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">배수지</td>
-								<td id="birthdate">1994.10.10</td>
-								<td id="height">168</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">건축가</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">연우</td>
-								<td id="birthdate">1996.08.01</td>
-								<td id="height">165</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">교사</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">박경리</td>
-								<td id="birthdate">1990.07.05</td>
-								<td id="height">170</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">은행원</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">아리아나 그란데</td>
-								<td id="birthdate">1993.06.26</td>
-								<td id="height">153</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">팝아티스트</td>
-							</tr>
-							<tr class="text-center">
-								<td id="name">박지효</td>
-								<td id="birthdate">1997.02.01</td>
-								<td id="height">162</td>
-								<td id="academicBackground">OOO 졸업</td>
-								<td id="job">디자이너</td>
-							</tr>
+						<c:choose>
+							<c:when test="${output == null || fn:length(output) == 0}">
+								<tr>
+									<td colspan="9" align="center">찾는 상대방 이름의 조회결과가 없습니다.</td>
+								</tr>
+							</c:when>
+	
+							<%-- 조회결과가 있는  경우 --%>
+							<c:otherwise>
+								<%-- 조회 결과에 따른 반복 처리 --%>
+								<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}" />
+								<c:forEach var="item" items="${output}" varStatus="status">
+									<c:set var="partnerName" value="${item.userName}" />
+									<c:set var="birthDate" value="${item.birthDate}" />
+									<c:set var="height" value="${item.height}" />
+									<c:set var="academicBackground" value="${item.edu_Lv}" />
+									<c:set var="job" value="${item.job}" />
+	
+							
+									
+									<%-- 상세페이지로 이동하기 위한 URL --%>
+								<c:url value="/_mypage/Ex-MatchingRecordView_YB.do" var="viewUrl">
+									<c:param name="MemberId" value="${item.memberId}" />
+								</c:url>
+	
+									<tr>
+										<td>${num}</td>
+										<td><a href="${viewUrl}">${item.userName}</a></td>
+										<td>${item.birthDate}</td>
+										<td>${item.height}</td>
+										<td>${item.edu_Lv}</td>
+										<td>${item.job}</td>
+									</tr>
+									<c:set var="num" value="${num-1}"></c:set>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
-					
-						<ul class="pagination pagination-sm">
-							<li class="disabled"><a href="#">&laquo;</a></li>
-							<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-							<li><a href="${pageContext.request.contextPath}/_mypage/Ex-MatchingRecord2_YB.do"><span>2 <span class="sr-only">(current)</span></span></a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
-					
-				</div>
-			
-				
-				
-			</div>
-            <!-- 가운데(내용) 영역 끝 -->
-            
-	<!-- 변경 사항 -->
 
-	<jsp:include page="../assets/inc/footer.jsp" />
+			<!-- 페이지 번호 구현 -->
+    		<%-- 이전 그룹에 대한 링크 --%>
+			<c:choose>
+				<%-- 이전 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.prevPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_mypage/Ex-MatchingRecord_YB.do" var="prevPageUrl">
+						<c:param name="page" value="${pageData.prevPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${prevPageUrl}">&laquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${prevPageUrl}">&laquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${pageData.startPage}"
+				end="${pageData.endPage}" varStatus="status">
+				<%-- 이동할 URL 생성 --%>
+				<c:url value="/_mypage/Ex-MatchingRecord_YB.do" var="pageUrl">
+					<c:param name="page" value="${i}" />
+					<c:param name="keyword" value="${keyword}" />
+				</c:url>
+
+				<%-- 페이지 번호 출력 --%>
+				<c:choose>
+					<%-- 현재 머물고 있는 페이지 번호를 출력할 경우 링크 적용 안함 --%>
+					<c:when test="${pageData.nowPage == i}">
+						<ul class="pagination pagination-sm">
+							<li class="active"><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:when>
+					<%-- 나머지 페이지의 경우 링크 적용함 --%>
+					<c:otherwise>
+						<ul class="pagination pagination-sm">
+							<li><a href="${pageUrl}">${i}</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+			
+				<%-- 다음 그룹으로 이동 가능하다면? --%>
+				<c:when test="${pageData.nextPage > 0}">
+					<%-- 이동할 URL 생성 --%>
+					<c:url value="/_mypage/Ex-MatchingRecord_YB.do" var="nextPageUrl">
+						<c:param name="page" value="${pageData.nextPage}" />
+						<c:param name="keyword" value="${keyword}" />
+					</c:url>
+					<a href="${nextPageUrl}">&raquo;</a>
+				</c:when>
+				<c:otherwise>
+					<ul class="pagination pagination-sm">
+						<li><a href="${pageUrl}">&raquo;</a></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 	
 	<!-- Javascript -->
-	<script src="${pageContext.request.contextPath}/./assets/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/./assets/js/bootstrap.min.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

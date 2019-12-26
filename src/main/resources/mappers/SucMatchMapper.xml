@@ -64,4 +64,62 @@
 		DELETE FROM SucMatch WHERE SucMatchId=#{SucMatchId}
 	</delete>
 
+	<!-- ================== my연-결 매칭 기록 보기 mapper 시작 ================ -->
+	<select id="selectListExRecord"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
+		FROM connect5.SucMatch s
+        INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
+        where s.MemberId = 2 AND s.status=2
+	</select>
+	
+	<select id="selectCountAllExRecord"
+		parameterType="study.spring.simplespring.model.SucMatch" resultType="int">
+		SELECT count(*)
+		FROM connect5.SucMatch 
+        where MemberId = #{MemberId} AND status=2
+		
+		<choose>
+			<when test="UserName != null and UserName != ''">
+				AND UserName = #{UserName}
+			</when>
+		</choose>		
+	</select>
+
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="selectItemExRecord"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT *
+		FROM connect5.SucMatch s
+		INNER JOIN connect5.user u ON s.OtherMemberId = u.MemberId;
+	</select>
+	
+	<!-- 이전글 정보를 조회한다. -->
+	<select id="selectPrevPageExRecord"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
+		FROM connect5.SucMatch s
+        INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
+        where s.MemberId = 2 AND s.status=2
+		ORDER BY UserName DESC
+		LIMIT 0, 1		
+	</select>
+
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectNextPageExRecord"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultMap="SucMatchMap">
+		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
+		FROM connect5.SucMatch s
+        INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
+        where s.MemberId = 2 AND s.status=2 
+		ORDER BY UserName ASC
+		LIMIT 0, 1
+	</select>   
+	
+	<!-- ================== my연-결 매칭 기록 보기 mapper 끝 ================== -->
+	
 </mapper>

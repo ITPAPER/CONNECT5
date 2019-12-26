@@ -16,10 +16,12 @@ import study.spring.simplespring.helper.PageData;
 import study.spring.simplespring.helper.RegexHelper;
 import study.spring.simplespring.helper.RetrofitHelper;
 import study.spring.simplespring.helper.WebHelper;
-import study.spring.simplespring.model.Board;
-import study.spring.simplespring.service.BoardService;
 import study.spring.simplespring.model.User;
+import study.spring.simplespring.model.Board;
+import study.spring.simplespring.model.SucMatch;
 import study.spring.simplespring.service.UserService;
+import study.spring.simplespring.service.BoardService;
+import study.spring.simplespring.service.SucMatchService;
 
 @Controller
 public class YB_Controller {
@@ -38,7 +40,10 @@ public class YB_Controller {
 	UserService userService;
 	
 	@Autowired
-	BoardService boardService;	
+	BoardService boardService;
+	
+	@Autowired
+	SucMatchService sucMatchService;
 	
     /** "/프로젝트이름" 에 해당하는 ContextPath 변수 주입 */
     @Value("#{servletContext.contextPath}")
@@ -499,8 +504,9 @@ public class YB_Controller {
 	
 	
 	/**----------------------- My연-결 Controller 시작 --------------------------------*/
+	/** 게시판 목록 페이지 */
 	@RequestMapping(value = "/_mypage/Ex-MatchingRecord_YB.do", method = RequestMethod.GET)
-	public String ExMatchingRecord(Model model) {
+	public ModelAndView ExMatchingRecord_List(Model model) {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
@@ -509,15 +515,54 @@ public class YB_Controller {
 			String login = loginInfo.getUserName();
 			
 			model.addAttribute("login", login);
-		}				
-	
+		}
+		
+		/** 1) 필요한 변수값 생성 */
+		 String keyword = webHelper.getString("keyword", "");    // 검색어
+	     int nowPage    = webHelper.getInt("page", 1);           // 페이지 번호 (기본값 1)
+	     int totalCount = 0;                                     // 전체 게시글 수
+	     int listCount  = 10;                                    // 한 페이지당 표시할 목록 수
+	     int pageCount  = 5;                                     // 한 그룹당 표시할 페이지 번호 수
+	     
+	     int MemberId = loginInfo.getMemberId();
+		 
+	     /** 2) 데이터 조회하기 */
+	     // 조회에 필요한 조건값(검색어)를 Beans에 담는다.
+		 SucMatch input = new SucMatch();
+		 input.setMemberId(MemberId);
+	     
 
-		return "_mypage/Ex-MatchingRecord_YB";
+	     List<SucMatch> output = null; // 조회결과가 저장될 객체
+	     PageData pageData = null;  // 페이지 번호를 계산한 결과가 저장될 객체
+	     
+	     try {
+	            // 전체 게시글 수 조회
+	            totalCount = sucMatchService.getSucMatchCountExRecord(input);
+	            // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
+	            pageData = new PageData(nowPage, totalCount, listCount, pageCount);
+
+	            // SQL의 LIMIT절에서 사용될 값을 Beans의 static 변수에 저장
+	            Board.setOffset(pageData.getOffset());
+	            Board.setListCount(pageData.getListCount());
+	            
+	            // 데이터 조회하기
+	            output = sucMatchService.getSucMatchListExRecord(input);
+	     } catch (Exception e) {
+	            return webHelper.redirect(null, e.getLocalizedMessage());
+	     }
+	     
+	     /** 3) View 처리 */
+	     model.addAttribute("keyword", keyword);
+	     model.addAttribute("output", output);
+	     model.addAttribute("pageData", pageData);
+	     
+		return new ModelAndView("/_mypage/Ex-MatchingRecord_YB");
 	}
-	
-	@RequestMapping(value = "/_mypage/Ex-MatchingRecord2_YB.do", method = RequestMethod.GET)
-	public String ExMatchingRecord2(Model model) {
 
+	/** 상세 게시글 페이지  */
+	@RequestMapping(value = "/_mypage/Ex-MatchingRecordView_YB.do", method = RequestMethod.GET)
+	public ModelAndView ExMatchingRecord_View(Model model) {
+		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		if (loginInfo != null) {
@@ -527,7 +572,43 @@ public class YB_Controller {
 			model.addAttribute("login", login);
 		}		
 		
-		return "_mypage/Ex-MatchingRecord2_YB";
+        /** 1) 필요한 변수값 생성 */
+        // 조회할 대상에 대한 값
+		int SucMatchId = webHelper.getInt("SucMatchId");
+		String UserName = webHelper.getString("UserName");
+        
+        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
+        if (UserName == null) {
+            return webHelper.redirect(null, "찾는 상대방 이름이 없습니다.");
+        }
+
+        /** 2) 데이터 조회하기 */
+        // 데이터 조회에 필요한 조건값을 Beans에 저장하기
+        SucMatch input = new SucMatch();
+        input.setSucMatchId(SucMatchId);
+        input.setUserName(UserName);
+        
+        // 조회결과를 저장할 객체 선언
+        SucMatch output = null;
+        SucMatch prevSucMatch = null;
+        SucMatch nextSucMatch = null;
+
+        
+        try {
+            // 데이터 조회
+            output = sucMatchService.getSucMatchItemExRecord(input);
+            prevSucMatch = sucMatchService.getPrevPageExRecord(input);
+            nextSucMatch = sucMatchService.getNextPageExRecord(input);
+            
+        } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+ 
+		model.addAttribute("prevBoard",prevSucMatch);       
+		model.addAttribute("nextBoard",nextSucMatch);
+		model.addAttribute("output", output);
+        /** 3) View 처리 */
+		return new ModelAndView("_mypage/Ex-MatchingRecordView_YB");
 	}	
 	
 	
@@ -597,7 +678,7 @@ public class YB_Controller {
 	
 	/** 상세 게시글 페이지  */
 	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStoryRead_YB.do", method = RequestMethod.GET)
-	public ModelAndView MngBoard_WeddingStoryRead_Edit(Model model) {
+	public ModelAndView MngBoard_WeddingStoryRead_View(Model model) {
 		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
@@ -678,7 +759,7 @@ public class YB_Controller {
 	
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
-		/** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
+	/** 1) 사용자가 입력한 파라미터 수신 및 유효성 검사 */
 		int MemberId = loginInfo.getMemberId();
 		String Title = webHelper.getString("Title");
 		String Content = webHelper.getString("Content");
@@ -801,7 +882,7 @@ public class YB_Controller {
 	
 
 	@RequestMapping(value = "/_admin/admin_MngBoard_WeddingStory_DeleteOk.do", method = RequestMethod.GET)
-	public ModelAndView delete_ok(Model model) {
+	public ModelAndView admin_MngBoard_WeddingStory_Delete_ok(Model model) {
 
 		int BoardId = webHelper.getInt("BoardId");
 
@@ -821,9 +902,6 @@ public class YB_Controller {
 
 		return webHelper.redirect(contextPath + "/_admin/admin_MngBoard_WeddingStory_YB.do", "게시글이 삭제되었습니다.");
 	}	
-	
-	
 	/**----------------------- 관리자 Controller 끝 ----------------------------------*/
-	
-	
-}
+
+	}
