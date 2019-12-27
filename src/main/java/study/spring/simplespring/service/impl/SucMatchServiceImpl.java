@@ -243,10 +243,6 @@ public class SucMatchServiceImpl implements SucMatchService {
 		return result;
 	}
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d88f35ff214aa2e942b7de791f9a85ed7f8fe03
 	@Override
 	public SucMatch getPrevPageExRecord(SucMatch inputPrev) throws Exception {
 		SucMatch result = null;
@@ -284,10 +280,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 	}
 	// my연-결  매칭 기록 보기 끝 ================================================== /
 
-<<<<<<< HEAD
+
 }
 
 	
-=======
-}
->>>>>>> 9d88f35ff214aa2e942b7de791f9a85ed7f8fe03
