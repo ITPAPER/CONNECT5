@@ -15,19 +15,15 @@
 .content{
 	text-align: center;
 }
-
-.table-responsive .num {
-	width: 65px;
-}
-
-.table-responsive .date {
-	width: 110px;
-}
-
-.table-responsive .reply_ok {
+.num{
 	width: 80px;
 }
-
-.table-responsive .name {
+.name{
+	width: 80px;
+}
+.date{
 	width: 100px;
+}
+.reply{
+	width: 80px;
 }

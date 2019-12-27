@@ -29,7 +29,7 @@
 	href="../assets/css/nanumfont.css" />
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager1_H.css">
+	href="${pageContext.request.contextPath}/assets/css/HG/Admin/admin_userManager1_HG.css">
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 

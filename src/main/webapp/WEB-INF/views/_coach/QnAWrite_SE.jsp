@@ -19,7 +19,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnAWrite1.css">
 
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script>
 	function add() {
 		if (confirm("게시물을 등록하시겠습니까?") == true) {
@@ -86,7 +85,7 @@
 					</tr>
 				</tbody>					
 			</table>
-			<textarea placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content"></textarea>
+			<input placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content"/>
 		
 		</div>
 
@@ -97,7 +96,6 @@
 		</div>
 		</form>
 	</div>
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 	
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

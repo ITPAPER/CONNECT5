@@ -49,7 +49,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs" onclick="location='${pageContext.request.contextPath}/home.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -87,7 +87,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td id="context" colspan="3">${output.content}</td>
+							<c:choose>
+								<c:when test="${output.getContentImg() != '' }">
+									<td id="context" colspan="3"><img style="width:900px;" src="${pageContext.request.contextPath}/assets/upload/${output.contentImg}">${output.content }</td>
+								</c:when>
+								<c:otherwise>
+									<td id="context" colspan="3">${output.content}</td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 						<tr>
 							<td>이전글</td>

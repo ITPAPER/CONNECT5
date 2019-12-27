@@ -130,8 +130,8 @@
 		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
 		FROM connect5.SucMatch s
         INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
-        where s.MemberId = 2 AND s.status=2
-		ORDER BY UserName DESC
+        where u.MemberId &lt; #{MemberId} AND s.status=2
+		ORDER BY MemberId DESC
 		LIMIT 0, 1		
 	</select>
 
@@ -142,11 +142,9 @@
 		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
 		FROM connect5.SucMatch s
         INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
-        where s.MemberId = 2 AND s.status=2 
-		ORDER BY UserName ASC
+        where u.MemberId &gt; #{MemberId} AND s.status=2 
+		ORDER BY MemberId ASC
 		LIMIT 0, 1
 	</select>   
-	
 	<!-- ================== my연-결 매칭 기록 보기 mapper 끝 ================== -->
-	
 </mapper>

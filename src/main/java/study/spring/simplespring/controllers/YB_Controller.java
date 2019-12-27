@@ -558,59 +558,6 @@ public class YB_Controller {
 	     
 		return new ModelAndView("/_mypage/Ex-MatchingRecord_YB");
 	}
-
-	/** 상세 게시글 페이지  */
-	@RequestMapping(value = "/_mypage/Ex-MatchingRecordView_YB.do", method = RequestMethod.GET)
-	public ModelAndView ExMatchingRecord_View(Model model) {
-		
-		User loginInfo = (User) webHelper.getSession("loginInfo");
-		
-		if (loginInfo != null) {
-			
-			String login = loginInfo.getUserName();
-			
-			model.addAttribute("login", login);
-		}		
-		
-        /** 1) 필요한 변수값 생성 */
-        // 조회할 대상에 대한 값
-		int SucMatchId = webHelper.getInt("SucMatchId");
-		String UserName = webHelper.getString("UserName");
-        
-        // 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
-        if (UserName == null) {
-            return webHelper.redirect(null, "찾는 상대방 이름이 없습니다.");
-        }
-
-        /** 2) 데이터 조회하기 */
-        // 데이터 조회에 필요한 조건값을 Beans에 저장하기
-        SucMatch input = new SucMatch();
-        input.setSucMatchId(SucMatchId);
-        input.setUserName(UserName);
-        
-        // 조회결과를 저장할 객체 선언
-        SucMatch output = null;
-        SucMatch prevSucMatch = null;
-        SucMatch nextSucMatch = null;
-
-        
-        try {
-            // 데이터 조회
-            output = sucMatchService.getSucMatchItemExRecord(input);
-            prevSucMatch = sucMatchService.getPrevPageExRecord(input);
-            nextSucMatch = sucMatchService.getNextPageExRecord(input);
-            
-        } catch (Exception e) {
-            return webHelper.redirect(null, e.getLocalizedMessage());
-        }
- 
-		model.addAttribute("prevBoard",prevSucMatch);       
-		model.addAttribute("nextBoard",nextSucMatch);
-		model.addAttribute("output", output);
-        /** 3) View 처리 */
-		return new ModelAndView("_mypage/Ex-MatchingRecordView_YB");
-	}	
-	
 	
 	/**----------------------- My연-결 Controller 끝 ---------------------------------*/
 	

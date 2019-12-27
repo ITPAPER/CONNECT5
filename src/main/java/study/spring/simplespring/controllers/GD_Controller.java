@@ -551,6 +551,15 @@ public class GD_Controller {
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 		
 		SucMatch sucmatch = new SucMatch();
+		
+		
+		int Date_Rest = loginInfo.getDate_Rest();
+		loginInfo.setDate_Rest(Date_Rest - 1);
+		if(Date_Rest <=  0) {
+			return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "잔여 횟수가 부족합니다.");
+			
+		}
+		
 		User user = new User();
 		int memberid = loginInfo.getMemberId();
 		

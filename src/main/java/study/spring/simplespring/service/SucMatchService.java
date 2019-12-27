@@ -33,5 +33,5 @@ public interface SucMatchService {
 	public SucMatch getPrevPageExRecord(SucMatch inputPrev) throws Exception;
 
 	public SucMatch getNextPageExRecord(SucMatch inputNext) throws Exception;	
-	// my연-결 매칭 기록 보기 끝 ================================================== /	
+	// my연-결 매칭 기록 보기 끝 =================================================== /		
 }

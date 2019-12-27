@@ -86,8 +86,12 @@ public class SucMatch {
 	private String Date_Rest;
 	
 	private int OtherMemberId;
+	
 	private String BirthDate;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d88f35ff214aa2e942b7de791f9a85ed7f8fe03
 
 	/** LIMIT 절에서 사용할 조회 시작 위치 */
 	private static int offset;

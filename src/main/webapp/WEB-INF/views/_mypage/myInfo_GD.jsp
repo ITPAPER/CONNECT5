@@ -104,11 +104,18 @@
 				</c:if></span> <span
 				style="font-weight: bold; font-size: 1.3em; margin-left: 40px;"
 				id="name">${username} </span> <span> 님의 잔여 매칭 횟수 </span> <span
-				style="font-weight: bold; font-size: 1.3em;" id="count"> <c:if
-					test="${date_rest == 1}">3
-				</c:if> <c:if test="${date_rest == 2}">5
-				</c:if> <c:if test="${date_rest == 3}">7
-				</c:if> <c:if test="${date_rest == 4}">Free
+				style="font-weight: bold; font-size: 1.3em;" id="count"> 
+				<c:if test="${memberlv == 1}">
+					${date_rest}
+				</c:if> 
+				<c:if test="${memberlv == 2}">
+					${date_rest} 
+				</c:if> 
+				<c:if test="${memberlv == 3}">
+					${date_rest} 
+				</c:if> 
+				<c:if test="${memberlv == 4}">
+					Free
 				</c:if>
 			</span> <span> 회 </span>
 
@@ -237,13 +244,15 @@
 									</td>
 									
 									<td align="center">
-										<button type="button">
-											<a
-												href="${pageContext.request.contextPath}/_mypage/DateConfirm.do?SucMatchId=${sucmatch}" >수락</a>
-										</button> <span><button type="button">
-												<a
-													href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a>
-										</button></span>
+										<c:choose>
+										<c:when test="${date_rest == 0 }">
+										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a></button>
+										</c:when>
+										<c:otherwise>
+										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm.do?SucMatchId=${sucmatch}&${othermemberId}">수락</a></button>
+										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a></button>
+										</c:otherwise>
+										</c:choose>
 									</td>
 								</tr>
 							</table>

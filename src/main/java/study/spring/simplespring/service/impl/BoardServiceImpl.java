@@ -1339,7 +1339,7 @@ public class BoardServiceImpl implements BoardService {
 
 		return result;
 	}
-	
 	// 관리자 성혼스토리 게시판 끝 ============================================ /
+	
 	
 }

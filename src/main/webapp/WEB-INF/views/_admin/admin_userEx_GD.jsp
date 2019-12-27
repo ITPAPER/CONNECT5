@@ -55,8 +55,7 @@
 			<div class="col-md-12 top_login">
 				<p id="connect">
 					admin 님 접속중
-					<button type="submit" class="btn btn-xs"
-						onclick="location.href = '${pageContext.request.contextPath}/_login/loginOut.do'">Logout</button>
+					<button type="submit" class="btn btn-xs" onclick="location.href = '${pageContext.request.contextPath}'">Logout</button>
 				</p>
 			</div>
 		</div>
@@ -133,8 +132,7 @@
 						<%-- 조회결과가 있는  경우 --%>
 						<c:otherwise>
 							<%-- 조회 결과에 따른 반복 처리 --%>
-							<c:set var="num"
-								value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}"/>
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<c:set var="title" value="${item.title}" />
 								<c:set var="userName" value="${item.userName}" />

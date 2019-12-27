@@ -112,7 +112,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -137,7 +137,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category,viewcount, b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -161,7 +161,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category, viewcount,b.MemberId, u.UserId,u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -188,7 +188,7 @@
 		SELECT BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, b.MemberId, u.UserId
+		ContentImg, Category, b.MemberId, u.UserId, u.UserName
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
@@ -364,16 +364,27 @@
 		#{Content}, now(), 1, #{MemberId},#{viewcount}
 		)
 	</insert>
-
+	<insert id="insertItemadminReview"
+		parameterType="study.spring.simplespring.model.Board"
+		useGeneratedKeys="true" keyProperty="BoardId">
+		INSERT INTO Board (
+		Title, Content,
+		CreationDate, Category, MemberId,viewcount
+		)
+		VALUES (
+		#{Title},
+		#{Content}, now(), 1, #{MemberId},#{viewcount}
+		)
+	</insert>
 	<insert id="insertItemReview"
 		parameterType="study.spring.simplespring.model.Board"
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 3, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 3, #{MemberId},0
 		)
 	</insert>
 	<insert id="insertItemTip"
@@ -404,10 +415,10 @@
 		useGeneratedKeys="true" keyProperty="BoardId">
 		INSERT INTO Board (
 		Title, Content,
-		CreationDate, ContentImg, Category, MemberId
+		CreationDate, ContentImg, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), #{ContentImg}, 4, #{MemberId}
+		#{Content}, now(), #{ContentImg}, 4, #{MemberId},0
 		)
 
 
@@ -464,15 +475,15 @@
 	<select id="selectList1_1"
 		parameterType="study.spring.simplespring.model.Board"
 		resultMap="boardMap">
-		SELECT BoardId, Title, Content,
+		SELECT b.BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, u.UserName
+		ContentImg, Category, u.UserName , r.Reply_Ok
 		FROM connect5.board b
-		inner JOIN connect5.User u ON (b.MemberId =
-		u.MemberId) WHERE
-		b.MemberId = #{MemberId} AND Category=7
-
+		inner JOIN connect5.User u ON (b.MemberId = u.MemberId) 
+        LEFT Join connect5.reply r ON (r.BoardId = b.BoardId)
+        AND Category = 7 WHERE b.MemberId = #{MemberId} 
+	
 		ORDER BY BoardId DESC
 
 		<if test="listCount > 0">
@@ -585,14 +596,15 @@
 	<select id="selectListadmin1_1"
 		parameterType="study.spring.simplespring.model.Board"
 		resultMap="boardMap">
-		SELECT BoardId, Title, Content,
+		SELECT b.BoardId, Title, Content,
 		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS
 		CreationDate,
-		ContentImg, Category, u.isadmin,u.UserName
+		ContentImg, Category, u.isadmin,u.UserName, r.Reply_Ok
 		FROM
 		connect5.board b
-		iNNER JOIN connect5.User u ON u.MemberId = b.MemberId
-		AND Category=7 AND u.isadmin != 1
+		INNER JOIN connect5.User u ON u.MemberId = b.MemberId
+        LEFT JOIN connect5.reply r ON b.BoardId = r.BoardId
+		AND Category=7 WHERE u.isadmin = 0
 
 		<choose>
 			<when test="Title != null and Title != ''">
@@ -655,6 +667,106 @@
 		FROM connect5.Board
 		WHERE BoardId &gt; #{BoardId} AND Category
 		= 2
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>
+	
+	<select id="selectStoryPrevDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category = 1
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectStoryNextDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category = 1
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>
+	
+	<select id="selectNoticePrevDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category = 2
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectNoticeNextDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category = 2
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>
+	
+	<select id="selectReviewPrevDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category = 3
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectReviewNextDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category = 3
+		ORDER BY BoardId ASC
+		LIMIT 0, 1
+	</select>
+	
+	<select id="selectQnAPrevDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &lt; #{BoardId} AND Category = 4
+		ORDER BY BoardId DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 다음글 정보를 조회한다. -->
+	<select id="selectQnANextDocument" 
+		parameterType="study.spring.simplespring.model.Board" 
+		resultMap="boardMap">
+		SELECT BoardId, Title, Content,
+		DATE_FORMAT(CreationDate,'%Y-%m-%d') AS CreationDate,
+		ContentImg, Category
+		FROM connect5.Board
+		WHERE BoardId &gt; #{BoardId} AND Category = 4
 		ORDER BY BoardId ASC
 		LIMIT 0, 1
 	</select>
@@ -756,8 +868,6 @@
 	</select>   
     
 	<!-- ================== Admin 성혼스토리 게시판 mapper 끝 ================ -->
-	
-	
 	
 	
 </mapper>

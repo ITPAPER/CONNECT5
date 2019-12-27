@@ -259,7 +259,15 @@
 			<div class="abc" data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="800">
 				<div class="col-md-4 text-center event2_box_1">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/_info/noticeRead2_SE.do"><img src="${pageContext.request.contextPath}/assets/img/이벤트4.jpg" width="300px" height="300px"></a></li>
+						<li>
+							<c:forEach var="item" items="${output2}" varStatus="status">
+							<c:set var="Title" value="${item.getContentImg()}" />
+							<c:url value="/_info/notice_SE.do" var="viewUrl">
+							<c:param name="BoardId" value="${item.getBoardId()}" />
+								<a href="${pageContext.request.contextPath}/_info/notice_SE.do"><img src="${pageContext.request.contextPath}/assets/upload/이벤트4.jpg" width="300px" height="300px"></a>
+							</c:url>
+							</c:forEach>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -371,7 +379,7 @@
 						<thead>
 							<tr>
 								<th>제목</th>
-								<th id="date">등록일</th>
+								<th class="date">등록일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -388,9 +396,6 @@
 										<c:set var="Title" value="${item.getTitle()}" />
 										<c:set var="CreationDate" value="${item.getCreationDate()}" />
 
-										<c:url value="/_info/notice_SE.do" var="viewUrl">
-											<c:param name="BoardId" value="${item.getBoardId()}" />
-										</c:url>
 										<tr>
 											<td>${Title}</td>
 											<td>${CreationDate}</td>
@@ -420,14 +425,14 @@
 						<thead>
 							<tr>
 								<th>제목</th>
-								<th id="date">등록일</th>
+								<th class="date">등록일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:choose>
 								<c:when test="${output2 == null || fn:length(output2) == 0}">
 									<tr>
-										<td colspan="9" align="center">공지사항이 없습니다.</td>
+										<td colspan="9" align="center">게시글이 없습니다.</td>
 									</tr>
 								</c:when>
 								<%-- 조회결과가 있는  경우 --%>
@@ -437,9 +442,6 @@
 										<c:set var="Title" value="${item.getTitle()}" />
 										<c:set var="CreationDate" value="${item.getCreationDate()}" />
 										
-										<c:url value="/_info/notice_SE.do" var="viewUrl">
-											<c:param name="BoardId" value="${item.getBoardId()}" />
-										</c:url>
 										<tr>
 											<td>${Title}</td>
 											<td>${CreationDate}</td>

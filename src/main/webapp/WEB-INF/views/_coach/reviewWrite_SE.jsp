@@ -19,7 +19,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/SE/Coach/QnAWrite1.css">
 
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script>
 	function add() {
 		if (confirm("게시물을 등록하시겠습니까?") == true) {
@@ -62,16 +61,16 @@
 				<a href="${pageContext.request.contextPath}/_coach/meetingTip_GD.do" class="list-group-item">미팅성공전략TIP</a> <a href="${pageContext.request.contextPath}/_coach/loveColumn_GD.do"
 					class="list-group-item">LOVE 컬럼</a> <a href="${pageContext.request.contextPath}/_coach/DatingCourse_YB.do"
 					class="list-group-item">데이트 코스</a> <a href="${pageContext.request.contextPath}/_coach/review_SE.do"
-					class="list-group-item">연-결 만남 후기</a> <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
-					class="list-group-item btncolor">연-결 Q &amp; A</a>
+					class="list-group-item btncolor">연-결 만남 후기</a> <a href="${pageContext.request.contextPath}/_coach/QnA_SE.do"
+					class="list-group-item ">연-결 Q &amp; A</a>
 			</div>
 		</div>
 	</div>
 
 
-	<h3 class="col-md-10">연-결 Q &amp; A</h3>
+	<h3 class="col-md-10">연-결 만남 후기</h3>
 	<div class="col-md-10 text1">
-		<h5>연-결 회원님들의 공유 게시판입니다.</h5>
+		<h5>연-결 회원님들의 만남 후기 이야기를 들어보세요.</h5>
 	</div>
 	
 	<div class="col-md-10 content">
@@ -86,7 +85,7 @@
 					</tr>
 				</tbody>					
 			</table>
-			<textarea placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content"></textarea>
+			<input placeholder="내용을 입력하세요." class="form-control" id="contentarea" name="Content" />
 		
 		</div>
 
@@ -97,7 +96,6 @@
 		</div>
 		</form>
 	</div>
-	<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 	
 	<jsp:include page="../assets/inc/footer.jsp" />
 </body>

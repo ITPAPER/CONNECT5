@@ -6,7 +6,6 @@
 <head>
 <jsp:include page="../assets/inc/css.jsp" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/YH/Mypage/1_1questionWrite_YH.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 <script>
 function cancel() {
 	if (confirm("정말 취소하시겠습니까?") == true) {
@@ -64,7 +63,7 @@ function cancel() {
 				<tbody>
 					<tr>
 						<td class="context" colspan="3" align="center" id="Content">
-						<textarea placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content"/></textarea></td>
+						<input placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -79,6 +78,5 @@ function cancel() {
 
 	<!-- 변경 사항 -->
 	<jsp:include page="../assets/inc/footer.jsp" />
-<script src="${pageContext.request.contextPath}/assets/js/ckeditor.js"></script>
 </body>
 </html>

@@ -184,7 +184,8 @@ public class YH_Controller {
 		int BoardId = webHelper.getInt("BoardId");
 		String Title = webHelper.getString("Title");
 		int viewcount = webHelper.getInt("viewcount");
-
+		String ContentImg = webHelper.getString("ContentImg");
+		
 		if (BoardId == 0) {
 			return webHelper.redirect(null, "공지사항이 없습니다.");
 		}
@@ -192,7 +193,8 @@ public class YH_Controller {
 		Board input = new Board();
 		input.setBoardId(BoardId);
 		input.setTitle(Title);
-
+		input.setContentImg(ContentImg);
+		
 		Board input1 = new Board();
 		input1.setViewcount(viewcount);
 		input1.setBoardId(BoardId);

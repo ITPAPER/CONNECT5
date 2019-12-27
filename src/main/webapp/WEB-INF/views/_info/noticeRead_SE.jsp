@@ -60,15 +60,21 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3">${output.content}</td>
+						<c:choose>
+							<c:when test="${output.getContentImg() != '' }">
+								<td id="context" colspan="3"><img style="width:900px;" src="${pageContext.request.contextPath}/assets/upload/${output.contentImg}">${output.content }</td>
+							</c:when>
+							<c:otherwise>
+								<td id="context" colspan="3">${output.content}</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 					<tr>
-							<td>이전글</td>
+						<td>이전글</td>
 							<th class="text_select" colspan="2">
 								<c:choose>
 									<c:when test="${nextBoard != null}">
 										<c:url var="nextUrl" value="/_info/noticeRead_SE.do">
-											<c:param name="Title" value="${Title}" />
 											<c:param name="BoardId" value="${nextBoard.getBoardId()}" />
 										</c:url>
 											<a href="${nextUrl}">${nextBoard.getTitle()}</a>
@@ -85,7 +91,6 @@
 								<c:choose>
 									<c:when test="${prevBoard != null}">
 										<c:url var="prevUrl" value="/_info/noticeRead_SE.do">
-											<c:param name="Title" value="${Title}" />
 											<c:param name="BoardId" value="${prevBoard.getBoardId()}" />
 										</c:url>
 											<a href="${prevUrl}">${prevBoard.getTitle()}</a>
@@ -100,8 +105,7 @@
 			</table>
 		</div>
 
-		<button class="btn btn-default pull-right"
-			onclick="location.href = '${pageContext.request.contextPath}/_info/notice_SE.do'">목록</button>
+		<button class="btn btn-default pull-right" onclick="location.href = '${pageContext.request.contextPath}/_info/notice_SE.do'">목록</button>
 
 	</div>
 
