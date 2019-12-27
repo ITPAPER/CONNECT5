@@ -1,4 +1,5 @@
 @charset "EUC-KR";
+
 * {
 	margin: 0;
 	padding: 0;
@@ -43,46 +44,70 @@ ul, ol {
 	height: 50px;
 }
 
-<style>
-.table tr, th, td {
+<
+style>.table tr, th, td {
+	text-align: center;
+}
+
+.table-responsive {
 	text-align: center;
 }
 
 .table-responsive #num {
-	
-	text-align: center;
-}
-
-.table-responsive #id {
-	
-	text-align: center;
-}
-
-.table-responsive #name {
-	
 	text-align: center;
 }
 
 .table-responsive #birthdate {
-	
 	text-align: center;
 }
 
-.table-responsive #height {
-	
+.table-responsive #id {
+	text-align: center;
+}
+
+.table-responsive #name {
+	text-align: center;
+}
+
+.table-responsive #gender {
 	text-align: center;
 }
 
 .table-responsive #academicBackground {
-	
 	text-align: center;
 }
 
 .table-responsive #job {
-	
 	text-align: center;
 }
 
+.table-responsive #height {
+	text-align: center;
+}
+
+.table-responsive #bldtype {
+	text-align: center;
+}
+
+.table-responsive #sal_annual {
+	text-align: center;
+}
+
+.table-responsive #ismarried {
+	text-align: center;
+}
+
+.table-responsive #date_loc {
+	text-align: center;
+}
+
+.table-responsive #prsonality {
+	text-align: center;
+}
+
+.table-responsive #style {
+	text-align: center;
+}
 
 .search {
 	width: 320px;
@@ -100,9 +125,8 @@ hr {
 }
 
 #s_btn {
-	width:55px;
+	width: 55px;
 }
-
 
 .btn {
 	float: right;
@@ -120,5 +144,5 @@ hr {
 }
 
 .text10 {
-font-size:20px;
+	font-size: 20px;
 }

@@ -120,7 +120,6 @@
 					</td>
 				</tr>
 
-
 				<tr id="test10">
 					<td id="title">결혼 여부</td>
 					<td>&nbsp; &nbsp;<input type="radio" name="IsMarried"
