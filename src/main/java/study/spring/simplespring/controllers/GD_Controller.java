@@ -166,9 +166,11 @@ public class GD_Controller {
 		input.setUser_Img(user_img);
 		input.setPersonality(personality);
 		input.setStyle(style);
-
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+input);
+		
 		System.out.println(fileList.size() + "dddd");
-
+		
 		try {
 			userService.specialEditUser(input);
 		} catch (Exception e) {

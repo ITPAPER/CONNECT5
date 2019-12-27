@@ -517,7 +517,7 @@
 		INSERT INTO Board
 		(Title,Content,CreationDate,ContentImg,Category,MemberId,viewcount)
 		VALUES
-		(#{Title},#{Content},#{CreationDate},#{ContentImg},2,#{MemberId},#{viewcount});
+		(#{Title},#{Content},now(),#{ContentImg},2,#{MemberId},#{viewcount});
 	</insert>
 
 	<select id="selectItemadminNotice"
@@ -556,7 +556,7 @@
 		parameterType="study.spring.simplespring.model.Board">
 		UPDATE Board SET
 		Title = #{Title},
-		Content=#{Content},CreationDate=#{CreationDate},ContentImg=#{ContentImg},
+		Content=#{Content},CreationDate=now(),ContentImg=#{ContentImg},
 		MemberId=#{MemberId},Category = 2
 		WHERE BoardId=#{BoardId}
 	</update>
