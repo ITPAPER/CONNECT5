@@ -554,7 +554,7 @@ public class GD_Controller {
 		
 		
 		int Date_Rest = loginInfo.getDate_Rest();
-		loginInfo.setDate_Rest(Date_Rest - 1);
+
 		if(Date_Rest <=  0) {
 			return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "잔여 횟수가 부족합니다.");
 			
@@ -601,9 +601,11 @@ public class GD_Controller {
 		
 		int sucmatchid = webHelper.getInt("SucMatchId");
 		
+		User user = new User();
+		int pmemberid = webHelper.getInt("MemberId");
 
 		sucmatch.setSucMatchId(sucmatchid);
-	
+		user.setMemberId(pmemberid);
 		sucmatch.setMemberId(memberid);
 				
 		try {
@@ -613,6 +615,16 @@ public class GD_Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
+		try {
+			userService.editUserRestUp(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "데이트 신청을 거절 하셨습니다.");
 

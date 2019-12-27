@@ -250,7 +250,7 @@
 										</c:when>
 										<c:otherwise>
 										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm.do?SucMatchId=${sucmatch}&${othermemberId}">수락</a></button>
-										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}">거절</a></button>
+										<button type="button"><a href="${pageContext.request.contextPath}/_mypage/DateConfirm1.do?SucMatchId=${sucmatch}&MemberId=${memberid}">거절</a></button>
 										</c:otherwise>
 										</c:choose>
 									</td>
