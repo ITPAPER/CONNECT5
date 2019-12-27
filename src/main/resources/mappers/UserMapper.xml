@@ -77,6 +77,14 @@
 		WHERE MemberId=#{MemberId}
 	</select>
 	
+	<select id="selectItem_Gender"
+		parameterType="study.spring.simplespring.model.User"
+		resultType="int">
+		SELECT Gender
+		FROM User
+		WHERE MemberId=#{MemberId}
+	</select>
+	
 	
 	<select id="selectItemFindId"
 		parameterType="study.spring.simplespring.model.User"

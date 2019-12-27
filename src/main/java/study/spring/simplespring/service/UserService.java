@@ -26,7 +26,7 @@ public interface UserService {
 
 	public User selectLoginInfo(User input) throws Exception;
 	
-
+	public int selectGender(User input) throws Exception;
 
 	public User selectFindaccount(User input) throws Exception;
 	
