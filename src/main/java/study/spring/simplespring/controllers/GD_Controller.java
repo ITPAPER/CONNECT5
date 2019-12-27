@@ -384,8 +384,6 @@ public class GD_Controller {
 	@RequestMapping(value = "/_findAccount/FindPw_GD_Success.do", method = RequestMethod.POST)
 	public ModelAndView findpwsuccess(Model model) {
 		
-		
-
 		String password = webHelper.getString("new_pwd");
 		String checkpwd = webHelper.getString("check_pwd");
 		String userid = webHelper.getString("userid");
@@ -393,7 +391,6 @@ public class GD_Controller {
 		
 		input.setUserId(userid);
 		input.setUserPw(password);
-		
 		
 		try {
 			userService.editUserPw(input);
@@ -501,7 +498,7 @@ public class GD_Controller {
 		} catch (Exception e) {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
-			
+
 			reqmatch.setMemberId(memberid);
 			sucmatch.setMemberId(memberid);
 			
@@ -531,7 +528,6 @@ public class GD_Controller {
 					e.printStackTrace();
 				}
 			
-				
 				model.addAttribute("requser", requser);
 				model.addAttribute("sucuser",sucuser);
 				model.addAttribute("suc1", suc1);
