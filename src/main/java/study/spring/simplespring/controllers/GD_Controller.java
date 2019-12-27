@@ -626,6 +626,9 @@ public class GD_Controller {
 		
 		SucMatch sucmatch = new SucMatch();
 		
+		int Date_Rest = loginInfo.getDate_Rest();
+		loginInfo.setDate_Rest(Date_Rest + 1);
+		
 		User user = new User();
 		
 		int memberid = loginInfo.getMemberId();

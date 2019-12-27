@@ -482,7 +482,7 @@
 		FROM connect5.board b
 		inner JOIN connect5.User u ON (b.MemberId = u.MemberId) 
         LEFT Join connect5.reply r ON (r.BoardId = b.BoardId)
-        AND Category = 7 WHERE b.MemberId = #{MemberId} 
+        WHERE b.MemberId = #{MemberId} AND Category = 7  
 	
 		ORDER BY BoardId DESC
 
