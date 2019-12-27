@@ -871,5 +871,9 @@
 		#{MemberId}
 	</update>
 
-
+		<update id="updateItemSucMatch"
+		parameterType="study.spring.simplespring.model.User">
+		Update connect5.User SET Date_Rest = Date_Rest -1 WHERE MemberId = #{MemberId}
+	</update>
+	
 </mapper>

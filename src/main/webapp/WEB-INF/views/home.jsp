@@ -260,13 +260,7 @@
 				<div class="col-md-4 text-center event2_box_1">
 					<ul>
 						<li>
-							<c:forEach var="item" items="${output2}" varStatus="status">
-							<c:set var="Title" value="${item.getContentImg()}" />
-							<c:url value="/_info/notice_SE.do" var="viewUrl">
-							<c:param name="BoardId" value="${item.getBoardId()}" />
-								<a href="${pageContext.request.contextPath}/_info/notice_SE.do"><img src="${pageContext.request.contextPath}/assets/upload/이벤트4.jpg" width="300px" height="300px"></a>
-							</c:url>
-							</c:forEach>
+							<a href="${pageContext.request.contextPath}/_info/notice_SE.do"><img src="${pageContext.request.contextPath}/assets/img/이벤트4.jpg" width="300px" height="300px"></a>
 						</li>
 					</ul>
 				</div>

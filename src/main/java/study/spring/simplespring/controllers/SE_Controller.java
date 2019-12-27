@@ -1102,7 +1102,21 @@ public class SE_Controller {
 			// User에 otherUser 객체 만든 후 상대방 MemberId 넣어줌
 			User otherUser = new User();
 			otherUser.setMemberId(otherMemberId);
-
+			
+			int Date_Rest = loginInfo.getDate_Rest();
+			loginInfo.setDate_Rest(Date_Rest - 1);
+			int MemberId = loginInfo.getMemberId();
+			
+			User input = new User();
+			input.getDate_Rest();
+			input.setMemberId(MemberId);
+			
+			try {
+				userService.editUserSucMatch(input);
+			} catch (Exception e) {
+				return webHelper.redirect(null, e.getLocalizedMessage());
+			}
+			
 			// SucMatch DB 에 유저에서 객체 만들어서 넣어야 하니까 상대방 MemberId 와 내꺼 MemberId 넣어줌
 			SucMatch sucMatch = new SucMatch();
 			sucMatch.setMemberId(loginInfo.getMemberId());
