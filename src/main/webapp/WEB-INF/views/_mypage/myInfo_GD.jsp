@@ -522,7 +522,7 @@
 					<button type="button" class="btn btn-success" data-dismiss="modal">확인</button>
 					<button type="button" class="btn btn-danger">
 						<a
-							href="${pageContext.request.contextPath}/_mypage/DateConfirm2.do?SucMatchId=${suc1.getSucMatchId()}"
+							href="${pageContext.request.contextPath}/_mypage/DateConfirm2.do?SucMatchId=${suc1.getSucMatchId()}&MemberId=${suc1.getMemberId()}"
 							id="cc">데이트 취소</a>
 					</button>
 

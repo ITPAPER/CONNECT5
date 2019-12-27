@@ -185,7 +185,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 		return result;
 	}
 
-	// my연-결 매칭 기록 보기 시작 ================================================== /	
+	// my연-결  매칭 기록 보기 시작 ================================================== /	
 	@Override
 	public List<SucMatch> getSucMatchListExRecord(SucMatch input) throws Exception {
 		List<SucMatch> result = null;
@@ -243,6 +243,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 		return result;
 	}
 	
+
 	@Override
 	public SucMatch getPrevPageExRecord(SucMatch inputPrev) throws Exception {
 		SucMatch result = null;
@@ -280,7 +281,5 @@ public class SucMatchServiceImpl implements SucMatchService {
 	}
 	// my연-결  매칭 기록 보기 끝 ================================================== /
 
-
 }
 
-	

@@ -634,18 +634,28 @@ public class GD_Controller {
 		int memberid = loginInfo.getMemberId();
 		
 		int sucmatchid = webHelper.getInt("SucMatchId");
+		int pmemberid = webHelper.getInt("MemberId");
 		
-		user.setMemberId(memberid);
+		user.setMemberId(pmemberid);
 		sucmatch.setSucMatchId(sucmatchid);
 		sucmatch.setMemberId(memberid);
+		
+		SucMatch suc = null;
 				
 		try {
 			sucmatchService.editSucMatch1(sucmatch);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
 			userService.editUserRestUp(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 
 		return webHelper.redirect(contextPath + "/_mypage/myInfo_GD.do", "데이트 일정이 취소 되셨습니다.");
 
