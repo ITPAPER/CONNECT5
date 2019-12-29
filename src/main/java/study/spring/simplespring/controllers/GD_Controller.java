@@ -166,11 +166,9 @@ public class GD_Controller {
 		input.setUser_Img(user_img);
 		input.setPersonality(personality);
 		input.setStyle(style);
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+input);
-		
+
 		System.out.println(fileList.size() + "dddd");
-		
+
 		try {
 			userService.specialEditUser(input);
 		} catch (Exception e) {
@@ -959,24 +957,18 @@ public class GD_Controller {
 		/** 1) 필요한 변수값 생성 */
 		// 조회할 대상에 대한 PK값
 		int BoardId = webHelper.getInt("BoardId");
-
 		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
 		if (BoardId == 0) {
 			return webHelper.redirect(null, "글번호가 없습니다.");
 		}
-
 		Board input = new Board();
-
 		input.setBoardId(BoardId);
-
 		Board output = null;
 		try {
 			output = boardService.getBoardItemTip(input);
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 		model.addAttribute("output", output);
 
 		return new ModelAndView("_coach/readTip_GD");
@@ -989,24 +981,18 @@ public class GD_Controller {
 		/** 1) 필요한 변수값 생성 */
 		// 조회할 대상에 대한 PK값
 		int BoardId = webHelper.getInt("BoardId");
-
 		// 이 값이 존재하지 않는다면 데이터 조회가 불가능하므로 반드시 필수값으로 처리해야 한다.
 		if (BoardId == 0) {
 			return webHelper.redirect(null, "글번호가 없습니다.");
 		}
-
 		Board input = new Board();
-
 		input.setBoardId(BoardId);
-
 		try {
-			
+		
 			boardService.deleteTip(input);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return webHelper.redirect(contextPath + "/_coach/meetingTip_GD.do", "삭제되었습니다.");
 
 	}
@@ -1076,8 +1062,6 @@ public class GD_Controller {
 		input.setMemberId(memberid);
 		input.setBoardId(Integer.parseInt(boardid));
 		input.setCreationDate(CreationDate);
-		
-		
 
 		try {
 			boardService.editTip(input);

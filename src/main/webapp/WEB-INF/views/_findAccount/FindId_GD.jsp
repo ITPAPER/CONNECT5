@@ -177,13 +177,10 @@
 															return false;
 														}
 													});
-												} else {
-													alert("아이디와 이메일이 일치하지 않습니다.");
-												}
-									
+												} 
 											},
 											error : function() {
-												alert("DB 접속 오류.");
+												alert("아이디와 이메일이 일치하지 않습니다.");
 											}
 										});
 

@@ -160,13 +160,14 @@
 									<c:set var="name"
 										value="${fn:replace(username, keyword, mark)}" />
 								</c:if>
+								
 
 								<form method="post"
 									action="${pageContext.request.contextPath}/_admin/admin_Payment_edit_GD.do">
 									<input type="hidden" name="MemberId" value="${item.memberid}">
 									<tr>
 										<td align="center">${item.paymentid}</td>
-										<td align="center">${item.username}</td>
+										<td align="center"><a href="${pageContext.request.contextPath}/_admin/admin_userManager2_HG.do?MemberId=${item.memberid}">${item.username}</a></td>
 										<c:if test="${item.pmttype == 1 }">
 											<td align="center">무통장입금</td>
 										</c:if>
