@@ -208,6 +208,7 @@ public class SucMatchServiceImpl implements SucMatchService {
 		return result;
 	}
 
+
 	@Override
 	public int getSucMatchCountExRecord(SucMatch input) throws Exception {
 		int result = 0;

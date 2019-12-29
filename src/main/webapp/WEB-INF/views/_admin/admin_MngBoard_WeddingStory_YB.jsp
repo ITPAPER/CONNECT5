@@ -77,14 +77,15 @@
 
 		<div class="col-md-4 searching_box">
 			<!-- 검색폼 -->
-			<form method="get" action="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB_YH.do">
+			<form method="get" action="${pageContext.request.contextPath}/_admin/admin_MngBoard_WeddingStory_YB.do">
 				<ul id="key">
 					<li>
-						<select name="keyField">
-							<option value="0">---선택---</option>
-							<option value="Title">제목</option>
-							<option value="UserName">작성자</option>
+						<select name="selected">
+							<option value="">---선택---</option>
+							<option value="bTitle" <c:if test="${selected eq 'bTitle'}">selected</c:if>>제목</option>
+							<option value="bName" <c:if test="${selected eq 'bName'}">selected</c:if>>작성자</option>
 						</select> 
+						
 							<input type="search" name="keyword" placeholder="제목 or 작성자 검색" value="${keyword}"/>
 						<button type="submit" id="s_btn">검색</button>
 					</li>
@@ -128,8 +129,9 @@
 								<c:if test="${keyword != ''}">
 									<%-- 검색어에 <mark> 태그를 적용하여 형광팬 효과 준비 --%>
 									<c:set var="mark" value="<mark>${keyword}</mark>" />
-									<%-- 출력을 위해 준비한 학과이름과 위치에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
+									<%-- 출력을 위해 준비한 게시글 제목 또는 작성자에서 검색어와 일치하는 단어를 형광팬 효과로 변경 --%>
 									<c:set var="title" value="${fn:replace(title, keyword, mark)}" />
+									<c:set var="userName" value="${fn:replace(userName, keyword, mark)}" />
 								</c:if>
 
 								<%-- 상세페이지로 이동하기 위한 URL --%>

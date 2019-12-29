@@ -1172,6 +1172,19 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
+	@Override
+	public int getBoardCountAdminStory(Board input) throws Exception {
+		int result = 0;
+        
+        try {
+            result = sqlSession.selectOne("BoardMapper.selectCountAllAdminStory", input);
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 조회에 실패했습니다.");
+        }
+        
+        return result;
+	}
 
 	@Override
 	public Board getBoardItemAdminStory(Board input) throws Exception {

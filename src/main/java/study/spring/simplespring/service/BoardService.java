@@ -121,6 +121,8 @@ public interface BoardService {
 
 	// 관리자 성혼스토리 게시판 시작 ================================================== /
 	public List<Board> getBoardListAdminStory(Board input) throws Exception;
+
+	public int getBoardCountAdminStory(Board input) throws Exception;
 	
 	public Board getBoardItemAdminStory(Board input) throws Exception;
 	

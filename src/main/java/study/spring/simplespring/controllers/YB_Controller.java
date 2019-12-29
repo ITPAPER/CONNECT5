@@ -504,7 +504,7 @@ public class YB_Controller {
 	
 	
 	/**----------------------- My연-결 Controller 시작 --------------------------------*/
-	/** 게시판 목록 페이지 */
+	/** 목록 페이지 */
 	@RequestMapping(value = "/_mypage/Ex-MatchingRecord_YB.do", method = RequestMethod.GET)
 	public ModelAndView ExMatchingRecord_List(Model model) {
 
@@ -517,7 +517,15 @@ public class YB_Controller {
 			model.addAttribute("login", login);
 		}
 		
+		if (loginInfo == null) {
+			String redirectUrl = contextPath + "/_login/login_HG.do";
+			return webHelper.redirect(redirectUrl, "로그인 후 이용해주세요.");
+		}
+		
 		/** 1) 필요한 변수값 생성 */
+		// 사용자가 dropdown 선택지 중 상대방 이름을 선택시 selected에는 partnerN이란 value 갖는다.
+		// 사용자가 dropdown 선택지 중 직업을 선택시 selected에는 partnerJ란 value 갖는다.		
+		 String selected = webHelper.getString("selected", "");	 // dropdown 선택 사항
 		 String keyword = webHelper.getString("keyword", "");    // 검색어
 	     int nowPage    = webHelper.getInt("page", 1);           // 페이지 번호 (기본값 1)
 	     int totalCount = 0;                                     // 전체 게시글 수
@@ -525,12 +533,26 @@ public class YB_Controller {
 	     int pageCount  = 5;                                     // 한 그룹당 표시할 페이지 번호 수
 	     
 	     int MemberId = loginInfo.getMemberId();
-		 
+	     String name = "";
+	     String job = "";
+	     
+	     if (selected.equals("partnerN")) {
+	    	 name = keyword;
+	    	 	
+	     } else if (selected.equals("partnerJ")) {
+	    	 job = keyword;
+	    	 
+	     } else {
+	    	 name = keyword;
+	    	 job = keyword;
+	     }
+	    	 
 	     /** 2) 데이터 조회하기 */
 	     // 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		 SucMatch input = new SucMatch();
 		 input.setMemberId(MemberId);
-	     
+		 input.setUserName(name);
+		 input.setJob(job);
 
 	     List<SucMatch> output = null; // 조회결과가 저장될 객체
 	     PageData pageData = null;  // 페이지 번호를 계산한 결과가 저장될 객체
@@ -542,8 +564,8 @@ public class YB_Controller {
 	            pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 
 	            // SQL의 LIMIT절에서 사용될 값을 Beans의 static 변수에 저장
-	            Board.setOffset(pageData.getOffset());
-	            Board.setListCount(pageData.getListCount());
+	            SucMatch.setOffset(pageData.getOffset());
+	            SucMatch.setListCount(pageData.getListCount());
 	            
 	            // 데이터 조회하기
 	            output = sucMatchService.getSucMatchListExRecord(input);
@@ -552,6 +574,7 @@ public class YB_Controller {
 	     }
 	     
 	     /** 3) View 처리 */
+	     model.addAttribute("selected", selected);
 	     model.addAttribute("keyword", keyword);
 	     model.addAttribute("output", output);
 	     model.addAttribute("pageData", pageData);
@@ -576,8 +599,9 @@ public class YB_Controller {
 			
 			model.addAttribute("login", login);
 		}
-		
+
 		/** 1) 필요한 변수값 생성 */
+		 String selected = webHelper.getString("selected", "");	 // dropdown에서 선택된 값
 		 String keyword = webHelper.getString("keyword", "");    // 검색어
 	     int nowPage    = webHelper.getInt("page", 1);           // 페이지 번호 (기본값 1)
 	     int totalCount = 0;                                     // 전체 게시글 수
@@ -586,14 +610,27 @@ public class YB_Controller {
 	     
 	     int BoardId = webHelper.getInt("BoardId");
 		 int MemberId = loginInfo.getMemberId();
-		 String UserName = loginInfo.getUserName();
+
+	     String title = "";
+	     String userName = "";
+	     
+	     if (selected.equals("bTitle")) {
+	    	 title = keyword;
+	    	 
+	     } else if (selected.equals("bName")) {
+	    	 userName = keyword;
+	    	 
+	     } else {
+	    	 title = keyword;
+	    	 userName = keyword;
+	     }		 
 		 
 	     /** 2) 데이터 조회하기 */
 	     // 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 	     Board input = new Board();
 	     input.setBoardId(BoardId);
-	     input.setTitle(keyword);
-	     input.setUserName(UserName);
+	     input.setTitle(title);
+	     input.setUserName(userName);
 	     input.setMemberId(MemberId);
 	     
 	     List<Board> output = null; // 조회결과가 저장될 객체
@@ -601,7 +638,7 @@ public class YB_Controller {
 	     
 	     try {
 	            // 전체 게시글 수 조회
-	            totalCount = boardService.getBoardCountStory(input);
+	            totalCount = boardService.getBoardCountAdminStory(input);
 	            // 페이지 번호 계산 --> 계산결과를 로그로 출력될 것이다.
 	            pageData = new PageData(nowPage, totalCount, listCount, pageCount);
 
@@ -616,6 +653,7 @@ public class YB_Controller {
 	     }
 	     
 	     /** 3) View 처리 */
+	     model.addAttribute("selected", selected);
 	     model.addAttribute("keyword", keyword);
 	     model.addAttribute("output", output);
 	     model.addAttribute("pageData", pageData);

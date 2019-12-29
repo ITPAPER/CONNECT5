@@ -25,9 +25,9 @@
 }
 
 .search {
-	width: 320px;
 	float: right;
 	padding-bottom: 10px;
+	padding-right: 15px;
 }
 
 

@@ -98,20 +98,43 @@
 		SELECT s.SucMatchId, u.UserName, u.BirthDate, u.Height, u.Edu_Lv, u.Job
 		FROM connect5.SucMatch s
         INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
-        where s.MemberId = 2 AND s.status=2
+		WHERE s.MemberId = #{MemberId} AND status = 2
+		
+		<choose>
+			<when test="UserName != null and UserName != ''">
+				AND UserName LIKE concat ('%', #{UserName}, '%')
+			</when>
+			
+			<when test="Job != null and Job != ''">
+				AND Job LIKE concat ('%', #{Job}, '%')
+			</when>
+		</choose>
+		
+		ORDER BY UserName ASC
+
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>     
 	</select>
 	
 	<select id="selectCountAllExRecord"
 		parameterType="study.spring.simplespring.model.SucMatch" resultType="int">
 		SELECT count(*)
-		FROM connect5.SucMatch 
-        where MemberId = #{MemberId} AND status=2
-		
+		FROM connect5.SucMatch s
+        INNER JOIN connect5.user u ON (u.MemberId = s.othermemberId)
+        WHERE s.MemberId = #{MemberId} AND status = 2
+
 		<choose>
 			<when test="UserName != null and UserName != ''">
-				AND UserName = #{UserName}
+				AND UserName LIKE concat ('%', #{UserName}, '%')
 			</when>
-		</choose>		
+			
+			<when test="Job != null and Job != ''">
+				AND Job LIKE concat ('%', #{Job}, '%')
+			</when>
+		</choose>
+		
+		ORDER BY UserName ASC
 	</select>
 
 	<!-- 데이터 수 조회를 위한 기능 정의 -->
@@ -147,4 +170,5 @@
 		LIMIT 0, 1
 	</select>   
 	<!-- ================== my연-결 매칭 기록 보기 mapper 끝 ================== -->
+	
 </mapper>
