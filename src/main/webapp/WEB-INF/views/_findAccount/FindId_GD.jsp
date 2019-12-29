@@ -146,45 +146,30 @@
 
 								var param = $("form[name=verify]").serialize();
 								$.ajax({
-									
-										
-											url : "FindId_GD_ok.do",
-											type : "POST",
-											data : param,
-											dataType : 'json',
-											success : function(data) {
-												console.log(data);
+										url : "FindId_GD_ok.do",
+										type : "POST",
+										data : param,
+										dataType : 'json',
+										success : function(data) {
+										console.log(data);
 												if (data != null) {
-													
 													$("#get_Num").attr(
 															"disabled", true);
 													swal("인증번호가 발송되었습니다.");
-													$("#verify_num")
-															.append(
-																	"<div class='verify_num'><label for='number'>인증번호 　 </label><input type='text' size='20px' id='authnum' /><span class='count'></span></div>");
-													$("#verify_ok")
-															.append(
-																	" <button type='button' id='v_ok'>확인</button>");
+													$("#verify_num").append("<div class='verify_num'><label for='number'>인증번호 　 </label><input type='text' size='20px' id='authnum' /><span class='count'></span></div>");
+													$("#verify_ok").append(" <button type='button' id='v_ok'>확인</button>");
 													count();
-													
 													$("#v_ok").on("click", function(e) {
-														
-													
 														if (!regex.value('#authnum', '인증번호를 입력하세요.')) {
 															return false;
 														}
-														if (!regex.eng_num('#authnum',
-																'인증번호는 숫자 만 입력 가능합니다.')) {
+														if (!regex.eng_num('#authnum','인증번호는 숫자 만 입력 가능합니다.')) {
 															return false;
 														}
-														if (!regex
-																.min_length('#authnum', 6, '인증번호는 6자 입니다.')) {
+														if (!regex.min_length('#authnum', 6, '인증번호는 6자 입니다.')) {
 															return false;
-														}
-
-														if(data.result == $("#authnum").val()){
+														}if(data.result == $("#authnum").val()){
 															document.getElementById("verify").submit();
-															
 															alert("인증이 완료되었습니다.");
 														}else{
 															 $('#authnum').focus();
@@ -198,7 +183,7 @@
 									
 											},
 											error : function() {
-												alert("아이디와 이메일이 일치하지 않습니다.");
+												alert("DB 접속 오류.");
 											}
 										});
 
@@ -223,7 +208,7 @@
 
 		function count() {
 
-			var timer2 = "0:03";
+			var timer2 = "5:01";
 			var interval = setInterval(function() {
 				var timer = timer2.split(':');
 				var minutes = parseInt(timer[0], 10);

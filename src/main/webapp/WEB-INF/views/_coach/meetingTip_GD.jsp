@@ -173,13 +173,14 @@
 						</ul>
 					</c:otherwise>
 				</c:choose>
-			</div>
-			<c:if test="${isadmin==1}">
+					<c:if test="${isadmin==1}">
 				
 					<button class="btn btn-default" type="button" id="write"
 						onclick="location='${pageContext.request.contextPath}/_coach/TipWrite.do'">글쓰기</button>
 				
 			</c:if>
+			</div>
+		
 
 		</div>
 

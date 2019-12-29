@@ -83,13 +83,16 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td id="context" colspan="3" align="center"><img
-							src="${pageContext.request.contextPath}/assets/upload${output.getContentImg()}"
-							width="250" height="150"> <br /> <br />
-							<p>${output.content}</p></td>
-
+						<td id="context" colspan="3" align="center">
+						<img src="${pageContext.request.contextPath}/assets/upload${output.getContentImg()}"
+							width="500" height="300"> 
+							<br />
+						</td>
 					</tr>
-
+					<tr>
+					<td colspan="3">	
+							<p>${output.content}</p></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
