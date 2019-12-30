@@ -469,7 +469,7 @@
 		INSERT INTO Board
 		(Title,Content,CreationDate,ContentImg,Category,MemberId)
 		VALUES
-		(#{Title},#{Content},#{CreationDate},#{ContentImg},7,#{MemberId}) ;
+		(#{Title},#{Content},now(),#{ContentImg},7,#{MemberId});
 	</insert>
 
 	<select id="selectList1_1"
