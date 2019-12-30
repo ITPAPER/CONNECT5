@@ -130,7 +130,6 @@
 				$("#UserId").focus();
 				return false;
 			}
-
 			$.post("idcheck.do", {
 				UserId : UserId_val
 			}, function(req) {
@@ -250,7 +249,7 @@
 						<tr>
 							<td class="box11">휴대폰번호</td>
 							<td class="box12"><input class="text4" type="text"
-								name="Mobile" id="Mobile" /></td>
+								name="Mobile" id="Mobile" placeholder="&nbsp; - 제외 입력"/></td>
 
 							<td class="box13">전화번호</td>
 							<td class="box14"><input class="text4" type="text"

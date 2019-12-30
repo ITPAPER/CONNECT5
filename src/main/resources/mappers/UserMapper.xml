@@ -211,10 +211,12 @@
 
 		<choose>
 			<when test="UserName != null and UserName != ''">
-				AND UserName = #{UserName}
+				AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 
-
+			<when test="UserId != null and UserId != ''">
+				OR UserId LIKE concat('%', #{UserId}, '%')
+			</when>
 		</choose>
 
 		ORDER BY MemberId DESC
@@ -278,19 +280,19 @@
 
 	<update id="unsetPayMent"
 		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.Reply SET MemberId=null WHERE
+		UPDATE connect5.Payment SET MemberId=null WHERE
 		MemberId=#{MemberId}
 	</update>
 
 	<update id="unsetSucMatch"
 		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.Reply SET MemberId=null WHERE
+		UPDATE connect5.SucMatch SET MemberId=null WHERE
 		MemberId=#{MemberId}
 	</update>
 
 	<update id="unsetReqMatch"
 		parameterType="study.spring.simplespring.model.User">
-		UPDATE connect5.Reply SET MemberId=null WHERE
+		UPDATE connect5.ReqMatch SET MemberId=null WHERE
 		MemberId=#{MemberId}
 	</update>
 	<!-- 삭제 참조 해제 -->
