@@ -153,7 +153,6 @@ public class YB_Controller {
 		return new ModelAndView("_service/MemberStatus_YB");
 	}
 	
-	
 	@RequestMapping(value = "/_service/MemberStatus2_YB.do", method = RequestMethod.GET)
 	public ModelAndView MemberStatus2(Model model) {
 		
@@ -218,6 +217,7 @@ public class YB_Controller {
 			outputSal10000M = userService.getselectCountAnnualSalary10000M(input);
 			outputSal10000W = userService.getselectCountAnnualSalary10000W(input);
 			
+			
 		} catch (Exception e) {	
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
@@ -276,9 +276,7 @@ public class YB_Controller {
 
 		return new ModelAndView("_service/MemberStatus2_YB");
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/_service/MemberStatus3_YB.do", method = RequestMethod.GET)
 	public ModelAndView MemberStatus3(Model model) {
 		

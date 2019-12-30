@@ -1174,8 +1174,10 @@ public class SE_Controller {
 
 		// 조회결과를 저장할 객체 선언
 		List<ReqMatch> output = null;
-
-		if (member_lv == 1) {
+		if (member_lv == 0) {
+			String redirectUrl = contextPath + "/_payment/mustInput_SE.do";
+			return webHelper.redirect(redirectUrl,"정회원만 이용 가능 합니다.");
+		} else if (member_lv == 1) {
 			if (reqSpService == 1) {
 				try {
 					// 데이터 조회
