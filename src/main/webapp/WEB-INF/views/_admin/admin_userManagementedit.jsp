@@ -90,8 +90,14 @@
 						</thead>
 						<tbody>
 							<tr>
+							<td>이미지</td>
+							<td><input type="file" name="ContentImg" id="ContentImg"></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
 								<td class="context" colspan="3" align="center" id="Content">
-									<textarea class="form-control" class="contentarea" id="contentarea" name="Content"></textarea>
+									<input placeholder="내용을 입력하세요." class="form-control" class="contentarea" id="contentarea" name="Content" /></input>
 								</td>
 							</tr>
 						</tbody>

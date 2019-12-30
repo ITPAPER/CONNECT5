@@ -142,8 +142,13 @@ public class YH_Controller {
 
 		String Title = paramMap.get("Title");
 		String Content = paramMap.get("Content");
-		String ContentImg = fileList.get(0).getFilePath();
+		// String ContentImg = fileList.get(0).getFilePath();
 		String CreationDate = webHelper.getString("CreationDate");
+		String ContentImg="";
+		for(UploadItem aa : fileList) {
+			 ContentImg = aa.getFilePath();
+		}
+		
 		
 		Board input = new Board();
 		input.setContent(Content);
@@ -266,27 +271,38 @@ public class YH_Controller {
 	// 관리자 페이지 게시판 관리 (공지사항 게시글 수정 )
 	@RequestMapping(value = "/_admin/admin_userManagementeditOk.do", method = RequestMethod.POST)
 	public ModelAndView admin_Useredit_ok(Model model) {
-
+		
 		User loginInfo = (User) webHelper.getSession("loginInfo");
-
-		int BoardId = webHelper.getInt("BoardId");
-		String Title = webHelper.getString("Title");
-		String Content = webHelper.getString("Content");
-		int MemberId = loginInfo.getMemberId();
-		int Category = webHelper.getInt("Category");
-		String CreationDate = webHelper.getString("CreationDate");
-
-		if (BoardId == 0) {
-			return webHelper.redirect(null, "공지사항이 없습니다.");
+		
+		Integer MemberId = (Integer) loginInfo.getMemberId();
+		
+		try {
+			webHelper.upload();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
+		
+		List<UploadItem> fileList = webHelper.getFileList();
+		Map<String, String> paramMap = webHelper.getParamMap();
+
+		String Title = paramMap.get("Title");
+		String Content = paramMap.get("Content");
+		// String ContentImg = fileList.get(0).getFilePath();
+		String CreationDate = webHelper.getString("CreationDate");
+		String ContentImg="";
+		for(UploadItem aa : fileList) {
+			 ContentImg = aa.getFilePath();
+		}
+		
+		
 		Board input = new Board();
 		input.setContent(Content);
 		input.setTitle(Title);
 		input.setMemberId(MemberId);
-		input.setCategory(Category);
 		input.setCreationDate(CreationDate);
-		input.setBoardId(BoardId);
+		input.setContentImg(ContentImg);
+
 
 		try {
 			boardService.editBoardNotice(input);
