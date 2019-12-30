@@ -75,7 +75,7 @@
 		useGeneratedKeys="true" keyProperty="ReplyId">
 		INSERT INTO Reply
 		(Re_Title, Re_Content, Re_CreationDate, BoardId, MemberId,Reply_Ok)
-		VALUES (#{Re_Title}, #{Re_Content}, #{Re_CreationDate}, #{BoardId}, #{MemberId},1)
+		VALUES (#{Re_Title}, #{Re_Content}, now(), #{BoardId}, #{MemberId},1)
 
 	</insert>
 	
