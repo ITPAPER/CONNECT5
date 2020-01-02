@@ -34,6 +34,20 @@
 		sucmatch.otherMemberId = #{MemberId}
 
 	</select>
+	<select id="selectItem_memberId"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultType="int">
+		SELECT MemberId FROM sucmatch
+		WHERE SucMatchId = #{SucMatchId}
+
+	</select>
+	<select id="selectItem_otherMemberId"
+		parameterType="study.spring.simplespring.model.SucMatch"
+		resultType="int">
+		SELECT OtherMemberId FROM sucmatch
+		WHERE SucMatchId = #{SucMatchId}
+
+	</select>
 	<select id="select1"
 		parameterType="study.spring.simplespring.model.SucMatch"
 		resultMap="SucMatchMap">

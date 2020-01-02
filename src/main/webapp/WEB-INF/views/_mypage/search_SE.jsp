@@ -142,7 +142,6 @@
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 <script>
-
 	$(function(){
 		$('#calendar').fullCalendar({
 		      defaultDate: moment().format('YYYY-MM-DD'),
@@ -151,7 +150,6 @@
 		      eventLimitText:"명",
 		      eventClick: function(calEvent, jsEvent, view){
 		    	  var start = moment(calEvent.start).format('YYYY-MM-DD');
-
 					$.ajax({
 					url : "${pageContext.request.contextPath}/_mypage/search_ok.do",
 					type : "GET",
@@ -177,10 +175,8 @@
 					$('#listModal').modal('show');
 		     },
 		      events: ${jsonList}	     
-	    });
-		
+	    });		
 	});
-
 </script>
 </body>
 </html>

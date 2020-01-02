@@ -88,10 +88,11 @@ public class SE_Controller {
 
 		// 조회결과를 저장할 객체 선언
 		List<User> output = null;
-
+		
 		try {
 			// 데이터 조회
 			output = userService.getsucUserList(input);
+			
 		} catch (Exception e) {
 			System.out.println("에러발생");
 		}
@@ -172,9 +173,26 @@ public class SE_Controller {
 		
 		SucMatch input = new SucMatch();
 		input.setSucMatchId(SucMatchId);
+		int memberId = 0;
+		int otherMemberId  = 0;
+		
+		try {
+			memberId = sucMatchService.getSucMatchItem_Id(input);
+			otherMemberId = sucMatchService.getSucMatchItem_otherMemberId(input);
+		} catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+        }
+		
+		User user = new User();
+		user.setMemberId(memberId);
+		
+		User user2 = new User();
+		user2.setMemberId(otherMemberId);
 		
 		try {
 			sucMatchService.deleteSucMatch(input);
+			userService.editUserRestUp(user);
+			userService.editUserRestUp(user2);
 		} catch (Exception e) {
             return webHelper.redirect(null, e.getLocalizedMessage());
         }
@@ -1306,6 +1324,7 @@ public class SE_Controller {
 		if (ReqSpService == 1) {
 			try {
 				reqMatchService.editReqSpService(input);
+				userService.editDate_Rest(input1);
 			} catch (Exception e) {
 				return webHelper.redirect(null, e.getLocalizedMessage());
 			}

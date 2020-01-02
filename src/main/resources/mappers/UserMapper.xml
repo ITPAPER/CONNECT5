@@ -11,8 +11,10 @@
 		<result property="UserId" column="UserId" />
 		<result property="UserPw" column="UserPw" />
 		<result property="UserName" column="UserName" />
+		<result property="UserName1" column="un" />
 		<result property="BirthDate" column="BirthDate" />
 		<result property="Gender" column="Gender" />
+		<result property="Gender1" column="gd" />
 		<result property="IsMarried" column="IsMarried" />
 		<result property="Mobile" column="Mobile" />
 		<result property="TEL" column="TEL" />
@@ -101,7 +103,7 @@
 
 
 	</select>
-
+	
 	<select id="selectModalList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
@@ -192,16 +194,12 @@
 	<select id="selectSucModalList"
 		parameterType="study.spring.simplespring.model.User"
 		resultMap="userMap">
-		SELECT u.username, u.gender,
-		u.BirthDate,s.SucMatchId,s.Status,
-		s.ReqMatchId,s.MemberId,
-		s.OtherMemberId, u.UserName, r.start FROM connect5.user u
-		INNER JOIN
-		connect5.sucmatch s ON (s.OtherMemberId = u.MemberId)
-		INNER JOIN
-		connect5.reqmatch r ON (u.MemberId = r.MemberId) AND
-		r.start = #{start}
-		AND s.Status= 2
+		SELECT s.SucMatchId, u.UserName, u.Gender,r.start, s.MemberId, uu.username as un, uu.gender as gd from connect5.user u
+		inner join connect5.reqmatch r ON (r.MemberId=u.MemberId) 
+		inner join connect5.sucmatch s ON (s.ReqmatchId=r.ReqMatchId)
+		inner join connect5.user uu On (s.MemberId = uu.MemberId)
+		AND r.start=#{start} AND s.status = 2
+		
 	</select>
 
 	<select id="selectListadminUser"
@@ -884,6 +882,11 @@
 		<update id="updateItemSucMatch"
 		parameterType="study.spring.simplespring.model.User">
 		Update connect5.User SET Date_Rest = Date_Rest -1 WHERE MemberId = #{MemberId}
+	</update>
+	
+	<update id="updateDate_Rest"
+		parameterType="study.spring.simplespring.model.User">
+		UPDATE connect5.user SET Date_Rest = Date_Rest - 3 WHERE MemberId = #{MemberId}
 	</update>
 	
 </mapper>

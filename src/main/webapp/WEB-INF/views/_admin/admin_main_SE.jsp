@@ -158,9 +158,10 @@ location.href = "${pageContext.request.contextPath}/_admin/deleteOk.do?MemberId=
 								<thead>
 									<tr>
 										<th>번호</th>
+										<th>신청자이름</th>
+										<th>성별</th>
 										<th>상대이름</th>
 										<th>성별</th>
-										<th>나이</th>
 										<th>취소</th>
 									</tr>
 								</thead>
@@ -228,7 +229,12 @@ location.href = "${pageContext.request.contextPath}/_admin/deleteOk.do?MemberId=
 								} else {
 									start[index].Gender = "여자";
 								}
-								$('#tbody2').append("<tr><td>" + (index+1) + "</td><td>" + start[index].UserName + "</td><td>" + start[index].Gender + "</td><td>" + start[index].BirthDate + "</td><td><a href='${pageContext.request.contextPath}/_admin/deleteOk.do?SucMatchId=" + start[index].SucMatchId + "'><button type='submit' class='btn btn-xs'>" + "취소" + "</button></a></td></tr>");
+								if (start[index].Gender1 == 0) {
+									start[index].Gender1 = "남자"
+								} else {
+									start[index].Gender1 = "여자";
+								}
+								$('#tbody2').append("<tr><td>" + (index+1) + "</td><td>" + start[index].UserName1 + "</td><td>" + start[index].Gender1+ "</td><td>" + start[index].UserName + "</td><td>" + start[index].Gender + "</td><td><a href='${pageContext.request.contextPath}/_admin/deleteOk.do?SucMatchId=" + start[index].SucMatchId + "'><button type='submit' class='btn btn-xs'>" + "취소" + "</button></a></td></tr>");
 							});
 						
 					},

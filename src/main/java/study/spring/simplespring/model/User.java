@@ -12,10 +12,14 @@ public class User {
 	private String UserPw;
 
 	private String UserName;
+	
+	private String UserName1;
 
 	private String BirthDate;
 
 	private int Gender;
+	
+	private int Gender1;
 
 	private int IsMarried;
 

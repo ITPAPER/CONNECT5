@@ -181,5 +181,7 @@ public interface UserService {
 	public int editreqMatch_isSpUserupdateUser(User input) throws Exception;
 	
 	public int editUserSucMatch(User input) throws Exception;
-
+	
+	public int editDate_Rest(User input) throws Exception;
+	
 }
