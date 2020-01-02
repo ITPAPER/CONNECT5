@@ -154,9 +154,9 @@ body {
 		hand2.startWidth = 10;
 		
 		setInterval(function() {
-		  hand.showValue(${jsonListm}/(${jsonListm}+${jsonListw})*100);
+		  hand.showValue(${jsonListm} == 0? 0: (${jsonListm}/(${jsonListm}+${jsonListw})*100));
 		  label.text = Math.round(hand.value).toString();
-		  hand2.showValue(${jsonListw}/(${jsonListm}+${jsonListw})*100);
+		  hand2.showValue(${jsonListw} == 0? 0: (${jsonListw}/(${jsonListm}+${jsonListw})*100));
 		  label2.text = Math.round(hand2.value).toString();
 		}, 2000);
 		

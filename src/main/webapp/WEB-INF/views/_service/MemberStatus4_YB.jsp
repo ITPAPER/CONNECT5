@@ -90,27 +90,27 @@ body {
 		// Create chart instance
 		var chart = am4core.create("chartdiv", am4charts.XYChart3D);
 		
-		// Add data (${jsonListm}/(${jsonListm}+${jsonListw})*100)
+		// Add data 
 		chart.data = [{
 		    "학력": "고등학교 졸업",
-		    "NoOfEduLvM": (${jsonHighschoolM}/(${jsonHighschoolM}+${jsonHighschoolW})*100),
-		    "NoOfEduLvW": (${jsonHighschoolW}/(${jsonHighschoolM}+${jsonHighschoolW})*100)
+		    "NoOfEduLvM": ${jsonHighschoolM} == 0? 0: (${jsonHighschoolM}/(${jsonHighschoolM}+${jsonHighschoolW})*100),
+		    "NoOfEduLvW": ${jsonHighschoolW} == 0? 0: (${jsonHighschoolW}/(${jsonHighschoolM}+${jsonHighschoolW})*100)
 		}, {
 		    "학력": "전문대 졸업(전문학사)",
-		    "NoOfEduLvM": (${jsonCollegeM}/(${jsonCollegeM}+${jsonCollegeW})*100),
-		    "NoOfEduLvW": (${jsonCollegeW}/(${jsonCollegeM}+${jsonCollegeW})*100)
+		    "NoOfEduLvM": ${jsonCollegeM} == 0? 0: (${jsonCollegeM}/(${jsonCollegeM}+${jsonCollegeW})*100),
+		    "NoOfEduLvW": ${jsonCollegeW} == 0? 0: (${jsonCollegeW}/(${jsonCollegeM}+${jsonCollegeW})*100)
 		}, {
 		    "학력": "대학교 졸업(학사)",
-		    "NoOfEduLvM": (${jsonUniversityM}/(${jsonUniversityM}+${jsonUniversityW})*100),
-		    "NoOfEduLvW": (${jsonUniversityW}/(${jsonUniversityM}+${jsonUniversityW})*100)
+		    "NoOfEduLvM": ${jsonUniversityM} == 0? 0: (${jsonUniversityM}/(${jsonUniversityM}+${jsonUniversityW})*100),
+		    "NoOfEduLvW": ${jsonUniversityW} == 0? 0: (${jsonUniversityW}/(${jsonUniversityM}+${jsonUniversityW})*100)
 		}, {
 		    "학력": "대학원 졸업(석사)",
-		    "NoOfEduLvM": (${jsonGraduateSchoolM}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100),
-		    "NoOfEduLvW": (${jsonGraduateSchoolW}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100)
+		    "NoOfEduLvM": ${jsonGraduateSchoolM} == 0? 0: (${jsonGraduateSchoolM}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100),
+		    "NoOfEduLvW": ${jsonGraduateSchoolW} == 0? 0: (${jsonGraduateSchoolW}/(${jsonGraduateSchoolM}+${jsonGraduateSchoolW})*100)
 		}, {
 		    "학력": "대학원 졸업(박사)",
-		    "NoOfEduLvM": (${jsonDoctoralM}/(${jsonDoctoralM}+${jsonDoctoralW})*100),
-		    "NoOfEduLvW": (${jsonDoctoralW}/(${jsonDoctoralM}+${jsonDoctoralW})*100)
+		    "NoOfEduLvM": ${jsonDoctoralM} == 0? 0: (${jsonDoctoralM}/(${jsonDoctoralM}+${jsonDoctoralW})*100),
+		    "NoOfEduLvW": ${jsonDoctoralW} == 0? 0: (${jsonDoctoralW}/(${jsonDoctoralM}+${jsonDoctoralW})*100)
 		}];
 		
 		// Create axes

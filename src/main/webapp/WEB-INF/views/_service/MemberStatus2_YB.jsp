@@ -88,36 +88,36 @@
 		// Add data
 		chart.data = [{
 		  "SalaryAnnual": "~2000(만원)이하",
-		  "NoOfSalAnnualM": (${jsonSal0010M}/(${jsonSal0010M}+${jsonSal0010W})*100),
-		  "NoOfSalAnnualW": (${jsonSal0010W}/(${jsonSal0010M}+${jsonSal0010W})*100)
+		  "NoOfSalAnnualM": ${jsonSal0010M} == 0? 0: (${jsonSal0010M}/(${jsonSal0010M}+${jsonSal0010W})*100),
+		  "NoOfSalAnnualW": ${jsonSal0010W} == 0? 0: (${jsonSal0010W}/(${jsonSal0010M}+${jsonSal0010W})*100)
 		},{
 		  "SalaryAnnual": "2,000~2,999(만원)",
-		  "NoOfSalAnnualM": (${jsonSal2000M}/(${jsonSal2000M}+${jsonSal2000W})*100),
-		  "NoOfSalAnnualW": (${jsonSal2000W}/(${jsonSal2000M}+${jsonSal2000W})*100)
+		  "NoOfSalAnnualM": ${jsonSal2000M} == 0? 0: (${jsonSal2000M}/(${jsonSal2000M}+${jsonSal2000W})*100),
+		  "NoOfSalAnnualW": ${jsonSal2000W} == 0? 0: (${jsonSal2000W}/(${jsonSal2000M}+${jsonSal2000W})*100)
 		},{
 		  "SalaryAnnual": "3,000~3,999(만원)",
-		  "NoOfSalAnnualM": (${jsonSal3000M}/(${jsonSal3000M}+${jsonSal3000W})*100),
-		  "NoOfSalAnnualW": (${jsonSal3000W}/(${jsonSal3000M}+${jsonSal3000W})*100)
+		  "NoOfSalAnnualM": ${jsonSal3000M} == 0? 0: (${jsonSal3000M}/(${jsonSal3000M}+${jsonSal3000W})*100),
+		  "NoOfSalAnnualW": ${jsonSal3000W} == 0? 0: (${jsonSal3000W}/(${jsonSal3000M}+${jsonSal3000W})*100)		  
 		},{
 		  "SalaryAnnual": "4,000~4,999(만원)",
-		  "NoOfSalAnnualM": (${jsonSal4000M}/(${jsonSal4000M}+${jsonSal4000W})*100),
-		  "NoOfSalAnnualW": (${jsonSal4000W}/(${jsonSal4000M}+${jsonSal4000W})*100)
+		  "NoOfSalAnnualM":  ${jsonSal4000M} == 0? 0: (${jsonSal4000M}/(${jsonSal4000M}+${jsonSal4000W})*100),
+		  "NoOfSalAnnualW":  ${jsonSal4000W} == 0? 0: (${jsonSal4000W}/(${jsonSal4000M}+${jsonSal4000W})*100)		  
 		},{
 		  "SalaryAnnual": "5,000~5,999(만원)",
-		  "NoOfSalAnnualM": (${jsonSal5000M}/(${jsonSal5000M}+${jsonSal5000W})*100),
-		  "NoOfSalAnnualW": (${jsonSal5000W}/(${jsonSal5000M}+${jsonSal5000W})*100)
+		  "NoOfSalAnnualM": ${jsonSal5000M} == 0? 0: (${jsonSal5000M}/(${jsonSal5000M}+${jsonSal5000W})*100),
+		  "NoOfSalAnnualW": ${jsonSal5000W} == 0? 0: (${jsonSal5000W}/(${jsonSal5000M}+${jsonSal5000W})*100)
 		},{
 		  "SalaryAnnual": "6,000~7,999(만원)",
 		  "NoOfSalAnnualM": (${jsonSal6070M}/(${jsonSal6070M}+${jsonSal6070W})*100),
 		  "NoOfSalAnnualW": (${jsonSal6070W}/(${jsonSal6070M}+${jsonSal6070W})*100)
 		},{
 		  "SalaryAnnual": "8,000~9,999(만원)",
-		  "NoOfSalAnnualM": (${jsonSal8090M}/(${jsonSal8090M}+${jsonSal8090W})*100),
-		  "NoOfSalAnnualW": (${jsonSal8090W}/(${jsonSal8090M}+${jsonSal8090W})*100)
+		  "NoOfSalAnnualM": ${jsonSal8090M} == 0? 0: (${jsonSal8090M}/(${jsonSal8090M}+${jsonSal8090W})*100),
+		  "NoOfSalAnnualW": ${jsonSal8090W} == 0? 0: (${jsonSal8090W}/(${jsonSal8090M}+${jsonSal8090W})*100)
 		},{
 		  "SalaryAnnual": "1억원(10,000만원) 이상~",
-		  "NoOfSalAnnualM": (${jsonSal10000M}/(${jsonSal10000M}+${jsonSal10000W})*100),
-		  "NoOfSalAnnualW": (${jsonSal10000W}/(${jsonSal10000M}+${jsonSal10000W})*100)
+		  "NoOfSalAnnualM": ${jsonSal10000M} == 0? 0: (${jsonSal10000M}/(${jsonSal10000M}+${jsonSal10000W})*100),
+		  "NoOfSalAnnualW": ${jsonSal10000W} == 0? 0: (${jsonSal10000W}/(${jsonSal10000M}+${jsonSal10000W})*100)
 		
 		}];
 		

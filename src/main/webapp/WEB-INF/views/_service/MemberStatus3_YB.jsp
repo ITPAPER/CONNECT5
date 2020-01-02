@@ -93,28 +93,28 @@ body {
 		// Add data 
 		chart.data = [{
 		    "연령대": "만 20-24세",
-		    "NoOfAgeM": (${jsonAge2024M}/(${jsonAge2024M}+${jsonAge2024W})*100),
-		    "NoOfAgeW": (${jsonAge2024W}/(${jsonAge2024M}+${jsonAge2024W})*100)
+		    "NoOfAgeM": ${jsonAge2024M} == 0? 0: (${jsonAge2024M}/(${jsonAge2024M}+${jsonAge2024W})*100),
+		    "NoOfAgeW": ${jsonAge2024W} == 0? 0: (${jsonAge2024W}/(${jsonAge2024M}+${jsonAge2024W})*100)
 		}, {
 		    "연령대": "만 20-29세",
-		    "NoOfAgeM": (${jsonAge2529M}/(${jsonAge2529M}+${jsonAge2529W})*100),
-		    "NoOfAgeW": (${jsonAge2529W}/(${jsonAge2529M}+${jsonAge2529W})*100)
+		    "NoOfAgeM": ${jsonAge2529M} == 0? 0: (${jsonAge2529M}/(${jsonAge2529M}+${jsonAge2529W})*100),
+		    "NoOfAgeW": ${jsonAge2529W} == 0? 0: (${jsonAge2529W}/(${jsonAge2529M}+${jsonAge2529W})*100)
 		}, {
 		    "연령대": "만 30-34세",
-		    "NoOfAgeM": (${jsonAge3034M}/(${jsonAge3034M}+${jsonAge3034W})*100),
-		    "NoOfAgeW": (${jsonAge3034W}/(${jsonAge3034M}+${jsonAge3034W})*100)
+		    "NoOfAgeM": ${jsonAge3034M} == 0? 0: (${jsonAge3034M}/(${jsonAge3034M}+${jsonAge3034W})*100),
+		    "NoOfAgeW": ${jsonAge3034W} == 0? 0: (${jsonAge3034W}/(${jsonAge3034M}+${jsonAge3034W})*100)
 		}, {
 		    "연령대": "만 35-39세",
-		    "NoOfAgeM": (${jsonAge3539M}/(${jsonAge3539M}+${jsonAge3539W})*100),
-		    "NoOfAgeW": (${jsonAge3539W}/(${jsonAge3539M}+${jsonAge3539W})*100)
+		    "NoOfAgeM": ${jsonAge3539M} == 0? 0: (${jsonAge3539M}/(${jsonAge3539M}+${jsonAge3539W})*100),
+		    "NoOfAgeW": ${jsonAge3539W} == 0? 0: (${jsonAge3539W}/(${jsonAge3539M}+${jsonAge3539W})*100)
 		}, {
 		    "연령대": "만 40-49세",
-		    "NoOfAgeM": (${jsonAge4049M}/(${jsonAge4049M}+${jsonAge4049W})*100),
-		    "NoOfAgeW": (${jsonAge4049W}/(${jsonAge4049M}+${jsonAge4049W})*100)
+		    "NoOfAgeM": ${jsonAge4049M} == 0? 0: (${jsonAge4049M}/(${jsonAge4049M}+${jsonAge4049W})*100),
+		    "NoOfAgeW": ${jsonAge4049W} == 0? 0: (${jsonAge4049W}/(${jsonAge4049M}+${jsonAge4049W})*100)
 		}, {
 		    "연령대": "만 50세 이상~",
-		    "NoOfAgeM": (${jsonAge50PlusM}/(${jsonAge50PlusM}+${jsonAge50PlusW})*100),
-		    "NoOfAgeW": (${jsonAge50PlusW}/(${jsonAge50PlusM}+${jsonAge50PlusW})*100)
+		    "NoOfAgeM": ${jsonAge50PlusM} == 0? 0: (${jsonAge50PlusM}/(${jsonAge50PlusM}+${jsonAge50PlusW})*100),
+		    "NoOfAgeW": ${jsonAge50PlusW} == 0? 0: (${jsonAge50PlusW}/(${jsonAge50PlusM}+${jsonAge50PlusW})*100)
 		}];
 		
 		// Create axes
