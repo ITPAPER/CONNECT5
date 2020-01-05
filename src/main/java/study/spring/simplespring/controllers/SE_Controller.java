@@ -735,19 +735,19 @@ public class SE_Controller {
 
 		User loginInfo = (User) webHelper.getSession("loginInfo");
 
-		int ReplyId = webHelper.getInt("ReplyId");
+		int replyId = webHelper.getInt("replyId");
 		String Re_Title = webHelper.getString("Re_Title");
 		String Re_Content = webHelper.getString("Re_Content");
 		int BoardId = webHelper.getInt("BoardId");
 		int MemberId = loginInfo.getMemberId();
 		String UserName = loginInfo.getUserName();
 
-		if (ReplyId == 0) {
+		if (replyId == 0) {
 			return webHelper.redirect(null, "댓글번호가 없습니다.");
 		}
 
 		Reply input = new Reply();
-		input.setReplyId(ReplyId);
+		input.setReplyId(replyId);
 		input.setRe_Title(Re_Title);
 		input.setRe_Content(Re_Content);
 		input.setBoardId(BoardId);

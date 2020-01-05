@@ -128,6 +128,7 @@
 						<c:set var="re_content" value="${item.re_Content}" />
 						<c:set var="username" value="${item.userName}" />
 						<c:set var="re_creationDate" value="${item.re_CreationDate}" />
+						<span style='display: none' id="CIa${status.index}">${item.replyId}</span>
 
 						<div class="media-body">
 							<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
@@ -138,14 +139,11 @@
 								</h4>
 								<!-- 제목에 float: right 적용 - pull-right -->
 								<div class="pull-right">
-									<i class="glyphicon glyphicon-edit" id="editBtn" title="수정"></i>
-									<a
-										href="${pageContext.request.contextPath}/_coach/replyDelete_SE.do?ReplyId=${item.replyId}"
-										title="삭제"><i class="glyphicon glyphicon-remove"></i></a>
+									<a href="a${status.index}" title="수정" class="pull-right bcd btn6"> <i class="glyphicon glyphicon-edit"></i></a>
+									<a href="${pageContext.request.contextPath}/_coach/replyDelete_SE.do?ReplyId=${item.replyId}" title="삭제"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</div>
-							<p>${re_content}</p>
-							<div id="edit"></div>
+							<p id="a${status.index}">${re_content}</p>
 						</div>
 
 					</c:forEach>
@@ -162,20 +160,28 @@
 
 	<jsp:include page="../assets/inc/footer.jsp" />
 	<script>
-		$("#editBtn").click(function() {
+		$(".btn6").click(function(e) {
+			e.preventDefault();
+            var g;
+            var h;
+            var f = $(this).attr("href");
+            g = $("#"+f).html();
+            h = $("#CI"+f).html();
+            console.log(h);
+
 							var repEdit;
 							repEdit = "<form method='post' action='${pageContext.request.contextPath}/_coach/replyeditOk.do'>"
-							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}><input type='hidden' name='ReplyId' value=${replyId}>"
-							repEdit += "<input type='hidden' name='Re_Title' value='댓글달기' /> 댓글달기 &nbsp; <input type='text' id='Re_Content1' name='Re_Content' class='form-control' placeholder='댓글을 입력하세요.' />"
-							repEdit += "<button type='reset' class='btn btn-default pull-right' id='cancelbtn'>취소</button>"
-							repEdit += "<button type='submit' class='btn btn-default pull-right' id='replybtn'>등록</button></div></form>"
-							$("#edit").html(repEdit);
+							repEdit += "<input type='hidden' name='replyId' value='"+h+"' />"
+							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}>"
+							repEdit += "<input type='hidden' name='Re_Title' value='댓글달기' /> 댓글달기 &nbsp; <input type='text' id='Re_Content1' name='Re_Content' class='form-control' value='"+g+"'/>"
+							repEdit += "<button type='submit' class='btn btn-default pull-right' id='replybtn'>등록</button>"
+							repEdit += "<button type='reset' class='btn btn-default pull-right' id='cancelbtn'>취소</button></div></form>"
+							$("#"+f).html(repEdit);
 							
 							$("#cancelbtn").click(function() {
-								$("#edit").hide();
+								$("#"+f).html(g);
 							});
 							
-							$("#edit").show();
 						});
 		
 	</script>
