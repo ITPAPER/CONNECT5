@@ -231,10 +231,10 @@
 										
 										<c:if test="${clear == 0 }">
 										<td align="center"><select name="service" id="service">
-												<option value="1">3회</option>
-												<option value="2">5회</option>
-												<option value="3">7회</option>
-												<option value="4">무제한</option>
+												<option value="3">3회</option>
+												<option value="5">5회</option>
+												<option value="7">7회</option>
+												<option value="99">무제한</option>
 										</select></td>
 										</c:if>
 										<c:if test="${clear == 1 }">

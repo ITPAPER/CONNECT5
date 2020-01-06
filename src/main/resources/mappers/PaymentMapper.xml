@@ -66,8 +66,8 @@
 		parameterType="study.spring.simplespring.model.Payment"
 		useGeneratedKeys = "true"
 		keyProperty="paymentid">
-		INSERT INTO Payment (servicetype, pmttype, servicebank, payername, card, pmtplan, memberid,username)
-		 VALUES (#{servicetype},  #{pmttype}, #{servicebank}, #{payername}, #{card}, #{pmtplan}, #{memberid},#{username})
+		INSERT INTO Payment (servicetype, pmttype, servicebank, payername, card, pmtplan, memberid,datetime)
+		 VALUES (#{servicetype},  #{pmttype}, #{servicebank}, #{payername}, #{card}, #{pmtplan}, #{memberid},now())
 	</insert>
 	
 	<update id="updateItem"

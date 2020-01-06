@@ -68,7 +68,7 @@
 
 				<tr>
 					<th id="title">학력</th>
-					<th><select id="edu" name="edu">
+					<th><select id="edu" name="edu_lv">
 							<option value="">--------선택--------</option>
 							<option value="중졸">중졸</option>
 							<option value="고졸">고졸</option>

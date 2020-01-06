@@ -89,7 +89,13 @@
 						<tr>
 							<c:choose>
 								<c:when test="${output.getContentImg() != '' }">
-									<td id="context" colspan="3"><img style="width:900px;" src="${pageContext.request.contextPath}/assets/upload/${output.contentImg}">${output.content }</td>
+									<c:url value="/upload/download.do" var="download_url">
+									
+									<c:param name="file" value="${output.getContentImg()}" />
+									<c:param name="size" value="250x150" />
+            						<c:param name="crop" value="true" />
+									</c:url>
+									<td id="context" colspan="3"><img style="width:900px;" src="${download_url}">${output.content }</td>
 								</c:when>
 								<c:otherwise>
 									<td id="context" colspan="3">${output.content}</td>

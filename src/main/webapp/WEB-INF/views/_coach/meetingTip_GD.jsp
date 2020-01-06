@@ -91,9 +91,14 @@
 								<c:param name="BoardId" value="${item.boardId}" />
 							</c:url>
 							<tr style="cursor: pointer;">
-								<td><img
-									src="${pageContext.request.contextPath}/assets/upload${item.getContentImg()}"
-									width="250" height="150"></td>
+								<c:url value="/upload/download.do" var="download_url">
+									
+									<c:param name="file" value="${item.getContentImg()}" />
+									<c:param name="size" value="250x150" />
+            						<c:param name="crop" value="true" />
+								</c:url>
+								<td><img src="${download_url}" /></td>
+				
 								<td width="500" height="200"><a href="${viewUrl}"><h4>${item.title}</h4></a>
 									<br /> <span class="sub_text">${item.content }</span></td>
 							</tr>
