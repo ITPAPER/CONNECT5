@@ -165,7 +165,7 @@
 		FROM Board b
 		INNER JOIN User u ON
 		b.MemberId = u.MemberId
-		WHERE Category=1
+		WHERE Category=4
 
 		<choose>
 			<when test="Title != null and Title != ''">
@@ -361,7 +361,7 @@
 		CreationDate, Category, MemberId,viewcount
 		) VALUES (
 		#{Title},
-		#{Content}, now(), 1, #{MemberId},#{viewcount}
+		#{Content}, now(), 4, #{MemberId},#{viewcount}
 		)
 	</insert>
 	<insert id="insertItemadminReview"

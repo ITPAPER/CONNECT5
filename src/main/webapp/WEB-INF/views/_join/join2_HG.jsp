@@ -230,7 +230,7 @@
 
 							<td class="box13">생년월일</td>
 							<td class="box14"><input class="text4" type="text"
-								name="BirthDate" placeholder="주민번호 앞 7자리" id="BirthDate"></td>
+								name="BirthDate" placeholder="주민번호 앞 6자리" id="BirthDate"></td>
 						</tr>
 
 						<tr>
