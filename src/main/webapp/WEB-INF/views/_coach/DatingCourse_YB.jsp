@@ -67,9 +67,7 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6"">
 					<div class="thumbnail">
-						<a href="${pageContext.request.contextPath}/_coach/DatingCourse2_YB.do"><img alt="북촌 한옥마을" src="${pageContext.request.contextPath}/assets/img/북촌01.jpg">
-						
-						</a>
+						<p><img alt="북촌 한옥마을" src="${pageContext.request.contextPath}/assets/img/북촌01.jpg"></p>
 						<div class="caption"> 
 							<span class="thumb-text">
 							<span style="color:#210B61">
@@ -79,9 +77,6 @@
 							<p><h6 class="thumb-content"><img alt="장소" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -90,18 +85,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="남산N타워" src="${pageContext.request.contextPath}/assets/img/남산타워01.png"></a>
+						<p><img alt="남산N타워" src="${pageContext.request.contextPath}/assets/img/남산타워01.png"></p>
 						<div class="caption">
 							<span style="color:#210B61">
-							<h4 class="thumb-title">[서울] 남산 N 타워</h4></span>
+							<h4 class="thumb-title">[서울] 남산서울타워</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-9876-5432</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울특별시 용산구 남산공원길 105</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -110,18 +102,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="방배카페골목" src="${pageContext.request.contextPath}/assets/img/방배카페골목01.jpg"></a>
+						<p><img alt="방배카페골목" src="${pageContext.request.contextPath}/assets/img/방배카페골목01.jpg"></p>
 						<div class="caption">
 							<span style="color:#210B61">
 							<h4 class="thumb-title">[서울] 방배 카페골목</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-1234-1234</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 방배동 서문여자고등학교-이수교차로</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -130,18 +119,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="제주카멜리아힐" src="${pageContext.request.contextPath}/assets/img/제주카멜리아힐01.png"></a>
+						<p><img alt="제주카멜리아힐" src="${pageContext.request.contextPath}/assets/img/제주카멜리아힐01.png"></p>
 						<div class="caption">
 							<span style="color:#210B61">
 							<h4 class="thumb-title">[제주] 카밀리아힐</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;064-792-0088</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;제주 서귀포시 안덕면 병악로 166</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -150,18 +136,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="제주허브동산" src="${pageContext.request.contextPath}/assets/img/제주허브동산_별빛놀이01.jpg"></a>
+						<p><img alt="제주허브동산" src="${pageContext.request.contextPath}/assets/img/제주허브동산_별빛놀이01.jpg"></p>
 						<div class="caption">
 							<span style="color:#210B61">
 							<h4 class="thumb-title">[제주] 허브동산</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;064-787-7362</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;제주 서귀포시 표선면 돈오름로 170</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -170,18 +153,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="제주녹차미로공원" src="${pageContext.request.contextPath}/assets/img/제주녹차미로공원01.jpg"></a>
+						<p><img alt="제주녹차미로공원" src="${pageContext.request.contextPath}/assets/img/제주녹차미로공원01.jpg"></p>
 						<div class="caption">
 							<span style="color:#210B61">
 							<h4 class="thumb-title">[제주] 녹차 미로공원</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;064-738-4405</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;제주 서귀포시 산록남로 1246</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -190,18 +170,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="전주한옥마을" src="${pageContext.request.contextPath}/assets/img/전주한옥마을01.jpg"></a>
+						<p><img alt="전주한옥마을" src="${pageContext.request.contextPath}/assets/img/전주한옥마을01.jpg"></p>
 						<div class="caption">
 							<span style="color:#210B61">
 							<h4 class="thumb-title">[전주] 한옥마을</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;063-282-1330</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;전북 전주시 완산구 교동 69-1</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -210,18 +187,15 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="미즈컨테이너1" src="${pageContext.request.contextPath}/assets/img/미즈컨테이너01.jfif"></a>
+						<p><img alt="미즈컨테이너1" src="${pageContext.request.contextPath}/assets/img/미즈컨테이너01.jfif"></p>
 						<div class="caption">
 							<span>
-							<h4 class="thumb-title">[서울 강남 맛집] 미즈컨테이너1</h4></span>
+							<h4 class="thumb-title">[서울] 미즈컨테이너 강남 웨스트</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;070-8868-0150</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 서초구 서초대로73길 9</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
@@ -230,25 +204,21 @@
 				<!-- 게시물 하나 시작 -->
 				<div class="col-md-4 col-sm-2 col-xs-6">
 					<div class="thumbnail">
-						<a href="#"><img alt="미즈컨테이너2" src="${pageContext.request.contextPath}/assets/img/미즈컨테이너02.jpg"></a>
+						<p><img alt="미즈컨테이너2" src="${pageContext.request.contextPath}/assets/img/미즈컨테이너02.jpg"></p>
 						<div class="caption">
 							<span style="color:#210B61">
-							<h4 class="thumb-title">[서울 강남 맛집] 미즈컨테이너2</h4></span>
+							<h4 class="thumb-title">[서울] 미즈컨테이너 강남 이스트</h4></span>
 							<span style="color:#6A5ACD">
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;02-2133-1372</h6></p>
-							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 종로구 계동길 37</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/Tel-icon-purple.png" width="20px">&nbsp;&nbsp;070-8885-5199</h6></p>
+							<p><h6 class="thumb-content"><img alt="전화" src="${pageContext.request.contextPath}/assets/img/location-icon-purple.png" width="20px">&nbsp;&nbsp;서울 강남구 강남대로102길 13-3</h6></p>
 							</span>
 							<hr />
-							<p class="thumb-content">
-								<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;좋아요</a>
-							</p>
 						</div>
 					</div>
 				</div>
 				<!-- 게시물 하나 끝 -->
 			</div>
 		</div>
-		
 			
 			
 			
