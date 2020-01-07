@@ -309,6 +309,7 @@ public class SucMatchController {
             model.addAttribute("sucuser",sucuser);
             model.addAttribute("suc1", suc1);
             model.addAttribute("suc0", suc0);
+            model.addAttribute("memberid", memberid);
          
             
             System.out.println("suc1 = " + suc1);
