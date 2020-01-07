@@ -52,10 +52,10 @@
 		<form method="get" action="${pageContext.request.contextPath}/_info/story_SE.do">
 			<ul id="key">
 					<li>
-						<select name="keyField">
-							<option value="0">---선택---</option>
-							<option value="Title">제목</option>
-							<option value="id">번호</option>
+						<select name="selected">
+							<option value="">---선택---</option>
+							<option value="bTitle" <c:if test="${selected eq 'bTitle'}">selected</c:if>>제목</option>
+							<option value="bName" <c:if test="${selected eq 'bName'}">selected</c:if>>작성자</option>
 						</select> 
 							<input type="search" name="keyword" value="${keyword}" />
 						<button type="submit" id="btn">검색</button>

@@ -159,6 +159,7 @@ public class AdminController {
 		}
 
 		/** 1) 필요한 변수값 생성 */
+		String selected = webHelper.getString("selected", "");
 		String keyword = webHelper.getString("keyword", ""); // 검색어
 		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
 		int totalCount = 0; // 전체 게시글 수
@@ -170,11 +171,23 @@ public class AdminController {
 		String Height = webHelper.getString("Height");
 		String Edu_Lv = webHelper.getString("Edu_Lv");
 		String Job = webHelper.getString("Job");
+		
+		String UserName = "";
+		String UserId = "";
+		
+		if (selected.equals("bName")) {
+			UserName = keyword;
+		} else if (selected.equals("bId")) {
+			UserId = keyword;
+		} else {
+			UserName = keyword;
+			UserId = keyword;
+		}
 
 		User input = new User();
 		input.setMemberId(MemberId);
-		input.setUserId(keyword);
-		input.setUserName(keyword);
+		input.setUserId(UserId);
+		input.setUserName(UserName);
 		input.setBirthDate(BirthDate);
 		input.setHeight(Height);
 		input.setEdu_Lv(Edu_Lv);
@@ -197,6 +210,7 @@ public class AdminController {
 			return webHelper.redirect(null, e.getLocalizedMessage());
 		}
 
+		model.addAttribute("selected", selected);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pageData", pageData);
 		model.addAttribute("output", output);

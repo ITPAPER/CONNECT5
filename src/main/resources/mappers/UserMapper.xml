@@ -213,7 +213,7 @@
 			</when>
 
 			<when test="UserId != null and UserId != ''">
-				OR UserId LIKE concat('%', #{UserId}, '%')
+				AND UserId LIKE concat('%', #{UserId}, '%')
 			</when>
 		</choose>
 

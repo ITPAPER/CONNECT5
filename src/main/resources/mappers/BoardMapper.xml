@@ -49,7 +49,10 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
 
@@ -120,7 +123,10 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
 
@@ -145,10 +151,12 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
-
 		ORDER BY BoardId DESC
 
 		<if test="listCount > 0">
@@ -196,7 +204,10 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
 

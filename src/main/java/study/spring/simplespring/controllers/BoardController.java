@@ -883,21 +883,35 @@ public class BoardController {
 		}
 
 		/** 1) 필요한 변수값 생성 */
+		String selected = webHelper.getString("selected", "");
 		String keyword = webHelper.getString("keyword", ""); // 검색어
 		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
 		int totalCount = 0; // 전체 게시글 수
 		int listCount = 10; // 한 페이지당 표시할 목록 수
 		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
-		String UserName = webHelper.getString("UserName");
 		int BoardId = webHelper.getInt("BoardId");
 		String CreationDate = webHelper.getString("CreationDate");
 
+		
+		String Title = "";
+		String UserName = "";
+		
+		if (selected.equals("bTitle")) {
+            Title = keyword;
+
+        } else if (selected.equals("bName")) {
+            UserName = keyword;
+
+        } else {
+            Title = keyword;
+            UserName = keyword;
+        }
 		/** 2) 데이터 조회하기 */
 		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		Board input = new Board();
 		input.setBoardId(BoardId);
-		input.setTitle(keyword);
+		input.setTitle(Title);
 		input.setUserName(UserName);
 		input.setCreationDate(CreationDate);
 
@@ -921,6 +935,7 @@ public class BoardController {
 		}
 
 		/** 3) View 처리 */
+		model.addAttribute("selected", selected);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
 		model.addAttribute("pageData", pageData);
@@ -991,21 +1006,35 @@ public class BoardController {
 		}
 
 		/** 1) 필요한 변수값 생성 */
+		String selected = webHelper.getString("selected", "");
 		String keyword = webHelper.getString("keyword", ""); // 검색어
 		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
 		int totalCount = 0; // 전체 게시글 수
 		int listCount = 10; // 한 페이지당 표시할 목록 수
 		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
-		String UserName = webHelper.getString("UserName");
 		int BoardId = webHelper.getInt("BoardId");
 		String CreationDate = webHelper.getString("CreationDate");
+		
+		String Title = "";
+		String UserName = "";
+		
+		if (selected.equals("bTitle")) {
+            Title = keyword;
+
+        } else if (selected.equals("bName")) {
+            UserName = keyword;
+
+        } else {
+            Title = keyword;
+            UserName = keyword;
+        }
 
 		/** 2) 데이터 조회하기 */
 		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		Board input = new Board();
 		input.setBoardId(BoardId);
-		input.setTitle(keyword);
+		input.setTitle(Title);
 		input.setUserName(UserName);
 		input.setCreationDate(CreationDate);
 
@@ -1029,6 +1058,7 @@ public class BoardController {
 		}
 
 		/** 3) View 처리 */
+		model.addAttribute("selected", selected);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
 		model.addAttribute("pageData", pageData);
@@ -1250,21 +1280,35 @@ public class BoardController {
 		}
 
 		/** 1) 필요한 변수값 생성 */
+		String selected = webHelper.getString("selected", "");
 		String keyword = webHelper.getString("keyword", ""); // 검색어
 		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
 		int totalCount = 0; // 전체 게시글 수
 		int listCount = 10; // 한 페이지당 표시할 목록 수
 		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
-		String UserName = webHelper.getString("UserName");
 		int BoardId = webHelper.getInt("BoardId");
 		String CreationDate = webHelper.getString("CreationDate");
+		
+		String Title = "";
+		String UserName = "";
+		
+		if (selected.equals("bTitle")) {
+            Title = keyword;
+
+        } else if (selected.equals("bName")) {
+            UserName = keyword;
+
+        } else {
+            Title = keyword;
+            UserName = keyword;
+        }
 
 		/** 2) 데이터 조회하기 */
 		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		Board input = new Board();
 		input.setBoardId(BoardId);
-		input.setTitle(keyword);
+		input.setTitle(Title);
 		input.setUserName(UserName);
 		input.setCreationDate(CreationDate);
 
@@ -1288,6 +1332,7 @@ public class BoardController {
 		}
 
 		/** 3) View 처리 */
+		model.addAttribute("selected", selected);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
 		model.addAttribute("pageData", pageData);
@@ -2623,21 +2668,34 @@ public class BoardController {
 		}
 
 		/** 1) 필요한 변수값 생성 */
+		String selected = webHelper.getString("selected", "");
 		String keyword = webHelper.getString("keyword", ""); // 검색어
 		int nowPage = webHelper.getInt("page", 1); // 페이지 번호 (기본값 1)
 		int totalCount = 0; // 전체 게시글 수
 		int listCount = 10; // 한 페이지당 표시할 목록 수
 		int pageCount = 5; // 한 그룹당 표시할 페이지 번호 수
 
-		String UserName = webHelper.getString("UserName");
 		int BoardId = webHelper.getInt("BoardId");
 		String CreationDate = webHelper.getString("CreationDate");
 
+		String Title = "";
+		String UserName = "";
+		
+		if (selected.equals("bTitle")) {
+            Title = keyword;
+
+        } else if (selected.equals("bName")) {
+            UserName = keyword;
+
+        } else {
+            Title = keyword;
+            UserName = keyword;
+        }
 		/** 2) 데이터 조회하기 */
 		// 조회에 필요한 조건값(검색어)를 Beans에 담는다.
 		Board input = new Board();
 		input.setBoardId(BoardId);
-		input.setTitle(keyword);
+		input.setTitle(Title);
 		input.setUserName(UserName);
 		input.setCreationDate(CreationDate);
 
@@ -2661,6 +2719,7 @@ public class BoardController {
 		}
 
 		/** 3) View 처리 */
+		model.addAttribute("selected", selected);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("output", output);
 		model.addAttribute("pageData", pageData);

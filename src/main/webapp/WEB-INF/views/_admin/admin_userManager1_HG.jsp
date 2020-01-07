@@ -77,11 +77,12 @@
 			action="${pageContext.request.contextPath}/_admin/admin_userManager1_HG.do">
 			<div class="col-md-4 searching_box">
 				<ul id="key">
-					<li><select name="keyField">
+					<li><select name="selected">
 							<option value="0">---선택---</option>
-							<option value="UserId">아이디</option>
-							<option value="UserName">이름</option>
-					</select> <input type="text" name="keyword" value="${keyword}"/> <button type="submit"
+							<option value="bId"<c:if test="${selected eq 'bId'}">selected</c:if>>아이디</option>
+							<option value="bName"<c:if test="${selected eq'bName'}">selected</c:if>>이름</option>
+					</select> 
+					<input type="search" name="keyword" value="${keyword}"/> <button type="submit"
 						id="s_btn">검색</button>
 				</ul>
 			</div>
