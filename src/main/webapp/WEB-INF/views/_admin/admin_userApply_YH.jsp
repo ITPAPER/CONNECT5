@@ -88,9 +88,7 @@
 				<ul id="key">
 					<li>
 						<select name="keyField">
-							<option value="0">---선택---</option>
 							<option value="UserName">이름</option>
-							<option value="id">번호</option>
 						</select> 
 							<input type="search" name="keyword" value="${keyword}" />
 						<button type="submit" id="s_btn">검색</button>

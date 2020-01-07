@@ -75,13 +75,16 @@
 			<form method="get"
 				action="${pageContext.request.contextPath}/_admin/admin_Question_SE.do">
 			<ul id="key">
-				<li><select name="keyField">
-						<option value="0">---선택---</option>
-						<option value="title">제목</option>
-						<option value="UserName">이름</option>
-				</select> <input type="search" name="keyword" value="${keyword}" />
-					<button type="submit" id="s_btn">검색</button>
-			</ul>
+					<li>
+						<select name="selected">
+							<option value="">---선택---</option>
+							<option value="bTitle" <c:if test="${selected eq 'bTitle'}">selected</c:if>>제목</option>
+							<option value="bName" <c:if test="${selected eq 'bName'}">selected</c:if>>작성자</option>
+						</select> 
+							<input type="search" name="keyword" value="${keyword}" />
+						<button type="submit" id="btn">검색</button>
+					</li>
+				</ul>
 				</form>
 		</div>
 

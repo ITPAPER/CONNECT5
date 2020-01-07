@@ -177,7 +177,10 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
 
@@ -593,7 +596,10 @@
 
 		<choose>
 			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
+				AND Title LIKE concat('%', #{Title}, '%')
+			</when>
+			<when test="UserName != null and UserName != ''">
+			AND UserName LIKE concat('%', #{UserName}, '%')
 			</when>
 		</choose>
 

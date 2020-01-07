@@ -86,7 +86,7 @@
 							<option value="bName" <c:if test="${selected eq 'bName'}">selected</c:if>>작성자</option>
 						</select> 
 						
-							<input type="search" name="keyword" placeholder="제목 or 작성자 검색" value="${keyword}"/>
+							<input type="search" name="keyword"  value="${keyword}"/>
 						<button type="submit" id="s_btn">검색</button>
 					</li>
 				</ul>
@@ -140,7 +140,7 @@
 								</c:url>
 
 								<tr>
-									<td>${item.getBoardId()}</td>
+									<td>${num}</td>
 									<td><a href="${viewUrl}">${title}</a></td>
 									<td><a href="${viewUrl}">${userName}</a></td>
 									<td>${item.viewcount}</td>

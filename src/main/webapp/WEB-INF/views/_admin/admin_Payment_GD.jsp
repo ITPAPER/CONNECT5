@@ -110,9 +110,7 @@
 			<div class="col-md-4 searching_box">
 				<ul>
 					<li><select name="keyField">
-							<option value="0">---선택---</option>
 							<option value="name">이름</option>
-							<option value="id">아이디</option>
 					</select> <input type="text" name=keyword placeholder="이름검색"
 						value="${keyword}" />
 						<button type="submit">검색</button>
