@@ -75,6 +75,21 @@ public class SucMatchController {
          User otherUser = new User();
          otherUser.setMemberId(otherMemberId);
          
+         int userGender = loginInfo.getGender();
+         
+         int otherGender = 0;
+         
+         try {
+            otherGender = userService.selectGender(otherUser);
+         } catch (Exception e) {
+            return webHelper.redirect(null, e.getLocalizedMessage());
+         }
+         
+         if (userGender == otherGender) {
+            String redirectUrl = contextPath + "/_mypage/search_SE.do";
+            return webHelper.redirect(redirectUrl,"인연을 다시 찾아주세요. 동성과는 데이트 할 수 없어요!");
+         }
+         
          int Date_Rest = loginInfo.getDate_Rest();
          loginInfo.setDate_Rest(Date_Rest - 1);
          int MemberId = loginInfo.getMemberId();
@@ -89,20 +104,6 @@ public class SucMatchController {
             return webHelper.redirect(null, e.getLocalizedMessage());
          }
          
-         int userGender = loginInfo.getGender();
-         
-         int otherGender = 0;
-         
-         try {
-            otherGender = userService.selectGender(otherUser);
-         } catch (Exception e) {
-            return webHelper.redirect(null, e.getLocalizedMessage());
-         }
-         
-         if (userGender == otherGender) {
-            String redirectUrl = contextPath + "/_mypage/search_SE.do";
-            return webHelper.redirect(redirectUrl,"인연을 다시 찾아주세요."+ loginInfo.getUserName() + "님 과 데이트 할 수 없어요!");
-         }
          
          // SucMatch DB 에 유저에서 객체 만들어서 넣어야 하니까 상대방 MemberId 와 내꺼 MemberId 넣어줌
          SucMatch sucMatch = new SucMatch();
