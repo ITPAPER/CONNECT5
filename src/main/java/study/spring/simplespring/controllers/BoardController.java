@@ -319,6 +319,7 @@ public class BoardController {
 
 	      String Title = paramMap.get("Title");
 	      String Content = paramMap.get("Content");
+	      String BoardId = paramMap.get("BoardId");
 	      // String ContentImg = fileList.get(0).getFilePath();
 	      String CreationDate = webHelper.getString("CreationDate");
 	      String ContentImg="";
@@ -326,6 +327,7 @@ public class BoardController {
 	          ContentImg = aa.getFilePath();
 	      }
 	      
+	      int a = Integer.parseInt(BoardId);
 	      
 	      Board input = new Board();
 	      input.setContent(Content);
@@ -333,6 +335,7 @@ public class BoardController {
 	      input.setMemberId(MemberId);
 	      input.setCreationDate(CreationDate);
 	      input.setContentImg(ContentImg);
+	      input.setBoardId(a);
 
 
 	      try {

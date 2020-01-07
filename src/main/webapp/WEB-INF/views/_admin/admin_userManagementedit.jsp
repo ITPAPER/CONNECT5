@@ -78,7 +78,7 @@
 		</div>
 		
 		<div class="col-md-10 text_box">
-			<form action="${pageContext.request.contextPath}/_admin/admin_userManagementeditOk.do" method="POST">
+			<form action="${pageContext.request.contextPath}/_admin/admin_userManagementeditOk.do" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="BoardId" value="${output.getBoardId() }" />
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
