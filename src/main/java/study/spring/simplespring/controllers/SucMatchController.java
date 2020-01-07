@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -227,6 +226,7 @@ public class SucMatchController {
       model.addAttribute("jsonList", jsonList);
       model.addAttribute("username", name);
       model.addAttribute("date_rest", date_rest);
+      model.addAttribute("member_lv", member_lv);
 
       return new ModelAndView("_mypage/search_SE");
    }

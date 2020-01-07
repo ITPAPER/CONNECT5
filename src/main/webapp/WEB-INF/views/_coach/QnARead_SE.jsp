@@ -124,11 +124,11 @@
 				<c:otherwise>
 					<%-- 조회 결과에 따른 반복 처리 --%>
 					<c:forEach var="item" items="${output1}" varStatus="status">
-						<c:set var="replyId" value="${item.replyId}" />
 						<c:set var="re_content" value="${item.re_Content}" />
 						<c:set var="username" value="${item.userName}" />
 						<c:set var="re_creationDate" value="${item.re_CreationDate}" />
 						<span style='display: none' id="CIa${status.index}">${item.replyId}</span>
+						<span style='display: none' id="Ca${status.index}">${item.memberId}</span>
 
 						<div class="media-body">
 							<!-- 제목영역의 float 처리를 위한 마감제 박스 -->
@@ -164,15 +164,17 @@
 			e.preventDefault();
             var g;
             var h;
+            var p;
             var f = $(this).attr("href");
             g = $("#"+f).html();
             h = $("#CI"+f).html();
+            p = $("#C"+f).html();
             console.log(h);
 
 							var repEdit;
 							repEdit = "<form method='post' action='${pageContext.request.contextPath}/_coach/replyeditOk.do'>"
 							repEdit += "<input type='hidden' name='replyId' value='"+h+"' />"
-							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}>"
+							repEdit += "<div class='form-group' id='inputreply'><input type='hidden' name='BoardId' value=${output.getBoardId()}><input type='hidden' name='MemberId' value='"+p+"' />"
 							repEdit += "<input type='hidden' name='Re_Title' value='댓글달기' /> 댓글달기 &nbsp; <input type='text' id='Re_Content1' name='Re_Content' class='form-control' value='"+g+"'/>"
 							repEdit += "<button type='submit' class='btn btn-default pull-right' id='replybtn'>등록</button>"
 							repEdit += "<button type='reset' class='btn btn-default pull-right' id='cancelbtn'>취소</button></div></form>"
