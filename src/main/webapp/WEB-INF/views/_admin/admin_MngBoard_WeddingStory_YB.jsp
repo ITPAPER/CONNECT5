@@ -117,7 +117,7 @@
 						<%-- 조회결과가 있는  경우 --%>
 						<c:otherwise>
 							<%-- 조회 결과에 따른 반복 처리 --%>
-							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount) - 3}" />
+							<c:set var="num" value="${pageData.totalCount - ((pageData.nowPage - 1) * pageData.listCount)}" />
 							<c:forEach var="item" items="${output}" varStatus="status">
 								<c:set var="title" value="${item.title}" />
 								<c:set var="userName" value="${item.userName}" />

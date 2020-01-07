@@ -942,8 +942,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int getBoardCountadminQnA(Board input) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+        
+        try {
+            result = sqlSession.selectOne("BoardMapper.selectCountAlladminQnA", input);
+        } catch (Exception e) {
+            log.error(e.getLocalizedMessage());
+            throw new Exception("데이터 조회에 실패했습니다.");
+        }
+        
+        return result;
 	}
 
 

@@ -282,16 +282,21 @@
 		</choose>
 	</select>
 
-	<select id="selectCountadminQnA"
+	<select id="selectCountAlladminQnA"
 		parameterType="study.spring.simplespring.model.Board" resultType="int">
 		SELECT COUNT(*)
 		FROM Board b
 		INNER JOIN User u ON b.MemberId=u.MemberId
+		AND Category = 4
 
 		<choose>
-			<when test="Title != null and Title != ''">
-				AND Title = #{Title}
-			</when>
+            <when test="Title != null and Title != ''">
+                AND Title LIKE concat ('%', #{Title}, '%')
+            </when>
+            
+            <when test="UserName != null and UserName != ''">
+                AND UserName LIKE concat ('%', #{UserName}, '%')
+            </when>
 		</choose>
 	</select>
 
