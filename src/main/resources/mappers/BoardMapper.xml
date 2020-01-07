@@ -835,9 +835,6 @@
 
 		ORDER BY BoardId DESC
 
-		<if test="listCount > 0">
-			LIMIT #{offset}, #{listCount}
-		</if>
 	</select>
 
 	<!-- 데이터 수 조회를 위한 기능 정의 -->
