@@ -128,6 +128,7 @@
 									<c:set var="Select_Date" value="${item.getSelect_Date()}" />
 									<c:set var="Start" value="${item.getStart()}" />
 									<c:set var="ReqSpService" value="${item.getReqSpService()}" />
+									<c:set var="MemberId" value="${item.getMemberId()}" />
 									
 									<%-- 검색어가 있다면? --%>
 									<c:if test="${keyword != ''}">
@@ -148,7 +149,7 @@
 										</c:if>
 										<td>${Select_Date}</td>
 										<td>${Start}</td>
-										<td><button type="button" class="label label-warning" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userApply_YHdeleteOk.do?ReqMatchId=${ReqMatchId}'">삭제</button></td>
+										<td><button type="button" class="label label-warning" onclick="location.href = '${pageContext.request.contextPath}/_admin/admin_userApply_YHdeleteOk.do?ReqMatchId=${ReqMatchId}&MemberId=${MemberId}'">삭제</button></td>
 									</tr>
 									<c:set var="num" value="${num-1}"></c:set>
 								</c:forEach>

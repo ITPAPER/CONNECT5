@@ -2478,10 +2478,19 @@ public class BoardController {
 			return webHelper.redirect(null, "신청현황이 없습니다.");
 		}
 
+		int MemberId = webHelper.getInt("MemberId");
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+MemberId);
+		
 		ReqMatch input = new ReqMatch();
 		input.setReqMatchId(ReqMatchId);
+		
+		User input1 = new User();
+		input1.setMemberId(MemberId);
 
 		try {
+			
+			userService.editreqMatch_isSpUserupdateUser(input1);
 			// 데이터 삭제
 			reqMatchService.deleteReqMatch(input);
 		} catch (Exception e) {
